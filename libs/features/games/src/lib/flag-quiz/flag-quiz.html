@@ -175,16 +175,43 @@
         </div>
       </div>
 
-      <!-- Timer & Streak -->
-      <div class="flex justify-between items-center">
-        <div class="flex items-center gap-2">
-          <ng-icon name="lucideTimer" [class]="quizState().timeLeft <= 3 ? 'text-red-500' : ''" />
-          <span 
-            class="text-xl font-bold"
-            [class]="quizState().timeLeft <= 3 ? 'text-red-500 animate-pulse' : ''"
-          >
-            {{ quizState().timeLeft }}s
-          </span>
+      <!-- Timer Slider with Alien Thumb -->
+      <div class="flex justify-between items-center gap-4">
+        <div class="flex-1">
+          <div class="relative h-8">
+            <!-- Track Background (empty state) -->
+            <div class="absolute top-1/2 -translate-y-1/2 w-full h-3 bg-muted rounded-full"></div>
+            <!-- Track Fill (shrinks from right as time depletes) -->
+            <div 
+              class="absolute top-1/2 -translate-y-1/2 right-0 h-3 rounded-full transition-all duration-1000"
+              [style.width.%]="(quizState().timeLeft / settings().speed) * 100"
+              [class]="quizState().timeLeft <= 3 ? 'bg-gradient-to-r from-red-400 to-red-500 animate-pulse' : 
+                       quizState().timeLeft <= 5 ? 'bg-gradient-to-r from-yellow-400 to-yellow-500' : 
+                       'bg-gradient-to-r from-green-400 to-green-500'"
+            ></div>
+            <!-- Alien Thumb (moves left as time runs out) -->
+            <div 
+              class="absolute top-1/2 transition-all duration-1000"
+              [style.left.%]="(quizState().timeLeft / settings().speed) * 100"
+              style="transform: translate(-50%, -50%);"
+            >
+              <div 
+                class="text-3xl drop-shadow-lg transition-transform"
+                [class.animate-bounce]="quizState().timeLeft <= 3"
+                [class.scale-125]="quizState().timeLeft <= 3"
+              >👽</div>
+            </div>
+          </div>
+          <!-- Time Display -->
+          <div class="flex justify-between text-xs text-muted-foreground mt-1">
+            <span>0s</span>
+            <span 
+              class="font-bold text-sm"
+              [class.text-red-500]="quizState().timeLeft <= 3"
+              [class.animate-pulse]="quizState().timeLeft <= 3"
+            >{{ quizState().timeLeft }}s</span>
+            <span>{{ settings().speed }}s</span>
+          </div>
         </div>
         
         <!-- Streak Display - Escalating -->

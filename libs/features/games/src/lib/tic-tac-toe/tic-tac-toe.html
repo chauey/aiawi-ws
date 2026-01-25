@@ -18,7 +18,7 @@
     <div hlmCardContent class="p-4">
       <div class="grid grid-cols-3 gap-4 text-center">
         <div class="space-y-1">
-          <div class="text-2xl font-bold text-blue-500">{{ xScore() }}</div>
+          <div class="text-2xl font-bold text-pink-400">{{ xScore() }}</div>
           <div class="text-sm text-muted-foreground">Player X</div>
         </div>
         <div class="space-y-1">
@@ -26,7 +26,7 @@
           <div class="text-sm text-muted-foreground">Draws</div>
         </div>
         <div class="space-y-1">
-          <div class="text-2xl font-bold text-rose-500">{{ oScore() }}</div>
+          <div class="text-2xl font-bold text-blue-500">{{ oScore() }}</div>
           <div class="text-sm text-muted-foreground">Player O</div>
         </div>
       </div>
@@ -40,7 +40,7 @@
     } @else if (winner()) {
       <div class="flex items-center justify-center gap-2 text-xl font-semibold">
         <ng-icon name="lucideTrophy" class="text-yellow-500" />
-        <span [class]="winner() === 'X' ? 'text-blue-500' : 'text-rose-500'">
+        <span [class]="winner() === 'X' ? 'text-pink-400' : 'text-blue-500'">
           Player {{ winner() }} Wins!
         </span>
         <ng-icon name="lucideTrophy" class="text-yellow-500" />
@@ -48,7 +48,7 @@
     } @else {
       <div class="text-lg">
         <span class="text-muted-foreground">Current Turn: </span>
-        <span class="font-bold" [class]="currentPlayer() === 'X' ? 'text-blue-500' : 'text-rose-500'">
+        <span class="font-bold" [class]="currentPlayer() === 'X' ? 'text-pink-400' : 'text-blue-500'">
           Player {{ currentPlayer() }}
         </span>
       </div>

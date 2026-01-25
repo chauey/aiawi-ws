@@ -119,9 +119,9 @@ export class TicTacToe {
     } else if (isWinning) {
       classes += 'bg-green-500/20 text-green-500 scale-105 ';
     } else if (cell === 'X') {
-      classes += 'bg-blue-500/10 text-blue-500 ';
+      classes += 'bg-pink-400/10 text-pink-400 ';
     } else if (cell === 'O') {
-      classes += 'bg-rose-500/10 text-rose-500 ';
+      classes += 'bg-blue-500/10 text-blue-500 ';
     } else {
       classes += 'bg-muted/50 ';
     }

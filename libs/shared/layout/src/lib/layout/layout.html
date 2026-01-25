@@ -1,0 +1,178 @@
+<div class="min-h-screen flex w-full bg-background text-foreground">
+  <!-- Desktop Sidebar -->
+  <aside 
+    class="hidden md:flex flex-col border-r border-border bg-sidebar transition-all duration-300"
+    [class.w-64]="!isSidebarCollapsed()"
+    [class.w-16]="isSidebarCollapsed()"
+  >
+    <!-- Logo -->
+    <div class="h-14 flex items-center gap-3 px-4 border-b border-border">
+      <div class="h-8 w-8 rounded-lg bg-primary flex items-center justify-center shrink-0">
+        <span class="text-primary-foreground font-bold text-sm">A</span>
+      </div>
+      @if (!isSidebarCollapsed()) {
+        <span class="font-semibold text-lg">Aiawi</span>
+      }
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 p-2 space-y-1">
+      @for (item of navItems; track item.path) {
+        <a 
+          [routerLink]="item.path" 
+          routerLinkActive="bg-sidebar-accent text-sidebar-accent-foreground"
+          class="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium hover:bg-sidebar-accent/50 transition-colors"
+          [class.justify-center]="isSidebarCollapsed()"
+          [title]="isSidebarCollapsed() ? item.label : ''"
+        >
+          <ng-icon [name]="item.icon" class="text-lg shrink-0" />
+          @if (!isSidebarCollapsed()) {
+            <span>{{ item.label }}</span>
+          }
+        </a>
+      }
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="p-2 border-t border-border space-y-1">
+      <!-- Theme Toggle -->
+      <div class="flex items-center gap-1" [class.justify-center]="isSidebarCollapsed()">
+        <button 
+          class="inline-flex items-center justify-center h-8 w-8 rounded-md text-sm transition-colors"
+          [class]="themeMode() === 'light' ? 'bg-secondary text-secondary-foreground' : 'hover:bg-accent hover:text-accent-foreground'"
+          (click)="setTheme('light')"
+          title="Light mode"
+        >
+          <ng-icon name="lucideSun" class="text-sm" />
+        </button>
+        <button 
+          class="inline-flex items-center justify-center h-8 w-8 rounded-md text-sm transition-colors"
+          [class]="themeMode() === 'dark' ? 'bg-secondary text-secondary-foreground' : 'hover:bg-accent hover:text-accent-foreground'"
+          (click)="setTheme('dark')"
+          title="Dark mode"
+        >
+          <ng-icon name="lucideMoon" class="text-sm" />
+        </button>
+        @if (!isSidebarCollapsed()) {
+          <button 
+            class="inline-flex items-center justify-center h-8 w-8 rounded-md text-sm transition-colors"
+            [class]="themeMode() === 'system' ? 'bg-secondary text-secondary-foreground' : 'hover:bg-accent hover:text-accent-foreground'"
+            (click)="setTheme('system')"
+            title="System mode"
+          >
+            <ng-icon name="lucideMonitor" class="text-sm" />
+          </button>
+        }
+      </div>
+      
+      <!-- Collapse Toggle -->
+      <button 
+        class="w-full flex items-center px-3 py-2 rounded-md text-sm hover:bg-accent transition-colors"
+        [class.justify-center]="isSidebarCollapsed()"
+        (click)="toggleSidebar()"
+      >
+        <ng-icon 
+          name="lucideChevronRight" 
+          class="text-sm transition-transform"
+          [class.rotate-180]="!isSidebarCollapsed()" 
+        />
+        @if (!isSidebarCollapsed()) {
+          <span class="ml-2">Collapse</span>
+        }
+      </button>
+    </div>
+  </aside>
+
+  <!-- Mobile Overlay -->
+  @if (isMobileMenuOpen()) {
+    <div 
+      class="fixed inset-0 bg-black/50 z-40 md:hidden" 
+      (click)="closeMobileMenu()"
+    ></div>
+    
+    <!-- Mobile Sidebar -->
+    <div class="fixed inset-y-0 left-0 w-72 bg-sidebar border-r border-border z-50 md:hidden flex flex-col animate-in slide-in-from-left duration-300">
+      <div class="h-14 flex items-center justify-between px-4 border-b border-border">
+        <div class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+            <span class="text-primary-foreground font-bold text-sm">A</span>
+          </div>
+          <span class="font-semibold text-lg">Aiawi</span>
+        </div>
+        <button class="h-8 w-8 inline-flex items-center justify-center rounded-md hover:bg-accent transition-colors" (click)="closeMobileMenu()">
+          <ng-icon name="lucideX" class="text-lg" />
+        </button>
+      </div>
+
+      <nav class="flex-1 p-4 space-y-1">
+        @for (item of navItems; track item.path) {
+          <a 
+            [routerLink]="item.path" 
+            routerLinkActive="bg-sidebar-accent text-sidebar-accent-foreground"
+            class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-sidebar-accent/50 transition-colors"
+            (click)="closeMobileMenu()"
+          >
+            <ng-icon [name]="item.icon" class="text-lg" />
+            {{ item.label }}
+          </a>
+        }
+      </nav>
+
+      <div class="p-4 border-t border-border">
+        <div class="flex gap-2">
+          <button 
+            class="h-9 w-9 inline-flex items-center justify-center rounded-md border transition-colors"
+            [class]="themeMode() === 'light' ? 'bg-primary text-primary-foreground' : 'border-input hover:bg-accent'"
+            (click)="setTheme('light')"
+          >
+            <ng-icon name="lucideSun" class="text-sm" />
+          </button>
+          <button 
+            class="h-9 w-9 inline-flex items-center justify-center rounded-md border transition-colors"
+            [class]="themeMode() === 'dark' ? 'bg-primary text-primary-foreground' : 'border-input hover:bg-accent'"
+            (click)="setTheme('dark')"
+          >
+            <ng-icon name="lucideMoon" class="text-sm" />
+          </button>
+          <button 
+            class="h-9 w-9 inline-flex items-center justify-center rounded-md border transition-colors"
+            [class]="themeMode() === 'system' ? 'bg-primary text-primary-foreground' : 'border-input hover:bg-accent'"
+            (click)="setTheme('system')"
+          >
+            <ng-icon name="lucideMonitor" class="text-sm" />
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col min-h-screen">
+    <!-- Mobile Header -->
+    <header class="md:hidden h-14 flex items-center justify-between px-4 border-b border-border bg-background sticky top-0 z-30">
+      <button class="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent transition-colors" (click)="toggleMobileMenu()">
+        <ng-icon name="lucideMenu" class="text-lg" />
+      </button>
+      
+      <div class="flex items-center gap-2">
+        <div class="h-7 w-7 rounded-lg bg-primary flex items-center justify-center">
+          <span class="text-primary-foreground font-bold text-xs">A</span>
+        </div>
+        <span class="font-semibold">Aiawi</span>
+      </div>
+
+      <button class="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent transition-colors" (click)="setTheme(isDark() ? 'light' : 'dark')">
+        @if (isDark()) {
+          <ng-icon name="lucideSun" class="text-lg" />
+        } @else {
+          <ng-icon name="lucideMoon" class="text-lg" />
+        }
+      </button>
+    </header>
+
+    <!-- Page Content -->
+    <main class="flex-1 p-4 md:p-6 lg:p-8">
+      <router-outlet />
+    </main>
+  </div>
+</div>

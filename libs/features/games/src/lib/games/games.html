@@ -1,0 +1,135 @@
+<div class="space-y-6">
+  <!-- Page Header -->
+  <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <div>
+      <h1 class="text-3xl font-bold tracking-tight">Games</h1>
+      <p class="text-muted-foreground">Browse and play our collection of games.</p>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="relative w-full md:w-80">
+      <ng-icon hlm name="lucideSearch" size="sm" class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+      <input 
+        hlmInput
+        type="text"
+        placeholder="Search games..."
+        class="pl-10 w-full"
+        [(ngModel)]="searchQuery"
+      />
+    </div>
+  </div>
+
+  <!-- Category Filters -->
+  <div class="flex flex-wrap gap-2">
+    @for (category of categories; track category.id) {
+      <button 
+        hlmBtn 
+        [variant]="selectedCategory === category.id ? 'default' : 'outline'"
+        size="sm"
+        (click)="selectCategory(category.id)"
+      >
+        {{ category.label }}
+      </button>
+    }
+  </div>
+
+  <!-- Featured Games -->
+  @if (selectedCategory === 'all' && !searchQuery) {
+    <section class="space-y-4">
+      <h2 class="text-xl font-semibold">Featured Games</h2>
+      <div class="grid gap-4 md:grid-cols-3">
+        @for (game of featuredGames; track game.id) {
+          <section hlmCard class="group relative overflow-hidden hover:shadow-lg transition-all duration-300 border-primary/20">
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div hlmCardHeader class="pb-2">
+              <div class="flex items-center justify-between">
+                <span class="text-4xl">{{ game.image }}</span>
+                <span hlmBadge variant="secondary">Featured</span>
+              </div>
+              <h3 hlmCardTitle class="mt-2">{{ game.name }}</h3>
+              <p hlmCardDescription>{{ game.description }}</p>
+            </div>
+            <div hlmCardContent class="pt-0">
+              <div class="flex items-center justify-between text-sm text-muted-foreground">
+                <div class="flex items-center gap-1">
+                  <ng-icon hlm name="lucideUsers" size="xs" />
+                  {{ game.players }}
+                </div>
+                <div class="flex items-center gap-1">
+                  <ng-icon hlm name="lucideStar" size="xs" class="text-yellow-500" />
+                  {{ game.rating }}
+                </div>
+              </div>
+            </div>
+            <div hlmCardFooter>
+              <button hlmBtn class="w-full gap-2">
+                <ng-icon hlm name="lucidePlay" size="sm" />
+                Play Now
+              </button>
+            </div>
+          </section>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- All Games Grid -->
+  <section class="space-y-4">
+    <div class="flex items-center justify-between">
+      <h2 class="text-xl font-semibold">
+        @if (selectedCategory === 'all') {
+          All Games
+        } @else {
+          {{ selectedCategoryLabel }}
+        }
+      </h2>
+      <span class="text-sm text-muted-foreground">{{ filteredGames.length }} games</span>
+    </div>
+    
+    @if (filteredGames.length > 0) {
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        @for (game of filteredGames; track game.id) {
+          <section hlmCard class="group hover:shadow-md transition-shadow">
+            <div hlmCardHeader class="pb-2">
+              <div class="flex items-start justify-between">
+                <span class="text-3xl">{{ game.image }}</span>
+                @if (game.featured) {
+                  <span hlmBadge variant="outline" class="text-xs">Featured</span>
+                }
+              </div>
+              <h3 hlmCardTitle class="text-base mt-2">{{ game.name }}</h3>
+              <p hlmCardDescription class="text-sm line-clamp-2">{{ game.description }}</p>
+            </div>
+            <div hlmCardContent class="pt-0 pb-2">
+              <div class="flex items-center justify-between text-xs text-muted-foreground">
+                <div class="flex items-center gap-1">
+                  <ng-icon hlm name="lucideUsers" size="xs" />
+                  {{ game.players }}
+                </div>
+                <div class="flex items-center gap-1">
+                  <ng-icon hlm name="lucideStar" size="xs" class="text-yellow-500" />
+                  {{ game.rating }}
+                </div>
+              </div>
+            </div>
+            <div hlmCardFooter class="pt-0">
+              <button hlmBtn variant="outline" size="sm" class="w-full gap-2 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                <ng-icon hlm name="lucidePlay" size="sm" />
+                Play
+              </button>
+            </div>
+          </section>
+        }
+      </div>
+    } @else {
+      <div class="flex flex-col items-center justify-center py-12 text-center">
+        <ng-icon hlm name="lucideGamepad2" size="xl" class="text-muted-foreground mb-4" />
+        <h3 class="text-lg font-medium">No games found</h3>
+        <p class="text-sm text-muted-foreground">Try adjusting your search or filter.</p>
+        <button hlmBtn variant="outline" class="mt-4" (click)="searchQuery = ''; selectedCategory = 'all'">
+          Clear filters
+        </button>
+      </div>
+    }
+  </section>
+</div>

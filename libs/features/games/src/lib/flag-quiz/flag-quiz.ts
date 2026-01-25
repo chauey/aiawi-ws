@@ -24,7 +24,7 @@ import {
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmBadge } from '@spartan-ng/helm/badge';
-import { COUNTRIES, Country, CONTINENTS } from './flags-data';
+import { COUNTRIES, Country, CONTINENTS, getFlagUrl } from './flags-data';
 
 type GameMode = 'menu' | 'quiz' | 'training' | 'results' | 'stats';
 type Difficulty = 'easy' | 'medium' | 'hard' | 'all';
@@ -134,6 +134,7 @@ export class FlagQuiz implements OnInit, OnDestroy {
   allCountries = COUNTRIES;
   continents = CONTINENTS;
   Math = Math; // For template usage
+  getFlagUrl = getFlagUrl; // For template usage
   
   currentQuestion = computed(() => {
     const questions = this.quizQuestions();
@@ -248,7 +249,8 @@ export class FlagQuiz implements OnInit, OnDestroy {
       .sort(() => Math.random() - 0.5)
       .slice(0, 9);
     
-    const options = this.shuffleArray([current, ...wrongAnswers]);
+    // Combine and sort alphabetically by country name
+    const options = [current, ...wrongAnswers].sort((a, b) => a.name.localeCompare(b.name));
     this.currentOptions.set(options);
   }
 
@@ -259,6 +261,10 @@ export class FlagQuiz implements OnInit, OnDestroy {
     const current = this.currentQuestion();
     const isCorrect = country.code === current?.code;
     const timeTaken = this.settings().speed - this.quizState().timeLeft;
+    
+    if (isCorrect) {
+      this.triggerConfetti();
+    }
     
     this.quizState.update(state => ({
       ...state,
@@ -272,6 +278,48 @@ export class FlagQuiz implements OnInit, OnDestroy {
     
     // Auto-advance after delay
     setTimeout(() => this.nextQuestion(), 1500);
+  }
+
+  skipQuestion() {
+    if (this.quizState().showResult) return;
+    
+    this.stopTimer();
+    const current = this.currentQuestion();
+    
+    this.quizState.update(state => ({
+      ...state,
+      showResult: true,
+      streak: 0,
+      answers: [...state.answers, { country: current!, correct: false, timeTaken: this.settings().speed }]
+    }));
+    
+    setTimeout(() => this.nextQuestion(), 1500);
+  }
+
+  private triggerConfetti() {
+    // Create confetti particles
+    const confettiCount = 50;
+    const container = document.createElement('div');
+    container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden;';
+    document.body.appendChild(container);
+
+    for (let i = 0; i < confettiCount; i++) {
+      const confetti = document.createElement('div');
+      const colors = ['#f43f5e', '#3b82f6', '#22c55e', '#eab308', '#a855f7', '#ec4899'];
+      confetti.style.cssText = `
+        position:absolute;
+        width:10px;height:10px;
+        background:${colors[Math.floor(Math.random() * colors.length)]};
+        left:${Math.random() * 100}%;
+        top:-10px;
+        border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
+        animation:confetti-fall ${1.5 + Math.random()}s ease-out forwards;
+        animation-delay:${Math.random() * 0.3}s;
+      `;
+      container.appendChild(confetti);
+    }
+
+    setTimeout(() => container.remove(), 3000);
   }
 
   private nextQuestion() {

@@ -4,9 +4,14 @@
 export interface Country {
   code: string;
   name: string;
-  flag: string; // emoji flag
+  flag: string; // emoji flag (fallback)
   continent: string;
   difficulty: 1 | 2 | 3;
+}
+
+// Get flag image URL from CDN
+export function getFlagUrl(code: string, size: 'w20' | 'w40' | 'w80' | 'w160' | 'w320' | 'w640' | 'w1280' | 'w2560' = 'w160'): string {
+  return `https://flagcdn.com/${size}/${code.toLowerCase()}.png`;
 }
 
 export const COUNTRIES: Country[] = [

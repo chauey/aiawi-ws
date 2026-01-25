@@ -182,12 +182,31 @@
         }
       </div>
 
-      <!-- Flag Display -->
-      <div class="flex justify-center py-8">
-        <div class="text-[8rem] md:text-[12rem] leading-none animate-in zoom-in duration-300">
-          {{ question.flag }}
+      <!-- Flag Display with dark background for visibility -->
+      <div class="flex justify-center py-6">
+        <div class="bg-slate-800 p-4 rounded-xl shadow-xl">
+          <img 
+            [src]="getFlagUrl(question.code, 'w320')"
+            [alt]="question.name + ' flag'"
+            class="h-28 md:h-40 w-auto rounded-md animate-in zoom-in duration-300"
+          />
         </div>
       </div>
+
+      <!-- Skip Button -->
+      @if (!quizState().showResult) {
+        <div class="flex justify-center">
+          <button 
+            hlmBtn 
+            variant="ghost" 
+            size="sm"
+            (click)="skipQuestion()"
+            class="text-muted-foreground"
+          >
+            Skip this question
+          </button>
+        </div>
+      }
 
       <!-- Options Grid -->
       <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
@@ -239,12 +258,20 @@
       <!-- Training Card -->
       <section hlmCard class="max-w-md mx-auto">
         <div hlmCardContent class="p-8 text-center space-y-4">
-          <!-- Flag (hideable) -->
-          <div class="text-[8rem] leading-none">
+          <!-- Flag (hideable) with dark background -->
+          <div class="flex items-center justify-center">
             @if (showFlagInTraining()) {
-              {{ country.flag }}
+              <div class="bg-slate-800 p-3 rounded-xl shadow-xl">
+                <img 
+                  [src]="getFlagUrl(country.code, 'w320')"
+                  [alt]="country.name + ' flag'"
+                  class="h-28 w-auto rounded-md"
+                />
+              </div>
             } @else {
-              <span class="text-muted-foreground">❓</span>
+              <div class="h-36 flex items-center justify-center">
+                <div class="text-6xl text-muted-foreground">❓</div>
+              </div>
             }
           </div>
           
@@ -348,7 +375,7 @@
                 [class]="answer.correct ? 'bg-green-500/10' : 'bg-red-500/10'"
               >
                 <div class="flex items-center gap-2">
-                  <span>{{ answer.country.flag }}</span>
+                  <img [src]="getFlagUrl(answer.country.code, 'w40')" [alt]="answer.country.name" class="h-5 w-auto rounded-sm" />
                   <span>{{ answer.country.name }}</span>
                 </div>
                 <ng-icon [name]="answer.correct ? 'lucideCheck' : 'lucideX'" [class]="answer.correct ? 'text-green-500' : 'text-red-500'" />

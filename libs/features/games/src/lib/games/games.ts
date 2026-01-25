@@ -70,6 +70,17 @@ export class Games {
 
   games: Game[] = [
     {
+      id: 0,
+      name: 'Flag Quiz',
+      description: 'Guess countries by their flags. Test your geography knowledge!',
+      players: '1 Player',
+      category: 'puzzle',
+      rating: 4.7,
+      image: '🏳️',
+      featured: true,
+      route: 'flag-quiz'
+    },
+    {
       id: 1,
       name: 'Tic Tac Toe',
       description: 'Classic game of X\'s and O\'s. Challenge a friend or play against AI.',

@@ -1,0 +1,369 @@
+<div class="max-w-4xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      @if (mode() !== 'menu') {
+        <button (click)="goToMenu()" class="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent transition-colors">
+          <ng-icon name="lucideArrowLeft" class="text-lg" />
+        </button>
+      } @else {
+        <a routerLink="/games" class="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent transition-colors">
+          <ng-icon name="lucideArrowLeft" class="text-lg" />
+        </a>
+      }
+      <div>
+        <h1 class="text-2xl md:text-3xl font-bold">Flag Quiz</h1>
+        <p class="text-sm text-muted-foreground">Guess the country from its flag</p>
+      </div>
+    </div>
+    <span class="text-4xl">🏳️</span>
+  </div>
+
+  <!-- MENU MODE -->
+  @if (mode() === 'menu') {
+    <div class="grid gap-4 md:grid-cols-2">
+      <!-- Quiz Card -->
+      <section hlmCard class="group hover:shadow-lg transition-all cursor-pointer" (click)="startQuiz()">
+        <div hlmCardHeader>
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
+              <ng-icon name="lucidePlay" class="text-primary text-xl" />
+            </div>
+            <div>
+              <h3 hlmCardTitle>Start Quiz</h3>
+              <p hlmCardDescription>Test your flag knowledge</p>
+            </div>
+          </div>
+        </div>
+        <div hlmCardContent>
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span hlmBadge variant="outline">{{ settings().questionCount }} questions</span>
+            <span hlmBadge variant="outline">{{ settings().speed }}s timer</span>
+            <span hlmBadge variant="secondary">{{ settings().difficulty }}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Training Card -->
+      <section hlmCard class="group hover:shadow-lg transition-all cursor-pointer" (click)="startTraining()">
+        <div hlmCardHeader>
+          <div class="flex items-center gap-3">
+            <div class="h-12 w-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
+              <ng-icon name="lucideBookOpen" class="text-blue-500 text-xl" />
+            </div>
+            <div>
+              <h3 hlmCardTitle>Training Mode</h3>
+              <p hlmCardDescription>Learn and memorize flags</p>
+            </div>
+          </div>
+        </div>
+        <div hlmCardContent>
+          <p class="text-sm text-muted-foreground">{{ filteredTrainingCountries().length }} flags to learn</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Settings -->
+    <section hlmCard>
+      <div hlmCardHeader>
+        <div class="flex items-center gap-2">
+          <ng-icon name="lucideSettings" />
+          <h3 hlmCardTitle>Quiz Settings</h3>
+        </div>
+      </div>
+      <div hlmCardContent class="space-y-4">
+        <!-- Difficulty -->
+        <div>
+          <label class="text-sm font-medium mb-2 block">Difficulty</label>
+          <div class="flex flex-wrap gap-2">
+            @for (diff of ['easy', 'medium', 'hard', 'all']; track diff) {
+              <button 
+                hlmBtn 
+                [variant]="settings().difficulty === diff ? 'default' : 'outline'"
+                size="sm"
+                (click)="setDifficulty($any(diff))"
+              >
+                {{ diff | titlecase }}
+              </button>
+            }
+          </div>
+        </div>
+        
+        <!-- Speed -->
+        <div>
+          <label class="text-sm font-medium mb-2 block">Timer Speed</label>
+          <div class="flex flex-wrap gap-2">
+            @for (spd of [10, 5, 3]; track spd) {
+              <button 
+                hlmBtn 
+                [variant]="settings().speed === spd ? 'default' : 'outline'"
+                size="sm"
+                (click)="setSpeed($any(spd))"
+              >
+                {{ spd }}s
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section hlmCard>
+      <div hlmCardHeader>
+        <div class="flex items-center gap-2">
+          <ng-icon name="lucideBarChart3" />
+          <h3 hlmCardTitle>Your Stats</h3>
+        </div>
+      </div>
+      <div hlmCardContent>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div>
+            <div class="text-2xl font-bold">{{ savedData().gamesPlayed }}</div>
+            <div class="text-xs text-muted-foreground">Games Played</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">{{ accuracy() }}%</div>
+            <div class="text-xs text-muted-foreground">Accuracy</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">{{ savedData().knownFlags.length }}</div>
+            <div class="text-xs text-muted-foreground">Flags Mastered</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">{{ savedData().highScores[0]?.score || 0 }}</div>
+            <div class="text-xs text-muted-foreground">Best Score</div>
+          </div>
+        </div>
+        @if (savedData().hiddenFlags.length > 0) {
+          <div class="mt-4 pt-4 border-t">
+            <button hlmBtn variant="ghost" size="sm" (click)="unhideAllFlags()">
+              Unhide {{ savedData().hiddenFlags.length }} hidden flags
+            </button>
+          </div>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- QUIZ MODE -->
+  @if (mode() === 'quiz') {
+    @if (currentQuestion(); as question) {
+      <!-- Progress Bar -->
+      <div class="space-y-2">
+        <div class="flex justify-between text-sm">
+          <span>Question {{ quizState().currentQuestion + 1 }}/{{ settings().questionCount }}</span>
+          <span class="font-medium">Score: {{ quizState().score }}</span>
+        </div>
+        <div class="h-2 bg-muted rounded-full overflow-hidden">
+          <div 
+            class="h-full bg-primary transition-all duration-300"
+            [style.width.%]="progress()"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Timer & Streak -->
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <ng-icon name="lucideTimer" [class]="quizState().timeLeft <= 3 ? 'text-red-500' : ''" />
+          <span 
+            class="text-xl font-bold"
+            [class]="quizState().timeLeft <= 3 ? 'text-red-500 animate-pulse' : ''"
+          >
+            {{ quizState().timeLeft }}s
+          </span>
+        </div>
+        @if (quizState().streak > 0) {
+          <div class="flex items-center gap-1 text-orange-500">
+            <span class="text-lg">🔥</span>
+            <span class="font-bold">{{ quizState().streak }} streak</span>
+          </div>
+        }
+      </div>
+
+      <!-- Flag Display -->
+      <div class="flex justify-center py-8">
+        <div class="text-[8rem] md:text-[12rem] leading-none animate-in zoom-in duration-300">
+          {{ question.flag }}
+        </div>
+      </div>
+
+      <!-- Options Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
+        @for (option of currentOptions(); track option.code) {
+          <button
+            class="p-3 rounded-lg border-2 text-sm font-medium transition-all duration-200"
+            [class]="getOptionClass(option)"
+            [disabled]="quizState().showResult"
+            (click)="selectAnswer(option)"
+          >
+            <div class="flex items-center gap-2 justify-center">
+              @if (quizState().showResult && option.code === currentQuestion()?.code) {
+                <ng-icon name="lucideCheck" class="text-green-500" />
+              }
+              @if (quizState().showResult && option.code === quizState().selectedAnswer?.code && option.code !== currentQuestion()?.code) {
+                <ng-icon name="lucideX" class="text-red-500" />
+              }
+              <span class="truncate">{{ option.name }}</span>
+            </div>
+          </button>
+        }
+      </div>
+    }
+  }
+
+  <!-- TRAINING MODE -->
+  @if (mode() === 'training') {
+    <!-- Filter -->
+    <div class="flex items-center gap-2 flex-wrap">
+      <ng-icon name="lucideFilter" class="text-muted-foreground" />
+      @for (continent of continents; track continent) {
+        <button 
+          hlmBtn 
+          [variant]="trainingFilter() === continent ? 'default' : 'outline'"
+          size="sm"
+          (click)="trainingFilter.set(continent)"
+        >
+          {{ continent }}
+        </button>
+      }
+    </div>
+
+    @if (currentTrainingCountry(); as country) {
+      <!-- Card Counter -->
+      <div class="text-center text-sm text-muted-foreground">
+        {{ trainingIndex() + 1 }} / {{ filteredTrainingCountries().length }}
+      </div>
+
+      <!-- Training Card -->
+      <section hlmCard class="max-w-md mx-auto">
+        <div hlmCardContent class="p-8 text-center space-y-4">
+          <!-- Flag (hideable) -->
+          <div class="text-[8rem] leading-none">
+            @if (showFlagInTraining()) {
+              {{ country.flag }}
+            } @else {
+              <span class="text-muted-foreground">❓</span>
+            }
+          </div>
+          
+          <!-- Country Name -->
+          <h2 class="text-2xl font-bold">{{ country.name }}</h2>
+          
+          <!-- Info -->
+          <div class="flex justify-center gap-2">
+            <span hlmBadge variant="outline">{{ country.continent }}</span>
+            <span hlmBadge [variant]="country.difficulty === 1 ? 'default' : country.difficulty === 2 ? 'secondary' : 'outline'">
+              {{ country.difficulty === 1 ? 'Easy' : country.difficulty === 2 ? 'Medium' : 'Hard' }}
+            </span>
+          </div>
+
+          @if (isKnown()) {
+            <div class="flex items-center justify-center gap-1 text-green-500">
+              <ng-icon name="lucideStar" />
+              <span class="text-sm font-medium">Mastered</span>
+            </div>
+          }
+        </div>
+
+        <!-- Actions -->
+        <div hlmCardFooter class="flex justify-between">
+          <button hlmBtn variant="outline" size="icon" (click)="prevTrainingCard()" [disabled]="trainingIndex() === 0">
+            <ng-icon name="lucideChevronLeft" />
+          </button>
+          
+          <div class="flex gap-2">
+            <button hlmBtn variant="ghost" size="sm" (click)="toggleFlagVisibility()" title="Toggle flag visibility">
+              <ng-icon [name]="showFlagInTraining() ? 'lucideEyeOff' : 'lucideEye'" />
+            </button>
+            <button hlmBtn [variant]="isKnown() ? 'secondary' : 'outline'" size="sm" (click)="toggleKnown()">
+              <ng-icon name="lucideStar" />
+              {{ isKnown() ? 'Mastered' : 'Mark Known' }}
+            </button>
+            <button hlmBtn variant="ghost" size="sm" (click)="hideFlag()" title="Hide this flag">
+              <ng-icon name="lucideX" />
+            </button>
+          </div>
+
+          <button hlmBtn variant="outline" size="icon" (click)="nextTrainingCard()" [disabled]="trainingIndex() >= filteredTrainingCountries().length - 1">
+            <ng-icon name="lucideChevronRight" />
+          </button>
+        </div>
+      </section>
+
+      <!-- Instructions -->
+      <div class="text-center text-sm text-muted-foreground max-w-md mx-auto">
+        <p>Use arrows to browse • Click 👁️ to hide/show flag • ⭐ marks as known • ✕ hides from rotation</p>
+      </div>
+    } @else {
+      <div class="text-center py-12">
+        <p class="text-muted-foreground">No flags to show. Try a different filter or unhide flags.</p>
+        <button hlmBtn variant="outline" class="mt-4" (click)="unhideAllFlags()">Unhide All Flags</button>
+      </div>
+    }
+  }
+
+  <!-- RESULTS MODE -->
+  @if (mode() === 'results') {
+    <section hlmCard class="text-center">
+      <div hlmCardHeader>
+        <div class="flex justify-center mb-4">
+          <ng-icon name="lucideTrophy" class="text-5xl text-yellow-500" />
+        </div>
+        <h2 hlmCardTitle class="text-3xl">Quiz Complete!</h2>
+      </div>
+      <div hlmCardContent class="space-y-6">
+        <!-- Score -->
+        <div class="text-6xl font-bold text-primary">
+          {{ quizState().score }} / {{ quizState().answers.length }}
+        </div>
+        <div class="text-xl text-muted-foreground">
+          {{ Math.round((quizState().score / quizState().answers.length) * 100) }}% Correct
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-3 gap-4 py-4 border-y">
+          <div>
+            <div class="text-2xl font-bold text-orange-500">🔥 {{ quizState().bestStreak }}</div>
+            <div class="text-xs text-muted-foreground">Best Streak</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">{{ settings().difficulty | titlecase }}</div>
+            <div class="text-xs text-muted-foreground">Difficulty</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">{{ settings().speed }}s</div>
+            <div class="text-xs text-muted-foreground">Timer</div>
+          </div>
+        </div>
+
+        <!-- Answers Review -->
+        <div class="text-left">
+          <h3 class="font-semibold mb-2">Review Answers</h3>
+          <div class="max-h-48 overflow-y-auto space-y-1">
+            @for (answer of quizState().answers; track $index) {
+              <div 
+                class="flex items-center justify-between p-2 rounded text-sm"
+                [class]="answer.correct ? 'bg-green-500/10' : 'bg-red-500/10'"
+              >
+                <div class="flex items-center gap-2">
+                  <span>{{ answer.country.flag }}</span>
+                  <span>{{ answer.country.name }}</span>
+                </div>
+                <ng-icon [name]="answer.correct ? 'lucideCheck' : 'lucideX'" [class]="answer.correct ? 'text-green-500' : 'text-red-500'" />
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+      <div hlmCardFooter class="justify-center gap-4">
+        <button hlmBtn (click)="startQuiz()">
+          <ng-icon name="lucideRotateCcw" class="mr-2" />
+          Play Again
+        </button>
+        <button hlmBtn variant="outline" (click)="goToMenu()">Back to Menu</button>
+      </div>
+    </section>
+  }
+</div>

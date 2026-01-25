@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import {
   lucideGamepad2,
@@ -25,6 +26,7 @@ interface Game {
   rating: number;
   image: string;
   featured: boolean;
+  route: string | null;
 }
 
 @Component({
@@ -33,6 +35,7 @@ interface Game {
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     NgIconComponent,
     HlmIcon,
     ...HlmCardImports,
@@ -74,7 +77,8 @@ export class Games {
       category: 'strategy',
       rating: 4.5,
       image: '🎮',
-      featured: true
+      featured: true,
+      route: 'tic-tac-toe'
     },
     {
       id: 2,
@@ -84,7 +88,8 @@ export class Games {
       category: 'strategy',
       rating: 4.8,
       image: '♟️',
-      featured: true
+      featured: true,
+      route: null
     },
     {
       id: 3,
@@ -94,7 +99,8 @@ export class Games {
       category: 'puzzle',
       rating: 4.3,
       image: '🔢',
-      featured: false
+      featured: false,
+      route: null
     },
     {
       id: 4,
@@ -104,7 +110,8 @@ export class Games {
       category: 'puzzle',
       rating: 4.2,
       image: '🃏',
-      featured: false
+      featured: false,
+      route: null
     },
     {
       id: 5,
@@ -114,7 +121,8 @@ export class Games {
       category: 'arcade',
       rating: 4.0,
       image: '🐍',
-      featured: false
+      featured: false,
+      route: null
     },
     {
       id: 6,
@@ -124,7 +132,8 @@ export class Games {
       category: 'card',
       rating: 4.4,
       image: '🂡',
-      featured: true
+      featured: true,
+      route: null
     }
   ];
 

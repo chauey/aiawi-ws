@@ -1,0 +1,106 @@
+<div class="max-w-2xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a routerLink="/games" class="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent transition-colors">
+        <ng-icon name="lucideArrowLeft" class="text-lg" />
+      </a>
+      <div>
+        <h1 class="text-2xl md:text-3xl font-bold">Tic Tac Toe</h1>
+        <p class="text-sm text-muted-foreground">Classic X's and O's</p>
+      </div>
+    </div>
+    <span class="text-4xl">🎮</span>
+  </div>
+
+  <!-- Score Board -->
+  <section hlmCard>
+    <div hlmCardContent class="p-4">
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div class="space-y-1">
+          <div class="text-2xl font-bold text-blue-500">{{ xScore() }}</div>
+          <div class="text-sm text-muted-foreground">Player X</div>
+        </div>
+        <div class="space-y-1">
+          <div class="text-2xl font-bold text-muted-foreground">{{ draws() }}</div>
+          <div class="text-sm text-muted-foreground">Draws</div>
+        </div>
+        <div class="space-y-1">
+          <div class="text-2xl font-bold text-rose-500">{{ oScore() }}</div>
+          <div class="text-sm text-muted-foreground">Player O</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Game Status -->
+  <div class="text-center py-2">
+    @if (winner() === 'draw') {
+      <div class="text-xl font-semibold text-muted-foreground">It's a Draw! 🤝</div>
+    } @else if (winner()) {
+      <div class="flex items-center justify-center gap-2 text-xl font-semibold">
+        <ng-icon name="lucideTrophy" class="text-yellow-500" />
+        <span [class]="winner() === 'X' ? 'text-blue-500' : 'text-rose-500'">
+          Player {{ winner() }} Wins!
+        </span>
+        <ng-icon name="lucideTrophy" class="text-yellow-500" />
+      </div>
+    } @else {
+      <div class="text-lg">
+        <span class="text-muted-foreground">Current Turn: </span>
+        <span class="font-bold" [class]="currentPlayer() === 'X' ? 'text-blue-500' : 'text-rose-500'">
+          Player {{ currentPlayer() }}
+        </span>
+      </div>
+    }
+  </div>
+
+  <!-- Game Board -->
+  <div class="grid grid-cols-3 gap-3 p-4 bg-card rounded-xl border border-border max-w-sm mx-auto">
+    @for (cell of board(); track $index; let i = $index) {
+      <button 
+        (click)="makeMove(i)"
+        [class]="getCellClass(i)"
+        [disabled]="cell !== null || isGameOver()"
+      >
+        @if (cell === 'X') {
+          <span class="animate-in zoom-in duration-200">✕</span>
+        } @else if (cell === 'O') {
+          <span class="animate-in zoom-in duration-200">○</span>
+        }
+      </button>
+    }
+  </div>
+
+  <!-- Actions -->
+  <div class="flex justify-center gap-3">
+    <button 
+      hlmBtn 
+      variant="outline"
+      (click)="resetGame()"
+      class="gap-2"
+    >
+      <ng-icon name="lucideRotateCcw" class="text-sm" />
+      New Game
+    </button>
+    <button 
+      hlmBtn 
+      variant="ghost"
+      (click)="resetScores()"
+    >
+      Reset Scores
+    </button>
+  </div>
+
+  <!-- Instructions -->
+  <section hlmCard class="bg-muted/30">
+    <div hlmCardContent class="p-4">
+      <h3 class="font-semibold mb-2">How to Play</h3>
+      <ul class="text-sm text-muted-foreground space-y-1">
+        <li>• Players take turns placing X's and O's</li>
+        <li>• First to get 3 in a row (horizontal, vertical, or diagonal) wins</li>
+        <li>• If all 9 squares are filled with no winner, it's a draw</li>
+      </ul>
+    </div>
+  </section>
+</div>

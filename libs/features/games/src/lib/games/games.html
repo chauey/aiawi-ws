@@ -62,10 +62,17 @@
               </div>
             </div>
             <div hlmCardFooter>
-              <button hlmBtn class="w-full gap-2">
-                <ng-icon hlm name="lucidePlay" size="sm" />
-                Play Now
-              </button>
+              @if (game.route) {
+                <a [routerLink]="game.route" hlmBtn class="w-full gap-2">
+                  <ng-icon hlm name="lucidePlay" size="sm" />
+                  Play Now
+                </a>
+              } @else {
+                <button hlmBtn class="w-full gap-2" disabled>
+                  <ng-icon hlm name="lucidePlay" size="sm" />
+                  Coming Soon
+                </button>
+              }
             </div>
           </section>
         }
@@ -113,10 +120,17 @@
               </div>
             </div>
             <div hlmCardFooter class="pt-0">
-              <button hlmBtn variant="outline" size="sm" class="w-full gap-2 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                <ng-icon hlm name="lucidePlay" size="sm" />
-                Play
-              </button>
+              @if (game.route) {
+                <a [routerLink]="game.route" hlmBtn variant="outline" size="sm" class="w-full gap-2 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <ng-icon hlm name="lucidePlay" size="sm" />
+                  Play
+                </a>
+              } @else {
+                <button hlmBtn variant="outline" size="sm" class="w-full gap-2 opacity-50" disabled>
+                  <ng-icon hlm name="lucidePlay" size="sm" />
+                  Coming Soon
+                </button>
+              }
             </div>
           </section>
         }

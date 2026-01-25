@@ -1,0 +1,9 @@
+{
+  "name": "aiawi-ws-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/aiawi-ws-e2e/src",
+  "implicitDependencies": ["aiawi-ws"],
+  "// targets": "to see all targets run: nx show project aiawi-ws-e2e --web",
+  "targets": {}
+}

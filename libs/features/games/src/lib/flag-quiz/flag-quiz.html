@@ -3,11 +3,11 @@
   <div class="flex items-center justify-between">
     <div class="flex items-center gap-4">
       @if (mode() !== 'menu') {
-        <button (click)="goToMenu()" class="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent transition-colors">
+        <button (click)="goToMenu()" class="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent transition-colors cursor-pointer">
           <ng-icon name="lucideArrowLeft" class="text-lg" />
         </button>
       } @else {
-        <a routerLink="/games" class="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent transition-colors">
+        <a routerLink="/games" class="h-9 w-9 inline-flex items-center justify-center rounded-md hover:bg-accent transition-colors cursor-pointer">
           <ng-icon name="lucideArrowLeft" class="text-lg" />
         </a>
       }
@@ -16,7 +16,19 @@
         <p class="text-sm text-muted-foreground">Guess the country from its flag</p>
       </div>
     </div>
-    <span class="text-4xl">🏳️</span>
+    <div class="flex items-center gap-2">
+      <!-- Sound Toggle -->
+      <button 
+        hlmBtn 
+        variant="ghost" 
+        size="icon"
+        (click)="toggleSound()"
+        [title]="soundEnabled() ? 'Mute sounds' : 'Unmute sounds'"
+      >
+        <ng-icon [name]="soundEnabled() ? 'lucideVolume2' : 'lucideVolumeX'" />
+      </button>
+      <span class="text-4xl">🏳️</span>
+    </div>
   </div>
 
   <!-- MENU MODE -->
@@ -206,35 +218,24 @@
 
       <!-- Flag Display with dark background for visibility -->
       <div class="flex justify-center py-6">
-        <div class="bg-slate-800 p-4 rounded-xl shadow-xl">
+        <div 
+          class="bg-slate-800 p-4 rounded-xl shadow-xl"
+          [class.flag-animate-in]="flagAnimationState() === 'entering'"
+          [class.flag-animate-out]="flagAnimationState() === 'exiting'"
+        >
           <img 
             [src]="getFlagUrl(question.code, 'w320')"
             [alt]="question.name + ' flag'"
-            class="h-28 md:h-40 w-auto rounded-md animate-in zoom-in duration-300"
+            class="h-28 md:h-40 w-auto rounded-md"
           />
         </div>
       </div>
-
-      <!-- Skip Button -->
-      @if (!quizState().showResult) {
-        <div class="flex justify-center">
-          <button 
-            hlmBtn 
-            variant="ghost" 
-            size="sm"
-            (click)="skipQuestion()"
-            class="text-muted-foreground"
-          >
-            Skip this question
-          </button>
-        </div>
-      }
 
       <!-- Options Grid -->
       <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
         @for (option of currentOptions(); track option.code) {
           <button
-            class="p-3 rounded-lg border-2 text-sm font-medium transition-all duration-200"
+            class="p-3 rounded-lg border-2 text-sm font-medium transition-all duration-200 cursor-pointer"
             [class]="getOptionClass(option)"
             [disabled]="quizState().showResult"
             (click)="selectAnswer(option)"
@@ -248,6 +249,21 @@
               }
               <span class="truncate">{{ option.name }}</span>
             </div>
+          </button>
+        }
+      </div>
+
+      <!-- Skip Button (at bottom) -->
+      <div class="flex justify-center h-10">
+        @if (!quizState().showResult) {
+          <button 
+            hlmBtn 
+            variant="ghost" 
+            size="sm"
+            (click)="skipQuestion()"
+            class="text-muted-foreground"
+          >
+            Skip this question
           </button>
         }
       </div>

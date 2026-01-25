@@ -7,6 +7,15 @@
 /* Spartan UI preset (includes tw-animate-css and @angular/cdk/overlay-prebuilt.css) */
 @import '@spartan-ng/brain/hlm-tailwind-preset.css';
 
+/* Global button cursor - ensure all buttons have pointer cursor */
+button, [role="button"], a {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
 /* Theme Variables */
 :root {
   color-scheme: light;
@@ -155,4 +164,42 @@
   100% {
     opacity: 0;
   }
+}
+
+/* Flag flip/bounce animation for quiz */
+@keyframes flag-enter {
+  0% {
+    transform: scale(0.3) rotateY(-180deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1) rotateY(-20deg);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.95) rotateY(10deg);
+  }
+  100% {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flag-exit {
+  0% {
+    transform: scale(1) rotateY(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.3) rotateY(180deg);
+    opacity: 0;
+  }
+}
+
+.flag-animate-in {
+  animation: flag-enter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.flag-animate-out {
+  animation: flag-exit 0.3s ease-in forwards;
 }

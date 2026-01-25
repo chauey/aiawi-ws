@@ -19,7 +19,9 @@ import {
   lucideChevronRight,
   lucideBarChart3,
   lucideStar,
-  lucideFilter
+  lucideFilter,
+  lucideVolume2,
+  lucideVolumeX
 } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
@@ -85,7 +87,9 @@ interface SavedData {
       lucideChevronRight,
       lucideBarChart3,
       lucideStar,
-      lucideFilter
+      lucideFilter,
+      lucideVolume2,
+      lucideVolumeX
     })
   ],
   templateUrl: './flag-quiz.html',
@@ -114,6 +118,7 @@ export class FlagQuiz implements OnInit, OnDestroy {
   // Current quiz data
   quizQuestions = signal<Country[]>([]);
   currentOptions = signal<Country[]>([]);
+  flagAnimationState = signal<'entering' | 'visible' | 'exiting'>('visible');
   
   // Training state
   trainingIndex = signal(0);
@@ -129,6 +134,10 @@ export class FlagQuiz implements OnInit, OnDestroy {
     totalCorrect: 0,
     totalQuestions: 0
   });
+
+  // Sound settings
+  soundEnabled = signal(true);
+  private audioContext: AudioContext | null = null;
 
   // Computed
   allCountries = COUNTRIES;
@@ -236,7 +245,9 @@ export class FlagQuiz implements OnInit, OnDestroy {
     
     this.generateOptions();
     this.mode.set('quiz');
+    this.flagAnimationState.set('entering');
     this.startTimer();
+    setTimeout(() => this.flagAnimationState.set('visible'), 500);
   }
 
   private generateOptions() {
@@ -267,8 +278,17 @@ export class FlagQuiz implements OnInit, OnDestroy {
       this.triggerConfetti();
       this.showFloatingScore(currentStreak + 1);
       this.flashScreen('correct');
+      // Play sounds based on streak
+      if (currentStreak + 1 >= 10) {
+        this.playSound('legendary');
+      } else if (currentStreak + 1 >= 3) {
+        this.playSound('streak');
+      } else {
+        this.playSound('correct');
+      }
     } else {
       this.flashScreen('wrong');
+      this.playSound('wrong');
     }
     
     this.quizState.update(state => ({
@@ -281,8 +301,11 @@ export class FlagQuiz implements OnInit, OnDestroy {
       answers: [...state.answers, { country: current!, correct: isCorrect, timeTaken }]
     }));
     
-    // Auto-advance after delay
-    setTimeout(() => this.nextQuestion(), 1500);
+    // Start exit animation, then advance
+    setTimeout(() => {
+      this.flagAnimationState.set('exiting');
+      setTimeout(() => this.nextQuestion(), 300); // Wait for exit animation
+    }, 1200);
   }
 
   private showFloatingScore(streak: number) {
@@ -358,6 +381,8 @@ export class FlagQuiz implements OnInit, OnDestroy {
     
     this.stopTimer();
     const current = this.currentQuestion();
+    this.playSound('wrong');
+    this.flashScreen('wrong');
     
     this.quizState.update(state => ({
       ...state,
@@ -366,7 +391,11 @@ export class FlagQuiz implements OnInit, OnDestroy {
       answers: [...state.answers, { country: current!, correct: false, timeTaken: this.settings().speed }]
     }));
     
-    setTimeout(() => this.nextQuestion(), 1500);
+    // Start exit animation, then advance
+    setTimeout(() => {
+      this.flagAnimationState.set('exiting');
+      setTimeout(() => this.nextQuestion(), 300);
+    }, 1200);
   }
 
   private triggerConfetti() {
@@ -484,6 +513,9 @@ export class FlagQuiz implements OnInit, OnDestroy {
       return;
     }
     
+    // Set entering animation state
+    this.flagAnimationState.set('entering');
+    
     this.quizState.update(s => ({
       ...s,
       currentQuestion: s.currentQuestion + 1,
@@ -494,6 +526,9 @@ export class FlagQuiz implements OnInit, OnDestroy {
     
     this.generateOptions();
     this.startTimer();
+    
+    // Reset to visible after animation completes
+    setTimeout(() => this.flagAnimationState.set('visible'), 500);
   }
 
   private startTimer() {
@@ -664,5 +699,157 @@ export class FlagQuiz implements OnInit, OnDestroy {
       totalQuestions: 0
     });
     this.saveData();
+  }
+
+  // Sound Methods
+  toggleSound() {
+    this.soundEnabled.update(v => !v);
+  }
+
+  private getAudioContext(): AudioContext {
+    if (!this.audioContext) {
+      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    }
+    return this.audioContext;
+  }
+
+  private playSound(type: 'correct' | 'wrong' | 'streak' | 'legendary' | 'click' | 'countdown') {
+    if (!this.soundEnabled() || typeof window === 'undefined') return;
+    
+    try {
+      const ctx = this.getAudioContext();
+      
+      switch (type) {
+        case 'correct':
+          this.playCorrectSound(ctx);
+          break;
+        case 'wrong':
+          this.playWrongSound(ctx);
+          break;
+        case 'streak':
+          this.playStreakSound(ctx);
+          break;
+        case 'legendary':
+          this.playLegendarySound(ctx);
+          break;
+        case 'click':
+          this.playClickSound(ctx);
+          break;
+        case 'countdown':
+          this.playCountdownSound(ctx);
+          break;
+      }
+    } catch (e) {
+      console.error('Sound error:', e);
+    }
+  }
+
+  private playCorrectSound(ctx: AudioContext) {
+    // Happy ascending arpeggio - like Mario coin!
+    const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = freq;
+      osc.type = 'sine';
+      gain.gain.setValueAtTime(0.3, ctx.currentTime + i * 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + i * 0.08 + 0.15);
+      osc.start(ctx.currentTime + i * 0.08);
+      osc.stop(ctx.currentTime + i * 0.08 + 0.15);
+    });
+  }
+
+  private playWrongSound(ctx: AudioContext) {
+    // Sad descending buzz
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.setValueAtTime(300, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 0.3);
+    osc.type = 'sawtooth';
+    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.3);
+  }
+
+  private playStreakSound(ctx: AudioContext) {
+    // Exciting power-up sound
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc1.connect(gain);
+    osc2.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc1.frequency.setValueAtTime(400, ctx.currentTime);
+    osc1.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.2);
+    osc2.frequency.setValueAtTime(600, ctx.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.2);
+    
+    osc1.type = 'square';
+    osc2.type = 'sine';
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+    
+    osc1.start();
+    osc2.start();
+    osc1.stop(ctx.currentTime + 0.25);
+    osc2.stop(ctx.currentTime + 0.25);
+  }
+
+  private playLegendarySound(ctx: AudioContext) {
+    // Epic fanfare!
+    const melody = [
+      { freq: 523, time: 0 },
+      { freq: 659, time: 0.1 },
+      { freq: 784, time: 0.2 },
+      { freq: 1047, time: 0.3 },
+      { freq: 1319, time: 0.5 },
+    ];
+    
+    melody.forEach(note => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.value = note.freq;
+      osc.type = 'triangle';
+      gain.gain.setValueAtTime(0.25, ctx.currentTime + note.time);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + note.time + 0.2);
+      osc.start(ctx.currentTime + note.time);
+      osc.stop(ctx.currentTime + note.time + 0.2);
+    });
+  }
+
+  private playClickSound(ctx: AudioContext) {
+    // Quick pop
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 1000;
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(0.1, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.05);
+  }
+
+  private playCountdownSound(ctx: AudioContext) {
+    // Urgent beep
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 880;
+    osc.type = 'sine';
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.1);
   }
 }

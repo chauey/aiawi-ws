@@ -32,6 +32,16 @@
         "{workspaceRoot}/.eslintignore",
         "{workspaceRoot}/eslint.config.mjs"
       ]
+    },
+    "@nx/angular:ng-packagr-lite": {
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ]
     }
   },
   "plugins": [
@@ -58,9 +68,13 @@
       "inlineStyle": true
     },
     "@nx/angular:component": {
+      "style": "scss",
       "inlineTemplate": true,
-      "inlineStyle": true,
-      "style": "scss"
+      "inlineStyle": true
+    },
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "none"
     }
   }
 }

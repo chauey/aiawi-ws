@@ -174,10 +174,32 @@
             {{ quizState().timeLeft }}s
           </span>
         </div>
+        
+        <!-- Streak Display - Escalating -->
         @if (quizState().streak > 0) {
-          <div class="flex items-center gap-1 text-orange-500">
-            <span class="text-lg">🔥</span>
-            <span class="font-bold">{{ quizState().streak }} streak</span>
+          <div 
+            class="flex items-center gap-2 px-3 py-1 rounded-full font-bold transition-all"
+            [class]="quizState().streak >= 10 ? 'bg-red-500/20 text-red-500 text-xl animate-pulse' :
+                     quizState().streak >= 7 ? 'bg-purple-500/20 text-purple-500 text-lg' :
+                     quizState().streak >= 5 ? 'bg-orange-500/20 text-orange-500 text-lg' :
+                     quizState().streak >= 3 ? 'bg-yellow-500/20 text-yellow-500' :
+                     'bg-orange-500/10 text-orange-500'"
+          >
+            @if (quizState().streak >= 5) {
+              <span class="text-xl">🔥</span>
+            }
+            <span>{{ quizState().streak }}</span>
+            @if (quizState().streak >= 10) {
+              <span class="text-xs">LEGENDARY</span>
+            } @else if (quizState().streak >= 7) {
+              <span class="text-xs">UNSTOPPABLE</span>
+            } @else if (quizState().streak >= 5) {
+              <span class="text-xs">ON FIRE</span>
+            } @else if (quizState().streak >= 3) {
+              <span class="text-xs">STREAK</span>
+            } @else {
+              <span class="text-xs">🔥</span>
+            }
           </div>
         }
       </div>

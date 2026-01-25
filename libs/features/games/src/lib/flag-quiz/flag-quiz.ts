@@ -261,9 +261,14 @@ export class FlagQuiz implements OnInit, OnDestroy {
     const current = this.currentQuestion();
     const isCorrect = country.code === current?.code;
     const timeTaken = this.settings().speed - this.quizState().timeLeft;
+    const currentStreak = this.quizState().streak;
     
     if (isCorrect) {
       this.triggerConfetti();
+      this.showFloatingScore(currentStreak + 1);
+      this.flashScreen('correct');
+    } else {
+      this.flashScreen('wrong');
     }
     
     this.quizState.update(state => ({
@@ -278,6 +283,74 @@ export class FlagQuiz implements OnInit, OnDestroy {
     
     // Auto-advance after delay
     setTimeout(() => this.nextQuestion(), 1500);
+  }
+
+  private showFloatingScore(streak: number) {
+    // Create floating +1 and streak message
+    const container = document.createElement('div');
+    container.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;text-align:center;';
+    document.body.appendChild(container);
+
+    // Big +1
+    const plusOne = document.createElement('div');
+    plusOne.textContent = '+1';
+    plusOne.style.cssText = `
+      font-size:5rem;font-weight:900;
+      color:#22c55e;
+      text-shadow:0 0 20px #22c55e, 0 0 40px #22c55e, 0 0 60px #22c55e;
+      animation:score-pop 0.8s ease-out forwards;
+    `;
+    container.appendChild(plusOne);
+
+    // Streak message for combos
+    if (streak >= 2) {
+      const streakMsg = document.createElement('div');
+      let message = '';
+      let color = '#fbbf24';
+      
+      if (streak >= 10) {
+        message = '🔥 LEGENDARY! 🔥';
+        color = '#ef4444';
+      } else if (streak >= 7) {
+        message = '⚡ UNSTOPPABLE! ⚡';
+        color = '#a855f7';
+      } else if (streak >= 5) {
+        message = '🌟 ON FIRE! 🌟';
+        color = '#f97316';
+      } else if (streak >= 3) {
+        message = '✨ AMAZING! ✨';
+        color = '#eab308';
+      } else {
+        message = `🔥 ${streak} STREAK!`;
+      }
+      
+      streakMsg.textContent = message;
+      streakMsg.style.cssText = `
+        font-size:2rem;font-weight:800;
+        color:${color};
+        text-shadow:0 0 10px ${color}, 0 0 20px ${color};
+        margin-top:10px;
+        animation:streak-bounce 0.6s ease-out forwards;
+        animation-delay:0.2s;
+        opacity:0;
+      `;
+      container.appendChild(streakMsg);
+    }
+
+    setTimeout(() => container.remove(), 1500);
+  }
+
+  private flashScreen(type: 'correct' | 'wrong') {
+    const flash = document.createElement('div');
+    const color = type === 'correct' ? 'rgba(34, 197, 94, 0.3)' : 'rgba(239, 68, 68, 0.3)';
+    flash.style.cssText = `
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:${color};
+      pointer-events:none;z-index:9997;
+      animation:screen-flash 0.3s ease-out forwards;
+    `;
+    document.body.appendChild(flash);
+    setTimeout(() => flash.remove(), 300);
   }
 
   skipQuestion() {
@@ -297,29 +370,108 @@ export class FlagQuiz implements OnInit, OnDestroy {
   }
 
   private triggerConfetti() {
-    // Create confetti particles
-    const confettiCount = 50;
+    // Create epic confetti explosion!
     const container = document.createElement('div');
     container.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden;';
     document.body.appendChild(container);
 
-    for (let i = 0; i < confettiCount; i++) {
+    // Vibrant rainbow colors
+    const colors = [
+      '#ff0000', '#ff4500', '#ff6b00', '#ffa500', // Reds & Oranges
+      '#ffff00', '#7fff00', '#00ff00', '#00ff7f', // Yellows & Greens
+      '#00ffff', '#00bfff', '#0080ff', '#0000ff', // Cyans & Blues
+      '#8000ff', '#bf00ff', '#ff00ff', '#ff007f', // Purples & Magentas
+      '#ffd700', '#ff69b4', '#00fa9a', '#ff1493', // Gold, Pink, etc
+    ];
+
+    // Shapes: circles, squares, rectangles, stars, hearts
+    const shapes = ['circle', 'square', 'rectangle', 'star', 'heart', 'diamond'];
+
+    // Create burst from center
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    // Explosion particles (burst from center)
+    for (let i = 0; i < 80; i++) {
+      const particle = document.createElement('div');
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      const size = 8 + Math.random() * 12;
+      const angle = (Math.PI * 2 * i) / 80 + Math.random() * 0.5;
+      const velocity = 300 + Math.random() * 400;
+      const endX = Math.cos(angle) * velocity;
+      const endY = Math.sin(angle) * velocity;
+      
+      let shapeStyles = '';
+      if (shape === 'circle') {
+        shapeStyles = 'border-radius:50%;';
+      } else if (shape === 'star') {
+        shapeStyles = 'clip-path:polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);';
+      } else if (shape === 'heart') {
+        shapeStyles = 'clip-path:polygon(50% 15%, 90% 0%, 100% 35%, 50% 100%, 0% 35%, 10% 0%);';
+      } else if (shape === 'diamond') {
+        shapeStyles = 'clip-path:polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);';
+      } else if (shape === 'rectangle') {
+        shapeStyles = `width:${size * 0.4}px;height:${size}px;`;
+      }
+
+      particle.style.cssText = `
+        position:absolute;
+        width:${size}px;height:${size}px;
+        background:${color};
+        left:${centerX}px;top:${centerY}px;
+        ${shapeStyles}
+        box-shadow:0 0 ${size/2}px ${color};
+        animation:confetti-burst 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        --endX:${endX}px;--endY:${endY}px;
+        animation-delay:${Math.random() * 0.1}s;
+      `;
+      container.appendChild(particle);
+    }
+
+    // Falling confetti from top
+    for (let i = 0; i < 100; i++) {
       const confetti = document.createElement('div');
-      const colors = ['#f43f5e', '#3b82f6', '#22c55e', '#eab308', '#a855f7', '#ec4899'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const size = 6 + Math.random() * 10;
+      const isRect = Math.random() > 0.5;
+      
       confetti.style.cssText = `
         position:absolute;
-        width:10px;height:10px;
-        background:${colors[Math.floor(Math.random() * colors.length)]};
+        width:${isRect ? size * 0.4 : size}px;
+        height:${size}px;
+        background:${color};
         left:${Math.random() * 100}%;
-        top:-10px;
-        border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
-        animation:confetti-fall ${1.5 + Math.random()}s ease-out forwards;
-        animation-delay:${Math.random() * 0.3}s;
+        top:-20px;
+        border-radius:${isRect ? '2px' : '50%'};
+        box-shadow:0 0 ${size/3}px ${color}40;
+        animation:confetti-fall ${2 + Math.random() * 2}s ease-out forwards;
+        animation-delay:${Math.random() * 0.8}s;
       `;
       container.appendChild(confetti);
     }
 
-    setTimeout(() => container.remove(), 3000);
+    // Sparkles/glitter
+    for (let i = 0; i < 40; i++) {
+      const sparkle = document.createElement('div');
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight * 0.6;
+      
+      sparkle.style.cssText = `
+        position:absolute;
+        width:4px;height:4px;
+        background:#fff;
+        left:${x}px;top:${y}px;
+        border-radius:50%;
+        box-shadow:0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffd700;
+        animation:sparkle 0.8s ease-out forwards;
+        animation-delay:${0.2 + Math.random() * 0.5}s;
+        opacity:0;
+      `;
+      container.appendChild(sparkle);
+    }
+
+    setTimeout(() => container.remove(), 4000);
   }
 
   private nextQuestion() {

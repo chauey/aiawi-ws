@@ -118,7 +118,7 @@ function createObbyLevel(parent: Folder, level: number) {
 	
 	// Jumping platforms between levels
 	if (level > 0) {
-		const prevAngle = ((level - 1) * 90) * (math.pi / 180);
+		const prevAngle = (((level - 1) * 90) + 180) * (math.pi / 180);
 		const prevX = TOWER_POSITION.X + math.cos(prevAngle) * radius;
 		const prevZ = TOWER_POSITION.Z + math.sin(prevAngle) * radius;
 		const prevY = levelHeight - LEVEL_HEIGHT;
@@ -141,6 +141,22 @@ function createObbyLevel(parent: Folder, level: number) {
 			jumpPlat.Anchored = true;
 			jumpPlat.Parent = parent;
 		}
+		
+		// Connect with rail/beam
+		const startPos = new Vector3(prevX, prevY + 1, prevZ);
+		const endPos = platform.Position.add(new Vector3(0, 1, 0));
+		const midPos = startPos.add(endPos).div(2);
+		const railLength = endPos.sub(startPos).Magnitude;
+		
+		const rail = new Instance("Part");
+		rail.Name = `Rail${level}`;
+		rail.Size = new Vector3(0.3, 0.3, railLength);
+		rail.BrickColor = new BrickColor("Medium stone grey");
+		rail.Material = Enum.Material.Metal;
+		rail.CFrame = CFrame.lookAt(midPos, endPos);
+		rail.Anchored = true;
+		rail.CanCollide = false;
+		rail.Parent = parent;
 	}
 	
 	// Add level number billboard

@@ -1,13 +1,25 @@
-// Rainbow Roller Coaster - FIXED VERSION
-// Proper E key exit, safe spawn after ride
+// Rainbow Roller Coaster - MULTI-RIDER VERSION
+// Supports up to 8 riders at once!
 import { Workspace, Players, RunService, ReplicatedStorage } from "@rbxts/services";
 
 const COASTER_POSITION = new Vector3(-50, 0, 50);
-const RIDE_SPEED = 20; // Studs per second (slower = smoother)
-const STATION_SPAWN = new Vector3(-50, 5, 42); // Safe spawn on platform
+const RIDE_SPEED = 20;
+const MAX_RIDERS = 8;
+const BOARDING_TIME = 5; // Seconds to wait for more riders
+
+// Seat offsets for 8 riders (2 rows of 4)
+const SEAT_OFFSETS = [
+	new Vector3(-1.5, 0, -2),  // Row 1
+	new Vector3(-0.5, 0, -2),
+	new Vector3(0.5, 0, -2),
+	new Vector3(1.5, 0, -2),
+	new Vector3(-1.5, 0, 1),   // Row 2
+	new Vector3(-0.5, 0, 1),
+	new Vector3(0.5, 0, 1),
+	new Vector3(1.5, 0, 1),
+];
 
 export function createRollerCoaster() {
-	// Create exit remote FIRST so client can find it
 	const existingRemote = ReplicatedStorage.FindFirstChild("CoasterExit");
 	if (existingRemote) existingRemote.Destroy();
 	
@@ -24,46 +36,34 @@ export function createRollerCoaster() {
 	createTrack(folder, path);
 	const car = createCar(folder);
 	
-	// Setup with exit remote reference
-	setupRide(folder, car, path, exitRemote);
+	setupMultiRide(folder, car, path, exitRemote);
 	
-	print("🎢 Rainbow Coaster ready! Walk on to ride, E = EXIT");
+	print("🎢 Rainbow Coaster ready! Fits 8 riders! E = EXIT");
 }
 
 function generatePath(): Vector3[] {
 	const pts: Vector3[] = [];
 	const b = COASTER_POSITION;
 	
-	// Start on platform
 	pts.push(b.add(new Vector3(0, 3, 0)));
 	pts.push(b.add(new Vector3(8, 3.5, 0)));
 	pts.push(b.add(new Vector3(16, 4.5, 0)));
 	pts.push(b.add(new Vector3(24, 7, 0)));
-	
-	// Hill climb
 	pts.push(b.add(new Vector3(32, 14, 2)));
 	pts.push(b.add(new Vector3(40, 24, 4)));
 	pts.push(b.add(new Vector3(48, 36, 6)));
 	pts.push(b.add(new Vector3(56, 48, 8)));
 	pts.push(b.add(new Vector3(64, 55, 10)));
-	
-	// Drop
 	pts.push(b.add(new Vector3(72, 50, 15)));
 	pts.push(b.add(new Vector3(80, 38, 22)));
 	pts.push(b.add(new Vector3(86, 22, 30)));
 	pts.push(b.add(new Vector3(90, 12, 38)));
-	
-	// Wide turn
 	pts.push(b.add(new Vector3(88, 10, 48)));
 	pts.push(b.add(new Vector3(80, 11, 55)));
 	pts.push(b.add(new Vector3(68, 13, 58)));
 	pts.push(b.add(new Vector3(54, 15, 54)));
-	
-	// Small hill
 	pts.push(b.add(new Vector3(42, 22, 46)));
 	pts.push(b.add(new Vector3(34, 18, 38)));
-	
-	// Return to station
 	pts.push(b.add(new Vector3(26, 12, 28)));
 	pts.push(b.add(new Vector3(18, 8, 18)));
 	pts.push(b.add(new Vector3(10, 5, 10)));
@@ -74,31 +74,28 @@ function generatePath(): Vector3[] {
 }
 
 function createStation(parent: Folder) {
-	// Main platform - larger for safe landing
 	const platform = new Instance("Part");
 	platform.Name = "StationPlatform";
-	platform.Size = new Vector3(20, 3, 20);
+	platform.Size = new Vector3(25, 3, 25);
 	platform.Position = COASTER_POSITION.add(new Vector3(0, 1.5, 0));
 	platform.BrickColor = new BrickColor("Dark stone grey");
 	platform.Material = Enum.Material.Concrete;
 	platform.Anchored = true;
 	platform.Parent = parent;
 	
-	// Exit area - separate safe zone
 	const exitPad = new Instance("Part");
 	exitPad.Name = "ExitPad";
-	exitPad.Size = new Vector3(10, 1, 10);
-	exitPad.Position = COASTER_POSITION.add(new Vector3(0, 3.5, -10));
+	exitPad.Size = new Vector3(15, 1, 15);
+	exitPad.Position = COASTER_POSITION.add(new Vector3(0, 3.5, -15));
 	exitPad.BrickColor = new BrickColor("Bright green");
 	exitPad.Material = Enum.Material.SmoothPlastic;
 	exitPad.Anchored = true;
 	exitPad.Parent = parent;
 	
-	// Sign
 	const sign = new Instance("Part");
 	sign.Name = "Sign";
-	sign.Size = new Vector3(14, 5, 0.5);
-	sign.Position = COASTER_POSITION.add(new Vector3(0, 15, -15));
+	sign.Size = new Vector3(16, 6, 0.5);
+	sign.Position = COASTER_POSITION.add(new Vector3(0, 18, -20));
 	sign.Color = Color3.fromRGB(255, 150, 200);
 	sign.Material = Enum.Material.Neon;
 	sign.Anchored = true;
@@ -109,12 +106,36 @@ function createStation(parent: Folder) {
 	const lbl = new Instance("TextLabel");
 	lbl.Size = new UDim2(1, 0, 1, 0);
 	lbl.BackgroundTransparency = 1;
-	lbl.Text = "🎢 RAINBOW COASTER 🌈\n+25 Coins! PRESS E = Exit";
+	lbl.Text = "🎢 RAINBOW COASTER 🌈\n8 RIDERS! +25 Coins! E=Exit";
 	lbl.TextColor3 = new Color3(1, 1, 1);
 	lbl.TextScaled = true;
 	lbl.Font = Enum.Font.GothamBold;
 	lbl.Parent = gui;
 	gui.Parent = sign;
+	
+	// Rider count display
+	const countSign = new Instance("Part");
+	countSign.Name = "CountSign";
+	countSign.Size = new Vector3(8, 3, 0.3);
+	countSign.Position = COASTER_POSITION.add(new Vector3(0, 10, -8));
+	countSign.Color = Color3.fromRGB(50, 50, 80);
+	countSign.Material = Enum.Material.SmoothPlastic;
+	countSign.Anchored = true;
+	countSign.Parent = parent;
+	
+	const countGui = new Instance("SurfaceGui");
+	countGui.Name = "CountGui";
+	countGui.Face = Enum.NormalId.Front;
+	const countLbl = new Instance("TextLabel");
+	countLbl.Name = "CountLabel";
+	countLbl.Size = new UDim2(1, 0, 1, 0);
+	countLbl.BackgroundTransparency = 1;
+	countLbl.Text = "🎫 0/8 Boarding...";
+	countLbl.TextColor3 = Color3.fromRGB(100, 255, 150);
+	countLbl.TextScaled = true;
+	countLbl.Font = Enum.Font.GothamBold;
+	countLbl.Parent = countGui;
+	countGui.Parent = countSign;
 }
 
 function createTrack(parent: Folder, pts: Vector3[]) {
@@ -160,9 +181,10 @@ function createTrack(parent: Folder, pts: Vector3[]) {
 }
 
 function createCar(parent: Folder): Part {
+	// Bigger car for 8 riders (2 rows of 4)
 	const car = new Instance("Part");
 	car.Name = "CoasterCar";
-	car.Size = new Vector3(4, 2.5, 5);
+	car.Size = new Vector3(8, 2.5, 8);
 	car.Color = Color3.fromRGB(255, 100, 150);
 	car.Material = Enum.Material.SmoothPlastic;
 	car.Anchored = true;
@@ -171,12 +193,25 @@ function createCar(parent: Folder): Part {
 	car.Position = COASTER_POSITION.add(new Vector3(0, 5, 0));
 	car.Parent = parent;
 	
+	// Seats visual (2 rows)
+	for (let row = 0; row < 2; row++) {
+		const seatRow = new Instance("Part");
+		seatRow.Name = `SeatRow${row}`;
+		seatRow.Size = new Vector3(6, 0.5, 2);
+		seatRow.Color = Color3.fromRGB(80, 80, 100);
+		seatRow.Material = Enum.Material.Fabric;
+		seatRow.Anchored = true;
+		seatRow.CanCollide = false;
+		seatRow.CastShadow = false;
+		seatRow.Parent = car;
+	}
+	
 	const sp = new Instance("ParticleEmitter");
 	sp.Name = "Sparkle";
 	sp.Color = new ColorSequence(Color3.fromRGB(255, 220, 255));
-	sp.Size = new NumberSequence(0.2, 0);
+	sp.Size = new NumberSequence(0.25, 0);
 	sp.LightEmission = 1;
-	sp.Rate = 10;
+	sp.Rate = 15;
 	sp.Lifetime = new NumberRange(0.5);
 	sp.Speed = new NumberRange(1);
 	sp.Enabled = false;
@@ -185,72 +220,143 @@ function createCar(parent: Folder): Part {
 	return car;
 }
 
-function setupRide(parent: Folder, car: Part, path: Vector3[], exitRemote: RemoteEvent) {
+interface RiderInfo {
+	player: Player;
+	seatIndex: number;
+	exited: boolean;
+}
+
+function setupMultiRide(parent: Folder, car: Part, path: Vector3[], exitRemote: RemoteEvent) {
 	const trigger = new Instance("Part");
 	trigger.Name = "BoardTrigger";
-	trigger.Size = new Vector3(15, 6, 15);
+	trigger.Size = new Vector3(20, 6, 20);
 	trigger.Position = COASTER_POSITION.add(new Vector3(0, 6, 0));
 	trigger.Transparency = 1;
 	trigger.CanCollide = false;
 	trigger.Anchored = true;
 	trigger.Parent = parent;
 	
-	let riding = false;
-	let currentRider: Player | undefined;
-	let exitRequested = false;
+	let rideActive = false;
+	let boarding = false;
+	const riders: RiderInfo[] = [];
+	const playersOnRide = new Set<Player>();
 	
-	// E key exit listener
+	// Get count label
+	const countSign = parent.FindFirstChild("CountSign") as Part | undefined;
+	const countGui = countSign?.FindFirstChild("CountGui") as SurfaceGui | undefined;
+	const countLabel = countGui?.FindFirstChild("CountLabel") as TextLabel | undefined;
+	
+	function updateCountDisplay() {
+		if (countLabel) {
+			if (boarding) {
+				countLabel.Text = `🎫 ${riders.size()}/${MAX_RIDERS} Boarding...`;
+				countLabel.TextColor3 = Color3.fromRGB(255, 255, 100);
+			} else if (rideActive) {
+				countLabel.Text = `🎢 ${riders.size()} Riding!`;
+				countLabel.TextColor3 = Color3.fromRGB(100, 200, 255);
+			} else {
+				countLabel.Text = `✅ Ready! (0/${MAX_RIDERS})`;
+				countLabel.TextColor3 = Color3.fromRGB(100, 255, 150);
+			}
+		}
+	}
+	
+	// E key exit
 	exitRemote.OnServerEvent.Connect((player) => {
-		if (player === currentRider && riding) {
-			exitRequested = true;
-			print(`🎢 ${player.Name} pressed E - exiting!`);
+		const rider = riders.find((r) => r.player === player);
+		if (rider && rideActive) {
+			rider.exited = true;
+			print(`🎢 ${player.Name} exiting!`);
+			safeReturn(player);
+			playersOnRide.delete(player);
 		}
 	});
 	
 	trigger.Touched.Connect((hit) => {
-		if (riding) return;
+		if (rideActive) return;
 		
 		const player = Players.GetPlayerFromCharacter(hit.Parent);
 		if (!player) return;
+		if (playersOnRide.has(player)) return;
 		
 		const char = player.Character;
 		const hum = char?.FindFirstChildOfClass("Humanoid");
 		if (!hum) return;
 		
-		riding = true;
-		currentRider = player;
-		exitRequested = false;
-		
-		print(`🎢 ${player.Name} boarding! PRESS E TO EXIT!`);
-		
-		const sp = car.FindFirstChild("Sparkle") as ParticleEmitter | undefined;
-		if (sp) sp.Enabled = true;
-		
-		// Run ride
-		smoothRide(car, path, player, () => exitRequested).then(() => {
-			if (sp) sp.Enabled = false;
+		// Add rider if not full
+		if (riders.size() < MAX_RIDERS && !riders.find((r) => r.player === player)) {
+			const seatIdx = riders.size();
+			riders.push({ player, seatIndex: seatIdx, exited: false });
+			playersOnRide.add(player);
 			
-			// SAFE TELEPORT - to green exit pad
-			safeReturn(player);
-			
-			// Reward if completed
-			if (!exitRequested) {
-				const ls = player.FindFirstChild("leaderstats") as Folder | undefined;
-				const coins = ls?.FindFirstChild("Coins") as IntValue | undefined;
-				if (coins) {
-					coins.Value += 25;
-					print(`🎢 ${player.Name} finished! +25 coins!`);
-				}
+			// Position on car
+			const hrp = char?.FindFirstChild("HumanoidRootPart") as Part | undefined;
+			if (hrp) {
+				hrp.Anchored = true;
+				const offset = SEAT_OFFSETS[seatIdx];
+				hrp.CFrame = car.CFrame.mul(new CFrame(offset)).mul(new CFrame(0, 2, 0));
 			}
 			
-			riding = false;
-			currentRider = undefined;
-			exitRequested = false;
+			print(`🎢 ${player.Name} boarded! Seat ${seatIdx + 1}/${MAX_RIDERS}`);
+			updateCountDisplay();
 			
-			// Reset car
-			car.CFrame = new CFrame(COASTER_POSITION.add(new Vector3(0, 5, 0)));
-		});
+			// Start boarding countdown on first rider
+			if (!boarding && riders.size() === 1) {
+				boarding = true;
+				
+				// Wait for more riders or timeout
+				task.spawn(() => {
+					for (let i = BOARDING_TIME; i > 0; i--) {
+						if (riders.size() >= MAX_RIDERS) break;
+						if (countLabel) {
+							countLabel.Text = `🎫 ${riders.size()}/${MAX_RIDERS} - ${i}s`;
+						}
+						task.wait(1);
+					}
+					
+					// Start ride!
+					boarding = false;
+					rideActive = true;
+					updateCountDisplay();
+					
+					const sp = car.FindFirstChild("Sparkle") as ParticleEmitter | undefined;
+					if (sp) sp.Enabled = true;
+					
+					print(`🎢 Launching with ${riders.size()} riders!`);
+					
+					// Run ride
+					multiRide(car, path, riders).then(() => {
+						if (sp) sp.Enabled = false;
+						
+						// Return all remaining riders and give rewards
+						for (const rider of riders) {
+							if (!rider.exited) {
+								safeReturn(rider.player);
+								
+								const ls = rider.player.FindFirstChild("leaderstats") as Folder | undefined;
+								const coins = ls?.FindFirstChild("Coins") as IntValue | undefined;
+								if (coins) {
+									coins.Value += 25;
+								}
+							}
+							playersOnRide.delete(rider.player);
+						}
+						
+						print(`🎢 Ride complete! All riders got +25 coins!`);
+						
+						// Reset
+						riders.clear();
+						rideActive = false;
+						car.CFrame = new CFrame(COASTER_POSITION.add(new Vector3(0, 5, 0)));
+						updateSeats(car);
+						updateCountDisplay();
+					});
+				});
+			}
+		}
 	});
+	
+	updateCountDisplay();
 }
 
 function safeReturn(player: Player) {
@@ -261,15 +367,10 @@ function safeReturn(player: Player) {
 	const hum = char.FindFirstChildOfClass("Humanoid");
 	
 	if (hrp) {
-		// First unanchor
 		hrp.Anchored = false;
-		
-		// Reset velocity
 		hrp.AssemblyLinearVelocity = Vector3.zero;
 		hrp.AssemblyAngularVelocity = Vector3.zero;
-		
-		// Teleport to safe exit pad (green platform)
-		hrp.CFrame = new CFrame(COASTER_POSITION.add(new Vector3(0, 6, -10)));
+		hrp.CFrame = new CFrame(COASTER_POSITION.add(new Vector3(0, 6, -15)));
 	}
 	
 	if (hum) {
@@ -277,16 +378,7 @@ function safeReturn(player: Player) {
 	}
 }
 
-async function smoothRide(car: Part, path: Vector3[], player: Player, checkExit: () => boolean): Promise<void> {
-	const char = player.Character;
-	const hrp = char?.FindFirstChild("HumanoidRootPart") as Part | undefined;
-	const hum = char?.FindFirstChildOfClass("Humanoid");
-	
-	if (!hrp || !hum) return;
-	
-	hrp.Anchored = true;
-	
-	// Calculate total distance
+async function multiRide(car: Part, path: Vector3[], riders: RiderInfo[]): Promise<void> {
 	let totalDist = 0;
 	for (let i = 0; i < path.size() - 1; i++) {
 		totalDist += path[i + 1].sub(path[i]).Magnitude;
@@ -296,37 +388,51 @@ async function smoothRide(car: Part, path: Vector3[], player: Player, checkExit:
 	
 	return new Promise((resolve) => {
 		const conn = RunService.Heartbeat.Connect((dt) => {
-			// Check exit
-			if (checkExit() || progress >= 1) {
+			// Check if all exited
+			const activeRiders = riders.filter((r) => !r.exited);
+			if (activeRiders.size() === 0 || progress >= 1) {
 				conn.Disconnect();
 				resolve();
 				return;
 			}
 			
-			// Advance progress
-			const distThisFrame = RIDE_SPEED * dt;
-			progress += distThisFrame / totalDist;
+			// Advance
+			progress += (RIDE_SPEED * dt) / totalDist;
 			progress = math.min(progress, 1);
 			
-			// Get position on path
+			// Move car
 			const pos = getPathPosition(path, progress);
 			const lookAhead = getPathPosition(path, math.min(progress + 0.02, 1));
-			
-			// Move car smoothly
 			const targetCF = CFrame.lookAt(pos.add(new Vector3(0, 2, 0)), lookAhead.add(new Vector3(0, 2, 0)));
 			car.CFrame = car.CFrame.Lerp(targetCF, 0.25);
 			
-			// Keep player attached
-			hrp.CFrame = car.CFrame.mul(new CFrame(0, 2, 0));
+			// Update seat positions
+			updateSeats(car);
+			
+			// Move all riders
+			for (const rider of activeRiders) {
+				const char = rider.player.Character;
+				const hrp = char?.FindFirstChild("HumanoidRootPart") as Part | undefined;
+				if (hrp) {
+					const offset = SEAT_OFFSETS[rider.seatIndex];
+					hrp.CFrame = car.CFrame.mul(new CFrame(offset)).mul(new CFrame(0, 2, 0));
+				}
+			}
 		});
 	});
+}
+
+function updateSeats(car: Part) {
+	const seat0 = car.FindFirstChild("SeatRow0") as Part | undefined;
+	const seat1 = car.FindFirstChild("SeatRow1") as Part | undefined;
+	if (seat0) seat0.CFrame = car.CFrame.mul(new CFrame(0, 0.3, -2));
+	if (seat1) seat1.CFrame = car.CFrame.mul(new CFrame(0, 0.3, 1));
 }
 
 function getPathPosition(path: Vector3[], t: number): Vector3 {
 	if (t <= 0) return path[0];
 	if (t >= 1) return path[path.size() - 1];
 	
-	// Calculate distances
 	const dists: number[] = [0];
 	let total = 0;
 	for (let i = 0; i < path.size() - 1; i++) {

@@ -49,14 +49,14 @@ export function createObbyTower() {
 	// Start sign
 	const sign = new Instance("Part");
 	sign.Name = "StartSign";
-	sign.Size = new Vector3(8, 4, 0.5);
-	sign.Position = TOWER_POSITION.add(new Vector3(0, 5, -14));
+	sign.Size = new Vector3(8, 5, 0.5);
+	sign.Position = TOWER_POSITION.add(new Vector3(0, 10, 14));
 	sign.BrickColor = new BrickColor("Really black");
 	sign.Anchored = true;
 	sign.Parent = towerFolder;
 	
 	const signGui = new Instance("SurfaceGui");
-	signGui.Face = Enum.NormalId.Front;
+	signGui.Face = Enum.NormalId.Back; // Facing towards spawn
 	const signLabel = new Instance("TextLabel");
 	signLabel.Size = new UDim2(1, 0, 1, 0);
 	signLabel.BackgroundTransparency = 1;
@@ -92,8 +92,8 @@ function createObbyLevel(parent: Folder, level: number) {
 	platform.Anchored = true;
 	platform.Parent = parent;
 	
-	// Alternate positions around tower
-	const angle = (level * 90) * (math.pi / 180);
+	// Alternate positions around tower (rotated 180 degrees)
+	const angle = ((level * 90) + 180) * (math.pi / 180);
 	const radius = 12;
 	const xOffset = math.cos(angle) * radius;
 	const zOffset = math.sin(angle) * radius;
@@ -208,7 +208,7 @@ function createRewardChest(parent: Folder) {
 	const victoryLabel = new Instance("TextLabel");
 	victoryLabel.Size = new UDim2(1, 0, 1, 0);
 	victoryLabel.BackgroundTransparency = 1;
-	victoryLabel.Text = "🏆 VICTORY!\nYou earned 50 coins!\n\n?? Press SPACE 3x to triple jump!";
+	victoryLabel.Text = "🏆 VICTORY! +50 Coins!\n\n💡 TIP: Triple Jump!\nPress SPACE 3x fast!";
 	victoryLabel.TextColor3 = new Color3(1, 0.8, 0);
 	victoryLabel.TextScaled = true;
 	victoryLabel.Font = Enum.Font.GothamBold;

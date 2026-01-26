@@ -10,11 +10,11 @@ export function createPetSelectionUI() {
 	screenGui.Name = "PetSelectionUI";
 	screenGui.ResetOnSpawn = false;
 	
-	// Main container - bottom right
+	// Main container - bottom right (taller for 5 pets)
 	const container = new Instance("Frame");
 	container.Name = "PetContainer";
-	container.Size = new UDim2(0, 180, 0, 220);
-	container.Position = new UDim2(1, -190, 1, -230);
+	container.Size = new UDim2(0, 180, 0, 340);
+	container.Position = new UDim2(1, -190, 1, -350);
 	container.BackgroundColor3 = Color3.fromRGB(30, 30, 40);
 	container.BackgroundTransparency = 0.2;
 	container.BorderSizePixel = 0;
@@ -46,11 +46,13 @@ export function createPetSelectionUI() {
 	title.Font = Enum.Font.GothamBold;
 	title.Parent = container;
 	
-	// Pet buttons
+	// Pet buttons - 5 pets now!
 	const pets = [
 		{ id: "cat", name: "🐱 Pink Cat", color: Color3.fromRGB(255, 150, 200) },
 		{ id: "dog", name: "🐕 Blue Dog", color: Color3.fromRGB(100, 180, 255) },
 		{ id: "bat", name: "🦇 Purple Bat", color: Color3.fromRGB(180, 100, 255) },
+		{ id: "dragon", name: "🐉 Silver Dragon", color: Color3.fromRGB(200, 200, 220) },
+		{ id: "unicorn", name: "🦄 Rainbow Unicorn", color: Color3.fromRGB(255, 200, 255) },
 	];
 	
 	pets.forEach((pet, index) => {

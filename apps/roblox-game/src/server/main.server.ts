@@ -11,7 +11,7 @@ changePetRemote.Parent = ReplicatedStorage;
 
 // Handle pet change requests
 changePetRemote.OnServerEvent.Connect((player, petType) => {
-	if (petType === "cat" || petType === "dog" || petType === "bat") {
+	if (petType === "cat" || petType === "dog" || petType === "bat" || petType === "dragon" || petType === "unicorn") {
 		createPet(player, petType as PetType);
 	}
 });

@@ -1,5 +1,6 @@
 // Client-side UI and effects for coin game
 import { Players, UserInputService, StarterGui, ReplicatedStorage } from "@rbxts/services";
+import { createPetSelectionUI } from "./petUI";
 
 const player = Players.LocalPlayer;
 
@@ -136,4 +137,5 @@ UserInputService.InputEnded.Connect((input) => {
 
 // Initialize
 createUI();
-print("💡 Tips: Hold SHIFT to sprint, press SPACE twice to double jump!");
+createPetSelectionUI();
+print("💡 Tips: Hold SHIFT to sprint, press SPACE 3x to triple jump!");

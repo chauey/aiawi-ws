@@ -1,11 +1,25 @@
 // Coin System - Server side
 // Handles coin spawning, collection, player stats, and environment
-import { Players, Workspace, Lighting } from "@rbxts/services";
+import { Players, Workspace, Lighting, ReplicatedStorage } from "@rbxts/services";
+import { createPet, PetType } from "./pets";
+import { createObbyTower } from "./obby";
+
+// Create remote event for pet selection
+const changePetRemote = new Instance("RemoteEvent");
+changePetRemote.Name = "ChangePet";
+changePetRemote.Parent = ReplicatedStorage;
+
+// Handle pet change requests
+changePetRemote.OnServerEvent.Connect((player, petType) => {
+	if (petType === "cat" || petType === "dog" || petType === "bat") {
+		createPet(player, petType as PetType);
+	}
+});
 
 // Configuration
 const COIN_SPAWN_COUNT = 15;
 const COIN_RESPAWN_TIME = 5;
-const COIN_VALUE = 10;
+const COIN_VALUE = 1;
 const SPAWN_AREA = { minX: -50, maxX: 50, minZ: -50, maxZ: 50, height: 3 };
 
 // Setup sunset sky and environment
@@ -165,8 +179,25 @@ function init() {
 	for (let i = 0; i < COIN_SPAWN_COUNT; i++) {
 		spawnCoin();
 	}
+	
+	// Create obby tower
+	createObbyTower();
+	
+	// Give pets to new players
+	Players.PlayerAdded.Connect((player) => {
+		player.CharacterAdded.Connect(() => {
+			task.delay(2, () => createPet(player, "dog"));
+		});
+	});
+	
+	// Give pets to existing players
+	Players.GetPlayers().forEach((player) => {
+		if (player.Character) {
+			task.delay(2, () => createPet(player, "dog"));
+		}
+	});
 
-	print("✅ Game ready! Collect coins to score points!");
+	print("✅ Game ready! Collect coins, climb the obby tower!");
 }
 
 init();

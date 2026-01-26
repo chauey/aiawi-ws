@@ -3,6 +3,7 @@
 import { Players, Workspace, Lighting, ReplicatedStorage } from "@rbxts/services";
 import { createPet, PetType } from "./pets";
 import { createObbyTower } from "./obby";
+import { createRollerCoaster } from "./rollerCoaster";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -197,7 +198,10 @@ function init() {
 		}
 	});
 
-	print("✅ Game ready! Collect coins, climb the obby tower!");
+	// Create the roller coaster!
+	createRollerCoaster();
+
+	print("✅ Game ready! Collect coins, climb the obby tower, ride the coaster!");
 }
 
 init();

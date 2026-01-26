@@ -135,7 +135,19 @@ UserInputService.InputEnded.Connect((input) => {
 	}
 });
 
+// E key to exit roller coaster
+UserInputService.InputBegan.Connect((input, processed) => {
+	if (processed) return;
+	if (input.KeyCode === Enum.KeyCode.E) {
+		const exitRemote = ReplicatedStorage.FindFirstChild("CoasterExit") as RemoteEvent | undefined;
+		if (exitRemote) {
+			exitRemote.FireServer();
+		}
+	}
+});
+
 // Initialize
 createUI();
 createPetSelectionUI();
-print("💡 Tips: Hold SHIFT to sprint, press SPACE 3x to triple jump!");
+print("💡 Tips: SHIFT=sprint, SPACE=jump, E=exit coaster!");
+

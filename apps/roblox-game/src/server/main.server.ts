@@ -136,6 +136,45 @@ function onCoinTouched(coin: Part, otherPart: BasePart) {
 	const coinsValue = leaderstats?.FindFirstChild("Coins") as IntValue | undefined;
 	
 	if (coinsValue) {
+		// Create floating +1 popup
+		const coinPos = coin.Position;
+		const popupPart = new Instance("Part");
+		popupPart.Name = "CoinPopup";
+		popupPart.Size = new Vector3(0.1, 0.1, 0.1);
+		popupPart.Position = coinPos;
+		popupPart.Anchored = true;
+		popupPart.CanCollide = false;
+		popupPart.Transparency = 1;
+		popupPart.Parent = Workspace;
+		
+		const billboard = new Instance("BillboardGui");
+		billboard.Size = new UDim2(0, 60, 0, 40);
+		billboard.StudsOffset = new Vector3(0, 0, 0);
+		billboard.AlwaysOnTop = true;
+		
+		const label = new Instance("TextLabel");
+		label.Size = new UDim2(1, 0, 1, 0);
+		label.BackgroundTransparency = 1;
+		label.Text = "+1 🪙";
+		label.TextColor3 = Color3.fromRGB(255, 220, 50);
+		label.TextStrokeColor3 = Color3.fromRGB(100, 80, 0);
+		label.TextStrokeTransparency = 0;
+		label.TextScaled = true;
+		label.Font = Enum.Font.GothamBold;
+		label.Parent = billboard;
+		billboard.Parent = popupPart;
+		
+		// Animate popup rising and fading
+		task.spawn(() => {
+			for (let i = 0; i < 20; i++) {
+				popupPart.Position = popupPart.Position.add(new Vector3(0, 0.15, 0));
+				label.TextTransparency = i / 20;
+				label.TextStrokeTransparency = i / 20;
+				task.wait(0.03);
+			}
+			popupPart.Destroy();
+		});
+		
 		// Play coin sound
 		const sound = new Instance("Sound");
 		sound.SoundId = "rbxassetid://5964495032"; // Coin collect sound

@@ -1,12 +1,61 @@
 // Coin System - Server side
-// Handles coin spawning, collection, and player stats
-import { Players, Workspace, ServerStorage } from "@rbxts/services";
+// Handles coin spawning, collection, player stats, and environment
+import { Players, Workspace, Lighting } from "@rbxts/services";
 
 // Configuration
 const COIN_SPAWN_COUNT = 15;
 const COIN_RESPAWN_TIME = 5;
 const COIN_VALUE = 10;
 const SPAWN_AREA = { minX: -50, maxX: 50, minZ: -50, maxZ: 50, height: 3 };
+
+// Setup sunset sky and environment
+function setupEnvironment() {
+	// Sunset time
+	Lighting.ClockTime = 18.5; // Evening sunset
+	Lighting.GeographicLatitude = 35;
+	
+	// Warm sunset colors
+	Lighting.Ambient = new Color3(0.4, 0.3, 0.2);
+	Lighting.OutdoorAmbient = new Color3(0.5, 0.35, 0.25);
+	Lighting.ColorShift_Top = new Color3(1, 0.7, 0.4);
+	
+	// Atmosphere for sunset glow
+	const atmosphere = new Instance("Atmosphere");
+	atmosphere.Density = 0.3;
+	atmosphere.Offset = 0.25;
+	atmosphere.Color = new Color3(0.9, 0.6, 0.4);
+	atmosphere.Decay = new Color3(0.9, 0.5, 0.3);
+	atmosphere.Glare = 0.5;
+	atmosphere.Haze = 1.5;
+	atmosphere.Parent = Lighting;
+	
+	// Sky with sunset colors
+	const sky = new Instance("Sky");
+	sky.SunAngularSize = 15;
+	sky.MoonAngularSize = 8;
+	sky.Parent = Lighting;
+	
+	// Create nice grass floor
+	const floor = Workspace.FindFirstChild("Baseplate") as Part | undefined;
+	if (floor) {
+		floor.BrickColor = new BrickColor("Bright green");
+		floor.Material = Enum.Material.Grass;
+		floor.Size = new Vector3(200, 1, 200);
+		floor.Position = new Vector3(0, -0.5, 0);
+	} else {
+		// Create floor if none exists
+		const newFloor = new Instance("Part");
+		newFloor.Name = "Floor";
+		newFloor.Anchored = true;
+		newFloor.Size = new Vector3(200, 1, 200);
+		newFloor.Position = new Vector3(0, -0.5, 0);
+		newFloor.BrickColor = new BrickColor("Bright green");
+		newFloor.Material = Enum.Material.Grass;
+		newFloor.Parent = Workspace;
+	}
+	
+	print("🌅 Sunset environment created!");
+}
 
 // Create leaderstats for player
 function setupLeaderstats(player: Player) {
@@ -72,6 +121,13 @@ function onCoinTouched(coin: Part, otherPart: BasePart) {
 	const coinsValue = leaderstats?.FindFirstChild("Coins") as IntValue | undefined;
 	
 	if (coinsValue) {
+		// Play coin sound
+		const sound = new Instance("Sound");
+		sound.SoundId = "rbxassetid://5964495032"; // Coin collect sound
+		sound.Volume = 0.5;
+		sound.PlayOnRemove = true;
+		sound.Parent = coin;
+		
 		// Collect the coin
 		coin.Destroy();
 		coinsValue.Value += COIN_VALUE;
@@ -93,6 +149,10 @@ function spawnCoin() {
 // Initialize game
 function init() {
 	print("🎮 Coin Collection Game Starting!");
+	
+	// Setup environment first
+	setupEnvironment();
+	
 	print(`💰 Spawning ${COIN_SPAWN_COUNT} coins...`);
 
 	// Setup existing players

@@ -66,9 +66,9 @@ function createUI() {
 	});
 }
 
-// Double jump ability for fun movement
-let canDoubleJump = true;
-let hasJumped = false;
+// Triple jump ability for fun movement
+let jumpsRemaining = 2; // 2 extra jumps (3 total)
+const MAX_EXTRA_JUMPS = 2;
 
 function onJumpRequest() {
 	const character = player.Character;
@@ -76,23 +76,29 @@ function onJumpRequest() {
 	
 	if (!humanoid) return;
 
-	if (humanoid.FloorMaterial === Enum.Material.Air && canDoubleJump && hasJumped) {
-		canDoubleJump = false;
+	if (humanoid.FloorMaterial === Enum.Material.Air && jumpsRemaining > 0) {
+		jumpsRemaining--;
 		humanoid.ChangeState(Enum.HumanoidStateType.Jumping);
-		print("🦘 Double jump!");
-		
-		// Reset after landing
-		const connection = humanoid.StateChanged.Connect((_, newState) => {
-			if (newState === Enum.HumanoidStateType.Landed) {
-				canDoubleJump = true;
-				hasJumped = false;
-				connection.Disconnect();
-			}
-		});
-	} else if (humanoid.FloorMaterial !== Enum.Material.Air) {
-		hasJumped = true;
+		print(`🦘 Jump ${MAX_EXTRA_JUMPS + 1 - jumpsRemaining}/3!`);
 	}
 }
+
+// Reset jumps when landing
+function setupJumpReset() {
+	const character = player.Character || player.CharacterAdded.Wait()[0];
+	const humanoid = character?.FindFirstChildOfClass("Humanoid");
+	
+	if (humanoid) {
+		humanoid.StateChanged.Connect((_, newState) => {
+			if (newState === Enum.HumanoidStateType.Landed) {
+				jumpsRemaining = MAX_EXTRA_JUMPS;
+			}
+		});
+	}
+}
+
+player.CharacterAdded.Connect(setupJumpReset);
+if (player.Character) setupJumpReset();
 
 // Sprint ability with Shift
 let isSprinting = false;

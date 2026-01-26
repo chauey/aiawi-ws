@@ -1,0 +1,17 @@
+# Compiled Luau output - do not edit
+out/
+
+# roblox-ts cache
+include/
+
+# Node modules (local to this app)
+node_modules/
+
+# Build artifacts
+*.rbxm
+*.rbxmx
+*.rbxl
+*.rbxlx
+
+# Rojo sourcemap
+sourcemap.json

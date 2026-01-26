@@ -1,0 +1,48 @@
+{
+  "name": "roblox-game",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/roblox-game/src",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/roblox-game",
+        "command": "npx rbxtsc"
+      }
+    },
+    "watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/roblox-game",
+        "command": "npx rbxtsc -w"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "apps/roblox-game",
+        "commands": [
+          "npx rbxtsc -w",
+          "npx rojo serve"
+        ],
+        "parallel": true
+      }
+    },
+    "rojo-serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/roblox-game",
+        "command": "npx rojo serve"
+      }
+    },
+    "install-plugin": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/roblox-game",
+        "command": "npx rojo plugin install"
+      }
+    }
+  }
+}

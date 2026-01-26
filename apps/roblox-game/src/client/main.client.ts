@@ -232,7 +232,7 @@ function showTutorial() {
 		content.Size = new UDim2(1, -40, 0, 100);
 		content.Position = new UDim2(0, 20, 0, 50);
 		content.BackgroundTransparency = 1;
-		content.Text = "🦘 You can TRIPLE JUMP! Press SPACE 3x fast!\n\n🗼 Play on the OBBY tower for +50 coins!\n\n🎢 Ride the ROLLER COASTER for +25 coins!\n\n🐕 PETS help you collect coins faster!\n     Pick a pet at the bottom right! →";
+		content.Text = "🏃 Hold LEFT SHIFT to SPRINT!\n\n🦘 You can TRIPLE JUMP! Press SPACE 3x fast!\n\n🗼 Play on the OBBY tower for +50 coins!\n\n🎢 Ride the ROLLER COASTER for +25 coins!\n\n🐕 PETS help you collect coins faster! Pick a pet at bottom right! →";
 		content.TextColor3 = Color3.fromRGB(220, 220, 255);
 		content.TextSize = 15;
 		content.TextXAlignment = Enum.TextXAlignment.Left;

@@ -1,6 +1,7 @@
 // Client-side UI and effects for coin game
 import { Players, UserInputService, StarterGui, ReplicatedStorage } from "@rbxts/services";
 import { createPetSelectionUI } from "./petUI";
+import { createDailyRewardsUI } from "./dailyRewardsUI";
 
 const player = Players.LocalPlayer;
 
@@ -256,29 +257,51 @@ function showTutorial() {
 		const nextClickConn = noBtn.MouseButton1Click.Once(() => {
 			// Change to NPC question
 			title.Text = "🤖 Want NPC friends to play with you?";
-			content.Text = "We can spawn friendly bot companions that will\nwander around and follow you!\n\nThey're great if you want some company\nwhile exploring the game.";
-			content.TextSize = 16;
+			content.Text = "We can spawn friendly bot companions that will\nwalk around and play the game with you!\n\nHow many NPCs do you want? (1-10)";
+			content.TextSize = 15;
+			
+			// Add number input box
+			const inputBox = new Instance("TextBox");
+			inputBox.Name = "NPCCountInput";
+			inputBox.Size = new UDim2(0, 60, 0, 35);
+			inputBox.Position = new UDim2(0.5, -30, 0, 115);
+			inputBox.BackgroundColor3 = Color3.fromRGB(60, 70, 90);
+			inputBox.Text = "2";
+			inputBox.PlaceholderText = "1-10";
+			inputBox.TextColor3 = new Color3(1, 1, 1);
+			inputBox.TextSize = 20;
+			inputBox.Font = Enum.Font.GothamBold;
+			inputBox.ClearTextOnFocus = false;
+			inputBox.Parent = box;
+			
+			const inputCorner = new Instance("UICorner");
+			inputCorner.CornerRadius = new UDim(0, 8);
+			inputCorner.Parent = inputBox;
 			
 			// Show Yes/No for NPCs
 			yesBtn.Visible = true;
-			yesBtn.Text = "✅ Yes, add NPCs!";
-			yesBtn.Position = new UDim2(0.5, -130, 1, -60);
+			yesBtn.Text = "✅ Add NPCs!";
+			yesBtn.Position = new UDim2(0.5, -130, 1, -50);
 			
 			noBtn.Text = "❌ No thanks";
 			noBtn.BackgroundColor3 = Color3.fromRGB(150, 80, 80);
-			noBtn.Position = new UDim2(0.5, 10, 1, -60);
+			noBtn.Position = new UDim2(0.5, 10, 1, -50);
 			
 			// Resize box for this question
-			box.Size = new UDim2(0, 380, 0, 200);
-			box.Position = new UDim2(0.5, -190, 0.5, -100);
+			box.Size = new UDim2(0, 380, 0, 220);
+			box.Position = new UDim2(0.5, -190, 0.5, -110);
 			
-			// Handle NPC Yes
+			// Handle NPC Yes - send the count to server
 			const npcYesConn = yesBtn.MouseButton1Click.Once(() => {
-				// Fire remote to spawn NPCs
+				// Parse the input count
+				let count = tonumber(inputBox.Text) ?? 2;
+				count = math.clamp(count, 1, 10);
+				
+				// Fire remote to spawn NPCs with count
 				const spawnRemote = ReplicatedStorage.FindFirstChild("SpawnNPCCompanions") as RemoteEvent | undefined;
 				if (spawnRemote) {
-					spawnRemote.FireServer();
-					print("🤖 Requesting NPC companions!");
+					spawnRemote.FireServer(count);
+					print(`🤖 Requesting ${count} NPC companions!`);
 				}
 				screenGui.Destroy();
 			});
@@ -296,9 +319,119 @@ function showTutorial() {
 	});
 }
 
+// Always-visible NPC Spawner button
+function createNPCSpawnerButton() {
+	const screenGui = new Instance("ScreenGui");
+	screenGui.Name = "NPCSpawnerUI";
+	screenGui.ResetOnSpawn = false;
+	screenGui.DisplayOrder = 40;
+	
+	// NPC button (top right, below daily rewards area)
+	const npcBtn = new Instance("TextButton");
+	npcBtn.Name = "NPCSpawnButton";
+	npcBtn.Size = new UDim2(0, 120, 0, 35);
+	npcBtn.Position = new UDim2(1, -135, 0, 15);
+	npcBtn.BackgroundColor3 = Color3.fromRGB(100, 80, 160);
+	npcBtn.Text = "🤖 place NPCs";
+	npcBtn.TextColor3 = new Color3(1, 1, 1);
+	npcBtn.TextSize = 14;
+	npcBtn.Font = Enum.Font.GothamBold;
+	npcBtn.Parent = screenGui;
+	
+	const btnCorner = new Instance("UICorner");
+	btnCorner.CornerRadius = new UDim(0, 8);
+	btnCorner.Parent = npcBtn;
+	
+	// Count input popup (hidden by default)
+	const popup = new Instance("Frame");
+	popup.Name = "NPCPopup";
+	popup.Size = new UDim2(0, 200, 0, 120);
+	popup.Position = new UDim2(1, -215, 0, 55);
+	popup.BackgroundColor3 = Color3.fromRGB(50, 55, 70);
+	popup.Visible = false;
+	popup.Parent = screenGui;
+	
+	const popupCorner = new Instance("UICorner");
+	popupCorner.CornerRadius = new UDim(0, 10);
+	popupCorner.Parent = popup;
+	
+	const label = new Instance("TextLabel");
+	label.Size = new UDim2(1, 0, 0, 30);
+	label.Position = new UDim2(0, 0, 0, 10);
+	label.BackgroundTransparency = 1;
+	label.Text = "How many NPCs? (1-10)";
+	label.TextColor3 = new Color3(1, 1, 1);
+	label.TextSize = 13;
+	label.Font = Enum.Font.GothamBold;
+	label.Parent = popup;
+	
+	const inputBox = new Instance("TextBox");
+	inputBox.Size = new UDim2(0, 60, 0, 30);
+	inputBox.Position = new UDim2(0.5, -30, 0, 42);
+	inputBox.BackgroundColor3 = Color3.fromRGB(70, 80, 100);
+	inputBox.Text = "2";
+	inputBox.TextColor3 = new Color3(1, 1, 1);
+	inputBox.TextSize = 18;
+	inputBox.Font = Enum.Font.GothamBold;
+	inputBox.ClearTextOnFocus = false;
+	inputBox.Parent = popup;
+	
+	const inputCorner = new Instance("UICorner");
+	inputCorner.CornerRadius = new UDim(0, 6);
+	inputCorner.Parent = inputBox;
+	
+	const spawnBtn = new Instance("TextButton");
+	spawnBtn.Size = new UDim2(0, 80, 0, 28);
+	spawnBtn.Position = new UDim2(0.5, -40, 1, -38);
+	spawnBtn.BackgroundColor3 = Color3.fromRGB(80, 180, 120);
+	spawnBtn.Text = "✅ Spawn!";
+	spawnBtn.TextColor3 = new Color3(1, 1, 1);
+	spawnBtn.TextSize = 13;
+	spawnBtn.Font = Enum.Font.GothamBold;
+	spawnBtn.Parent = popup;
+	
+	const spawnBtnCorner = new Instance("UICorner");
+	spawnBtnCorner.CornerRadius = new UDim(0, 6);
+	spawnBtnCorner.Parent = spawnBtn;
+	
+	const playerGui = player.WaitForChild("PlayerGui") as PlayerGui;
+	screenGui.Parent = playerGui;
+	
+	// Toggle popup on button click
+	npcBtn.MouseButton1Click.Connect(() => {
+		popup.Visible = !popup.Visible;
+	});
+	
+	// Spawn NPCs
+	spawnBtn.MouseButton1Click.Connect(() => {
+		let count = tonumber(inputBox.Text) ?? 2;
+		count = math.clamp(count, 1, 10);
+		
+		const spawnRemote = ReplicatedStorage.FindFirstChild("SpawnNPCCompanions") as RemoteEvent | undefined;
+		if (spawnRemote) {
+			spawnRemote.FireServer(count);
+			print(`🤖 Spawning ${count} NPC companions!`);
+		}
+		
+		popup.Visible = false;
+		npcBtn.Text = "✅ NPCs Added!";
+		npcBtn.BackgroundColor3 = Color3.fromRGB(80, 120, 80);
+		
+		// Reset button after 3 seconds
+		task.delay(3, () => {
+			npcBtn.Text = "🤖 Add NPCs";
+			npcBtn.BackgroundColor3 = Color3.fromRGB(100, 80, 160);
+		});
+	});
+	
+	print("🤖 NPC Spawner button ready!");
+}
+
 // Initialize
 createUI();
 createPetSelectionUI();
+createDailyRewardsUI();
+createNPCSpawnerButton();
 showTutorial(); // Show tutorial for new players
 print("💡 Tips: SHIFT=sprint, SPACE=jump, E=exit coaster!");
 

@@ -1,7 +1,6 @@
-// NPC Companion System - Friendly bots that play alongside players
+// NPC Companion System - Friendly bots that PLAY the game with players
 import { Workspace, Players, RunService, ReplicatedStorage } from "@rbxts/services";
 
-const NPC_NAMES = ["Buddy", "Sparky", "Ziggy", "Pip", "Luna", "Max", "Coco", "Rex"];
 const NPC_COLORS = [
 	Color3.fromRGB(255, 150, 150),
 	Color3.fromRGB(150, 255, 150),
@@ -9,19 +8,34 @@ const NPC_COLORS = [
 	Color3.fromRGB(255, 255, 150),
 	Color3.fromRGB(255, 150, 255),
 	Color3.fromRGB(150, 255, 255),
+	Color3.fromRGB(255, 200, 150),
+	Color3.fromRGB(200, 150, 255),
 ];
+
+// Game locations for NPCs to visit
+const GAME_LOCATIONS = {
+	obby: new Vector3(0, 5, 0),       // Obby tower base
+	coaster: new Vector3(-50, 5, 50), // Roller coaster station
+	spawn: new Vector3(0, 5, 0),      // Spawn area
+};
+
+type NPCActivity = "following" | "collecting" | "obby" | "coaster" | "wandering";
 
 interface NPCData {
 	model: Model;
-	targetPlayer: Player;
+	ownerPlayer: Player;
+	npcNumber: number;
 	wanderTarget: Vector3;
 	lastAction: number;
+	activity: NPCActivity;
+	activityTimer: number;
 }
 
 const activeNPCs = new Map<Player, NPCData[]>();
+const MAX_NPCS_PER_PLAYER = 10;
 
 export function setupNPCSystem() {
-	// Create remote for spawning NPCs
+	// Create remote for spawning NPCs (accepts count parameter)
 	const existingRemote = ReplicatedStorage.FindFirstChild("SpawnNPCCompanions");
 	if (existingRemote) existingRemote.Destroy();
 	
@@ -29,8 +43,9 @@ export function setupNPCSystem() {
 	spawnRemote.Name = "SpawnNPCCompanions";
 	spawnRemote.Parent = ReplicatedStorage;
 	
-	spawnRemote.OnServerEvent.Connect((player) => {
-		spawnNPCsForPlayer(player);
+	spawnRemote.OnServerEvent.Connect((player, count?: unknown) => {
+		const numNPCs = typeIs(count, "number") ? math.clamp(count, 1, MAX_NPCS_PER_PLAYER) : 2;
+		spawnNPCsForPlayer(player, numNPCs);
 	});
 	
 	// Cleanup when player leaves
@@ -49,10 +64,10 @@ export function setupNPCSystem() {
 		updateAllNPCs(dt);
 	});
 	
-	print("🤖 NPC Companion system ready!");
+	print("🤖 NPC Companion system ready! (up to 10 per player)");
 }
 
-function spawnNPCsForPlayer(player: Player) {
+function spawnNPCsForPlayer(player: Player, count: number) {
 	// Don't spawn if already has NPCs
 	if (activeNPCs.has(player)) {
 		print(`🤖 ${player.Name} already has NPC companions!`);
@@ -66,32 +81,35 @@ function spawnNPCsForPlayer(player: Player) {
 	if (!hrp) return;
 	
 	const npcs: NPCData[] = [];
-	const numNPCs = 2; // Spawn 2 friendly NPCs
 	
-	for (let i = 0; i < numNPCs; i++) {
-		const npc = createNPC(i, hrp.Position);
+	for (let i = 0; i < count; i++) {
+		const npc = createNPC(player.Name, i, hrp.Position);
 		npcs.push({
 			model: npc,
-			targetPlayer: player,
+			ownerPlayer: player,
+			npcNumber: i + 1,
 			wanderTarget: hrp.Position,
 			lastAction: tick(),
+			activity: "following",
+			activityTimer: 0,
 		});
 	}
 	
 	activeNPCs.set(player, npcs);
-	print(`🤖 Spawned ${numNPCs} NPC companions for ${player.Name}!`);
+	print(`🤖 Spawned ${count} NPC companions for ${player.Name}!`);
 }
 
-function createNPC(index: number, spawnPos: Vector3): Model {
-	const name = NPC_NAMES[index % NPC_NAMES.size()];
+function createNPC(ownerName: string, index: number, spawnPos: Vector3): Model {
 	const color = NPC_COLORS[index % NPC_COLORS.size()];
+	const npcName = `${ownerName}'s NPC`;
 	
 	const model = new Instance("Model");
-	model.Name = `NPC_${name}`;
+	model.Name = `NPC_${ownerName}_${index + 1}`;
 	
 	// Create simple humanoid NPC
 	const humanoid = new Instance("Humanoid");
-	humanoid.WalkSpeed = 14;
+	humanoid.WalkSpeed = 16;
+	humanoid.JumpPower = 50;
 	humanoid.Parent = model;
 	
 	// Torso (main part)
@@ -124,16 +142,16 @@ function createNPC(index: number, spawnPos: Vector3): Model {
 	headWeld.C0 = new CFrame(0, 1.75, 0);
 	headWeld.Parent = head;
 	
-	// Name label
+	// Name label - "{Player}'s NPC"
 	const billboard = new Instance("BillboardGui");
-	billboard.Size = new UDim2(0, 100, 0, 30);
+	billboard.Size = new UDim2(0, 120, 0, 30);
 	billboard.StudsOffset = new Vector3(0, 2.5, 0);
 	billboard.AlwaysOnTop = true;
 	
 	const nameLabel = new Instance("TextLabel");
 	nameLabel.Size = new UDim2(1, 0, 1, 0);
 	nameLabel.BackgroundTransparency = 1;
-	nameLabel.Text = `🤖 ${name}`;
+	nameLabel.Text = `🤖 ${npcName}`;
 	nameLabel.TextColor3 = new Color3(1, 1, 1);
 	nameLabel.TextStrokeTransparency = 0.5;
 	nameLabel.TextScaled = true;
@@ -185,38 +203,160 @@ function updateNPC(npc: NPCData, playerHrp: Part, dt: number) {
 	
 	if (!hrp || !humanoid) return;
 	
-	const distToPlayer = hrp.Position.sub(playerHrp.Position).Magnitude;
 	const now = tick();
 	
-	// Behavior: Follow player but wander around them
-	if (distToPlayer > 25) {
-		// Too far - run to player
-		humanoid.WalkSpeed = 20;
-		humanoid.MoveTo(playerHrp.Position);
-	} else if (distToPlayer > 12) {
-		// Follow player casually
-		humanoid.WalkSpeed = 14;
-		humanoid.MoveTo(playerHrp.Position);
-	} else {
-		// Near player - wander around
-		humanoid.WalkSpeed = 10;
-		
-		// Pick new wander target every 3-5 seconds
-		if (now - npc.lastAction > math.random() * 2 + 3) {
-			npc.lastAction = now;
-			const offset = new Vector3(
-				math.random() * 16 - 8,
-				0,
-				math.random() * 16 - 8
-			);
-			npc.wanderTarget = playerHrp.Position.add(offset);
+	// Update activity timer
+	npc.activityTimer += dt;
+	
+	// NPCs ONLY collect coins and wander - no following, no jumping
+	humanoid.WalkSpeed = 16;
+	
+	// Look for coins in Workspace (coins are named "Coin" and are Parts)
+	let nearestCoin: Part | undefined;
+	let nearestDist = 80;
+	
+	for (const child of Workspace.GetChildren()) {
+		if (child.IsA("Part") && child.Name === "Coin") {
+			const dist = child.Position.sub(hrp.Position).Magnitude;
+			if (dist < nearestDist) {
+				nearestDist = dist;
+				nearestCoin = child;
+			}
 		}
-		
-		humanoid.MoveTo(npc.wanderTarget);
 	}
 	
-	// Jump occasionally when near player
-	if (distToPlayer < 15 && math.random() < 0.005) {
+	if (nearestCoin) {
+		// Move toward the coin
+		humanoid.MoveTo(nearestCoin.Position);
+		
+		// If close enough, "collect" the coin (destroy it and give coins to owner)
+		if (nearestDist < 4) {
+			nearestCoin.Destroy();
+			
+			// Give coin to the NPC's owner
+			const ls = npc.ownerPlayer.FindFirstChild("leaderstats") as Folder | undefined;
+			const coinsValue = ls?.FindFirstChild("Coins") as IntValue | undefined;
+			if (coinsValue) {
+				coinsValue.Value += 1;
+			}
+			print(`🤖 ${npc.ownerPlayer.Name}'s NPC collected a coin!`);
+		}
+		return;
+	}
+	
+	// No coins found - wander around the map looking for them
+	if (now - npc.lastAction > 3) {
+		npc.lastAction = now;
+		npc.wanderTarget = new Vector3(
+			math.random() * 100 - 50,
+			3,
+			math.random() * 100 - 50
+		);
+	}
+	humanoid.MoveTo(npc.wanderTarget);
+}
+
+function changeActivity(npc: NPCData) {
+	const activities: NPCActivity[] = ["following", "collecting", "obby", "wandering"];
+	const randomActivity = activities[math.floor(math.random() * activities.size())];
+	npc.activity = randomActivity;
+	npc.lastAction = tick();
+	print(`🤖 ${npc.ownerPlayer.Name}'s NPC #${npc.npcNumber} is now ${randomActivity}!`);
+}
+
+function doFollowBehavior(npc: NPCData, hrp: Part, humanoid: Humanoid, playerHrp: Part, distToPlayer: number, now: number) {
+	if (distToPlayer > 30) {
+		// Too far - run to player
+		humanoid.WalkSpeed = 22;
+		humanoid.MoveTo(playerHrp.Position);
+	} else if (distToPlayer > 10) {
+		// Follow player casually
+		humanoid.WalkSpeed = 16;
+		humanoid.MoveTo(playerHrp.Position);
+	} else {
+		// Near player - wander around them
+		humanoid.WalkSpeed = 12;
+		if (now - npc.lastAction > 2) {
+			npc.lastAction = now;
+			const offset = new Vector3(math.random() * 12 - 6, 0, math.random() * 12 - 6);
+			npc.wanderTarget = playerHrp.Position.add(offset);
+		}
+		humanoid.MoveTo(npc.wanderTarget);
+	}
+}
+
+function doCollectBehavior(npc: NPCData, hrp: Part, humanoid: Humanoid, playerHrp: Part, now: number) {
+	humanoid.WalkSpeed = 18;
+	
+	// Look for coins near the player
+	const coinFolder = Workspace.FindFirstChild("CoinFolder");
+	if (coinFolder) {
+		let nearestCoin: Part | undefined;
+		let nearestDist = 50;
+		
+		for (const child of coinFolder.GetChildren()) {
+			if (child.IsA("Part")) {
+				const dist = child.Position.sub(hrp.Position).Magnitude;
+				if (dist < nearestDist) {
+					nearestDist = dist;
+					nearestCoin = child;
+				}
+			}
+		}
+		
+		if (nearestCoin) {
+			humanoid.MoveTo(nearestCoin.Position);
+			return;
+		}
+	}
+	
+	// No coins found - wander around spawn area looking
+	if (now - npc.lastAction > 3) {
+		npc.lastAction = now;
+		npc.wanderTarget = GAME_LOCATIONS.spawn.add(new Vector3(math.random() * 40 - 20, 0, math.random() * 40 - 20));
+	}
+	humanoid.MoveTo(npc.wanderTarget);
+}
+
+function doObbyBehavior(npc: NPCData, hrp: Part, humanoid: Humanoid, playerHrp: Part, now: number) {
+	humanoid.WalkSpeed = 16;
+	
+	// Go to obby tower area
+	const obbyFolder = Workspace.FindFirstChild("ObbyTower");
+	if (obbyFolder) {
+		const platform = obbyFolder.FindFirstChild("Platform1") as Part | undefined;
+		if (platform) {
+			humanoid.MoveTo(platform.Position.add(new Vector3(math.random() * 4 - 2, 0, math.random() * 4 - 2)));
+			
+			// Jump frequently when doing obby
+			if (math.random() < 0.03) {
+				humanoid.Jump = true;
+			}
+			return;
+		}
+	}
+	
+	// No obby found - go to approximate location
+	humanoid.MoveTo(GAME_LOCATIONS.obby.add(new Vector3(math.random() * 10 - 5, 0, math.random() * 10 - 5)));
+	
+	// Jump a lot when doing obby
+	if (math.random() < 0.025) {
 		humanoid.Jump = true;
 	}
+}
+
+function doWanderBehavior(npc: NPCData, hrp: Part, humanoid: Humanoid, playerHrp: Part, now: number) {
+	humanoid.WalkSpeed = 10;
+	
+	// Just wander around the map
+	if (now - npc.lastAction > 4) {
+		npc.lastAction = now;
+		npc.wanderTarget = new Vector3(
+			math.random() * 80 - 40,
+			3,
+			math.random() * 80 - 40
+		);
+	}
+	
+	humanoid.MoveTo(npc.wanderTarget);
 }

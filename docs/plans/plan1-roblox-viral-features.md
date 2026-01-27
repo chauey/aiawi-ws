@@ -60,9 +60,9 @@
 
 | #   | Feature       | Effort   | Impact   | Status  |
 | --- | ------------- | -------- | -------- | ------- |
-| 1   | Pet follower  | ⭐⭐     | 🔥🔥🔥   | 🔲 TODO |
-| 2   | Obby tower    | ⭐⭐     | 🔥🔥🔥   | 🔲 TODO |
-| 3   | Daily rewards | ⭐⭐     | 🔥🔥🔥   | 🔲 TODO |
+| 1   | Pet follower  | ⭐⭐     | 🔥🔥🔥   | ✅ DONE |
+| 2   | Obby tower    | ⭐⭐     | 🔥🔥🔥   | ✅ DONE |
+| 3   | Daily rewards | ⭐⭐     | 🔥🔥🔥   | ✅ DONE |
 | 4   | 2x coin pass  | ⭐       | 🔥🔥     | 🔲 TODO |
 | 5   | Pet shop      | ⭐⭐⭐   | 🔥🔥🔥   | 🔲 TODO |
 | 6   | Leaderboard   | ⭐⭐     | 🔥🔥     | 🔲 TODO |

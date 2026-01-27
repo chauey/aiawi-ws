@@ -5,6 +5,7 @@ import { createPet, PetType } from "./pets";
 import { createObbyTower } from "./obby";
 import { createRollerCoaster } from "./rollerCoaster";
 import { setupNPCSystem } from "./npcCompanions";
+import { setupDailyRewards } from "./dailyRewards";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -243,6 +244,9 @@ function init() {
 	
 	// Setup NPC companion system
 	setupNPCSystem();
+	
+	// Setup daily rewards system
+	setupDailyRewards();
 
 	print("✅ Game ready! Collect coins, climb the obby tower, ride the coaster!");
 }

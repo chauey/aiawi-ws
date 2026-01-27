@@ -6,21 +6,44 @@ import { createObbyTower } from "./obby";
 import { createRollerCoaster } from "./rollerCoaster";
 import { setupNPCSystem } from "./npcCompanions";
 import { setupDailyRewards } from "./dailyRewards";
+import { setupGamePasses } from "./gamePasses";
+import { setupMapSystem } from "./maps";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
 changePetRemote.Name = "ChangePet";
 changePetRemote.Parent = ReplicatedStorage;
 
-// Handle pet change requests
-changePetRemote.OnServerEvent.Connect((player, petType) => {
-	if (petType === "cat" || petType === "dog" || petType === "bat" || petType === "dragon" || petType === "unicorn") {
-		createPet(player, petType as PetType);
+// Pet prices (must match client shopUI)
+const PET_PRICES: { [key: string]: number } = {
+	crab: 5, fish: 10, turtle: 15, frog: 20, duck: 25,
+	cat: 30, dog: 35, rabbit: 40, fox: 45, bear: 50,
+	penguin: 55, owl: 60, bat: 65, dragon: 70, unicorn: 75, phoenix: 80
+};
+
+// Handle pet purchase requests
+changePetRemote.OnServerEvent.Connect((player, petType, price) => {
+	if (!typeIs(petType, "string") || !typeIs(price, "number")) return;
+	
+	const actualPrice = PET_PRICES[petType];
+	if (actualPrice === undefined || actualPrice !== price) return;
+	
+	// Check coins
+	const leaderstats = player.FindFirstChild("leaderstats") as Folder | undefined;
+	const coinsValue = leaderstats?.FindFirstChild("Coins") as IntValue | undefined;
+	if (!coinsValue || coinsValue.Value < actualPrice) {
+		print(`❌ ${player.Name} can't afford ${petType} (needs ${actualPrice}, has ${coinsValue?.Value ?? 0})`);
+		return;
 	}
+	
+	// Deduct coins and create pet
+	coinsValue.Value -= actualPrice;
+	createPet(player, petType as PetType);
+	print(`🐾 ${player.Name} bought ${petType} for ${actualPrice} coins!`);
 });
 
 // Configuration
-const COIN_SPAWN_COUNT = 15;
+const COIN_SPAWN_COUNT = 40;
 const COIN_RESPAWN_TIME = 5;
 const COIN_VALUE = 1;
 const SPAWN_AREA = { minX: -50, maxX: 50, minZ: -50, maxZ: 50, height: 3 };
@@ -189,10 +212,8 @@ function onCoinTouched(coin: Part, otherPart: BasePart) {
 		coinsValue.Value += COIN_VALUE;
 		print(`🪙 ${player.Name} collected a coin! Total: ${coinsValue.Value}`);
 
-		// Respawn coin after delay
-		task.delay(COIN_RESPAWN_TIME, () => {
-			spawnCoin();
-		});
+		// Respawn coin immediately
+		spawnCoin();
 	}
 }
 
@@ -247,6 +268,12 @@ function init() {
 	
 	// Setup daily rewards system
 	setupDailyRewards();
+	
+	// Setup game passes
+	setupGamePasses();
+	
+	// Setup map system
+	setupMapSystem();
 
 	print("✅ Game ready! Collect coins, climb the obby tower, ride the coaster!");
 }

@@ -1,7 +1,8 @@
 // Client-side UI and effects for coin game
-import { Players, UserInputService, StarterGui, ReplicatedStorage } from "@rbxts/services";
-import { createPetSelectionUI } from "./petUI";
+import { Players, UserInputService, StarterGui, ReplicatedStorage, Lighting } from "@rbxts/services";
 import { createDailyRewardsUI } from "./dailyRewardsUI";
+import { createShopUI } from "./shopUI";
+import { createMapShopUI } from "./mapShopUI";
 
 const player = Players.LocalPlayer;
 
@@ -427,11 +428,60 @@ function createNPCSpawnerButton() {
 	print("🤖 NPC Spawner button ready!");
 }
 
+// Day/Night toggle
+let isDay = false;
+function createDayNightToggle() {
+	const screenGui = new Instance("ScreenGui");
+	screenGui.Name = "DayNightUI";
+	screenGui.ResetOnSpawn = false;
+	screenGui.DisplayOrder = 70;
+	
+	const toggleBtn = new Instance("TextButton");
+	toggleBtn.Name = "DayNightToggle";
+	toggleBtn.Size = new UDim2(0, 50, 0, 50);
+	toggleBtn.Position = new UDim2(1, -60, 0, 10);
+	toggleBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 80);
+	toggleBtn.Text = "🌙";
+	toggleBtn.TextSize = 28;
+	toggleBtn.Font = Enum.Font.GothamBold;
+	toggleBtn.Parent = screenGui;
+	
+	const corner = new Instance("UICorner");
+	corner.CornerRadius = new UDim(0, 12);
+	corner.Parent = toggleBtn;
+	
+	toggleBtn.MouseButton1Click.Connect(() => {
+		isDay = !isDay;
+		if (isDay) {
+			// Day mode
+			Lighting.ClockTime = 12;
+			Lighting.Brightness = 2;
+			Lighting.Ambient = new Color3(0.5, 0.5, 0.5);
+			Lighting.OutdoorAmbient = new Color3(0.5, 0.5, 0.5);
+			toggleBtn.Text = "☀️";
+			toggleBtn.BackgroundColor3 = Color3.fromRGB(255, 200, 80);
+		} else {
+			// Night mode (sunset)
+			Lighting.ClockTime = 18.5;
+			Lighting.Brightness = 1;
+			Lighting.Ambient = new Color3(0.4, 0.3, 0.2);
+			Lighting.OutdoorAmbient = new Color3(0.5, 0.35, 0.25);
+			toggleBtn.Text = "🌙";
+			toggleBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 80);
+		}
+	});
+	
+	const playerGui = player.WaitForChild("PlayerGui") as PlayerGui;
+	screenGui.Parent = playerGui;
+	print("🌙 Day/Night toggle ready!");
+}
+
 // Initialize
 createUI();
-createPetSelectionUI();
 createDailyRewardsUI();
+createShopUI();
+createMapShopUI();
+createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial(); // Show tutorial for new players
 print("💡 Tips: SHIFT=sprint, SPACE=jump, E=exit coaster!");
-

@@ -4,6 +4,7 @@ import { Players, Workspace, Lighting, ReplicatedStorage } from "@rbxts/services
 import { createPet, PetType } from "./pets";
 import { createObbyTower } from "./obby";
 import { createRollerCoaster } from "./rollerCoaster";
+import { setupNPCSystem } from "./npcCompanions";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -239,6 +240,9 @@ function init() {
 
 	// Create the roller coaster!
 	createRollerCoaster();
+	
+	// Setup NPC companion system
+	setupNPCSystem();
 
 	print("✅ Game ready! Collect coins, climb the obby tower, ride the coaster!");
 }

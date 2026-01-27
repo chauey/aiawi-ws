@@ -148,17 +148,47 @@ function createTrack(parent: Folder, pts: Vector3[]) {
 		Color3.fromRGB(180, 100, 255),
 	];
 	
-	for (let i = 0; i < pts.size() - 1; i++) {
-		const a = pts[i];
-		const c = pts[i + 1];
+	// Generate smooth path using spline with many subdivisions
+	const SUBDIVISIONS = 4; // segments per control point
+	const smoothPath: Vector3[] = [];
+	const n = pts.size();
+	
+	for (let i = 0; i < n - 1; i++) {
+		for (let j = 0; j < SUBDIVISIONS; j++) {
+			const t = (i + j / SUBDIVISIONS) / (n - 1);
+			const scaledT = t * (n - 1);
+			const idx = math.floor(scaledT);
+			const localT = scaledT - idx;
+			
+			const p0 = pts[math.max(0, idx - 1)];
+			const p1 = pts[idx];
+			const p2 = pts[math.min(n - 1, idx + 1)];
+			const p3 = pts[math.min(n - 1, idx + 2)];
+			
+			// Catmull-Rom inline
+			const t2 = localT * localT;
+			const t3 = t2 * localT;
+			const x = 0.5 * ((2 * p1.X) + (-p0.X + p2.X) * localT + (2 * p0.X - 5 * p1.X + 4 * p2.X - p3.X) * t2 + (-p0.X + 3 * p1.X - 3 * p2.X + p3.X) * t3);
+			const y = 0.5 * ((2 * p1.Y) + (-p0.Y + p2.Y) * localT + (2 * p0.Y - 5 * p1.Y + 4 * p2.Y - p3.Y) * t2 + (-p0.Y + 3 * p1.Y - 3 * p2.Y + p3.Y) * t3);
+			const z = 0.5 * ((2 * p1.Z) + (-p0.Z + p2.Z) * localT + (2 * p0.Z - 5 * p1.Z + 4 * p2.Z - p3.Z) * t2 + (-p0.Z + 3 * p1.Z - 3 * p2.Z + p3.Z) * t3);
+			
+			smoothPath.push(new Vector3(x, y, z));
+		}
+	}
+	smoothPath.push(pts[n - 1]); // Add final point
+	
+	// Create rail segments from smooth path
+	for (let i = 0; i < smoothPath.size() - 1; i++) {
+		const a = smoothPath[i];
+		const c = smoothPath[i + 1];
 		const mid = a.add(c).div(2);
 		const len = c.sub(a).Magnitude;
-		if (len < 2) continue;
+		if (len < 0.5) continue;
 		
 		const rail = new Instance("Part");
 		rail.Name = `Rail${i}`;
-		rail.Size = new Vector3(1.5, 0.6, len);
-		rail.Color = colors[i % colors.size()];
+		rail.Size = new Vector3(1.5, 0.6, len + 0.1); // Slight overlap for seamless look
+		rail.Color = colors[math.floor(i / SUBDIVISIONS) % colors.size()];
 		rail.Material = Enum.Material.Neon;
 		rail.CFrame = CFrame.lookAt(mid, c);
 		rail.Anchored = true;
@@ -166,7 +196,8 @@ function createTrack(parent: Folder, pts: Vector3[]) {
 		rail.CastShadow = false;
 		rail.Parent = parent;
 		
-		if (i % 4 === 0 && a.Y > 8) {
+		// Supports every 16 smooth segments (roughly every 4 control points)
+		if (i % 16 === 0 && a.Y > 8) {
 			const sup = new Instance("Part");
 			sup.Name = `Sup${i}`;
 			sup.Size = new Vector3(0.5, a.Y - 2, 0.5);
@@ -429,26 +460,48 @@ function updateSeats(car: Part) {
 	if (seat1) seat1.CFrame = car.CFrame.mul(new CFrame(0, 0.3, 1));
 }
 
+// Catmull-Rom spline interpolation for smooth curves
+function catmullRom(p0: Vector3, p1: Vector3, p2: Vector3, p3: Vector3, t: number): Vector3 {
+	const t2 = t * t;
+	const t3 = t2 * t;
+	
+	// Catmull-Rom spline formula
+	const x = 0.5 * (
+		(2 * p1.X) +
+		(-p0.X + p2.X) * t +
+		(2 * p0.X - 5 * p1.X + 4 * p2.X - p3.X) * t2 +
+		(-p0.X + 3 * p1.X - 3 * p2.X + p3.X) * t3
+	);
+	const y = 0.5 * (
+		(2 * p1.Y) +
+		(-p0.Y + p2.Y) * t +
+		(2 * p0.Y - 5 * p1.Y + 4 * p2.Y - p3.Y) * t2 +
+		(-p0.Y + 3 * p1.Y - 3 * p2.Y + p3.Y) * t3
+	);
+	const z = 0.5 * (
+		(2 * p1.Z) +
+		(-p0.Z + p2.Z) * t +
+		(2 * p0.Z - 5 * p1.Z + 4 * p2.Z - p3.Z) * t2 +
+		(-p0.Z + 3 * p1.Z - 3 * p2.Z + p3.Z) * t3
+	);
+	
+	return new Vector3(x, y, z);
+}
+
 function getPathPosition(path: Vector3[], t: number): Vector3 {
 	if (t <= 0) return path[0];
 	if (t >= 1) return path[path.size() - 1];
 	
-	const dists: number[] = [0];
-	let total = 0;
-	for (let i = 0; i < path.size() - 1; i++) {
-		total += path[i + 1].sub(path[i]).Magnitude;
-		dists.push(total);
-	}
+	const n = path.size();
+	const scaledT = t * (n - 1);
+	const i = math.floor(scaledT);
+	const localT = scaledT - i;
 	
-	const targetDist = t * total;
+	// Get 4 control points for Catmull-Rom (clamp at boundaries)
+	const p0 = path[math.max(0, i - 1)];
+	const p1 = path[i];
+	const p2 = path[math.min(n - 1, i + 1)];
+	const p3 = path[math.min(n - 1, i + 2)];
 	
-	for (let i = 0; i < dists.size() - 1; i++) {
-		if (targetDist >= dists[i] && targetDist <= dists[i + 1]) {
-			const segLen = dists[i + 1] - dists[i];
-			const segT = segLen > 0 ? (targetDist - dists[i]) / segLen : 0;
-			return path[i].Lerp(path[i + 1], segT);
-		}
-	}
-	
-	return path[path.size() - 1];
+	return catmullRom(p0, p1, p2, p3, localT);
 }

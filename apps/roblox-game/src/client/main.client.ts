@@ -229,6 +229,7 @@ function showTutorial() {
 		
 		// Tutorial content
 		const content = new Instance("TextLabel");
+		content.Name = "TutorialContent";
 		content.Size = new UDim2(1, -40, 0, 100);
 		content.Position = new UDim2(0, 20, 0, 50);
 		content.BackgroundTransparency = 1;
@@ -241,18 +242,55 @@ function showTutorial() {
 		content.TextWrapped = true;
 		content.Parent = box;
 		
-		// Hide yes button, change no to close
+		// Hide yes button, change no to "Next"
 		yesBtn.Visible = false;
-		noBtn.Text = "👍 Got it!";
+		noBtn.Text = "➡️ Next";
 		noBtn.BackgroundColor3 = Color3.fromRGB(80, 150, 220);
 		noBtn.Position = new UDim2(0.5, -60, 1, -60);
 		
 		// Resize box
 		box.Size = new UDim2(0, 420, 0, 260);
 		box.Position = new UDim2(0.5, -210, 0.5, -130);
+		
+		// Next click - show NPC choice
+		const nextClickConn = noBtn.MouseButton1Click.Once(() => {
+			// Change to NPC question
+			title.Text = "🤖 Want NPC friends to play with you?";
+			content.Text = "We can spawn friendly bot companions that will\nwander around and follow you!\n\nThey're great if you want some company\nwhile exploring the game.";
+			content.TextSize = 16;
+			
+			// Show Yes/No for NPCs
+			yesBtn.Visible = true;
+			yesBtn.Text = "✅ Yes, add NPCs!";
+			yesBtn.Position = new UDim2(0.5, -130, 1, -60);
+			
+			noBtn.Text = "❌ No thanks";
+			noBtn.BackgroundColor3 = Color3.fromRGB(150, 80, 80);
+			noBtn.Position = new UDim2(0.5, 10, 1, -60);
+			
+			// Resize box for this question
+			box.Size = new UDim2(0, 380, 0, 200);
+			box.Position = new UDim2(0.5, -190, 0.5, -100);
+			
+			// Handle NPC Yes
+			const npcYesConn = yesBtn.MouseButton1Click.Once(() => {
+				// Fire remote to spawn NPCs
+				const spawnRemote = ReplicatedStorage.FindFirstChild("SpawnNPCCompanions") as RemoteEvent | undefined;
+				if (spawnRemote) {
+					spawnRemote.FireServer();
+					print("🤖 Requesting NPC companions!");
+				}
+				screenGui.Destroy();
+			});
+			
+			// Handle NPC No - just close
+			const npcNoConn = noBtn.MouseButton1Click.Once(() => {
+				screenGui.Destroy();
+			});
+		});
 	});
 	
-	// Handle No/Close click
+	// Handle No/Close click (skip tutorial entirely)
 	noBtn.MouseButton1Click.Connect(() => {
 		screenGui.Destroy();
 	});

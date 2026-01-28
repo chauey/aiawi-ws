@@ -26,6 +26,7 @@ import { setupPremiumPass } from "./premiumPass";
 import { setupPetBattles } from "./petBattles";
 import { setupPrivateServers } from "./privateServers";
 import { setupMinigames } from "./minigames";
+import { setupDataStore } from "./dataStore";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -346,8 +347,11 @@ function init() {
 	
 	// Setup minigames
 	setupMinigames();
+	
+	// Setup data persistence (CRITICAL for production)
+	setupDataStore();
 
-	print("✅ Game ready! 27 systems loaded!");
+	print("✅ Game ready! 28 systems loaded! (Data persistence enabled)");
 }
 
 init();

@@ -30,9 +30,9 @@ export function createUIToggle() {
 	toggleBtn.Size = new UDim2(0, 45, 0, 45);
 	toggleBtn.Position = new UDim2(0, 10, 1, -115);
 	toggleBtn.BackgroundColor3 = Color3.fromRGB(60, 70, 100);
-	toggleBtn.Text = "☰";
+	toggleBtn.Text = "≡"; // Simple bars that render in Roblox
 	toggleBtn.TextColor3 = new Color3(1, 1, 1);
-	toggleBtn.TextSize = 26;
+	toggleBtn.TextSize = 32;
 	toggleBtn.Font = Enum.Font.GothamBold;
 	toggleBtn.Parent = screenGui;
 	

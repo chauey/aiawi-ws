@@ -125,9 +125,10 @@ export function createCodesUI() {
 	closeBtn.Size = new UDim2(0, 30, 0, 30);
 	closeBtn.Position = new UDim2(1, -35, 0, 5);
 	closeBtn.BackgroundTransparency = 1;
-	closeBtn.Text = "✕";
+	closeBtn.Text = "X"; // Simple X that renders properly
 	closeBtn.TextColor3 = Color3.fromRGB(200, 200, 200);
-	closeBtn.TextSize = 20;
+	closeBtn.TextSize = 18;
+	closeBtn.Font = Enum.Font.GothamBold;
 	closeBtn.Parent = panel;
 	
 	// Toggle

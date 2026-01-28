@@ -16,6 +16,8 @@ import { createCodesUI } from "./codesUI";
 import { createVIPUI } from "./vipUI";
 import { createEventsUI } from "./eventsUI";
 import { createFusionUI } from "./fusionUI";
+import { createAchievementsUI } from "./achievementsUI";
+import { createClansUI } from "./clansUI";
 
 const player = Players.LocalPlayer;
 
@@ -507,7 +509,9 @@ createCodesUI();
 createVIPUI();
 createEventsUI();
 createFusionUI();
+createAchievementsUI();
+createClansUI();
 createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial();
-print("🎉 22+ systems! Fuse pets, events live!");
+print("🏆 24 systems! Achievements, clans, fusion!");

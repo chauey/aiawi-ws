@@ -20,6 +20,8 @@ import { setupCodesSystem } from "./codes";
 import { setupVIPZone } from "./vipZone";
 import { setupEventSystem } from "./events";
 import { setupPetFusion } from "./petFusion";
+import { setupAchievements } from "./achievements";
+import { setupClanSystem } from "./clans";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -322,8 +324,14 @@ function init() {
 	
 	// Setup pet fusion
 	setupPetFusion();
+	
+	// Setup achievements
+	setupAchievements();
+	
+	// Setup clans
+	setupClanSystem();
 
-	print("✅ Game ready! 22+ systems loaded!");
+	print("✅ Game ready! 24 systems loaded!");
 }
 
 init();

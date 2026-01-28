@@ -20,6 +20,8 @@ import { createAchievementsUI } from "./achievementsUI";
 import { createClansUI } from "./clansUI";
 import { createPremiumUI } from "./premiumUI";
 import { createBattlesUI } from "./battlesUI";
+import { createPrivateServerUI } from "./privateServerUI";
+import { createMinigamesUI } from "./minigamesUI";
 
 const player = Players.LocalPlayer;
 
@@ -515,7 +517,9 @@ createAchievementsUI();
 createClansUI();
 createPremiumUI();
 createBattlesUI();
+createPrivateServerUI();
+createMinigamesUI();
 createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial();
-print("⭐ 25 systems! Premium + PvP battles!");
+print("🎮 27 systems! Ultimate game complete!");

@@ -24,6 +24,8 @@ import { setupAchievements } from "./achievements";
 import { setupClanSystem } from "./clans";
 import { setupPremiumPass } from "./premiumPass";
 import { setupPetBattles } from "./petBattles";
+import { setupPrivateServers } from "./privateServers";
+import { setupMinigames } from "./minigames";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -338,8 +340,14 @@ function init() {
 	
 	// Setup pet battles
 	setupPetBattles();
+	
+	// Setup private servers
+	setupPrivateServers();
+	
+	// Setup minigames
+	setupMinigames();
 
-	print("✅ Game ready! 25 systems loaded!");
+	print("✅ Game ready! 27 systems loaded!");
 }
 
 init();

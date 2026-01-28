@@ -244,8 +244,8 @@ function createBeachMap() {
 	createCollectible(folder, new Vector3(210, 4, -10), "🐚", 5);
 	createCollectible(folder, new Vector3(200, 4, 25), "⭐", 10);
 	
-	// COINS: Scattered on beach
-	for (let i = 0; i < 8; i++) {
+	// COINS: Scattered on beach (limit 3-4 per map for performance)
+	for (let i = 0; i < 3; i++) {
 		createCollectible(folder, new Vector3(
 			200 + math.random() * 60 - 30,
 			4,
@@ -333,8 +333,8 @@ function createVolcanoMap() {
 	// FUN: Spinning platform
 	createSpinningPlatform(folder, new Vector3(30, 8, 180), new Vector3(12, 2, 12), new BrickColor("Dark stone grey"));
 	
-	// COINS: Scattered on volcanic rock
-	for (let i = 0; i < 8; i++) {
+	// COINS: Scattered on volcanic rock (limit 3-4 per map for performance)
+	for (let i = 0; i < 3; i++) {
 		createCollectible(folder, new Vector3(
 			math.random() * 60 - 30,
 			4,
@@ -419,8 +419,8 @@ function createSpaceMap() {
 	createSpinningPlatform(folder, new Vector3(-230, 55, 20), new Vector3(10, 1, 10), new BrickColor("Cyan"));
 	createSpinningPlatform(folder, new Vector3(-170, 55, -20), new Vector3(10, 1, 10), new BrickColor("Magenta"));
 	
-	// COINS: Floating in space
-	for (let i = 0; i < 10; i++) {
+	// COINS: Floating in space (limit 3-4 per map for performance)
+	for (let i = 0; i < 4; i++) {
 		createCollectible(folder, new Vector3(
 			-200 + math.random() * 50 - 25,
 			52 + math.random() * 15,
@@ -503,13 +503,13 @@ function createCandyMap() {
 	createSpinningPlatform(folder, new Vector3(-30, 8, -200), new Vector3(8, 2, 8), new BrickColor("Hot pink"));
 	createSpinningPlatform(folder, new Vector3(30, 8, -200), new Vector3(8, 2, 8), new BrickColor("Lime green"));
 	
-	// COINS: Scattered in candy land
-	for (let i = 0; i < 10; i++) {
+	// COINS: Scattered in candy land (limit 3-4 per map for performance)
+	for (let i = 0; i < 4; i++) {
 		createCollectible(folder, new Vector3(
 			math.random() * 60 - 30,
 			4,
 			-200 + math.random() * 60 - 30
-		), "🪙", 6);
+		), "🪙", 4);
 	}
 }
 
@@ -590,13 +590,13 @@ function createIceMap() {
 	createSpinningPlatform(folder, new Vector3(170, 8, 200), new Vector3(10, 1, 10), new BrickColor("Cyan"));
 	createSpinningPlatform(folder, new Vector3(230, 8, 200), new Vector3(10, 1, 10), new BrickColor("Pastel Blue"));
 	
-	// COINS: Frozen coins on ice
-	for (let i = 0; i < 10; i++) {
+	// COINS: Frozen coins on ice (limit 3-4 per map for performance)
+	for (let i = 0; i < 4; i++) {
 		createCollectible(folder, new Vector3(
-			200 + math.random() * 60 - 30,
+			200 + math.random() * 50 - 25,
 			4,
-			200 + math.random() * 60 - 30
-		), "🪙", 8);
+			200 + math.random() * 50 - 25
+		), "🪙", 4);
 	}
 }
 
@@ -681,8 +681,8 @@ function createRainbowMap() {
 	createCollectible(folder, new Vector3(-200, 115, -200), "🏆", 250);
 	createCollectible(folder, new Vector3(-175, 135, -175), "👑", 500); // Near the pot of gold!
 	
-	// COINS: Lots of coins scattered on clouds
-	for (let i = 0; i < 10; i++) {
+	// COINS: Scattered on clouds (limit 3-4 per map for performance)
+	for (let i = 0; i < 4; i++) {
 		createCollectible(folder, new Vector3(
 			-200 + math.random() * 50 - 25,
 			102 + math.random() * 20,
@@ -720,15 +720,6 @@ function createSandRollerCoaster(parent: Folder) {
 	station.BrickColor = new BrickColor("Reddish brown");
 	station.Material = Enum.Material.Wood;
 	station.Parent = parent;
-	
-	// Station roof (tropical)
-	const roof = new Instance("Part");
-	roof.Size = new Vector3(14, 0.5, 10);
-	roof.Position = new Vector3(baseX, 9, baseZ);
-	roof.Anchored = true;
-	roof.BrickColor = new BrickColor("Bright green");
-	roof.Material = Enum.Material.Grass;
-	roof.Parent = parent;
 	
 	// Station sign
 	const stationSign = new Instance("Part");

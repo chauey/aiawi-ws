@@ -13,7 +13,7 @@ export function createLeaderboardUI() {
 	const openBtn = new Instance("TextButton");
 	openBtn.Name = "LeaderboardBtn";
 	openBtn.Size = new UDim2(0, 50, 0, 50);
-	openBtn.Position = new UDim2(1, -120, 0, 10);
+	openBtn.Position = new UDim2(1, -60, 0, 10);
 	openBtn.BackgroundColor3 = Color3.fromRGB(255, 200, 50);
 	openBtn.Text = "🏆";
 	openBtn.TextSize = 28;

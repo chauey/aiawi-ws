@@ -21,7 +21,7 @@ export function createMusicSystem() {
 	const musicBtn = new Instance("TextButton");
 	musicBtn.Name = "MusicToggle";
 	musicBtn.Size = new UDim2(0, 50, 0, 50);
-	musicBtn.Position = new UDim2(1, -180, 0, 10);
+	musicBtn.Position = new UDim2(1, -60, 0, 70);
 	musicBtn.BackgroundColor3 = Color3.fromRGB(80, 180, 80);
 	musicBtn.Text = "🎵";
 	musicBtn.TextSize = 28;

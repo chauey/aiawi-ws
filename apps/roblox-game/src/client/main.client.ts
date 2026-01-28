@@ -6,6 +6,8 @@ import { createMapShopUI } from "./mapShopUI";
 import { createLeaderboardUI } from "./leaderboardUI";
 import { createMusicSystem } from "./musicSystem";
 import { createTradingUI } from "./tradingUI";
+import { createStealingUI } from "./stealingUI";
+import { createEggShopUI } from "./eggShopUI";
 
 const player = Players.LocalPlayer;
 
@@ -334,7 +336,7 @@ function createNPCSpawnerButton() {
 	const npcBtn = new Instance("TextButton");
 	npcBtn.Name = "NPCSpawnButton";
 	npcBtn.Size = new UDim2(0, 120, 0, 35);
-	npcBtn.Position = new UDim2(1, -135, 0, 15);
+	npcBtn.Position = new UDim2(1, -135, 0, 130);
 	npcBtn.BackgroundColor3 = Color3.fromRGB(100, 80, 160);
 	npcBtn.Text = "🤖 place NPCs";
 	npcBtn.TextColor3 = new Color3(1, 1, 1);
@@ -487,7 +489,9 @@ createMapShopUI();
 createLeaderboardUI();
 createMusicSystem();
 createTradingUI();
+createStealingUI();
+createEggShopUI();
 createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial(); // Show tutorial for new players
-print("💡 Tips: SHIFT=sprint, SPACE=jump, E=exit coaster!");
+print("💡 Tips: SHIFT=sprint, Touch to STEAL, Buy EGGS for pets!");

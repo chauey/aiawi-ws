@@ -14,7 +14,7 @@ export function createTradingUI() {
 	const tradeBtn = new Instance("TextButton");
 	tradeBtn.Name = "TradeBtn";
 	tradeBtn.Size = new UDim2(0, 50, 0, 50);
-	tradeBtn.Position = new UDim2(1, -240, 0, 10);
+	tradeBtn.Position = new UDim2(1, -120, 0, 70);
 	tradeBtn.BackgroundColor3 = Color3.fromRGB(100, 150, 255);
 	tradeBtn.Text = "🔄";
 	tradeBtn.TextSize = 28;

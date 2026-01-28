@@ -10,6 +10,8 @@ import { setupGamePasses } from "./gamePasses";
 import { setupMapSystem } from "./maps";
 import { setupLeaderboardSystem } from "./leaderboard";
 import { setupTradingSystem } from "./trading";
+import { setupCoinStealingSystem } from "./coinStealing";
+import { setupEggSystem } from "./eggHatching";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -45,7 +47,7 @@ changePetRemote.OnServerEvent.Connect((player, petType, price) => {
 });
 
 // Configuration
-const COIN_SPAWN_COUNT = 15;
+const COIN_SPAWN_COUNT = 8;
 const COIN_RESPAWN_TIME = 5;
 const COIN_VALUE = 1;
 const SPAWN_AREA = { minX: -50, maxX: 50, minZ: -50, maxZ: 50, height: 3 };
@@ -282,6 +284,12 @@ function init() {
 	
 	// Setup trading
 	setupTradingSystem();
+	
+	// Setup coin stealing
+	setupCoinStealingSystem();
+	
+	// Setup egg hatching
+	setupEggSystem();
 
 	print("✅ Game ready! Collect coins, climb the obby tower, ride the coaster!");
 }

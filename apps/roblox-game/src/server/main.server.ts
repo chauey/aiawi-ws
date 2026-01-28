@@ -22,6 +22,8 @@ import { setupEventSystem } from "./events";
 import { setupPetFusion } from "./petFusion";
 import { setupAchievements } from "./achievements";
 import { setupClanSystem } from "./clans";
+import { setupPremiumPass } from "./premiumPass";
+import { setupPetBattles } from "./petBattles";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -330,8 +332,14 @@ function init() {
 	
 	// Setup clans
 	setupClanSystem();
+	
+	// Setup premium pass
+	setupPremiumPass();
+	
+	// Setup pet battles
+	setupPetBattles();
 
-	print("✅ Game ready! 24 systems loaded!");
+	print("✅ Game ready! 25 systems loaded!");
 }
 
 init();

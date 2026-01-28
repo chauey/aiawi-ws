@@ -24,6 +24,7 @@ import { createPrivateServerUI } from "./privateServerUI";
 import { createMinigamesUI } from "./minigamesUI";
 import { createBottomActionBar, registerActionCallback } from "./actionBar";
 import { getTutorialSteps } from "shared/featureRegistry";
+import { createUIToggle } from "./uiToggle";
 
 const player = Players.LocalPlayer;
 
@@ -536,6 +537,9 @@ createNPCSpawnerButton();
 
 // Create unified bottom action bar
 createBottomActionBar();
+
+// Create mobile UI toggle (hamburger menu)
+createUIToggle();
 
 // Register action bar callbacks to toggle existing panels
 const playerGui = player.WaitForChild("PlayerGui") as PlayerGui;

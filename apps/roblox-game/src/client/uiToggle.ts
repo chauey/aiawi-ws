@@ -98,19 +98,8 @@ function toggleAllUI(show: boolean) {
 	for (const uiName of toggleableUIs) {
 		const ui = playerGui.FindFirstChild(uiName) as ScreenGui | undefined;
 		if (ui) {
-			// Animate fade
-			for (const child of ui.GetDescendants()) {
-				if (child.IsA("Frame") || child.IsA("TextButton") || child.IsA("TextLabel")) {
-					const target = child as Frame | TextButton | TextLabel;
-					// Only toggle first-level children (buttons, not panels)
-					if (target.Parent === ui || target.Name.match("Btn") || target.Name.match("Container") || target.Name.match("Bar")) {
-						TweenService.Create(target, new TweenInfo(0.2), {
-							BackgroundTransparency: show ? 0 : 1,
-						}).Play();
-						target.Visible = show;
-					}
-				}
-			}
+			// Simply toggle the entire ScreenGui enabled state
+			ui.Enabled = show;
 		}
 	}
 }

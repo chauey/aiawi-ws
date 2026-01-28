@@ -4,6 +4,8 @@ import { createDailyRewardsUI } from "./dailyRewardsUI";
 import { createShopUI } from "./shopUI";
 import { createMapShopUI } from "./mapShopUI";
 import { createLeaderboardUI } from "./leaderboardUI";
+import { createMusicSystem } from "./musicSystem";
+import { createTradingUI } from "./tradingUI";
 
 const player = Players.LocalPlayer;
 
@@ -483,6 +485,8 @@ createDailyRewardsUI();
 createShopUI();
 createMapShopUI();
 createLeaderboardUI();
+createMusicSystem();
+createTradingUI();
 createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial(); // Show tutorial for new players

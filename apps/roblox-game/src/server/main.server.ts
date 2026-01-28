@@ -9,6 +9,7 @@ import { setupDailyRewards } from "./dailyRewards";
 import { setupGamePasses } from "./gamePasses";
 import { setupMapSystem } from "./maps";
 import { setupLeaderboardSystem } from "./leaderboard";
+import { setupTradingSystem } from "./trading";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -278,6 +279,9 @@ function init() {
 	
 	// Setup leaderboard
 	setupLeaderboardSystem();
+	
+	// Setup trading
+	setupTradingSystem();
 
 	print("✅ Game ready! Collect coins, climb the obby tower, ride the coaster!");
 }

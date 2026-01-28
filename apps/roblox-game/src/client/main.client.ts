@@ -8,6 +8,7 @@ import { createMusicSystem } from "./musicSystem";
 import { createTradingUI } from "./tradingUI";
 import { createStealingUI } from "./stealingUI";
 import { createEggShopUI } from "./eggShopUI";
+import { createRebirthUI } from "./rebirthUI";
 
 const player = Players.LocalPlayer;
 
@@ -491,7 +492,8 @@ createMusicSystem();
 createTradingUI();
 createStealingUI();
 createEggShopUI();
+createRebirthUI();
 createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial(); // Show tutorial for new players
-print("💡 Tips: SHIFT=sprint, Touch to STEAL, Buy EGGS for pets!");
+print("💡 Tips: Touch=STEAL, EGGS=pets, REBIRTH=multiply!");

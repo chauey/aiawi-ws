@@ -252,6 +252,9 @@ function createBeachMap() {
 			math.random() * 60 - 30
 		), "🪙", 2);
 	}
+	
+	// SAND ROLLER COASTER!
+	createSandRollerCoaster(folder);
 }
 
 function createPalmTree(parent: Folder, pos: Vector3) {
@@ -686,4 +689,166 @@ function createRainbowMap() {
 			-200 + math.random() * 50 - 25
 		), "🪙", 10);
 	}
+}
+
+// ==================== SAND ROLLER COASTER ====================
+function createSandRollerCoaster(parent: Folder) {
+	const baseX = 230;
+	const baseZ = -30;
+	
+	// Coaster path - loops around beach with ocean views
+	const path: Vector3[] = [
+		new Vector3(baseX, 5, baseZ),           // Start
+		new Vector3(baseX + 20, 12, baseZ),      // Climb
+		new Vector3(baseX + 35, 20, baseZ - 10), // Peak
+		new Vector3(baseX + 45, 15, baseZ - 25), // Drop towards ocean
+		new Vector3(baseX + 40, 8, baseZ - 40),  // Low by water
+		new Vector3(baseX + 25, 10, baseZ - 50), // Turn
+		new Vector3(baseX + 5, 15, baseZ - 45),  // Rise
+		new Vector3(baseX - 10, 18, baseZ - 30), // Peak 2
+		new Vector3(baseX - 15, 12, baseZ - 10), // Heading back
+		new Vector3(baseX - 10, 8, baseZ + 5),   // Low turn
+		new Vector3(baseX, 5, baseZ),            // Back to start
+	];
+	
+	// Station platform (sand/wood theme)
+	const station = new Instance("Part");
+	station.Name = "SandCoasterStation";
+	station.Size = new Vector3(12, 1, 8);
+	station.Position = new Vector3(baseX, 4, baseZ);
+	station.Anchored = true;
+	station.BrickColor = new BrickColor("Reddish brown");
+	station.Material = Enum.Material.Wood;
+	station.Parent = parent;
+	
+	// Station roof (tropical)
+	const roof = new Instance("Part");
+	roof.Size = new Vector3(14, 0.5, 10);
+	roof.Position = new Vector3(baseX, 9, baseZ);
+	roof.Anchored = true;
+	roof.BrickColor = new BrickColor("Bright green");
+	roof.Material = Enum.Material.Grass;
+	roof.Parent = parent;
+	
+	// Station sign
+	const stationSign = new Instance("Part");
+	stationSign.Size = new Vector3(5, 2, 0.3);
+	stationSign.Position = new Vector3(baseX, 11, baseZ - 4);
+	stationSign.Anchored = true;
+	stationSign.BrickColor = new BrickColor("Brown");
+	stationSign.Parent = parent;
+	
+	const signGui = new Instance("SurfaceGui");
+	signGui.Face = Enum.NormalId.Front;
+	const signText = new Instance("TextLabel");
+	signText.Size = new UDim2(1, 0, 1, 0);
+	signText.BackgroundTransparency = 1;
+	signText.Text = "🏖️ SAND COASTER";
+	signText.TextColor3 = new Color3(1, 0.9, 0.6);
+	signText.TextScaled = true;
+	signText.Font = Enum.Font.GothamBold;
+	signText.Parent = signGui;
+	signGui.Parent = stationSign;
+	
+	// Build track
+	for (let i = 0; i < path.size() - 1; i++) {
+		const p1 = path[i];
+		const p2 = path[i + 1];
+		const mid = p1.add(p2).div(2);
+		const dir = p2.sub(p1);
+		const dist = dir.Magnitude;
+		
+		// Sand-colored track segments
+		const track = new Instance("Part");
+		track.Name = `SandTrack${i}`;
+		track.Size = new Vector3(3, 0.4, dist);
+		track.CFrame = CFrame.lookAt(mid, p2);
+		track.Anchored = true;
+		track.BrickColor = new BrickColor("Brick yellow");
+		track.Material = Enum.Material.Sand;
+		track.Parent = parent;
+		
+		// Driftwood support posts
+		if (i % 2 === 0) {
+			const support = new Instance("Part");
+			support.Name = `Support${i}`;
+			support.Size = new Vector3(0.8, p1.Y, 0.8);
+			support.Position = new Vector3(p1.X, p1.Y / 2, p1.Z);
+			support.Anchored = true;
+			support.BrickColor = new BrickColor("Reddish brown");
+			support.Material = Enum.Material.Wood;
+			support.Parent = parent;
+		}
+	}
+	
+	// Beach coaster car (sand bucket themed!)
+	const car = new Instance("Part");
+	car.Name = "SandCoasterCar";
+	car.Size = new Vector3(4, 2, 5);
+	car.Position = path[0];
+	car.Anchored = true;
+	car.BrickColor = new BrickColor("Bright yellow");
+	car.Material = Enum.Material.SmoothPlastic;
+	car.Parent = parent;
+	
+	const carFront = new Instance("WedgePart");
+	carFront.Name = "CarFront";
+	carFront.Size = new Vector3(4, 1, 2);
+	carFront.CFrame = car.CFrame.mul(new CFrame(0, -0.5, -3));
+	carFront.Anchored = true;
+	carFront.BrickColor = new BrickColor("Bright yellow");
+	carFront.Parent = parent;
+	
+	// Ride prompt
+	const prompt = new Instance("ProximityPrompt");
+	prompt.ActionText = "Ride";
+	prompt.ObjectText = "Sand Coaster";
+	prompt.HoldDuration = 0;
+	prompt.MaxActivationDistance = 10;
+	prompt.Parent = car;
+	
+	// Simple ride animation
+	let isRiding = false;
+	prompt.Triggered.Connect((player) => {
+		if (isRiding) return;
+		isRiding = true;
+		
+		const character = player.Character;
+		const hrp = character?.FindFirstChild("HumanoidRootPart") as Part | undefined;
+		
+		if (hrp) {
+			// Seat player on car
+			const originalCFrame = hrp.CFrame;
+			
+			// Ride the coaster!
+			for (let lap = 0; lap < 2; lap++) {
+				for (let i = 0; i < path.size() - 1; i++) {
+					const p1 = path[i];
+					const p2 = path[i + 1];
+					const dir = p2.sub(p1);
+					const steps = math.ceil(dir.Magnitude / 2);
+					
+					for (let s = 0; s <= steps; s++) {
+						const t = s / steps;
+						const pos = p1.Lerp(p2, t);
+						car.Position = pos;
+						if (hrp && hrp.Parent) {
+							hrp.CFrame = new CFrame(pos.add(new Vector3(0, 2, 0)));
+						}
+						wait(0.05);
+					}
+				}
+			}
+			
+			// Return player
+			if (hrp && hrp.Parent) {
+				hrp.CFrame = originalCFrame;
+			}
+		}
+		
+		car.Position = path[0];
+		isRiding = false;
+	});
+	
+	print("🏖️ Sand Roller Coaster built on Beach Paradise!");
 }

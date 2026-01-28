@@ -1,5 +1,5 @@
-// Codes UI - Enter codes to redeem rewards
-import { Players, ReplicatedStorage } from "@rbxts/services";
+// Codes UI - Premium Design
+import { Players, ReplicatedStorage, TweenService } from "@rbxts/services";
 
 const player = Players.LocalPlayer;
 
@@ -9,21 +9,48 @@ export function createCodesUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 91;
 	
-	// Codes button (left side)
+	// Codes button (left side) - PREMIUM
 	const codesBtn = new Instance("TextButton");
 	codesBtn.Name = "CodesBtn";
-	codesBtn.Size = new UDim2(0, 100, 0, 40);
-	codesBtn.Position = new UDim2(0, 10, 0.5, 100);
-	codesBtn.BackgroundColor3 = Color3.fromRGB(255, 150, 50);
+	codesBtn.Size = new UDim2(0, 90, 0, 36);
+	codesBtn.Position = new UDim2(0, 10, 0, 200);
+	codesBtn.BackgroundColor3 = Color3.fromRGB(255, 100, 120);
 	codesBtn.Text = "🎁 CODES";
 	codesBtn.TextColor3 = Color3.fromRGB(255, 255, 255);
-	codesBtn.TextSize = 14;
+	codesBtn.TextSize = 12;
 	codesBtn.Font = Enum.Font.GothamBold;
+	codesBtn.AutoButtonColor = false;
 	codesBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");
 	btnCorner.CornerRadius = new UDim(0, 10);
 	btnCorner.Parent = codesBtn;
+	
+	// Gradient
+	const btnGradient = new Instance("UIGradient");
+	btnGradient.Color = new ColorSequence([
+		new ColorSequenceKeypoint(0, Color3.fromRGB(255, 120, 140)),
+		new ColorSequenceKeypoint(1, Color3.fromRGB(220, 70, 100)),
+	]);
+	btnGradient.Rotation = 90;
+	btnGradient.Parent = codesBtn;
+	
+	// Stroke  
+	const btnStroke = new Instance("UIStroke");
+	btnStroke.Color = Color3.fromRGB(255, 180, 190);
+	btnStroke.Transparency = 0.6;
+	btnStroke.Thickness = 1;
+	btnStroke.Parent = codesBtn;
+	
+	// Hover effects
+	codesBtn.MouseEnter.Connect(() => {
+		TweenService.Create(codesBtn, new TweenInfo(0.15), { Size: new UDim2(0, 95, 0, 38) }).Play();
+		btnStroke.Transparency = 0.2;
+	});
+	codesBtn.MouseLeave.Connect(() => {
+		TweenService.Create(codesBtn, new TweenInfo(0.15), { Size: new UDim2(0, 90, 0, 36) }).Play();
+		btnStroke.Transparency = 0.6;
+	});
 	
 	// Codes panel
 	const panel = new Instance("Frame");

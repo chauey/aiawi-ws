@@ -1,5 +1,5 @@
-// VIP Zone UI - Unlock and teleport to VIP
-import { Players, ReplicatedStorage } from "@rbxts/services";
+// VIP Zone UI - Premium Gold Design
+import { Players, ReplicatedStorage, TweenService } from "@rbxts/services";
 
 const player = Players.LocalPlayer;
 
@@ -9,21 +9,48 @@ export function createVIPUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 92;
 	
-	// VIP button
+	// VIP button - PREMIUM GOLD
 	const vipBtn = new Instance("TextButton");
 	vipBtn.Name = "VIPBtn";
-	vipBtn.Size = new UDim2(0, 100, 0, 40);
-	vipBtn.Position = new UDim2(0, 10, 0.5, 150);
+	vipBtn.Size = new UDim2(0, 90, 0, 36);
+	vipBtn.Position = new UDim2(0, 10, 0, 240);
 	vipBtn.BackgroundColor3 = Color3.fromRGB(255, 200, 50);
 	vipBtn.Text = "👑 VIP";
-	vipBtn.TextColor3 = Color3.fromRGB(0, 0, 0);
-	vipBtn.TextSize = 16;
+	vipBtn.TextColor3 = Color3.fromRGB(50, 30, 0);
+	vipBtn.TextSize = 13;
 	vipBtn.Font = Enum.Font.GothamBold;
+	vipBtn.AutoButtonColor = false;
 	vipBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");
 	btnCorner.CornerRadius = new UDim(0, 10);
 	btnCorner.Parent = vipBtn;
+	
+	// Gold gradient
+	const btnGradient = new Instance("UIGradient");
+	btnGradient.Color = new ColorSequence([
+		new ColorSequenceKeypoint(0, Color3.fromRGB(255, 220, 100)),
+		new ColorSequenceKeypoint(1, Color3.fromRGB(255, 180, 50)),
+	]);
+	btnGradient.Rotation = 90;
+	btnGradient.Parent = vipBtn;
+	
+	// Gold stroke
+	const btnStroke = new Instance("UIStroke");
+	btnStroke.Color = Color3.fromRGB(255, 240, 150);
+	btnStroke.Transparency = 0.4;
+	btnStroke.Thickness = 1.5;
+	btnStroke.Parent = vipBtn;
+	
+	// Hover effects
+	vipBtn.MouseEnter.Connect(() => {
+		TweenService.Create(vipBtn, new TweenInfo(0.15), { Size: new UDim2(0, 95, 0, 38) }).Play();
+		btnStroke.Transparency = 0;
+	});
+	vipBtn.MouseLeave.Connect(() => {
+		TweenService.Create(vipBtn, new TweenInfo(0.15), { Size: new UDim2(0, 90, 0, 36) }).Play();
+		btnStroke.Transparency = 0.4;
+	});
 	
 	// VIP panel
 	const panel = new Instance("Frame");

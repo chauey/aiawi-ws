@@ -1,5 +1,5 @@
-// Quests UI - Show daily quests with progress
-import { Players, ReplicatedStorage } from "@rbxts/services";
+// Quests UI - Show daily quests with progress (Premium Design)
+import { Players, ReplicatedStorage, TweenService } from "@rbxts/services";
 
 const player = Players.LocalPlayer;
 
@@ -9,21 +9,48 @@ export function createQuestUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 86;
 	
-	// Quest button (left side)
+	// Quest button (left side) - PREMIUM STYLE
 	const questBtn = new Instance("TextButton");
 	questBtn.Name = "QuestBtn";
-	questBtn.Size = new UDim2(0, 100, 0, 40);
-	questBtn.Position = new UDim2(0, 10, 0.5, -20);
-	questBtn.BackgroundColor3 = Color3.fromRGB(100, 180, 100);
+	questBtn.Size = new UDim2(0, 90, 0, 36);
+	questBtn.Position = new UDim2(0, 10, 0, 160);
+	questBtn.BackgroundColor3 = Color3.fromRGB(80, 150, 255);
 	questBtn.Text = "📋 QUESTS";
 	questBtn.TextColor3 = Color3.fromRGB(255, 255, 255);
-	questBtn.TextSize = 14;
+	questBtn.TextSize = 12;
 	questBtn.Font = Enum.Font.GothamBold;
+	questBtn.AutoButtonColor = false;
 	questBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");
 	btnCorner.CornerRadius = new UDim(0, 10);
 	btnCorner.Parent = questBtn;
+	
+	// Gradient
+	const btnGradient = new Instance("UIGradient");
+	btnGradient.Color = new ColorSequence([
+		new ColorSequenceKeypoint(0, Color3.fromRGB(100, 170, 255)),
+		new ColorSequenceKeypoint(1, Color3.fromRGB(60, 120, 200)),
+	]);
+	btnGradient.Rotation = 90;
+	btnGradient.Parent = questBtn;
+	
+	// Stroke
+	const btnStroke = new Instance("UIStroke");
+	btnStroke.Color = Color3.fromRGB(150, 200, 255);
+	btnStroke.Transparency = 0.6;
+	btnStroke.Thickness = 1;
+	btnStroke.Parent = questBtn;
+	
+	// Hover effects
+	questBtn.MouseEnter.Connect(() => {
+		TweenService.Create(questBtn, new TweenInfo(0.15), { Size: new UDim2(0, 95, 0, 38) }).Play();
+		btnStroke.Transparency = 0.2;
+	});
+	questBtn.MouseLeave.Connect(() => {
+		TweenService.Create(questBtn, new TweenInfo(0.15), { Size: new UDim2(0, 90, 0, 36) }).Play();
+		btnStroke.Transparency = 0.6;
+	});
 	
 	// Quest panel
 	const panel = new Instance("Frame");
@@ -90,7 +117,7 @@ export function createQuestUI() {
 	});
 	
 	// Listen for progress updates
-	const progressRemote = ReplicatedStorage.WaitForChild("QuestProgress", 10) as RemoteEvent | undefined;
+	const progressRemote = ReplicatedStorage.WaitForChild("QuestProgress", 1) as RemoteEvent | undefined;
 	if (progressRemote) {
 		progressRemote.OnClientEvent.Connect(() => {
 			if (panel.Visible) {

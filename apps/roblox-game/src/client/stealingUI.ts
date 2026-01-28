@@ -28,7 +28,7 @@ export function createStealingUI() {
 	notifyCorner.Parent = notifyLabel;
 	
 	// Listen for steal events
-	const stealRemote = ReplicatedStorage.WaitForChild("CoinStealNotify", 10) as RemoteEvent | undefined;
+	const stealRemote = ReplicatedStorage.WaitForChild("CoinStealNotify", 1) as RemoteEvent | undefined;
 	if (stealRemote) {
 		stealRemote.OnClientEvent.Connect((eventType: string, otherPlayer: string, amount: number) => {
 			if (eventType === "stole") {

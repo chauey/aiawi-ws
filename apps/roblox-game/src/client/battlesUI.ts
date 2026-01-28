@@ -208,7 +208,7 @@ export function createBattlesUI() {
 	let currentChallenger = "";
 	
 	// Listen for challenges
-	const challengeNotify = ReplicatedStorage.WaitForChild("ChallengeNotify", 10) as RemoteEvent | undefined;
+	const challengeNotify = ReplicatedStorage.WaitForChild("ChallengeNotify", 1) as RemoteEvent | undefined;
 	if (challengeNotify) {
 		challengeNotify.OnClientEvent.Connect((challenger: string, wager: number, petName: string) => {
 			popupInfo.Text = `${challenger} challenges you!\nWager: ${wager} coins`;
@@ -240,7 +240,7 @@ export function createBattlesUI() {
 	});
 	
 	// Battle result notification
-	const battleNotify = ReplicatedStorage.WaitForChild("BattleNotify", 10) as RemoteEvent | undefined;
+	const battleNotify = ReplicatedStorage.WaitForChild("BattleNotify", 1) as RemoteEvent | undefined;
 	if (battleNotify) {
 		battleNotify.OnClientEvent.Connect((won: boolean, winnerName: string, amount: number) => {
 			if (amount === 0) {

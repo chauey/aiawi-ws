@@ -1,9 +1,21 @@
 // DataStore System - Persistent player data
 // CRITICAL: Required for production - saves all player progress
-import { Players, DataStoreService } from "@rbxts/services";
+import { Players, DataStoreService, RunService } from "@rbxts/services";
 
-// Create main data store
-const playerDataStore = DataStoreService.GetDataStore("PlayerData_v1");
+// Create main data store (lazy - only in production)
+let playerDataStore: DataStore | undefined;
+const isStudio = RunService.IsStudio();
+
+if (!isStudio) {
+	const [success, store] = pcall(() => DataStoreService.GetDataStore("PlayerData_v1"));
+	if (success) {
+		playerDataStore = store;
+	} else {
+		warn("⚠️ DataStore not available - data will not persist");
+	}
+} else {
+	print("📦 DataStore disabled in Studio mode - using session data only");
+}
 
 // Stored data structure (for DataStore serialization)
 interface StoredPlayerData {
@@ -49,6 +61,7 @@ export function loadPlayerData(player: Player): StoredPlayerData {
 	const key = `Player_${player.UserId}`;
 	
 	const [success, result] = pcall(() => {
+		if (!playerDataStore) return undefined;
 		return playerDataStore.GetAsync(key);
 	});
 	
@@ -91,6 +104,7 @@ export function savePlayerData(player: Player): boolean {
 	const key = `Player_${player.UserId}`;
 	
 	const [success] = pcall(() => {
+		if (!playerDataStore) return;
 		playerDataStore.SetAsync(key, data);
 	});
 	

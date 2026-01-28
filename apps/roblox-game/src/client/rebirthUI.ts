@@ -177,7 +177,7 @@ function refreshRebirthInfo(currentLabel: TextLabel, multiplierLabel: TextLabel,
 }
 
 function setupRebirthNotify(screenGui: ScreenGui) {
-	const notifyRemote = ReplicatedStorage.WaitForChild("RebirthNotify", 10) as RemoteEvent | undefined;
+	const notifyRemote = ReplicatedStorage.WaitForChild("RebirthNotify", 1) as RemoteEvent | undefined;
 	if (!notifyRemote) return;
 	
 	notifyRemote.OnClientEvent.Connect((rebirths: number, multiplier: number) => {

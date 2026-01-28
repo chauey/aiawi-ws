@@ -183,7 +183,7 @@ function createEggButton(parent: Frame, egg: { id: string; name: string; price: 
 }
 
 function setupHatchAnimation(screenGui: ScreenGui) {
-	const hatchRemote = ReplicatedStorage.WaitForChild("HatchResult", 10) as RemoteEvent | undefined;
+	const hatchRemote = ReplicatedStorage.WaitForChild("HatchResult", 1) as RemoteEvent | undefined;
 	if (!hatchRemote) return;
 	
 	// Hatch overlay

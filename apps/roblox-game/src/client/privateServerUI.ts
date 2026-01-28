@@ -1,5 +1,5 @@
-// Private Servers UI
-import { Players, ReplicatedStorage } from "@rbxts/services";
+// Private Servers UI - Premium Design
+import { Players, ReplicatedStorage, TweenService } from "@rbxts/services";
 
 const player = Players.LocalPlayer;
 
@@ -9,21 +9,48 @@ export function createPrivateServerUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 99;
 	
-	// Private server button
+	// Private button - PREMIUM PURPLE
 	const privateBtn = new Instance("TextButton");
 	privateBtn.Name = "PrivateBtn";
-	privateBtn.Size = new UDim2(0, 100, 0, 40);
-	privateBtn.Position = new UDim2(0, 10, 0.5, 250);
-	privateBtn.BackgroundColor3 = Color3.fromRGB(100, 80, 150);
+	privateBtn.Size = new UDim2(0, 90, 0, 36);
+	privateBtn.Position = new UDim2(0, 10, 0, 320);
+	privateBtn.BackgroundColor3 = Color3.fromRGB(140, 100, 200);
 	privateBtn.Text = "🔒 PRIVATE";
 	privateBtn.TextColor3 = Color3.fromRGB(255, 255, 255);
-	privateBtn.TextSize = 14;
+	privateBtn.TextSize = 11;
 	privateBtn.Font = Enum.Font.GothamBold;
+	privateBtn.AutoButtonColor = false;
 	privateBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");
 	btnCorner.CornerRadius = new UDim(0, 10);
 	btnCorner.Parent = privateBtn;
+	
+	// Gradient
+	const btnGradient = new Instance("UIGradient");
+	btnGradient.Color = new ColorSequence([
+		new ColorSequenceKeypoint(0, Color3.fromRGB(160, 120, 220)),
+		new ColorSequenceKeypoint(1, Color3.fromRGB(120, 80, 180)),
+	]);
+	btnGradient.Rotation = 90;
+	btnGradient.Parent = privateBtn;
+	
+	// Stroke
+	const btnStroke = new Instance("UIStroke");
+	btnStroke.Color = Color3.fromRGB(200, 170, 255);
+	btnStroke.Transparency = 0.6;
+	btnStroke.Thickness = 1;
+	btnStroke.Parent = privateBtn;
+	
+	// Hover
+	privateBtn.MouseEnter.Connect(() => {
+		TweenService.Create(privateBtn, new TweenInfo(0.15), { Size: new UDim2(0, 95, 0, 38) }).Play();
+		btnStroke.Transparency = 0.2;
+	});
+	privateBtn.MouseLeave.Connect(() => {
+		TweenService.Create(privateBtn, new TweenInfo(0.15), { Size: new UDim2(0, 90, 0, 36) }).Play();
+		btnStroke.Transparency = 0.6;
+	});
 	
 	// Panel
 	const panel = new Instance("Frame");

@@ -1,5 +1,5 @@
-// Clans UI - Create/join clans, view members
-import { Players, ReplicatedStorage } from "@rbxts/services";
+// Clans UI - Premium Design
+import { Players, ReplicatedStorage, TweenService } from "@rbxts/services";
 
 const player = Players.LocalPlayer;
 
@@ -9,21 +9,48 @@ export function createClansUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 96;
 	
-	// Clans button
+	// Clans button - PREMIUM CYAN
 	const clansBtn = new Instance("TextButton");
 	clansBtn.Name = "ClansBtn";
-	clansBtn.Size = new UDim2(0, 100, 0, 40);
-	clansBtn.Position = new UDim2(0, 10, 0.5, 200);
-	clansBtn.BackgroundColor3 = Color3.fromRGB(100, 150, 200);
+	clansBtn.Size = new UDim2(0, 90, 0, 36);
+	clansBtn.Position = new UDim2(0, 10, 0, 280);
+	clansBtn.BackgroundColor3 = Color3.fromRGB(80, 180, 220);
 	clansBtn.Text = "👥 CLANS";
 	clansBtn.TextColor3 = Color3.fromRGB(255, 255, 255);
-	clansBtn.TextSize = 14;
+	clansBtn.TextSize = 12;
 	clansBtn.Font = Enum.Font.GothamBold;
+	clansBtn.AutoButtonColor = false;
 	clansBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");
 	btnCorner.CornerRadius = new UDim(0, 10);
 	btnCorner.Parent = clansBtn;
+	
+	// Gradient
+	const btnGradient = new Instance("UIGradient");
+	btnGradient.Color = new ColorSequence([
+		new ColorSequenceKeypoint(0, Color3.fromRGB(100, 200, 240)),
+		new ColorSequenceKeypoint(1, Color3.fromRGB(60, 150, 200)),
+	]);
+	btnGradient.Rotation = 90;
+	btnGradient.Parent = clansBtn;
+	
+	// Stroke
+	const btnStroke = new Instance("UIStroke");
+	btnStroke.Color = Color3.fromRGB(150, 220, 255);
+	btnStroke.Transparency = 0.6;
+	btnStroke.Thickness = 1;
+	btnStroke.Parent = clansBtn;
+	
+	// Hover
+	clansBtn.MouseEnter.Connect(() => {
+		TweenService.Create(clansBtn, new TweenInfo(0.15), { Size: new UDim2(0, 95, 0, 38) }).Play();
+		btnStroke.Transparency = 0.2;
+	});
+	clansBtn.MouseLeave.Connect(() => {
+		TweenService.Create(clansBtn, new TweenInfo(0.15), { Size: new UDim2(0, 90, 0, 36) }).Play();
+		btnStroke.Transparency = 0.6;
+	});
 	
 	// Panel
 	const panel = new Instance("Frame");

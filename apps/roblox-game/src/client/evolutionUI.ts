@@ -186,7 +186,7 @@ export function createEvolutionUI() {
 	});
 	
 	// Listen for XP updates
-	const xpRemote = ReplicatedStorage.WaitForChild("PetXPGained", 10) as RemoteEvent | undefined;
+	const xpRemote = ReplicatedStorage.WaitForChild("PetXPGained", 1) as RemoteEvent | undefined;
 	if (xpRemote) {
 		xpRemote.OnClientEvent.Connect(() => {
 			if (panel.Visible) refresh();

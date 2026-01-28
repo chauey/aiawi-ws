@@ -104,7 +104,7 @@ function refreshLeaderboard(container: Frame) {
 	}
 	
 	// Get leaderboard from server
-	const getLeaderboardRemote = ReplicatedStorage.WaitForChild("GetLeaderboard", 5) as RemoteFunction | undefined;
+	const getLeaderboardRemote = ReplicatedStorage.WaitForChild("GetLeaderboard", 1) as RemoteFunction | undefined;
 	if (!getLeaderboardRemote) {
 		print("❌ Leaderboard remote not found");
 		return;

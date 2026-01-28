@@ -108,7 +108,7 @@ export function createEventsUI() {
 	};
 	
 	// Listen for event notifications
-	const notifyRemote = ReplicatedStorage.WaitForChild("EventNotify", 10) as RemoteEvent | undefined;
+	const notifyRemote = ReplicatedStorage.WaitForChild("EventNotify", 1) as RemoteEvent | undefined;
 	if (notifyRemote) {
 		notifyRemote.OnClientEvent.Connect((name: string, description: string, emoji: string) => {
 			popupTitle.Text = `${emoji} ${name}`;

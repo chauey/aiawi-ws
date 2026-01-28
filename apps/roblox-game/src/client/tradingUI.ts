@@ -355,17 +355,21 @@ function createTradePanel(parent: ScreenGui): Frame {
 }
 
 function setupTradeRemotes(screenGui: ScreenGui, tradePanel: Frame, requestPopup: Frame) {
-	// Wait for remotes
-	const tradeUpdateRemote = ReplicatedStorage.WaitForChild("TradeUpdate", 10) as RemoteEvent | undefined;
-	const respondTradeRemote = ReplicatedStorage.WaitForChild("RespondTrade", 10) as RemoteEvent | undefined;
-	const updateOfferRemote = ReplicatedStorage.WaitForChild("UpdateTradeOffer", 10) as RemoteEvent | undefined;
-	const confirmTradeRemote = ReplicatedStorage.WaitForChild("ConfirmTrade", 10) as RemoteEvent | undefined;
-	const cancelTradeRemote = ReplicatedStorage.WaitForChild("CancelTrade", 10) as RemoteEvent | undefined;
-	
-	if (!tradeUpdateRemote) {
-		print("⚠️ Trade remotes not found");
-		return;
-	}
+	// Use FindFirstChild (non-blocking) - remotes may not exist yet
+	task.spawn(() => {
+		// Wait a short time for server to create remotes
+		task.wait(0.5);
+		
+		const tradeUpdateRemote = ReplicatedStorage.FindFirstChild("TradeUpdate") as RemoteEvent | undefined;
+		const respondTradeRemote = ReplicatedStorage.FindFirstChild("RespondTrade") as RemoteEvent | undefined;
+		const updateOfferRemote = ReplicatedStorage.FindFirstChild("UpdateTradeOffer") as RemoteEvent | undefined;
+		const confirmTradeRemote = ReplicatedStorage.FindFirstChild("ConfirmTrade") as RemoteEvent | undefined;
+		const cancelTradeRemote = ReplicatedStorage.FindFirstChild("CancelTrade") as RemoteEvent | undefined;
+		
+		if (!tradeUpdateRemote) {
+			print("⚠️ Trade remotes not ready yet");
+			return;
+		}
 	
 	const msgLabel = requestPopup.FindFirstChild("Message") as TextLabel;
 	const acceptBtn = requestPopup.FindFirstChild("Accept") as TextButton;
@@ -467,4 +471,5 @@ function setupTradeRemotes(screenGui: ScreenGui, tradePanel: Frame, requestPopup
 			currentTradePartner = undefined;
 		}
 	});
+	}); // Close task.spawn
 }

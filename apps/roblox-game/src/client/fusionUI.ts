@@ -117,7 +117,7 @@ export function createFusionUI() {
 	});
 	
 	// Fusion celebration
-	const fusionNotify = ReplicatedStorage.WaitForChild("FusionNotify", 10) as RemoteEvent | undefined;
+	const fusionNotify = ReplicatedStorage.WaitForChild("FusionNotify", 1) as RemoteEvent | undefined;
 	if (fusionNotify) {
 		fusionNotify.OnClientEvent.Connect((petName: string, newTier: string, multiplier: number) => {
 			// Show celebration

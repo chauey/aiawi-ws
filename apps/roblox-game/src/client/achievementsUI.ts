@@ -107,7 +107,7 @@ export function createAchievementsUI() {
 	});
 	
 	// Achievement unlock notification
-	const notifyRemote = ReplicatedStorage.WaitForChild("AchievementUnlocked", 10) as RemoteEvent | undefined;
+	const notifyRemote = ReplicatedStorage.WaitForChild("AchievementUnlocked", 1) as RemoteEvent | undefined;
 	if (notifyRemote) {
 		notifyRemote.OnClientEvent.Connect((name: string, emoji: string) => {
 			const popup = new Instance("TextLabel");

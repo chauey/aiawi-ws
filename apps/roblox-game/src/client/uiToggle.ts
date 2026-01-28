@@ -24,15 +24,15 @@ export function createUIToggle() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 300; // Always on top
 	
-	// Hamburger menu button - top left
+	// Hamburger menu button - bottom left (to avoid Roblox menu)
 	const toggleBtn = new Instance("TextButton");
 	toggleBtn.Name = "ToggleBtn";
-	toggleBtn.Size = new UDim2(0, 40, 0, 40);
-	toggleBtn.Position = new UDim2(0, 10, 0, 10);
-	toggleBtn.BackgroundColor3 = Color3.fromRGB(40, 45, 60);
+	toggleBtn.Size = new UDim2(0, 45, 0, 45);
+	toggleBtn.Position = new UDim2(0, 10, 1, -115);
+	toggleBtn.BackgroundColor3 = Color3.fromRGB(60, 70, 100);
 	toggleBtn.Text = "☰";
 	toggleBtn.TextColor3 = new Color3(1, 1, 1);
-	toggleBtn.TextSize = 24;
+	toggleBtn.TextSize = 26;
 	toggleBtn.Font = Enum.Font.GothamBold;
 	toggleBtn.Parent = screenGui;
 	

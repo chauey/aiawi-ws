@@ -258,17 +258,17 @@ function showTutorial() {
 		content.Position = new UDim2(0, 20, 0, 50);
 		content.BackgroundTransparency = 1;
 		
-		// Generate tutorial from enabled features
+		// Generate tutorial from enabled features (show 10 steps)
 		const tutorialSteps = getTutorialSteps();
-		let tutorialText = "🏃 Hold LEFT SHIFT to SPRINT! 🦘 TRIPLE JUMP with SPACE!\n\n";
-		const maxSteps = math.min(5, tutorialSteps.size());
+		let tutorialText = "🏃 SHIFT = Sprint | 🦘 SPACE x3 = Triple Jump\n\n";
+		const maxSteps = math.min(10, tutorialSteps.size());
 		for (let i = 0; i < maxSteps; i++) {
 			const step = tutorialSteps[i];
 			tutorialText += `${step.title}: ${step.description}\n`;
 		}
 		content.Text = tutorialText;
 		content.TextColor3 = Color3.fromRGB(220, 220, 255);
-		content.TextSize = 15;
+		content.TextSize = 13;
 		content.TextXAlignment = Enum.TextXAlignment.Left;
 		content.TextYAlignment = Enum.TextYAlignment.Top;
 		content.Font = Enum.Font.Gotham;
@@ -281,9 +281,10 @@ function showTutorial() {
 		noBtn.BackgroundColor3 = Color3.fromRGB(80, 150, 220);
 		noBtn.Position = new UDim2(0.5, -60, 1, -60);
 		
-		// Resize box
-		box.Size = new UDim2(0, 420, 0, 260);
-		box.Position = new UDim2(0.5, -210, 0.5, -130);
+		// Resize box for more tutorial content
+		box.Size = new UDim2(0, 450, 0, 380);
+		box.Position = new UDim2(0.5, -225, 0.5, -190);
+		content.Size = new UDim2(1, -40, 0, 220);
 		
 		// Next click - show NPC choice
 		const nextClickConn = noBtn.MouseButton1Click.Once(() => {

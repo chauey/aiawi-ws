@@ -260,13 +260,14 @@ function showTutorial() {
 		
 		// Generate tutorial from enabled features (show 10 steps)
 		const tutorialSteps = getTutorialSteps();
-		let tutorialText = "🏃 SHIFT = Sprint | 🦘 SPACE x3 = Triple Jump\n\n";
+		let tutorialText = "<b>🏃 SHIFT = Sprint | 🦘 SPACE x3 = Triple Jump</b>\n\n";
 		const maxSteps = math.min(10, tutorialSteps.size());
 		for (let i = 0; i < maxSteps; i++) {
 			const step = tutorialSteps[i];
-			tutorialText += `${step.title}: ${step.description}\n`;
+			tutorialText += `<b>${i + 1}. ${step.title}</b>: ${step.description}\n`;
 		}
 		content.Text = tutorialText;
+		content.RichText = true; // Enable bold, italic, etc.
 		content.TextColor3 = Color3.fromRGB(220, 220, 255);
 		content.TextSize = 13;
 		content.TextXAlignment = Enum.TextXAlignment.Left;

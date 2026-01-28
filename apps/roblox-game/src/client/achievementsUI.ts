@@ -9,14 +9,14 @@ export function createAchievementsUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 95;
 	
-	// Achievements button
+	// Achievements button (icon, right side Y:140)
 	const achieveBtn = new Instance("TextButton");
 	achieveBtn.Name = "AchieveBtn";
-	achieveBtn.Size = new UDim2(0, 50, 0, 50);
-	achieveBtn.Position = new UDim2(0, 230, 1, -105);
-	achieveBtn.BackgroundColor3 = Color3.fromRGB(255, 200, 50);
-	achieveBtn.Text = "🏆";
-	achieveBtn.TextSize = 28;
+	achieveBtn.Size = new UDim2(0, 40, 0, 40);
+	achieveBtn.Position = new UDim2(1, -50, 0, 140);
+	achieveBtn.BackgroundColor3 = Color3.fromRGB(200, 150, 50);
+	achieveBtn.Text = "🎖️";
+	achieveBtn.TextSize = 22;
 	achieveBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

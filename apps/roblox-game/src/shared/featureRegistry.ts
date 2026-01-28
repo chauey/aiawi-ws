@@ -232,6 +232,10 @@ export const FEATURES: Feature[] = [
 		color: Color3.fromRGB(50, 180, 200),
 		panelName: "ClansPanel",
 		uiName: "ClansUI",
+		tutorialStep: {
+			title: "👥 Clans",
+			description: "Join a clan for team bonuses!",
+		},
 	},
 	{
 		id: "private",
@@ -243,6 +247,10 @@ export const FEATURES: Feature[] = [
 		color: Color3.fromRGB(150, 100, 200),
 		panelName: "PrivatePanel",
 		uiName: "PrivateServerUI",
+		tutorialStep: {
+			title: "🔒 Private Server",
+			description: "Play alone or with friends!",
+		},
 	},
 
 	// ========== RIGHT PANEL (Social/Info) ==========

@@ -556,8 +556,9 @@ registerActionCallback("maps", () => {
 });
 
 registerActionCallback("pets", () => {
-	const panel = playerGui.FindFirstChild("PetUI")?.FindFirstChild("PetPanel") as Frame | undefined;
-	if (panel) panel.Visible = !panel.Visible;
+	// Pet UI uses PetContainer which is always visible, toggle visibility
+	const container = playerGui.FindFirstChild("PetSelectionUI")?.FindFirstChild("PetContainer") as Frame | undefined;
+	if (container) container.Visible = !container.Visible;
 });
 
 registerActionCallback("battles", () => {
@@ -581,7 +582,7 @@ registerActionCallback("fuse", () => {
 });
 
 registerActionCallback("minigames", () => {
-	const panel = playerGui.FindFirstChild("MinigamesUI")?.FindFirstChild("GamesPanel") as Frame | undefined;
+	const panel = playerGui.FindFirstChild("MinigamesUI")?.FindFirstChild("MinigamesPanel") as Frame | undefined;
 	if (panel) panel.Visible = !panel.Visible;
 });
 

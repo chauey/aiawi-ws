@@ -9,15 +9,15 @@ export function createRebirthUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 88;
 	
-	// Rebirth button (top-right, below premium)
+	// Rebirth button (icon only, right side Y:48)
 	const rebirthBtn = new Instance("TextButton");
 	rebirthBtn.Name = "RebirthBtn";
-	rebirthBtn.Size = new UDim2(0, 50, 0, 50);
-	rebirthBtn.Position = new UDim2(1, -60, 0, 50);
-	rebirthBtn.BackgroundColor3 = Color3.fromRGB(255, 100, 150);
-	rebirthBtn.Text = "🔄 REBIRTH";
+	rebirthBtn.Size = new UDim2(0, 40, 0, 40);
+	rebirthBtn.Position = new UDim2(1, -50, 0, 48);
+	rebirthBtn.BackgroundColor3 = Color3.fromRGB(100, 180, 255);
+	rebirthBtn.Text = "🔄";
 	rebirthBtn.TextColor3 = Color3.fromRGB(255, 255, 255);
-	rebirthBtn.TextSize = 14;
+	rebirthBtn.TextSize = 22;
 	rebirthBtn.Font = Enum.Font.GothamBold;
 	// Keeping rebirth button visible - premium action
 	rebirthBtn.Parent = screenGui;

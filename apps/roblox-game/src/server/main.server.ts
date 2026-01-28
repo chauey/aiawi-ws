@@ -16,6 +16,7 @@ import { setupRebirthSystem } from "./rebirth";
 import { setupQuestSystem } from "./quests";
 import { setupLuckyWheel } from "./luckyWheel";
 import { setupPetEvolution } from "./petEvolution";
+import { setupCodesSystem } from "./codes";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -306,6 +307,9 @@ function init() {
 	
 	// Setup pet evolution
 	setupPetEvolution();
+	
+	// Setup codes
+	setupCodesSystem();
 
 	print("✅ Game ready! Collect coins, climb the obby tower, ride the coaster!");
 }

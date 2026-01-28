@@ -38,20 +38,53 @@ Review `ROBLOX_BEST_PRACTICES.md` and verify:
 - [ ] No `wait()` in tight loops
 - [ ] Proper `RunService` usage
 
-## 4. Feature Priority (Money-Making)
+## 4. Feature Priority (PROVEN Revenue Mechanics)
 
-| Priority | Feature              | Impact     | Status  |
-| -------- | -------------------- | ---------- | ------- |
-| 1        | Egg Hatching (Gacha) | 🔥🔥🔥🔥🔥 | ✅ Done |
-| 2        | Rebirth System       | 🔥🔥🔥🔥   | ✅ Done |
-| 3        | Daily Quests         | 🔥🔥🔥     | ✅ Done |
-| 4        | Lucky Wheel          | 🔥🔥🔥     | ✅ Done |
-| 5        | Pet Evolution        | 🔥🔥🔥🔥   | ⬜ TODO |
-| 6        | VIP Zone             | 🔥🔥🔥     | ⬜ TODO |
-| 7        | Clans/Teams          | 🔥🔥🔥     | ⬜ TODO |
-| 8        | Pet Battles          | 🔥🔥🔥     | ⬜ TODO |
-| 9        | Seasonal Events      | 🔥🔥🔥     | ⬜ TODO |
-| 10       | Private Servers      | 🔥🔥       | ⬜ TODO |
+> **ALWAYS prioritize in this order - these are proven by Pet Simulator X, Adopt Me, Blox Fruits:**
+
+| Priority | Feature                 | Revenue Model             | Retention  | Status  |
+| -------- | ----------------------- | ------------------------- | ---------- | ------- |
+| 1        | **Gacha/Eggs**          | RNG addiction, rare chase | 🔥🔥🔥🔥🔥 | ✅ Done |
+| 2        | **Rebirth/Prestige**    | Endless progression loop  | 🔥🔥🔥🔥   | ✅ Done |
+| 3        | **Daily Login Rewards** | Streak FOMO               | 🔥🔥🔥🔥   | ✅ Done |
+| 4        | **Daily Quests**        | Goals = engagement        | 🔥🔥🔥     | ✅ Done |
+| 5        | **Lucky Wheel/Spins**   | Gambling excitement       | 🔥🔥🔥🔥   | ✅ Done |
+| 6        | **Pet Evolution**       | Investment = value        | 🔥🔥🔥🔥   | ✅ Done |
+| 7        | **Codes System**        | Marketing + virality      | 🔥🔥🔥🔥   | ⬜ NEXT |
+| 8        | **VIP/Premium Pass**    | Direct revenue            | 💰💰💰     | ⬜ TODO |
+| 9        | **Limited Time Events** | FOMO urgency              | 🔥🔥🔥🔥   | ⬜ TODO |
+| 10       | **Trading**             | Player economy            | 🔥🔥🔥     | ✅ Done |
+
+### Proven Algorithms/Formulas:
+
+**Gacha Rates (Pet Simulator X):**
+
+- Common: 50-60%
+- Uncommon: 25-30%
+- Rare: 10-15%
+- Epic: 3-5%
+- Legendary: 0.5-1%
+- Mythic: 0.01-0.1%
+
+**Rebirth Cost Scaling:**
+
+```
+cost = baseCost * (multiplier ^ rebirthCount)
+multiplier = 1.5 to 2.0
+```
+
+**Daily Reward Curve:**
+
+```
+Day 1: 10, Day 2: 25, Day 3: 50, Day 4: 100, Day 5: 200, Day 6: 350, Day 7: 500
+```
+
+**Lucky Wheel Weights:**
+
+- Small prize: 30-40%
+- Medium: 20-25%
+- Large: 10-15%
+- Jackpot: 1-5%
 
 ## 5. Add New Feature
 

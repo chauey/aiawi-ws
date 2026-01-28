@@ -12,6 +12,7 @@ import { createRebirthUI } from "./rebirthUI";
 import { createQuestUI } from "./questUI";
 import { createLuckyWheelUI } from "./luckyWheelUI";
 import { createEvolutionUI } from "./evolutionUI";
+import { createCodesUI } from "./codesUI";
 
 const player = Players.LocalPlayer;
 
@@ -499,7 +500,8 @@ createRebirthUI();
 createQuestUI();
 createLuckyWheelUI();
 createEvolutionUI();
+createCodesUI();
 createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial();
-print("💡 Evolve pets, spin wheel, complete quests!");
+print("💡 Use code LAUNCH for 500 coins!");

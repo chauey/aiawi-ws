@@ -13,6 +13,7 @@ import { createQuestUI } from "./questUI";
 import { createLuckyWheelUI } from "./luckyWheelUI";
 import { createEvolutionUI } from "./evolutionUI";
 import { createCodesUI } from "./codesUI";
+import { createVIPUI } from "./vipUI";
 
 const player = Players.LocalPlayer;
 
@@ -501,7 +502,8 @@ createQuestUI();
 createLuckyWheelUI();
 createEvolutionUI();
 createCodesUI();
+createVIPUI();
 createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial();
-print("💡 Use code LAUNCH for 500 coins!");
+print("👑 VIP Zone unlocked! Code LAUNCH = 500 coins!");

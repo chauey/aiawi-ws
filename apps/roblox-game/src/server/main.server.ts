@@ -17,6 +17,7 @@ import { setupQuestSystem } from "./quests";
 import { setupLuckyWheel } from "./luckyWheel";
 import { setupPetEvolution } from "./petEvolution";
 import { setupCodesSystem } from "./codes";
+import { setupVIPZone } from "./vipZone";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -310,8 +311,11 @@ function init() {
 	
 	// Setup codes
 	setupCodesSystem();
+	
+	// Setup VIP zone
+	setupVIPZone();
 
-	print("✅ Game ready! Collect coins, climb the obby tower, ride the coaster!");
+	print("✅ Game ready! 20+ systems loaded!");
 }
 
 init();

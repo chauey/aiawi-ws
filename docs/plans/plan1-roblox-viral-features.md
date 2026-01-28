@@ -63,10 +63,11 @@
 | 1   | Pet follower  | ⭐⭐     | 🔥🔥🔥   | ✅ DONE |
 | 2   | Obby tower    | ⭐⭐     | 🔥🔥🔥   | ✅ DONE |
 | 3   | Daily rewards | ⭐⭐     | 🔥🔥🔥   | ✅ DONE |
-| 4   | 2x coin pass  | ⭐       | 🔥🔥     | 🔲 TODO |
-| 5   | Pet shop      | ⭐⭐⭐   | 🔥🔥🔥   | 🔲 TODO |
-| 6   | Leaderboard   | ⭐⭐     | 🔥🔥     | 🔲 TODO |
-| 7   | Trading       | ⭐⭐⭐⭐ | 🔥🔥🔥🔥 | 🔲 TODO |
+| 4   | 2x coin pass  | ⭐       | 🔥🔥     | ✅ DONE |
+| 5   | Pet shop      | ⭐⭐⭐   | 🔥🔥🔥   | ✅ DONE |
+| 6   | Map shop      | ⭐⭐⭐   | 🔥🔥🔥   | ✅ DONE |
+| 7   | Leaderboard   | ⭐⭐     | 🔥🔥     | 🔲 TODO |
+| 8   | Trading       | ⭐⭐⭐⭐ | 🔥🔥🔥🔥 | 🔲 TODO |
 
 ---
 

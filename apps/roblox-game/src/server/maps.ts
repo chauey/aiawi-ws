@@ -14,11 +14,11 @@ const MAP_PRICES: { [key: string]: number } = {
 // Map spawn positions
 const MAP_POSITIONS: { [key: string]: Vector3 } = {
 	beach: new Vector3(200, 5, 0),
-	volcano: new Vector3(0, 5, 200),
-	space: new Vector3(-200, 50, 0),
+	volcano: new Vector3(-35, 5, 165),  // Away from the volcano cone
+	space: new Vector3(-200, 55, 0),
 	candy: new Vector3(0, 5, -200),
 	ice: new Vector3(200, 5, 200),
-	rainbow: new Vector3(-200, 100, -200),
+	rainbow: new Vector3(-200, 105, -200),
 };
 
 // Track owned maps per player
@@ -297,15 +297,6 @@ function createVolcanoMap() {
 		lava.Material = Enum.Material.Neon;
 		lava.Parent = folder;
 	}
-	
-	// Volcano cone
-	const cone = new Instance("Part");
-	cone.Size = new Vector3(30, 25, 30);
-	cone.Position = new Vector3(0, 15, 200);
-	cone.Anchored = true;
-	cone.BrickColor = new BrickColor("Really red");
-	cone.Material = Enum.Material.Rock;
-	cone.Parent = folder;
 	
 	// Volcano sign
 	const sign = new Instance("Part");

@@ -167,6 +167,8 @@ export function createPet(player: Player, petType: PetType = "cat"): Model | und
 		createDragonFeatures(pet, config, s);
 	} else if (petType === "unicorn") {
 		createUnicornFeatures(pet, config, s);
+	} else if (petType === "crab") {
+		createCrabFeatures(pet, config, s);
 	}
 	
 	// Add magical aura & particles
@@ -704,6 +706,73 @@ function createUnicornFeatures(pet: Model, config: typeof PET_TYPES["unicorn"], 
 	}
 }
 
+// ==================== CRAB FEATURES ====================
+function createCrabFeatures(pet: Model, config: typeof PET_TYPES["crab"], s: number) {
+	// BIG CLAWS (ARMS) - the signature crab feature!
+	for (let side = -1; side <= 1; side += 2) {
+		// Upper arm
+		const arm = new Instance("Part");
+		arm.Name = side > 0 ? "RightArm" : "LeftArm";
+		arm.Size = new Vector3(0.6 * s, 0.25 * s, 0.25 * s);
+		arm.Color = config.bodyColor;
+		arm.Material = Enum.Material.SmoothPlastic;
+		arm.Shape = Enum.PartType.Cylinder;
+		arm.CanCollide = false;
+		arm.Anchored = true;
+		arm.Parent = pet;
+		
+		// Claw base (big pincer bottom)
+		const clawBase = new Instance("Part");
+		clawBase.Name = side > 0 ? "RightClawBase" : "LeftClawBase";
+		clawBase.Size = new Vector3(0.5 * s, 0.35 * s, 0.2 * s);
+		clawBase.Color = config.accentColor;
+		clawBase.Material = Enum.Material.SmoothPlastic;
+		clawBase.Shape = Enum.PartType.Ball;
+		clawBase.CanCollide = false;
+		clawBase.Anchored = true;
+		clawBase.Parent = pet;
+		
+		// Claw top (pincer top - slightly smaller)
+		const clawTop = new Instance("Part");
+		clawTop.Name = side > 0 ? "RightClawTop" : "LeftClawTop";
+		clawTop.Size = new Vector3(0.4 * s, 0.25 * s, 0.15 * s);
+		clawTop.Color = config.bodyColor;
+		clawTop.Material = Enum.Material.SmoothPlastic;
+		clawTop.Shape = Enum.PartType.Ball;
+		clawTop.CanCollide = false;
+		clawTop.Anchored = true;
+		clawTop.Parent = pet;
+	}
+	
+	// 6 WALKING LEGS (3 per side)
+	for (let side = -1; side <= 1; side += 2) {
+		for (let i = 0; i < 3; i++) {
+			const leg = new Instance("Part");
+			leg.Name = `${side > 0 ? "Right" : "Left"}Leg${i}`;
+			leg.Size = new Vector3(0.12 * s, 0.4 * s, 0.12 * s);
+			leg.Color = config.accentColor;
+			leg.Material = Enum.Material.SmoothPlastic;
+			leg.Shape = Enum.PartType.Cylinder;
+			leg.CanCollide = false;
+			leg.Anchored = true;
+			leg.Parent = pet;
+		}
+	}
+	
+	// Eye stalks (crabs have eyes on stalks!)
+	for (let side = -1; side <= 1; side += 2) {
+		const stalk = new Instance("Part");
+		stalk.Name = side > 0 ? "RightStalk" : "LeftStalk";
+		stalk.Size = new Vector3(0.1 * s, 0.3 * s, 0.1 * s);
+		stalk.Color = config.bodyColor;
+		stalk.Material = Enum.Material.SmoothPlastic;
+		stalk.Shape = Enum.PartType.Cylinder;
+		stalk.CanCollide = false;
+		stalk.Anchored = true;
+		stalk.Parent = pet;
+	}
+}
+
 // ==================== MAGICAL EFFECTS ====================
 function addMagicalEffects(pet: Model, head: Part, config: typeof PET_TYPES[PetType]) {
 	// Soft outer glow aura
@@ -885,6 +954,8 @@ function updateFeatures(pet: Model, head: Part, body: Part | undefined, petType:
 		updateDragonFeatures(pet, head, body, phase, s);
 	} else if (petType === "unicorn") {
 		updateUnicornFeatures(pet, head, body, phase, s);
+	} else if (petType === "crab") {
+		updateCrabFeatures(pet, head, body, phase, s);
 	}
 }
 
@@ -1079,6 +1150,55 @@ function updateUnicornFeatures(pet: Model, head: Part, body: Part | undefined, p
 					));
 				}
 			}
+		}
+	}
+}
+
+function updateCrabFeatures(pet: Model, head: Part, body: Part | undefined, phase: number, s: number) {
+	// Animate claws (snapping motion!)
+	const snapAngle = math.sin(phase * 4) * 0.3; // Snapping animation
+	
+	for (let side = -1; side <= 1; side += 2) {
+		// Arms extend outward
+		const arm = pet.FindFirstChild(side > 0 ? "RightArm" : "LeftArm") as Part | undefined;
+		if (arm) {
+			arm.CFrame = head.CFrame.mul(new CFrame(1.0 * s * side, -0.2 * s, 0.3 * s)).mul(CFrame.Angles(0, 0, math.rad(90)));
+		}
+		
+		// Claw base at end of arm
+		const clawBase = pet.FindFirstChild(side > 0 ? "RightClawBase" : "LeftClawBase") as Part | undefined;
+		if (clawBase) {
+			clawBase.CFrame = head.CFrame.mul(new CFrame(1.5 * s * side, -0.1 * s, 0.3 * s));
+		}
+		
+		// Claw top snaps open and closed!
+		const clawTop = pet.FindFirstChild(side > 0 ? "RightClawTop" : "LeftClawTop") as Part | undefined;
+		if (clawTop) {
+			const openClose = 0.15 + math.abs(snapAngle) * 0.1;
+			clawTop.CFrame = head.CFrame.mul(new CFrame(1.5 * s * side, -0.1 * s + openClose * s, 0.3 * s));
+		}
+	}
+	
+	// Animate legs (walking motion)
+	for (let side = -1; side <= 1; side += 2) {
+		for (let i = 0; i < 3; i++) {
+			const leg = pet.FindFirstChild(`${side > 0 ? "Right" : "Left"}Leg${i}`) as Part | undefined;
+			if (leg && body) {
+				const legPhase = phase * 6 + i * 1.0 + (side > 0 ? 0 : math.pi);
+				const legSwing = math.sin(legPhase) * 0.15;
+				const xPos = 0.6 * s * side;
+				const zPos = -0.3 * s + i * 0.4 * s;
+				leg.CFrame = body.CFrame.mul(new CFrame(xPos + legSwing, -0.3 * s, zPos)).mul(CFrame.Angles(0, 0, math.rad(90) * side));
+			}
+		}
+	}
+	
+	// Eye stalks wiggle slightly
+	for (let side = -1; side <= 1; side += 2) {
+		const stalk = pet.FindFirstChild(side > 0 ? "RightStalk" : "LeftStalk") as Part | undefined;
+		if (stalk) {
+			const wiggle = math.sin(phase * 3 + side) * 0.05;
+			stalk.CFrame = head.CFrame.mul(new CFrame(0.3 * s * side + wiggle, 0.8 * s, -0.3 * s)).mul(CFrame.Angles(math.rad(-20), 0, 0));
 		}
 	}
 }

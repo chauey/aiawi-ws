@@ -3,6 +3,7 @@ import { Players, UserInputService, StarterGui, ReplicatedStorage, Lighting } fr
 import { createDailyRewardsUI } from "./dailyRewardsUI";
 import { createShopUI } from "./shopUI";
 import { createMapShopUI } from "./mapShopUI";
+import { createLeaderboardUI } from "./leaderboardUI";
 
 const player = Players.LocalPlayer;
 
@@ -481,6 +482,7 @@ createUI();
 createDailyRewardsUI();
 createShopUI();
 createMapShopUI();
+createLeaderboardUI();
 createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial(); // Show tutorial for new players

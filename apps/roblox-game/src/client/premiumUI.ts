@@ -12,11 +12,11 @@ export function createPremiumUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 97;
 	
-	// Premium button (top-right, prominent)
+	// Premium button (top-right corner)
 	const premBtn = new Instance("TextButton");
 	premBtn.Name = "PremiumBtn";
-	premBtn.Size = new UDim2(0, 110, 0, 40);
-	premBtn.Position = new UDim2(1, -120, 0, 55);
+	premBtn.Size = new UDim2(0, 100, 0, 36);
+	premBtn.Position = new UDim2(1, -110, 0, 10);
 	premBtn.BackgroundColor3 = Color3.fromRGB(255, 180, 50);
 	premBtn.Text = "⭐ PREMIUM";
 	premBtn.TextColor3 = Color3.fromRGB(0, 0, 0);

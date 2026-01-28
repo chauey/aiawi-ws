@@ -9,11 +9,11 @@ export function createLeaderboardUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 80;
 	
-	// Leaderboard button (trophy icon)
+	// Leaderboard button (trophy icon) - right side, below premium
 	const openBtn = new Instance("TextButton");
 	openBtn.Name = "LeaderboardBtn";
 	openBtn.Size = new UDim2(0, 50, 0, 50);
-	openBtn.Position = new UDim2(1, -60, 0, 10);
+	openBtn.Position = new UDim2(1, -60, 0, 100);
 	openBtn.BackgroundColor3 = Color3.fromRGB(255, 200, 50);
 	openBtn.Text = "🏆";
 	openBtn.TextSize = 28;

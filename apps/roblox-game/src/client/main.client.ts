@@ -23,6 +23,7 @@ import { createBattlesUI } from "./battlesUI";
 import { createPrivateServerUI } from "./privateServerUI";
 import { createMinigamesUI } from "./minigamesUI";
 import { createBottomActionBar, registerActionCallback } from "./actionBar";
+import { getTutorialSteps } from "shared/featureRegistry";
 
 const player = Players.LocalPlayer;
 
@@ -255,7 +256,16 @@ function showTutorial() {
 		content.Size = new UDim2(1, -40, 0, 100);
 		content.Position = new UDim2(0, 20, 0, 50);
 		content.BackgroundTransparency = 1;
-		content.Text = "🏃 Hold LEFT SHIFT to SPRINT!\n\n🦘 You can TRIPLE JUMP! Press SPACE 3x fast!\n\n🗼 Play on the OBBY tower for +50 coins!\n\n🎢 Ride the ROLLER COASTER for +25 coins!\n\n🐕 PETS help you collect coins faster! Pick a pet at bottom right! →";
+		
+		// Generate tutorial from enabled features
+		const tutorialSteps = getTutorialSteps();
+		let tutorialText = "🏃 Hold LEFT SHIFT to SPRINT! 🦘 TRIPLE JUMP with SPACE!\n\n";
+		const maxSteps = math.min(5, tutorialSteps.size());
+		for (let i = 0; i < maxSteps; i++) {
+			const step = tutorialSteps[i];
+			tutorialText += `${step.title}: ${step.description}\n`;
+		}
+		content.Text = tutorialText;
 		content.TextColor3 = Color3.fromRGB(220, 220, 255);
 		content.TextSize = 15;
 		content.TextXAlignment = Enum.TextXAlignment.Left;

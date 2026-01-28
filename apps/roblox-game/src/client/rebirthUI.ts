@@ -9,11 +9,11 @@ export function createRebirthUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 88;
 	
-	// Rebirth button (bottom left area)
+	// Rebirth button (top-right, below premium)
 	const rebirthBtn = new Instance("TextButton");
 	rebirthBtn.Name = "RebirthBtn";
-	rebirthBtn.Size = new UDim2(0, 100, 0, 40);
-	rebirthBtn.Position = new UDim2(0, 345, 1, -55);
+	rebirthBtn.Size = new UDim2(0, 50, 0, 50);
+	rebirthBtn.Position = new UDim2(1, -60, 0, 50);
 	rebirthBtn.BackgroundColor3 = Color3.fromRGB(255, 100, 150);
 	rebirthBtn.Text = "🔄 REBIRTH";
 	rebirthBtn.TextColor3 = Color3.fromRGB(255, 255, 255);

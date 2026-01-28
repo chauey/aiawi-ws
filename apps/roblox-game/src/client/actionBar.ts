@@ -1,20 +1,11 @@
 // Bottom Action Bar - Unified premium action bar for main gameplay features
 import { Players, TweenService } from "@rbxts/services";
+import { getActionBarFeatures } from "shared/featureRegistry";
 
 const player = Players.LocalPlayer;
 
-// Action bar button definitions
-const ACTION_BUTTONS = [
-	{ id: "shop", icon: "🛒", label: "Shop", color: Color3.fromRGB(80, 150, 220) },
-	{ id: "eggs", icon: "🥚", label: "Eggs", color: Color3.fromRGB(255, 200, 80) },
-	{ id: "maps", icon: "🗺️", label: "Maps", color: Color3.fromRGB(100, 180, 255) },
-	{ id: "pets", icon: "🐾", label: "Pets", color: Color3.fromRGB(255, 150, 80) },
-	{ id: "battles", icon: "⚔️", label: "Fight", color: Color3.fromRGB(220, 80, 100) },
-	{ id: "wheel", icon: "🎡", label: "Spin", color: Color3.fromRGB(180, 100, 220) },
-	{ id: "evolve", icon: "✨", label: "Evolve", color: Color3.fromRGB(100, 220, 150) },
-	{ id: "fuse", icon: "🔥", label: "Fuse", color: Color3.fromRGB(255, 100, 50) },
-	{ id: "minigames", icon: "🎮", label: "Games", color: Color3.fromRGB(80, 180, 150) },
-];
+// Get action bar features from registry
+const ACTION_BUTTONS = getActionBarFeatures();
 
 // Store callbacks for button clicks
 const buttonCallbacks = new Map<string, () => void>();
@@ -85,7 +76,7 @@ export function createBottomActionBar() {
 
 function createActionButton(
 	parent: Frame, 
-	config: { id: string; icon: string; label: string; color: Color3 }
+	config: { id: string; icon: string; name: string; color: Color3 }
 ) {
 	const button = new Instance("TextButton");
 	button.Name = config.id;
@@ -136,7 +127,7 @@ function createActionButton(
 	label.Size = new UDim2(1, 0, 0, 16);
 	label.Position = new UDim2(0, 0, 1, -18);
 	label.BackgroundTransparency = 1;
-	label.Text = config.label;
+	label.Text = config.name;
 	label.TextColor3 = new Color3(1, 1, 1);
 	label.TextSize = 9;
 	label.Font = Enum.Font.GothamBold;

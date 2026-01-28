@@ -10,7 +10,7 @@ export function createTradingUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 100;
 	
-	// Trade button (opens player list)
+	// Trade button (hidden - feature disabled)
 	const tradeBtn = new Instance("TextButton");
 	tradeBtn.Name = "TradeBtn";
 	tradeBtn.Size = new UDim2(0, 50, 0, 50);
@@ -19,6 +19,7 @@ export function createTradingUI() {
 	tradeBtn.Text = "🔄";
 	tradeBtn.TextSize = 28;
 	tradeBtn.Font = Enum.Font.GothamBold;
+	tradeBtn.Visible = false; // Hidden - feature disabled
 	tradeBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

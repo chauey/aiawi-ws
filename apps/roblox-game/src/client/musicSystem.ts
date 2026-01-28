@@ -17,7 +17,7 @@ export function createMusicSystem() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 75;
 	
-	// Music toggle button (top right corner)
+	// Music toggle button (hidden - in settings or action bar instead)
 	const musicBtn = new Instance("TextButton");
 	musicBtn.Name = "MusicToggle";
 	musicBtn.Size = new UDim2(0, 50, 0, 50);
@@ -26,6 +26,7 @@ export function createMusicSystem() {
 	musicBtn.Text = "🎵";
 	musicBtn.TextSize = 28;
 	musicBtn.Font = Enum.Font.GothamBold;
+	musicBtn.Visible = false; // Hidden - use settings instead
 	musicBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

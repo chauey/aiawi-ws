@@ -478,6 +478,7 @@ function createDayNightToggle() {
 	toggleBtn.Text = "🌙";
 	toggleBtn.TextSize = 28;
 	toggleBtn.Font = Enum.Font.GothamBold;
+	toggleBtn.Visible = false; // Hidden - overlaps Premium
 	toggleBtn.Parent = screenGui;
 	
 	const corner = new Instance("UICorner");

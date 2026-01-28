@@ -9,6 +9,8 @@ import { createTradingUI } from "./tradingUI";
 import { createStealingUI } from "./stealingUI";
 import { createEggShopUI } from "./eggShopUI";
 import { createRebirthUI } from "./rebirthUI";
+import { createQuestUI } from "./questUI";
+import { createLuckyWheelUI } from "./luckyWheelUI";
 
 const player = Players.LocalPlayer;
 
@@ -493,7 +495,9 @@ createTradingUI();
 createStealingUI();
 createEggShopUI();
 createRebirthUI();
+createQuestUI();
+createLuckyWheelUI();
 createDayNightToggle();
 createNPCSpawnerButton();
-showTutorial(); // Show tutorial for new players
-print("💡 Tips: Touch=STEAL, EGGS=pets, REBIRTH=multiply!");
+showTutorial();
+print("💡 Quests, Eggs, Rebirth, Lucky Wheel - GO!");

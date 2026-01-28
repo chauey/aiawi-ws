@@ -13,6 +13,8 @@ import { setupTradingSystem } from "./trading";
 import { setupCoinStealingSystem } from "./coinStealing";
 import { setupEggSystem } from "./eggHatching";
 import { setupRebirthSystem } from "./rebirth";
+import { setupQuestSystem } from "./quests";
+import { setupLuckyWheel } from "./luckyWheel";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -294,6 +296,12 @@ function init() {
 	
 	// Setup rebirth
 	setupRebirthSystem();
+	
+	// Setup quests
+	setupQuestSystem();
+	
+	// Setup lucky wheel
+	setupLuckyWheel();
 
 	print("✅ Game ready! Collect coins, climb the obby tower, ride the coaster!");
 }

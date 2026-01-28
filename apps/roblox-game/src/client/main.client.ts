@@ -11,6 +11,7 @@ import { createEggShopUI } from "./eggShopUI";
 import { createRebirthUI } from "./rebirthUI";
 import { createQuestUI } from "./questUI";
 import { createLuckyWheelUI } from "./luckyWheelUI";
+import { createEvolutionUI } from "./evolutionUI";
 
 const player = Players.LocalPlayer;
 
@@ -497,7 +498,8 @@ createEggShopUI();
 createRebirthUI();
 createQuestUI();
 createLuckyWheelUI();
+createEvolutionUI();
 createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial();
-print("💡 Quests, Eggs, Rebirth, Lucky Wheel - GO!");
+print("💡 Evolve pets, spin wheel, complete quests!");

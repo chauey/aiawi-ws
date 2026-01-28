@@ -17,6 +17,7 @@ export function createMinigamesUI() {
 	gamesBtn.BackgroundColor3 = Color3.fromRGB(80, 180, 150);
 	gamesBtn.Text = "🎮";
 	gamesBtn.TextSize = 28;
+	gamesBtn.Visible = false; // Hidden - reducing clutter
 	gamesBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

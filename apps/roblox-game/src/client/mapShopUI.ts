@@ -29,6 +29,7 @@ export function createMapShopUI() {
 	mapBtn.TextColor3 = new Color3(1, 1, 1);
 	mapBtn.TextSize = 16;
 	mapBtn.Font = Enum.Font.GothamBold;
+	mapBtn.Visible = false; // Hidden - now in action bar
 	mapBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");
@@ -73,11 +74,14 @@ export function createMapShopUI() {
 	closeBtnCorner.CornerRadius = new UDim(0, 8);
 	closeBtnCorner.Parent = closeBtn;
 	
-	// Map list container
-	const mapList = new Instance("Frame");
+	// Map list container - scrollable
+	const mapList = new Instance("ScrollingFrame");
 	mapList.Size = new UDim2(1, -30, 1, -70);
 	mapList.Position = new UDim2(0, 15, 0, 55);
 	mapList.BackgroundTransparency = 1;
+	mapList.ScrollBarThickness = 6;
+	mapList.ScrollBarImageColor3 = Color3.fromRGB(100, 150, 200);
+	mapList.CanvasSize = new UDim2(0, 0, 0, 400); // Will auto-adjust
 	mapList.Parent = mapPanel;
 	
 	const listLayout = new Instance("UIListLayout");

@@ -22,6 +22,7 @@ import { createPremiumUI } from "./premiumUI";
 import { createBattlesUI } from "./battlesUI";
 import { createPrivateServerUI } from "./privateServerUI";
 import { createMinigamesUI } from "./minigamesUI";
+import { createBottomActionBar, registerActionCallback } from "./actionBar";
 
 const player = Players.LocalPlayer;
 
@@ -356,6 +357,7 @@ function createNPCSpawnerButton() {
 	npcBtn.TextColor3 = new Color3(1, 1, 1);
 	npcBtn.TextSize = 14;
 	npcBtn.Font = Enum.Font.GothamBold;
+	npcBtn.Visible = false; // Hidden - reducing clutter, dev tool
 	npcBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");
@@ -521,5 +523,57 @@ createPrivateServerUI();
 createMinigamesUI();
 createDayNightToggle();
 createNPCSpawnerButton();
+
+// Create unified bottom action bar
+createBottomActionBar();
+
+// Register action bar callbacks to toggle existing panels
+const playerGui = player.WaitForChild("PlayerGui") as PlayerGui;
+
+registerActionCallback("shop", () => {
+	const panel = playerGui.FindFirstChild("ShopUI")?.FindFirstChild("ShopPanel") as Frame | undefined;
+	if (panel) panel.Visible = !panel.Visible;
+});
+
+registerActionCallback("eggs", () => {
+	const panel = playerGui.FindFirstChild("EggShopUI")?.FindFirstChild("EggPanel") as Frame | undefined;
+	if (panel) panel.Visible = !panel.Visible;
+});
+
+registerActionCallback("maps", () => {
+	const panel = playerGui.FindFirstChild("MapShopUI")?.FindFirstChild("MapPanel") as Frame | undefined;
+	if (panel) panel.Visible = !panel.Visible;
+});
+
+registerActionCallback("pets", () => {
+	const panel = playerGui.FindFirstChild("PetUI")?.FindFirstChild("PetPanel") as Frame | undefined;
+	if (panel) panel.Visible = !panel.Visible;
+});
+
+registerActionCallback("battles", () => {
+	const panel = playerGui.FindFirstChild("BattlesUI")?.FindFirstChild("BattlePanel") as Frame | undefined;
+	if (panel) panel.Visible = !panel.Visible;
+});
+
+registerActionCallback("wheel", () => {
+	const panel = playerGui.FindFirstChild("LuckyWheelUI")?.FindFirstChild("WheelPanel") as Frame | undefined;
+	if (panel) panel.Visible = !panel.Visible;
+});
+
+registerActionCallback("evolve", () => {
+	const panel = playerGui.FindFirstChild("EvolutionUI")?.FindFirstChild("EvolutionPanel") as Frame | undefined;
+	if (panel) panel.Visible = !panel.Visible;
+});
+
+registerActionCallback("fuse", () => {
+	const panel = playerGui.FindFirstChild("FusionUI")?.FindFirstChild("FusionPanel") as Frame | undefined;
+	if (panel) panel.Visible = !panel.Visible;
+});
+
+registerActionCallback("minigames", () => {
+	const panel = playerGui.FindFirstChild("MinigamesUI")?.FindFirstChild("GamesPanel") as Frame | undefined;
+	if (panel) panel.Visible = !panel.Visible;
+});
+
 showTutorial();
-print("🎮 27 systems! Ultimate game complete!");
+print("🎮 28 systems! Ultimate game with Action Bar!");

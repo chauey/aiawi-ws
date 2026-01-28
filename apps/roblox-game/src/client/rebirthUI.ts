@@ -19,6 +19,7 @@ export function createRebirthUI() {
 	rebirthBtn.TextColor3 = Color3.fromRGB(255, 255, 255);
 	rebirthBtn.TextSize = 14;
 	rebirthBtn.Font = Enum.Font.GothamBold;
+	// Keeping rebirth button visible - premium action
 	rebirthBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

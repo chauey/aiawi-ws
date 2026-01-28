@@ -37,6 +37,7 @@ export function createEggShopUI() {
 	eggBtn.TextColor3 = Color3.fromRGB(255, 255, 255);
 	eggBtn.TextSize = 16;
 	eggBtn.Font = Enum.Font.GothamBold;
+	eggBtn.Visible = false; // Hidden - now in action bar
 	eggBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

@@ -17,6 +17,7 @@ export function createBattlesUI() {
 	battleBtn.BackgroundColor3 = Color3.fromRGB(200, 80, 80);
 	battleBtn.Text = "⚔️";
 	battleBtn.TextSize = 28;
+	battleBtn.Visible = false; // Hidden - now in action bar
 	battleBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

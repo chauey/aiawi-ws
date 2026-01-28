@@ -29,7 +29,8 @@ export function createShopUI() {
 	screenGui.ResetOnSpawn = false;
 	screenGui.DisplayOrder = 60;
 	
-	// Shop button (bottom left)
+	// Shop button hidden - now in action bar
+	// Keep for backwards compatibility but invisible
 	const shopBtn = new Instance("TextButton");
 	shopBtn.Name = "ShopButton";
 	shopBtn.Size = new UDim2(0, 100, 0, 40);
@@ -39,6 +40,7 @@ export function createShopUI() {
 	shopBtn.TextColor3 = new Color3(1, 1, 1);
 	shopBtn.TextSize = 16;
 	shopBtn.Font = Enum.Font.GothamBold;
+	shopBtn.Visible = false; // Hidden - handled by action bar
 	shopBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

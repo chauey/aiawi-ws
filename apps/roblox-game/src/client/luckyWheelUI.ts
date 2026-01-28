@@ -18,6 +18,7 @@ export function createLuckyWheelUI() {
 	wheelBtn.Text = "🎡";
 	wheelBtn.TextSize = 28;
 	wheelBtn.Font = Enum.Font.GothamBold;
+	wheelBtn.Visible = false; // Hidden - now in action bar
 	wheelBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

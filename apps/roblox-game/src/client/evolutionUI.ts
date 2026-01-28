@@ -25,6 +25,7 @@ export function createEvolutionUI() {
 	evoBtn.Text = "⬆️";
 	evoBtn.TextSize = 28;
 	evoBtn.Font = Enum.Font.GothamBold;
+	evoBtn.Visible = false; // Hidden - now in action bar
 	evoBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

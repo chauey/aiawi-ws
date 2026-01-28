@@ -24,6 +24,7 @@ export function createFusionUI() {
 	fusionBtn.BackgroundColor3 = Color3.fromRGB(200, 100, 255);
 	fusionBtn.Text = "✨";
 	fusionBtn.TextSize = 28;
+	fusionBtn.Visible = false; // Hidden - now in action bar
 	fusionBtn.Parent = screenGui;
 	
 	const btnCorner = new Instance("UICorner");

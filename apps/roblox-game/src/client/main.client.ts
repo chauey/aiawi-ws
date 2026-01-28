@@ -14,6 +14,8 @@ import { createLuckyWheelUI } from "./luckyWheelUI";
 import { createEvolutionUI } from "./evolutionUI";
 import { createCodesUI } from "./codesUI";
 import { createVIPUI } from "./vipUI";
+import { createEventsUI } from "./eventsUI";
+import { createFusionUI } from "./fusionUI";
 
 const player = Players.LocalPlayer;
 
@@ -503,7 +505,9 @@ createLuckyWheelUI();
 createEvolutionUI();
 createCodesUI();
 createVIPUI();
+createEventsUI();
+createFusionUI();
 createDayNightToggle();
 createNPCSpawnerButton();
 showTutorial();
-print("👑 VIP Zone unlocked! Code LAUNCH = 500 coins!");
+print("🎉 22+ systems! Fuse pets, events live!");

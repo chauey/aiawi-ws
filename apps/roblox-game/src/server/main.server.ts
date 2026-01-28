@@ -18,6 +18,8 @@ import { setupLuckyWheel } from "./luckyWheel";
 import { setupPetEvolution } from "./petEvolution";
 import { setupCodesSystem } from "./codes";
 import { setupVIPZone } from "./vipZone";
+import { setupEventSystem } from "./events";
+import { setupPetFusion } from "./petFusion";
 
 // Create remote event for pet selection
 const changePetRemote = new Instance("RemoteEvent");
@@ -314,8 +316,14 @@ function init() {
 	
 	// Setup VIP zone
 	setupVIPZone();
+	
+	// Setup events
+	setupEventSystem();
+	
+	// Setup pet fusion
+	setupPetFusion();
 
-	print("✅ Game ready! 20+ systems loaded!");
+	print("✅ Game ready! 22+ systems loaded!");
 }
 
 init();

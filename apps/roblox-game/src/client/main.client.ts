@@ -25,6 +25,7 @@ import { createMinigamesUI } from "./minigamesUI";
 import { createBottomActionBar, registerActionCallback } from "./actionBar";
 import { getTutorialSteps } from "shared/featureRegistry";
 import { createUIToggle } from "./uiToggle";
+import { createBattlePassUI, toggleBattlePass } from "./battlePassUI";
 
 const player = Players.LocalPlayer;
 
@@ -544,6 +545,9 @@ createBottomActionBar();
 // Create mobile UI toggle (hamburger menu)
 createUIToggle();
 
+// Create Battle Pass UI
+createBattlePassUI();
+
 // Register action bar callbacks to toggle existing panels
 const playerGui = player.WaitForChild("PlayerGui") as PlayerGui;
 
@@ -593,5 +597,9 @@ registerActionCallback("minigames", () => {
 	if (panel) panel.Visible = !panel.Visible;
 });
 
+registerActionCallback("battlepass", () => {
+	toggleBattlePass();
+});
+
 showTutorial();
-print("🎮 28 systems! Ultimate game with Action Bar!");
+print("🎮 29 systems! Ultimate game with Battle Pass!");

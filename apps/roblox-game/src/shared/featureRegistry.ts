@@ -160,6 +160,21 @@ export const FEATURES: Feature[] = [
 			description: "Play games to earn extra coins!",
 		},
 	},
+	{
+		id: "battlepass",
+		name: "Pass",
+		icon: "⭐",
+		enabled: true,
+		zone: "actionBar",
+		order: 10,
+		color: Color3.fromRGB(255, 140, 0),
+		panelName: "BattlePassPanel",
+		uiName: "BattlePassUI",
+		tutorialStep: {
+			title: "⭐ Battle Pass",
+			description: "Earn XP and unlock 50 tiers of rewards!",
+		},
+	},
 
 	// ========== LEFT MENU (Rewards & Progression) ==========
 	{

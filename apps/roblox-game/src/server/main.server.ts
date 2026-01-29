@@ -62,8 +62,8 @@ changePetRemote.OnServerEvent.Connect((player, petType, price) => {
 });
 
 // Configuration
-const COIN_SPAWN_COUNT = 8;
-const COIN_RESPAWN_TIME = 5;
+const COIN_SPAWN_COUNT = 6; // Reduced for less lag
+const COIN_RESPAWN_TIME = 8; // Increased for less lag
 const COIN_VALUE = 1;
 const SPAWN_AREA = { minX: -50, maxX: 50, minZ: -50, maxZ: 50, height: 3 };
 
@@ -142,12 +142,12 @@ function createCoin(position: Vector3): Part {
 	coin.CanCollide = false;
 	coin.CFrame = new CFrame(position).mul(CFrame.Angles(0, 0, math.rad(90)));
 	
-	// Add sparkle effect
+	// Add sparkle effect (reduced for performance)
 	const sparkle = new Instance("ParticleEmitter");
 	sparkle.Color = new ColorSequence(new Color3(1, 1, 0));
 	sparkle.LightEmission = 1;
 	sparkle.Size = new NumberSequence(0.2);
-	sparkle.Rate = 10;
+	sparkle.Rate = 3; // Reduced from 10 for performance
 	sparkle.Lifetime = new NumberRange(0.5, 1);
 	sparkle.Speed = new NumberRange(1, 2);
 	sparkle.Parent = coin;

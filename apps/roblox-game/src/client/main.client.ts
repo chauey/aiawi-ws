@@ -26,6 +26,7 @@ import { createBottomActionBar, registerActionCallback } from "./actionBar";
 import { getTutorialSteps } from "shared/featureRegistry";
 import { createUIToggle } from "./uiToggle";
 import { createBattlePassUI, toggleBattlePass } from "./battlePassUI";
+import { createPetSelectionUI } from "./petUI";
 
 const player = Players.LocalPlayer;
 
@@ -547,6 +548,9 @@ createUIToggle();
 
 // Create Battle Pass UI
 createBattlePassUI();
+
+// Create Pet Selection UI
+createPetSelectionUI();
 
 // Register action bar callbacks to toggle existing panels
 const playerGui = player.WaitForChild("PlayerGui") as PlayerGui;

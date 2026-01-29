@@ -79,7 +79,7 @@ export const FEATURES: Feature[] = [
 		order: 4,
 		color: Color3.fromRGB(255, 150, 80),
 		panelName: "PetContainer",
-		uiName: "PetUI",
+		uiName: "PetSelectionUI",
 		tutorialStep: {
 			title: "🐾 Pets",
 			description: "Select and equip your pets!",

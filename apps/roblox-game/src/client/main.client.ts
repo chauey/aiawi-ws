@@ -567,12 +567,15 @@ registerActionCallback("maps", () => {
 });
 
 registerActionCallback("pets", () => {
-	// Pet UI uses PetContainer which is always visible, toggle visibility
+	// Pet UI uses PetContainer
 	const petUI = playerGui.FindFirstChild("PetSelectionUI") as ScreenGui | undefined;
+	print(`🐾 Pets button clicked! PetSelectionUI found: ${petUI !== undefined}`);
 	if (petUI) {
 		const container = petUI.FindFirstChild("PetContainer") as Frame | undefined;
+		print(`🐾 PetContainer found: ${container !== undefined}, visible: ${container?.Visible}`);
 		if (container) {
 			container.Visible = !container.Visible;
+			print(`🐾 PetContainer now visible: ${container.Visible}`);
 		}
 	}
 });

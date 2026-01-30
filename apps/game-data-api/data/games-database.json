@@ -9,13 +9,7 @@
       "platform": "Roblox",
       "description": "Virtual pet adoption and nurturing game with trading, mini-games, and social features. One of the most successful games on Roblox.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "pets",
-        "trading",
-        "social",
-        "collection",
-        "family-friendly"
-      ],
+      "tags": ["pets", "trading", "social", "collection", "family-friendly"],
       "priorityScore": 50,
       "recommendedForReplication": false,
       "strengths": [],
@@ -95,13 +89,7 @@
       "platform": "Roblox",
       "description": "One Piece-inspired RPG with devil fruit powers, grinding mechanics, PvP combat, and progression systems.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "anime",
-        "grinding",
-        "pvp",
-        "progression",
-        "combat"
-      ],
+      "tags": ["anime", "grinding", "pvp", "progression", "combat"],
       "priorityScore": 50,
       "recommendedForReplication": false,
       "strengths": [],
@@ -267,13 +255,7 @@
       "platform": "Roblox",
       "description": "Fast-paced obby/parkour game with randomly generated tower challenges. Simple but highly addictive.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "obby",
-        "parkour",
-        "competitive",
-        "skill-based",
-        "fast-paced"
-      ],
+      "tags": ["obby", "parkour", "competitive", "skill-based", "fast-paced"],
       "priorityScore": 50,
       "recommendedForReplication": false,
       "strengths": [],
@@ -353,13 +335,7 @@
       "platform": "Roblox",
       "description": "Tactical FPS with realistic weapons, customization, and various game modes. Often compared to Call of Duty.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "fps",
-        "competitive",
-        "tactical",
-        "weapons",
-        "multiplayer"
-      ],
+      "tags": ["fps", "competitive", "tactical", "weapons", "multiplayer"],
       "priorityScore": 50,
       "recommendedForReplication": false,
       "strengths": [],
@@ -441,13 +417,7 @@
       "ownership": "Competitor",
       "description": "Virtual pet adoption and nurturing game with trading, mini-games, and social features. One of the most successful games on Roblox.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "pets",
-        "trading",
-        "social",
-        "collection",
-        "family-friendly"
-      ],
+      "tags": ["pets", "trading", "social", "collection", "family-friendly"],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasTradingSystem": true,
@@ -566,13 +536,7 @@
       "ownership": "Competitor",
       "description": "One Piece-inspired RPG with devil fruit powers, grinding mechanics, PvP combat, and progression systems.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "anime",
-        "grinding",
-        "pvp",
-        "progression",
-        "combat"
-      ],
+      "tags": ["anime", "grinding", "pvp", "progression", "combat"],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasTradingSystem": true,
@@ -721,10 +685,7 @@
         "Multiple engagement loops",
         "Strong monetization hooks"
       ],
-      "weaknesses": [
-        "New game, building player base",
-        "Competitive market"
-      ],
+      "weaknesses": ["New game, building player base", "Competitive market"],
       "uniqueSellingPoints": [
         "Coin stealing PvP mechanic",
         "Roller coaster social rides",
@@ -752,10 +713,7 @@
             "Creates scarcity",
             "Emotional wins"
           ],
-          "improvementOpportunities": [
-            "Pity system",
-            "Guaranteed rates"
-          ],
+          "improvementOpportunities": ["Pity system", "Guaranteed rates"],
           "competitiveAdvantage": "Higher legendary rates than competitors",
           "creationTime": "2026-01-30T09:24:34.418Z"
         },
@@ -774,10 +732,7 @@
             "Completionist appeal",
             "Social flex"
           ],
-          "improvementOpportunities": [
-            "More pets",
-            "Shiny variants"
-          ],
+          "improvementOpportunities": ["More pets", "Shiny variants"],
           "competitiveAdvantage": "Pets have gameplay utility not just cosmetic",
           "creationTime": "2026-01-30T09:24:34.418Z"
         },
@@ -796,9 +751,7 @@
             "Creates goals",
             "Sense of achievement"
           ],
-          "improvementOpportunities": [
-            "Rebirth exclusive pets"
-          ],
+          "improvementOpportunities": ["Rebirth exclusive pets"],
           "competitiveAdvantage": "Rebirth unlocks exclusive areas",
           "creationTime": "2026-01-30T09:24:34.418Z"
         },
@@ -817,9 +770,7 @@
             "Creates habit",
             "FOMO for missed days"
           ],
-          "improvementOpportunities": [
-            "Premium streak track"
-          ],
+          "improvementOpportunities": ["Premium streak track"],
           "competitiveAdvantage": "Streak resets give catch-up mechanics",
           "creationTime": "2026-01-30T09:24:34.418Z"
         },
@@ -838,9 +789,7 @@
             "Player economy",
             "Social bonds"
           ],
-          "improvementOpportunities": [
-            "Trade value estimator"
-          ],
+          "improvementOpportunities": ["Trade value estimator"],
           "competitiveAdvantage": "Secure trade logs prevent scams",
           "creationTime": "2026-01-30T09:24:34.418Z"
         }
@@ -970,10 +919,7 @@
             "Infinite replayability",
             "Trading value"
           ],
-          "improvementOpportunities": [
-            "Shiny breeding",
-            "Legendary fusion"
-          ],
+          "improvementOpportunities": ["Shiny breeding", "Legendary fusion"],
           "competitiveAdvantage": "True genetic system not found in other Roblox games",
           "creationTime": "2026-01-30T09:24:34.418Z"
         },
@@ -992,10 +938,7 @@
             "Easy to learn",
             "Team building"
           ],
-          "improvementOpportunities": [
-            "Weather effects",
-            "Terrain bonuses"
-          ],
+          "improvementOpportunities": ["Weather effects", "Terrain bonuses"],
           "competitiveAdvantage": "More strategic than button-mashing combat",
           "creationTime": "2026-01-30T09:24:34.418Z"
         },
@@ -1014,9 +957,7 @@
             "Power growth",
             "Investment feeling"
           ],
-          "improvementOpportunities": [
-            "Branch evolution paths"
-          ],
+          "improvementOpportunities": ["Branch evolution paths"],
           "competitiveAdvantage": "Legendary forms require rare items from raids",
           "creationTime": "2026-01-30T09:24:34.418Z"
         },
@@ -1035,10 +976,7 @@
             "Competitive drive",
             "Weekly events"
           ],
-          "improvementOpportunities": [
-            "Clan levels",
-            "Perks system"
-          ],
+          "improvementOpportunities": ["Clan levels", "Perks system"],
           "competitiveAdvantage": "Territory control gives clan-wide bonuses",
           "creationTime": "2026-01-30T09:24:34.418Z"
         },
@@ -1057,9 +995,7 @@
             "Epic scale",
             "Rare rewards"
           ],
-          "improvementOpportunities": [
-            "Rotating boss schedule"
-          ],
+          "improvementOpportunities": ["Rotating boss schedule"],
           "competitiveAdvantage": "Exclusive legendary dragons only from raids",
           "creationTime": "2026-01-30T09:24:34.418Z"
         },
@@ -1078,10 +1014,7 @@
             "Skill expression",
             "Bragging rights"
           ],
-          "improvementOpportunities": [
-            "Tournaments",
-            "Spectator mode"
-          ],
+          "improvementOpportunities": ["Tournaments", "Spectator mode"],
           "competitiveAdvantage": "Balanced matchmaking prevents newbie stomping",
           "creationTime": "2026-01-30T09:24:34.418Z"
         }
@@ -1105,11 +1038,574 @@
       },
       "creationTime": "2026-01-30T09:24:34.418Z",
       "lastModificationTime": "2026-01-30T09:24:34.418Z"
+    },
+    {
+      "id": "f1sh-1t00-0000-0000-000000000001",
+      "name": "Fish It! 🐟",
+      "developer": "Unknown Studio",
+      "genre": "Simulator",
+      "releaseDate": "2025-11-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Competitor",
+      "description": "Viral fishing simulator with simple tap-to-catch mechanics, rare fish collection, and social competition. Currently the #1 game on Roblox by concurrent players.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "fishing",
+        "simulator",
+        "viral",
+        "collection",
+        "social",
+        "gacha"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasProgressionSystem": true,
+        "hasGachaSystem": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true,
+        "hasMultiplayer": true
+      },
+      "priorityScore": 98,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Extremely simple loop",
+        "Viral TikTok clips",
+        "Low dev complexity",
+        "Massive player base"
+      ],
+      "weaknesses": ["Trend-dependent", "Easy to clone"],
+      "uniqueSellingPoints": [
+        "One-tap fishing",
+        "Rare fish flex culture",
+        "Real-time leaderboards"
+      ],
+      "lessonsLearned": [
+        "Simple is better",
+        "Viral moments drive growth",
+        "Collection = retention"
+      ],
+      "features": [
+        {
+          "id": "f1sh-feat-0001",
+          "name": "One-Tap Fishing",
+          "description": "Simple tap mechanic to catch fish with RNG rarity",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 8,
+          "technicalNotes": "Tap timing affects catch rates. Premium rods increase rare fish chance."
+        },
+        {
+          "id": "f1sh-feat-0002",
+          "name": "Fish Collection",
+          "description": "Hundreds of fish with tiered rarity (Common to Mythic)",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 10,
+          "technicalNotes": "Fish have rarity, value, and display mechanics. Collection bonuses."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 5000000000,
+        "concurrentPlayers": 940000,
+        "peakConcurrentPlayers": 1200000,
+        "averageSessionLength": 25,
+        "retentionRateDay1": 70,
+        "retentionRateDay7": 50,
+        "retentionRateDay30": 30
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+    },
+    {
+      "id": "sols-rng0-0000-0000-000000000002",
+      "name": "Sol's RNG",
+      "developer": "Sol Studios",
+      "genre": "Luck Simulator",
+      "releaseDate": "2025-08-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Teen (13-17)",
+      "ownership": "Competitor",
+      "description": "Pure RNG/luck simulator where players roll for rare 'auras'. Zero skill barrier - anyone can get lucky. Capitalizes on gambling psychology and flex culture.",
+      "monetizationModel": "Freemium",
+      "tags": ["rng", "luck", "gacha", "aura", "flex", "gambling"],
+      "featureFlags": {
+        "hasGachaSystem": true,
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true
+      },
+      "priorityScore": 95,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Highest margin monetization",
+        "Zero skill barrier",
+        "Pure dopamine loop",
+        "Flex culture"
+      ],
+      "weaknesses": ["Gambling concerns", "Can feel pointless"],
+      "uniqueSellingPoints": [
+        "Pure RNG gameplay",
+        "Visible auras as status",
+        "Extremely rare items"
+      ],
+      "lessonsLearned": [
+        "Rarity = value",
+        "Players pay for luck boosts",
+        "Flex drives engagement"
+      ],
+      "features": [
+        {
+          "id": "sols-feat-0001",
+          "name": "Aura Rolling System",
+          "description": "Roll for random auras with extreme rarity tiers",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 10,
+          "technicalNotes": "Rarity from 1:10 to 1:10,000,000+. Luck boosts sold for Robux."
+        },
+        {
+          "id": "sols-feat-0002",
+          "name": "Aura Display",
+          "description": "Visible auras around player as status symbols",
+          "category": "Social",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 8,
+          "technicalNotes": "Particle effects, glow, and size scale with rarity."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 8000000000,
+        "concurrentPlayers": 350000,
+        "peakConcurrentPlayers": 600000,
+        "averageSessionLength": 60,
+        "retentionRateDay1": 65,
+        "retentionRateDay7": 45,
+        "retentionRateDay30": 25,
+        "conversionRate": 20
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+    },
+    {
+      "id": "dti0-0000-0000-0000-000000000003",
+      "name": "Dress To Impress",
+      "developer": "DTI Studios",
+      "genre": "Fashion / Social",
+      "releaseDate": "2024-06-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Teen (13-17)",
+      "ownership": "Competitor",
+      "description": "Timed competitive fashion game with player voting. Massive social validation loops and creator expression. Consistently top 10 by concurrent players.",
+      "monetizationModel": "Freemium",
+      "tags": ["fashion", "social", "voting", "competition", "customization"],
+      "featureFlags": {
+        "hasCharacterCustomization": true,
+        "hasMultiplayer": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true
+      },
+      "priorityScore": 90,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Social validation",
+        "Creator expression",
+        "Low dev barrier",
+        "High retention"
+      ],
+      "weaknesses": ["Niche audience", "Asset-heavy"],
+      "uniqueSellingPoints": [
+        "Theme-based rounds",
+        "Player voting",
+        "Runway walks"
+      ],
+      "lessonsLearned": [
+        "Social validation drives engagement",
+        "Creativity + competition = magic"
+      ],
+      "features": [
+        {
+          "id": "dti-feat-0001",
+          "name": "Timed Outfit Creation",
+          "description": "Limited time to create themed outfits",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 9,
+          "technicalNotes": "5-10 minute rounds. Theme announced at start. Premium items give advantage."
+        },
+        {
+          "id": "dti-feat-0002",
+          "name": "Player Voting System",
+          "description": "Players vote on each other's outfits to determine winner",
+          "category": "Social",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 6,
+          "technicalNotes": "Anonymous voting. Points based on votes received. Anti-gaming measures."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 6000000000,
+        "concurrentPlayers": 400000,
+        "peakConcurrentPlayers": 550000,
+        "averageSessionLength": 40,
+        "retentionRateDay1": 60,
+        "retentionRateDay7": 40,
+        "retentionRateDay30": 25
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+    },
+    {
+      "id": "rvls-0000-0000-0000-000000000004",
+      "name": "RIVALS",
+      "developer": "Rivals Studios",
+      "genre": "Competitive FPS",
+      "releaseDate": "2025-03-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Teen (13-17)",
+      "ownership": "Competitor",
+      "description": "High-stakes competitive FPS with skill-based matchmaking. Monetizes through skins, crates, and prestige items. Growing esports potential.",
+      "monetizationModel": "Freemium",
+      "tags": ["fps", "competitive", "esports", "skins", "ranked"],
+      "featureFlags": {
+        "hasPvP": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasSkinSystem": true,
+        "hasGachaSystem": true,
+        "hasMultiplayer": true
+      },
+      "priorityScore": 85,
+      "recommendedForReplication": false,
+      "strengths": [
+        "Skill expression",
+        "Cosmetic monetization",
+        "Esports potential"
+      ],
+      "weaknesses": ["High dev complexity", "Competitive market"],
+      "uniqueSellingPoints": [
+        "Ranked matchmaking",
+        "Premium weapon skins",
+        "Clan wars"
+      ],
+      "lessonsLearned": [
+        "Skill games need cosmetic flex",
+        "Ranked = retention"
+      ],
+      "features": [
+        {
+          "id": "rvls-feat-0001",
+          "name": "Ranked Matchmaking",
+          "description": "ELO-based competitive matchmaking system",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Hard",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 5,
+          "technicalNotes": "Seasonal resets. Rank rewards. Anti-smurf detection."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 3000000000,
+        "concurrentPlayers": 250000,
+        "peakConcurrentPlayers": 400000,
+        "averageSessionLength": 45,
+        "retentionRateDay1": 55,
+        "retentionRateDay7": 40,
+        "retentionRateDay30": 30
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+    },
+    {
+      "id": "tsb0-0000-0000-0000-000000000005",
+      "name": "The Strongest Battlegrounds",
+      "developer": "TSB Studios",
+      "genre": "Anime Combat",
+      "releaseDate": "2023-09-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Teen (13-17)",
+      "ownership": "Competitor",
+      "description": "Peak anime combat game with visceral feedback. Characters from popular anime with unique movesets. Focus on feel-good combat and skill expression.",
+      "monetizationModel": "Freemium",
+      "tags": ["anime", "combat", "fighting", "pvp", "skill"],
+      "featureFlags": {
+        "hasPvP": true,
+        "hasCharacterCustomization": true,
+        "hasProgressionSystem": true,
+        "hasInAppPurchases": true,
+        "hasMultiplayer": true
+      },
+      "priorityScore": 88,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Satisfying combat feel",
+        "Anime IP appeal",
+        "Skill expression"
+      ],
+      "weaknesses": ["IP concerns", "Balance complexity"],
+      "uniqueSellingPoints": [
+        "High-quality animations",
+        "Combo systems",
+        "1v1 arena"
+      ],
+      "lessonsLearned": ["Combat feel > graphics", "Anime = built-in audience"],
+      "features": [
+        {
+          "id": "tsb-feat-0001",
+          "name": "Character Movesets",
+          "description": "Unique abilities and combos per character",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Expert",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 8,
+          "technicalNotes": "Each character has 4-6 unique moves. Combo chains. Special ultimates."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 7000000000,
+        "concurrentPlayers": 300000,
+        "peakConcurrentPlayers": 500000,
+        "averageSessionLength": 35,
+        "retentionRateDay1": 60,
+        "retentionRateDay7": 45,
+        "retentionRateDay30": 30
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+    },
+    {
+      "id": "psim-99-0000-0000-000000000006",
+      "name": "Pet Simulator 99",
+      "developer": "BIG Games",
+      "genre": "Collection Simulator",
+      "releaseDate": "2023-12-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Competitor",
+      "description": "The gold standard of pet simulators. Infinite progression, massive trading economy, and exclusive eggs that drive high-ticket sales consistently.",
+      "monetizationModel": "Freemium",
+      "tags": ["pets", "simulator", "collection", "trading", "gacha"],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasProgressionSystem": true,
+        "hasGachaSystem": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true,
+        "hasMultiplayer": true
+      },
+      "priorityScore": 95,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Infinite progression",
+        "Trading economy",
+        "Constant updates",
+        "High-ticket items"
+      ],
+      "weaknesses": ["Established competitor", "Complex to replicate"],
+      "uniqueSellingPoints": [
+        "Exclusive eggs ($50-100+)",
+        "Pet fusion",
+        "World areas"
+      ],
+      "lessonsLearned": [
+        "Scarcity drives value",
+        "Trading = social retention",
+        "Constant updates = loyalty"
+      ],
+      "features": [
+        {
+          "id": "ps99-feat-0001",
+          "name": "Exclusive Egg Sales",
+          "description": "Limited-time eggs with exclusive pets at premium prices",
+          "category": "Monetization",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 8,
+          "monetizationPotential": 10,
+          "technicalNotes": "$50-100+ eggs. FOMO mechanics. Limited quantity available."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 12000000000,
+        "concurrentPlayers": 200000,
+        "peakConcurrentPlayers": 400000,
+        "averageSessionLength": 50,
+        "retentionRateDay1": 70,
+        "retentionRateDay7": 55,
+        "retentionRateDay30": 40,
+        "conversionRate": 18
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+    },
+    {
+      "id": "bee0-swrm-0000-0000-000000000007",
+      "name": "Bee Swarm Simulator",
+      "developer": "Onett",
+      "genre": "Farming Simulator",
+      "releaseDate": "2018-03-21T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Competitor",
+      "description": "Deep complex mechanics hidden behind simple appearance. Rewards long-term planning and consistent daily logins. Extremely loyal player base.",
+      "monetizationModel": "Freemium",
+      "tags": ["bees", "simulator", "farming", "collection", "progression"],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasProgressionSystem": true,
+        "hasQuests": true,
+        "hasDailies": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true
+      },
+      "priorityScore": 80,
+      "recommendedForReplication": false,
+      "strengths": [
+        "Deep hidden complexity",
+        "Loyal community",
+        "Years of content"
+      ],
+      "weaknesses": ["High barrier to new players", "Slow initial progression"],
+      "uniqueSellingPoints": [
+        "Bee genetics system",
+        "Field farming",
+        "Quest chains"
+      ],
+      "lessonsLearned": [
+        "Depth = longevity",
+        "Community = retention",
+        "Patience pays off"
+      ],
+      "features": [],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 10000000000,
+        "concurrentPlayers": 100000,
+        "peakConcurrentPlayers": 250000,
+        "averageSessionLength": 60,
+        "retentionRateDay1": 55,
+        "retentionRateDay7": 45,
+        "retentionRateDay30": 35
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+    },
+    {
+      "id": "brrt-escr-0000-0000-000000000008",
+      "name": "Escape Tsunami For Brainrots!",
+      "developer": "Brainrot Studios",
+      "genre": "Survival / Meme",
+      "releaseDate": "2025-12-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Competitor",
+      "description": "Viral meme-based survival game using Gen Alpha 'brainrot' characters. High-stakes escape gameplay with humorous elements. Currently top 3 by concurrent players.",
+      "monetizationModel": "Freemium",
+      "tags": ["survival", "meme", "brainrot", "viral", "escape"],
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasCharacterCustomization": true,
+        "hasInAppPurchases": true
+      },
+      "priorityScore": 92,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Viral meme appeal",
+        "Easy to develop",
+        "Shareable moments",
+        "Trend-riding"
+      ],
+      "weaknesses": ["Trend-dependent", "Short lifespan"],
+      "uniqueSellingPoints": [
+        "Brainrot characters",
+        "Tsunami survival",
+        "Short intense rounds"
+      ],
+      "lessonsLearned": [
+        "Ride trends fast",
+        "Memes = virality",
+        "Simple survival loops work"
+      ],
+      "features": [
+        {
+          "id": "brrt-feat-0001",
+          "name": "Tsunami Escape",
+          "description": "Timed escape from rising water/tsunami",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 6,
+          "technicalNotes": "Simple obby mechanics. Rising water timer. Multiple escape paths."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 2000000000,
+        "concurrentPlayers": 883000,
+        "peakConcurrentPlayers": 1000000,
+        "averageSessionLength": 20,
+        "retentionRateDay1": 50,
+        "retentionRateDay7": 30,
+        "retentionRateDay30": 15
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z"
     }
   ],
   "metadata": {
     "version": "1.0.0",
-    "lastUpdated": "2026-01-30T14:01:32.060Z",
-    "totalGames": 9
+    "lastUpdated": "2026-01-30T18:07:00.000Z",
+    "totalGames": 17
   }
 }

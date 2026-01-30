@@ -321,29 +321,48 @@ function handleGetCollection(player: Player): unknown {
 function handleGetInventory(player: Player): unknown {
   const state = getPlayerState(player);
 
-  return state.inventory.map((fish, index) => {
-    const species = SAMPLE_FISH_SPECIES.find((s) => s.id === fish.speciesId);
-    const sellPrice = species
-      ? calculateSellPrice(fish, species, DEFAULT_FISHING_CONFIG)
-      : 0;
+  return state.inventory.map(
+    (
+      fish: {
+        speciesId: string;
+        weight: number;
+        quality: string;
+        isRecord: boolean;
+      },
+      index: number,
+    ) => {
+      const species = SAMPLE_FISH_SPECIES.find((s) => s.id === fish.speciesId);
+      const sellPrice = species
+        ? calculateSellPrice(fish, species, DEFAULT_FISHING_CONFIG)
+        : 0;
 
-    return {
-      index,
-      speciesId: fish.speciesId,
-      speciesName: species?.name ?? 'Unknown',
-      rarity: species?.rarity ?? 'common',
-      weight: fish.weight,
-      quality: fish.quality,
-      sellPrice,
-      isRecord: fish.isRecord,
-    };
-  });
+      return {
+        index,
+        speciesId: fish.speciesId,
+        speciesName: species?.name ?? 'Unknown',
+        rarity: species?.rarity ?? 'common',
+        weight: fish.weight,
+        quality: fish.quality,
+        sellPrice,
+        isRecord: fish.isRecord,
+      };
+    },
+  );
 }
 
 // Handle location change request
 function handleChangeLocation(player: Player, locationId: string): void {
   const state = getPlayerState(player);
-  const location = SAMPLE_LOCATIONS.find((l) => l.id === locationId);
+  const location = SAMPLE_LOCATIONS.find(
+    (l: {
+      id: string;
+      unlockLevel: number;
+      name: string;
+      description: string;
+      fishMultiplier: number;
+      availableSpecies: string[];
+    }) => l.id === locationId,
+  );
 
   if (!location) {
     remotes.changeLocation.FireClient(player, {

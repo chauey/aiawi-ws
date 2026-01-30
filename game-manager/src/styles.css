@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+
+/* Custom styles for Game Manager */
+:root {
+  --color-primary: oklch(0.6 0.2 260);
+  --color-secondary: oklch(0.7 0.15 180);
+  --color-accent: oklch(0.75 0.18 80);
+  --color-success: oklch(0.7 0.2 145);
+  --color-warning: oklch(0.8 0.15 85);
+  --color-danger: oklch(0.6 0.25 25);
+  --color-background: oklch(0.15 0.02 260);
+  --color-surface: oklch(0.2 0.02 260);
+  --color-text: oklch(0.95 0.01 260);
+  --color-text-muted: oklch(0.7 0.02 260);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+/* Card component */
+.card {
+  background-color: var(--color-surface);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid oklch(0.3 0.02 260);
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 20px oklch(0.6 0.2 260 / 0.1);
+}
+
+/* Button styles */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: oklch(0.55 0.22 260);
+}
+
+/* Badge styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge-success {
+  background-color: oklch(0.7 0.2 145 / 0.2);
+  color: var(--color-success);
+}
+
+.badge-warning {
+  background-color: oklch(0.8 0.15 85 / 0.2);
+  color: var(--color-warning);
+}
+
+.badge-danger {
+  background-color: oklch(0.6 0.25 25 / 0.2);
+  color: var(--color-danger);
+}

@@ -76,7 +76,9 @@
       "@spartan-ng/helm/utils": ["libs/ui/utils/src/index.ts"],
       "@aiawi-ws/dashboard": ["libs/features/dashboard/src/index.ts"],
       "@aiawi-ws/games": ["libs/features/games/src/index.ts"],
-      "@aiawi-ws/layout": ["libs/shared/layout/src/index.ts"]
+      "@aiawi-ws/layout": ["libs/shared/layout/src/index.ts"],
+      "@aiawi-ws/game-data": ["libs/data-access/game-data/src/index.ts"],
+      "@aiawi-ws/game-types": ["libs/shared/game-types/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

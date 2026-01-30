@@ -1,0 +1,12 @@
+-- Compiled with roblox-ts v3.0.0
+-- Dragon Legends - Shared Types and Interfaces
+-- ============ PLAYER DATA TYPES ============
+-- ============ COMBAT TYPES ============
+-- ============ BREEDING TYPES ============
+-- ============ CLAN TYPES ============
+-- ============ QUEST TYPES ============
+-- ============ WORLD BOSS TYPES ============
+-- ============ TRADING TYPES ============
+-- ============ EVENTS ============
+-- ============ UTILITY TYPES ============
+return nil

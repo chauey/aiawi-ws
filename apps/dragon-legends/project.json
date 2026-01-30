@@ -1,0 +1,45 @@
+{
+  "name": "dragon-legends",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/dragon-legends/src",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/dragon-legends",
+        "command": "npx rbxtsc"
+      }
+    },
+    "watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/dragon-legends",
+        "command": "npx rbxtsc -w"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "cwd": "apps/dragon-legends",
+        "commands": ["npx rbxtsc -w", "npx rojo serve"],
+        "parallel": true
+      }
+    },
+    "rojo-serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/dragon-legends",
+        "command": "npx rojo serve"
+      }
+    },
+    "install-plugin": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/dragon-legends",
+        "command": "npx rojo plugin install"
+      }
+    }
+  }
+}

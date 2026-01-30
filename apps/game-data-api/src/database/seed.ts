@@ -206,6 +206,10 @@ export function seedDatabase() {
     lastModifierId: undefined,
   });
 
+  // 3. Dragon Legends (Our Game - In Development)
+  // NOTE: Dragon Legends is defined in add-our-games.ts with full features
+  // Run: npx tsx apps/game-data-api/src/scripts/add-our-games.ts
+
   console.log('✅ Database seeded with top successful games!');
   console.log(`📊 Total games: ${repository.getList({}).totalCount}`);
   console.log(`📁 Data saved to JSON file`);

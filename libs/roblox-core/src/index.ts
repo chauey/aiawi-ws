@@ -2,43 +2,46 @@
 // Import from "@aiawi/roblox-core" in roblox game apps
 
 // ========== CONFIG ==========
-export * from "./config/gameConfig";
-export * from "./config/featureRegistry";
-export * from "./config/gameMetadata";
+export * from './config/gameConfig';
+export * from './config/featureRegistry';
+export * from './config/gameMetadata';
 
 // ========== UI COMPONENTS ==========
-export * from "./ui/actionBar";
-export * from "./ui/panelSystem";
+export * from './ui/actionBar';
+export * from './ui/panelSystem';
 
 // ========== ECONOMY ==========
-export * from "./economy/economyTypes";
+export * from './economy/economyTypes';
 
 // ========== PERSISTENCE ==========
-export * from "./persistence/dataStoreHelpers";
+export * from './persistence/dataStoreHelpers';
 
 // ========== PROGRESSION ==========
-export * from "./progression/battlePass";
-export * from "./progression/referralSystem";
+export * from './progression/battlePass';
+export * from './progression/referralSystem';
 
 // ========== MONETIZATION ==========
-export * from "./monetization/firstPurchase";
-export * from "./monetization/limitedOffers";
-export * from "./monetization/gifting";
-export * from "./monetization/starterPacks";
+export * from './monetization/firstPurchase';
+export * from './monetization/limitedOffers';
+export * from './monetization/gifting';
+export * from './monetization/starterPacks';
+export * from './monetization/gachaSystem'; // NEW: Gacha/egg system
 
 // ========== ANALYTICS ==========
-export * from "./analytics/analytics";
-export * from "./analytics/abTesting";
+export * from './analytics/analytics';
+export * from './analytics/abTesting';
 
 // ========== SECURITY ==========
-export * from "./security/antiCheat";
-export * from "./security/errorLogging";
-export * from "./security/moderation";
+export * from './security/antiCheat';
+export * from './security/errorLogging';
+export * from './security/moderation';
 
 // ========== RETENTION ==========
-export * from "./retention/psychology";
-export * from "./retention/notifications";
+export * from './retention/psychology';
+export * from './retention/notifications';
+export * from './retention/questSystem'; // NEW: Daily/weekly quests
 
 // ========== SOCIAL ==========
-export * from "./social/friends";
-export * from "./social/trading";
+export * from './social/friends';
+export * from './social/trading';
+export * from './social/matchmaking'; // NEW: ELO matchmaking

@@ -1,27 +1,17 @@
-import { Component, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-
-interface Game {
-  id: string;
-  name: string;
-  genre: string;
-  ownership?: string;
-  successMetrics?: {
-    revenueMonthly: number;
-    concurrentPlayers: number;
-  };
-}
-
-interface DashboardStats {
-  totalGames: number;
-  competitors: number;
-  totalRevenue: number;
-  totalPlayers: number;
-}
+import { GameStore } from '@aiawi-ws/game-data';
 
 @Component({
   selector: 'app-dashboard',
@@ -54,7 +44,7 @@ interface DashboardStats {
             <span class="text-2xl">🎮</span>
           </div>
           <div hlmCardContent>
-            <div class="text-3xl font-bold">{{ stats().totalGames }}</div>
+            <div class="text-3xl font-bold">{{ store.totalCount() }}</div>
           </div>
         </div>
 
@@ -67,7 +57,9 @@ interface DashboardStats {
             <span class="text-2xl">🏆</span>
           </div>
           <div hlmCardContent>
-            <div class="text-3xl font-bold">{{ stats().competitors }}</div>
+            <div class="text-3xl font-bold">
+              {{ store.competitorGames().length }}
+            </div>
           </div>
         </div>
 
@@ -81,7 +73,7 @@ interface DashboardStats {
           </div>
           <div hlmCardContent>
             <div class="text-3xl font-bold text-primary">
-              {{ '$' + formatNumber(stats().totalRevenue) }}
+              {{ '$' + formatNumber(totalRevenue()) }}
             </div>
           </div>
         </div>
@@ -96,7 +88,7 @@ interface DashboardStats {
           </div>
           <div hlmCardContent>
             <div class="text-3xl font-bold">
-              {{ formatNumber(stats().totalPlayers) }}
+              {{ formatNumber(totalPlayers()) }}
             </div>
           </div>
         </div>
@@ -158,123 +150,100 @@ interface DashboardStats {
           >
         </div>
         <div hlmCardContent>
-          <div class="overflow-x-auto">
-            <table class="w-full">
-              <thead>
-                <tr class="border-b">
-                  <th
-                    class="text-left py-3 px-2 text-sm font-medium text-muted-foreground"
-                  >
-                    Game
-                  </th>
-                  <th
-                    class="text-left py-3 px-2 text-sm font-medium text-muted-foreground"
-                  >
-                    Genre
-                  </th>
-                  <th
-                    class="text-right py-3 px-2 text-sm font-medium text-muted-foreground"
-                  >
-                    Monthly Revenue
-                  </th>
-                  <th
-                    class="text-right py-3 px-2 text-sm font-medium text-muted-foreground"
-                  >
-                    Players
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (game of topGames(); track game.id) {
-                  <tr class="border-b hover:bg-muted/50 transition-colors">
-                    <td class="py-3 px-2">
-                      <a
-                        [routerLink]="['/games', game.id]"
-                        class="font-medium hover:text-primary"
-                      >
-                        {{ game.name }}
-                      </a>
-                    </td>
-                    <td class="py-3 px-2">
-                      <span hlmBadge variant="secondary">{{ game.genre }}</span>
-                    </td>
-                    <td class="py-3 px-2 text-right text-primary font-medium">
-                      {{
-                        '$' +
-                          formatNumber(game.successMetrics?.revenueMonthly || 0)
-                      }}
-                    </td>
-                    <td class="py-3 px-2 text-right">
-                      {{
-                        formatNumber(
-                          game.successMetrics?.concurrentPlayers || 0
-                        )
-                      }}
-                    </td>
+          @if (store.loading()) {
+            <div class="text-center py-8 text-muted-foreground">Loading...</div>
+          } @else {
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b">
+                    <th
+                      class="text-left py-3 px-2 text-sm font-medium text-muted-foreground"
+                    >
+                      Game
+                    </th>
+                    <th
+                      class="text-left py-3 px-2 text-sm font-medium text-muted-foreground"
+                    >
+                      Genre
+                    </th>
+                    <th
+                      class="text-right py-3 px-2 text-sm font-medium text-muted-foreground"
+                    >
+                      Monthly Revenue
+                    </th>
+                    <th
+                      class="text-right py-3 px-2 text-sm font-medium text-muted-foreground"
+                    >
+                      Players
+                    </th>
                   </tr>
-                }
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  @for (
+                    game of store.topRevenueGames().slice(0, 5);
+                    track game.id
+                  ) {
+                    <tr class="border-b hover:bg-muted/50 transition-colors">
+                      <td class="py-3 px-2">
+                        <a
+                          [routerLink]="['/games', game.id]"
+                          class="font-medium hover:text-primary"
+                        >
+                          {{ game.name }}
+                        </a>
+                      </td>
+                      <td class="py-3 px-2">
+                        <span hlmBadge variant="secondary">{{
+                          game.genre
+                        }}</span>
+                      </td>
+                      <td class="py-3 px-2 text-right text-primary font-medium">
+                        {{
+                          '$' +
+                            formatNumber(
+                              game.successMetrics?.revenueMonthly || 0
+                            )
+                        }}
+                      </td>
+                      <td class="py-3 px-2 text-right">
+                        {{
+                          formatNumber(
+                            game.successMetrics?.concurrentPlayers || 0
+                          )
+                        }}
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
         </div>
       </div>
     </div>
   `,
 })
 export class DashboardPage implements OnInit {
-  loading = signal(true);
-  games = signal<Game[]>([]);
+  readonly store = inject(GameStore);
 
-  stats = signal<DashboardStats>({
-    totalGames: 0,
-    competitors: 0,
-    totalRevenue: 0,
-    totalPlayers: 0,
-  });
+  // Computed values from store
+  totalRevenue = computed(() =>
+    this.store
+      .games()
+      .reduce((sum, g) => sum + (g.successMetrics?.revenueMonthly || 0), 0),
+  );
 
-  topGames = signal<Game[]>([]);
+  totalPlayers = computed(() =>
+    this.store
+      .games()
+      .reduce((sum, g) => sum + (g.successMetrics?.concurrentPlayers || 0), 0),
+  );
 
   ngOnInit() {
-    this.loadData();
-  }
-
-  async loadData() {
-    try {
-      const response = await fetch('http://localhost:3333/api/games');
-      const data = await response.json();
-      const games: Game[] = data.items || [];
-
-      this.games.set(games);
-
-      const competitors = games.filter(
-        (g) => g.ownership === 'Competitor',
-      ).length;
-      const totalRevenue = games.reduce(
-        (sum, g) => sum + (g.successMetrics?.revenueMonthly || 0),
-        0,
-      );
-      const totalPlayers = games.reduce(
-        (sum, g) => sum + (g.successMetrics?.concurrentPlayers || 0),
-        0,
-      );
-
-      this.stats.set({
-        totalGames: games.length,
-        competitors,
-        totalRevenue,
-        totalPlayers,
-      });
-
-      const sorted = [...games].sort(
-        (a, b) =>
-          (b.successMetrics?.revenueMonthly || 0) -
-          (a.successMetrics?.revenueMonthly || 0),
-      );
-      this.topGames.set(sorted.slice(0, 5));
-    } catch (error) {
-      console.error('Failed to load dashboard data:', error);
-    } finally {
-      this.loading.set(false);
+    // Load games if not already loaded
+    if (this.store.games().length === 0) {
+      this.store.loadGames();
     }
   }
 

@@ -1,22 +1,9 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-
-interface Game {
-  id: string;
-  name: string;
-  developer: string;
-  genre: string;
-  platform: string;
-  ownership?: string;
-  successMetrics?: {
-    revenueMonthly: number;
-    concurrentPlayers: number;
-    retentionRateDay1: number;
-  };
-}
+import { GameStore } from '@aiawi-ws/game-data';
 
 @Component({
   selector: 'app-competitors',
@@ -29,17 +16,17 @@ interface Game {
         <p class="text-muted-foreground">Track and analyze competitor games</p>
       </div>
 
-      @if (loading()) {
+      @if (store.loading()) {
         <div class="text-center py-12 text-muted-foreground">
           Loading competitors...
         </div>
-      } @else if (competitors().length === 0) {
+      } @else if (store.competitorGames().length === 0) {
         <div class="text-center py-12 text-muted-foreground">
           No competitors found
         </div>
       } @else {
         <div class="space-y-3">
-          @for (game of competitors(); track game.id; let i = $index) {
+          @for (game of sortedCompetitors(); track game.id; let i = $index) {
             <a
               [routerLink]="['/games', game.id]"
               hlmCard
@@ -101,32 +88,20 @@ interface Game {
   `,
 })
 export class CompetitorsPage implements OnInit {
-  loading = signal(true);
-  competitors = signal<Game[]>([]);
+  readonly store = inject(GameStore);
 
   ngOnInit() {
-    this.loadCompetitors();
+    if (this.store.games().length === 0) {
+      this.store.loadGames();
+    }
   }
 
-  async loadCompetitors() {
-    try {
-      const response = await fetch('http://localhost:3333/api/games');
-      const data = await response.json();
-      const games: Game[] = (data.items || []).filter(
-        (g: Game) => g.ownership === 'Competitor',
-      );
-
-      const sorted = games.sort(
-        (a, b) =>
-          (b.successMetrics?.revenueMonthly || 0) -
-          (a.successMetrics?.revenueMonthly || 0),
-      );
-      this.competitors.set(sorted);
-    } catch (error) {
-      console.error('Failed to load competitors:', error);
-    } finally {
-      this.loading.set(false);
-    }
+  sortedCompetitors() {
+    return [...this.store.competitorGames()].sort(
+      (a, b) =>
+        (b.successMetrics?.revenueMonthly || 0) -
+        (a.successMetrics?.revenueMonthly || 0),
+    );
   }
 
   formatNumber(num: number): string {

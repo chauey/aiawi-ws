@@ -1,36 +1,14 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-
-interface GameData {
-  id: string;
-  name: string;
-  developer: string;
-  genre: string;
-  platform: string;
-  ownership?: string;
-  successMetrics?: {
-    revenueTotal: number;
-    revenueMonthly: number;
-    totalPlays: number;
-    concurrentPlayers: number;
-    retentionRateDay1: number;
-    retentionRateDay7: number;
-    retentionRateDay30: number;
-  };
-  features?: Array<{
-    id: string;
-    name: string;
-    description: string;
-    importance: string;
-    userEngagementImpact: number;
-    monetizationPotential: number;
-  }>;
-  featureFlags?: Record<string, boolean>;
-}
+import {
+  GameStore,
+  GameFeatureFlags,
+  SuccessMetricDto,
+} from '@aiawi-ws/game-data';
 
 @Component({
   selector: 'app-game-detail',
@@ -48,34 +26,33 @@ interface GameData {
         >← Back to Games</a
       >
 
-      @if (loading()) {
+      @if (store.loading()) {
         <div class="text-center py-12 text-muted-foreground">
           Loading game details...
         </div>
-      } @else if (game()) {
+      } @else if (store.selectedGame(); as game) {
         <!-- Header -->
         <div
           class="flex flex-col sm:flex-row justify-between items-start gap-4"
         >
           <div>
-            <h1 class="text-2xl font-bold">{{ game()!.name }}</h1>
+            <h1 class="text-2xl font-bold">{{ game.name }}</h1>
             <p class="text-muted-foreground">
-              {{ game()!.developer }} • {{ game()!.genre }} •
-              {{ game()!.platform }}
+              {{ game.developer }} • {{ game.genre }} • {{ game.platform }}
             </p>
           </div>
-          <span hlmBadge [variant]="getBadgeVariant(game()!.ownership)">
-            {{ game()!.ownership || 'Reference' }}
+          <span hlmBadge [variant]="getBadgeVariant(game.ownership)">
+            {{ game.ownership || 'Reference' }}
           </span>
         </div>
 
         <!-- Stats -->
-        @if (game()!.successMetrics) {
+        @if (game.successMetrics) {
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div hlmCard>
               <div hlmCardContent class="pt-6 text-center">
                 <div class="text-2xl font-bold text-primary">
-                  {{ '$' + formatNumber(game()!.successMetrics!.revenueTotal) }}
+                  {{ '$' + formatNumber(game.successMetrics.revenueTotal) }}
                 </div>
                 <div class="text-sm text-muted-foreground">Total Revenue</div>
               </div>
@@ -84,7 +61,7 @@ interface GameData {
               <div hlmCardContent class="pt-6 text-center">
                 <div class="text-2xl font-bold text-primary">
                   {{
-                    '$' + formatNumber(game()!.successMetrics!.revenueMonthly)
+                    '$' + formatNumber(game.successMetrics.revenueMonthly)
                   }}/mo
                 </div>
                 <div class="text-sm text-muted-foreground">Monthly Revenue</div>
@@ -93,7 +70,7 @@ interface GameData {
             <div hlmCard>
               <div hlmCardContent class="pt-6 text-center">
                 <div class="text-2xl font-bold">
-                  {{ formatNumber(game()!.successMetrics!.totalPlays) }}
+                  {{ formatNumber(game.successMetrics.totalPlays) }}
                 </div>
                 <div class="text-sm text-muted-foreground">Total Plays</div>
               </div>
@@ -101,7 +78,7 @@ interface GameData {
             <div hlmCard>
               <div hlmCardContent class="pt-6 text-center">
                 <div class="text-2xl font-bold">
-                  {{ formatNumber(game()!.successMetrics!.concurrentPlayers) }}
+                  {{ formatNumber(game.successMetrics.concurrentPlayers) }}
                 </div>
                 <div class="text-sm text-muted-foreground">
                   Concurrent Players
@@ -124,11 +101,13 @@ interface GameData {
                   <div class="flex-1 h-3 bg-muted rounded-full overflow-hidden">
                     <div
                       class="h-full bg-gradient-to-r from-primary to-green-500 rounded-full transition-all"
-                      [style.width.%]="getRetentionValue(day.key)"
+                      [style.width.%]="
+                        getRetentionValue(game.successMetrics, day.key)
+                      "
                     ></div>
                   </div>
                   <span class="w-12 text-right font-medium">
-                    {{ getRetentionValue(day.key) }}%
+                    {{ getRetentionValue(game.successMetrics, day.key) }}%
                   </span>
                 </div>
               }
@@ -137,14 +116,14 @@ interface GameData {
         }
 
         <!-- Features -->
-        @if (game()!.features?.length) {
+        @if (game.features?.length) {
           <div hlmCard>
             <div hlmCardHeader>
               <h3 hlmCardTitle>Features</h3>
             </div>
             <div hlmCardContent>
               <div class="grid md:grid-cols-2 gap-4">
-                @for (feature of game()!.features; track feature.id) {
+                @for (feature of game.features; track feature.id) {
                   <div class="p-4 border rounded-lg">
                     <div class="flex justify-between items-start mb-2">
                       <h4 class="font-medium">{{ feature.name }}</h4>
@@ -181,14 +160,17 @@ interface GameData {
         }
 
         <!-- Feature Flags -->
-        @if (game()!.featureFlags) {
+        @if (game.featureFlags) {
           <div hlmCard>
             <div hlmCardHeader>
               <h3 hlmCardTitle>Feature Flags</h3>
             </div>
             <div hlmCardContent>
               <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                @for (flag of getFeatureFlags(); track flag.key) {
+                @for (
+                  flag of getFeatureFlags(game.featureFlags);
+                  track flag.key
+                ) {
                   <div
                     class="flex items-center gap-2 p-2 rounded text-sm"
                     [class]="
@@ -215,9 +197,7 @@ interface GameData {
 })
 export class GameDetailPage implements OnInit {
   private route = inject(ActivatedRoute);
-
-  loading = signal(true);
-  game = signal<GameData | null>(null);
+  readonly store = inject(GameStore);
 
   retentionDays = [
     { label: 'Day 1', key: 'retentionRateDay1' },
@@ -228,26 +208,12 @@ export class GameDetailPage implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.loadGame(id);
+      this.store.loadGame(id);
     }
   }
 
-  async loadGame(id: string) {
-    try {
-      const response = await fetch(`http://localhost:3333/api/games/${id}`);
-      const data = await response.json();
-      this.game.set(data);
-    } catch (error) {
-      console.error('Failed to load game:', error);
-    } finally {
-      this.loading.set(false);
-    }
-  }
-
-  getRetentionValue(key: string): number {
-    const metrics = this.game()?.successMetrics;
-    if (!metrics) return 0;
-    return (metrics as Record<string, number>)[key] || 0;
+  getRetentionValue(metrics: SuccessMetricDto, key: string): number {
+    return (metrics as unknown as Record<string, number>)[key] || 0;
   }
 
   getBadgeVariant(
@@ -276,10 +242,9 @@ export class GameDetailPage implements OnInit {
     }
   }
 
-  getFeatureFlags(): { key: string; label: string; value: boolean }[] {
-    const flags = this.game()?.featureFlags;
-    if (!flags) return [];
-
+  getFeatureFlags(
+    flags: GameFeatureFlags,
+  ): { key: string; label: string; value: boolean }[] {
     const labelMap: Record<string, string> = {
       hasCollectionSystem: 'Collection System',
       hasTradingSystem: 'Trading System',
@@ -287,9 +252,9 @@ export class GameDetailPage implements OnInit {
       hasCraftingSystem: 'Crafting',
       hasBuildingSystem: 'Building',
       hasMultiplayer: 'Multiplayer',
-      hasGuildSystem: 'Guilds',
-      hasChatSystem: 'Chat',
-      hasFriendsSystem: 'Friends',
+      hasGuilds: 'Guilds',
+      hasChat: 'Chat',
+      hasFriendSystem: 'Friends',
       hasLeaderboards: 'Leaderboards',
       hasInAppPurchases: 'IAP',
       hasGachaSystem: 'Gacha',
@@ -299,8 +264,8 @@ export class GameDetailPage implements OnInit {
       hasLevelSystem: 'Levels',
       hasSkillTree: 'Skills',
       hasAchievements: 'Achievements',
-      hasQuestSystem: 'Quests',
-      hasDailyRewards: 'Daily Rewards',
+      hasQuests: 'Quests',
+      hasDailies: 'Daily Rewards',
       hasPvP: 'PvP',
       hasPvE: 'PvE',
     };

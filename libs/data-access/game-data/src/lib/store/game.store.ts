@@ -8,7 +8,6 @@ import {
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap, catchError, of } from 'rxjs';
-import { tapResponse } from '@ngrx/operators';
 import { GameApiClient } from '../services/game-api-client.service';
 import {
   GameDto,
@@ -103,20 +102,19 @@ export const GameStore = signalStore(
           patchState(store, { filter: currentFilter as GetGamesFilterDto });
 
           return apiClient.getGames(currentFilter as GetGamesFilterDto).pipe(
-            tapResponse({
-              next: (response) => {
-                patchState(store, {
-                  games: response.items,
-                  totalCount: response.totalCount,
-                  loading: false,
-                });
-              },
-              error: (error: Error) => {
-                patchState(store, {
-                  loading: false,
-                  error: error.message || 'Failed to load games',
-                });
-              },
+            tap((response) => {
+              patchState(store, {
+                games: response.items,
+                totalCount: response.totalCount,
+                loading: false,
+              });
+            }),
+            catchError((error: Error) => {
+              patchState(store, {
+                loading: false,
+                error: error.message || 'Failed to load games',
+              });
+              return of(null);
             }),
           );
         }),
@@ -129,19 +127,18 @@ export const GameStore = signalStore(
         tap(() => patchState(store, { loading: true, error: null })),
         switchMap((id) =>
           apiClient.getGame(id).pipe(
-            tapResponse({
-              next: (game) => {
-                patchState(store, {
-                  selectedGame: game,
-                  loading: false,
-                });
-              },
-              error: (error: Error) => {
-                patchState(store, {
-                  loading: false,
-                  error: error.message || 'Failed to load game',
-                });
-              },
+            tap((game) => {
+              patchState(store, {
+                selectedGame: game,
+                loading: false,
+              });
+            }),
+            catchError((error: Error) => {
+              patchState(store, {
+                loading: false,
+                error: error.message || 'Failed to load game',
+              });
+              return of(null);
             }),
           ),
         ),
@@ -154,20 +151,19 @@ export const GameStore = signalStore(
         tap(() => patchState(store, { loading: true, error: null })),
         switchMap((gameData) =>
           apiClient.createGame(gameData).pipe(
-            tapResponse({
-              next: (newGame) => {
-                patchState(store, {
-                  games: [...store.games(), newGame],
-                  totalCount: store.totalCount() + 1,
-                  loading: false,
-                });
-              },
-              error: (error: Error) => {
-                patchState(store, {
-                  loading: false,
-                  error: error.message || 'Failed to create game',
-                });
-              },
+            tap((newGame) => {
+              patchState(store, {
+                games: [...store.games(), newGame],
+                totalCount: store.totalCount() + 1,
+                loading: false,
+              });
+            }),
+            catchError((error: Error) => {
+              patchState(store, {
+                loading: false,
+                error: error.message || 'Failed to create game',
+              });
+              return of(null);
             }),
           ),
         ),
@@ -180,25 +176,24 @@ export const GameStore = signalStore(
         tap(() => patchState(store, { loading: true, error: null })),
         switchMap(({ id, data }) =>
           apiClient.updateGame(id, data).pipe(
-            tapResponse({
-              next: (updatedGame) => {
-                patchState(store, {
-                  games: store
-                    .games()
-                    .map((g) => (g.id === id ? updatedGame : g)),
-                  selectedGame:
-                    store.selectedGame()?.id === id
-                      ? updatedGame
-                      : store.selectedGame(),
-                  loading: false,
-                });
-              },
-              error: (error: Error) => {
-                patchState(store, {
-                  loading: false,
-                  error: error.message || 'Failed to update game',
-                });
-              },
+            tap((updatedGame) => {
+              patchState(store, {
+                games: store
+                  .games()
+                  .map((g) => (g.id === id ? updatedGame : g)),
+                selectedGame:
+                  store.selectedGame()?.id === id
+                    ? updatedGame
+                    : store.selectedGame(),
+                loading: false,
+              });
+            }),
+            catchError((error: Error) => {
+              patchState(store, {
+                loading: false,
+                error: error.message || 'Failed to update game',
+              });
+              return of(null);
             }),
           ),
         ),
@@ -211,24 +206,21 @@ export const GameStore = signalStore(
         tap(() => patchState(store, { loading: true, error: null })),
         switchMap((id) =>
           apiClient.deleteGame(id).pipe(
-            tapResponse({
-              next: () => {
-                patchState(store, {
-                  games: store.games().filter((g) => g.id !== id),
-                  selectedGame:
-                    store.selectedGame()?.id === id
-                      ? null
-                      : store.selectedGame(),
-                  totalCount: store.totalCount() - 1,
-                  loading: false,
-                });
-              },
-              error: (error: Error) => {
-                patchState(store, {
-                  loading: false,
-                  error: error.message || 'Failed to delete game',
-                });
-              },
+            tap(() => {
+              patchState(store, {
+                games: store.games().filter((g) => g.id !== id),
+                selectedGame:
+                  store.selectedGame()?.id === id ? null : store.selectedGame(),
+                totalCount: store.totalCount() - 1,
+                loading: false,
+              });
+            }),
+            catchError((error: Error) => {
+              patchState(store, {
+                loading: false,
+                error: error.message || 'Failed to delete game',
+              });
+              return of(null);
             }),
           ),
         ),

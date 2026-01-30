@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -8,20 +8,8 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-
-interface Game {
-  id: string;
-  name: string;
-  developer: string;
-  genre: string;
-  platform: string;
-  ownership?: string;
-  successMetrics?: {
-    revenueMonthly: number;
-    concurrentPlayers: number;
-    retentionRateDay1: number;
-  };
-}
+import { GameStore } from '@aiawi-ws/game-data';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-games',
@@ -68,7 +56,7 @@ interface Game {
           </hlm-select-trigger>
           <hlm-select-content>
             <hlm-option value="">All Genres</hlm-option>
-            @for (genre of genres(); track genre) {
+            @for (genre of store.genres(); track genre) {
               <hlm-option [value]="genre">{{ genre }}</hlm-option>
             }
           </hlm-select-content>
@@ -88,7 +76,7 @@ interface Game {
       </div>
 
       <!-- Games Grid -->
-      @if (loading()) {
+      @if (store.loading()) {
         <div class="text-center py-12 text-muted-foreground">
           Loading games...
         </div>
@@ -162,20 +150,28 @@ interface Game {
 })
 export class GamesPage implements OnInit {
   private fb = inject(FormBuilder);
-
-  loading = signal(true);
-  games = signal<Game[]>([]);
-  genres = signal<string[]>([]);
+  readonly store = inject(GameStore);
 
   searchControl = this.fb.control('');
   genreControl = this.fb.control('');
   ownershipControl = this.fb.control('');
 
+  // Convert form control values to signals for reactivity
+  private searchValue = toSignal(this.searchControl.valueChanges, {
+    initialValue: '',
+  });
+  private genreValue = toSignal(this.genreControl.valueChanges, {
+    initialValue: '',
+  });
+  private ownershipValue = toSignal(this.ownershipControl.valueChanges, {
+    initialValue: '',
+  });
+
   filteredGames = computed(() => {
-    let filtered = this.games();
-    const search = this.searchControl.value?.toLowerCase() || '';
-    const genre = this.genreControl.value || '';
-    const ownership = this.ownershipControl.value || '';
+    let filtered = this.store.games();
+    const search = (this.searchValue() || '').toLowerCase();
+    const genre = this.genreValue() || '';
+    const ownership = this.ownershipValue() || '';
 
     if (search) {
       filtered = filtered.filter(
@@ -194,30 +190,8 @@ export class GamesPage implements OnInit {
   });
 
   ngOnInit() {
-    this.loadGames();
-
-    // Subscribe to form changes to trigger recompute
-    this.searchControl.valueChanges.subscribe(() => this.filteredGames());
-    this.genreControl.valueChanges.subscribe(() => this.filteredGames());
-    this.ownershipControl.valueChanges.subscribe(() => this.filteredGames());
-  }
-
-  async loadGames() {
-    try {
-      const response = await fetch('http://localhost:3333/api/games');
-      const data = await response.json();
-      const games = data.items || [];
-
-      this.games.set(games);
-
-      const uniqueGenres = [...new Set(games.map((g: Game) => g.genre))]
-        .filter(Boolean)
-        .sort() as string[];
-      this.genres.set(uniqueGenres);
-    } catch (error) {
-      console.error('Failed to load games:', error);
-    } finally {
-      this.loading.set(false);
+    if (this.store.games().length === 0) {
+      this.store.loadGames();
     }
   }
 

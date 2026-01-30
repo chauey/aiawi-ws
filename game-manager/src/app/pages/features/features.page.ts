@@ -1,19 +1,8 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-
-interface Game {
-  id: string;
-  name: string;
-  featureFlags?: Record<string, boolean>;
-  features?: Array<{
-    name: string;
-    category: string;
-    userEngagementImpact: number;
-    monetizationPotential: number;
-  }>;
-}
+import { GameStore } from '@aiawi-ws/game-data';
 
 interface FeatureAnalysis {
   name: string;
@@ -41,7 +30,7 @@ interface SystemAnalysis {
         </p>
       </div>
 
-      @if (loading()) {
+      @if (store.loading()) {
         <div class="text-center py-12 text-muted-foreground">
           Loading features...
         </div>
@@ -124,67 +113,48 @@ interface SystemAnalysis {
   `,
 })
 export class FeaturesPage implements OnInit {
-  loading = signal(true);
-  featureAdoption = signal<FeatureAnalysis[]>([]);
-  systemAnalysis = signal<SystemAnalysis[]>([]);
+  readonly store = inject(GameStore);
 
-  ngOnInit() {
-    this.loadData();
-  }
+  private readonly labelMap: Record<string, string> = {
+    hasCollectionSystem: 'Collection',
+    hasTradingSystem: 'Trading',
+    hasMultiplayer: 'Multiplayer',
+    hasLeaderboards: 'Leaderboards',
+    hasInAppPurchases: 'In-App Purchases',
+    hasSeasonPass: 'Season Pass',
+    hasDailyRewards: 'Daily Rewards',
+    hasPvP: 'PvP',
+    hasPvE: 'PvE',
+    hasGuildSystem: 'Guilds',
+  };
 
-  async loadData() {
-    try {
-      const response = await fetch('http://localhost:3333/api/games');
-      const data = await response.json();
-      const games: Game[] = data.items || [];
-
-      this.analyzeFeatureFlags(games);
-      this.analyzeSystems(games);
-    } catch (error) {
-      console.error('Failed to load features:', error);
-    } finally {
-      this.loading.set(false);
-    }
-  }
-
-  private analyzeFeatureFlags(games: Game[]) {
+  featureAdoption = computed<FeatureAnalysis[]>(() => {
+    const games = this.store.games();
     const flagCounts: Record<string, number> = {};
-    const labelMap: Record<string, string> = {
-      hasCollectionSystem: 'Collection',
-      hasTradingSystem: 'Trading',
-      hasMultiplayer: 'Multiplayer',
-      hasLeaderboards: 'Leaderboards',
-      hasInAppPurchases: 'In-App Purchases',
-      hasSeasonPass: 'Season Pass',
-      hasDailyRewards: 'Daily Rewards',
-      hasPvP: 'PvP',
-      hasPvE: 'PvE',
-      hasGuildSystem: 'Guilds',
-    };
 
     games.forEach((game) => {
       if (game.featureFlags) {
         Object.entries(game.featureFlags).forEach(([key, value]) => {
-          if (value && labelMap[key]) {
-            flagCounts[labelMap[key]] = (flagCounts[labelMap[key]] || 0) + 1;
+          if (value && this.labelMap[key]) {
+            flagCounts[this.labelMap[key]] =
+              (flagCounts[this.labelMap[key]] || 0) + 1;
           }
         });
       }
     });
 
     const totalGames = games.length || 1;
-    const analysis = Object.entries(flagCounts)
+    return Object.entries(flagCounts)
       .map(([name, count]) => ({
         name,
         count,
         percentage: Math.round((count / totalGames) * 100),
       }))
       .sort((a, b) => b.percentage - a.percentage);
+  });
 
-    this.featureAdoption.set(analysis);
-  }
-
-  private analyzeSystems(games: Game[]) {
+  systemAnalysis = computed<SystemAnalysis[]>(() => {
+    const games = this.store.games();
     const systems: Record<string, SystemAnalysis> = {};
 
     games.forEach((game) => {
@@ -206,12 +176,16 @@ export class FeaturesPage implements OnInit {
       });
     });
 
-    const analysis = Object.values(systems).map((s) => ({
+    return Object.values(systems).map((s) => ({
       ...s,
       avgEngagement: s.avgEngagement / (s.games.length || 1),
       avgMonetization: s.avgMonetization / (s.games.length || 1),
     }));
+  });
 
-    this.systemAnalysis.set(analysis);
+  ngOnInit() {
+    if (this.store.games().length === 0) {
+      this.store.loadGames();
+    }
   }
 }

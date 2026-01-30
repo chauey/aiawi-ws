@@ -7,6 +7,8 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { GameApiClient } from '@aiawi-ws/game-data';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
@@ -152,6 +154,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 })
 export class SettingsPage {
   private fb = inject(FormBuilder);
+  private apiClient = inject(GameApiClient);
 
   apiStatus = signal(false);
 
@@ -165,9 +168,8 @@ export class SettingsPage {
 
   async testConnection() {
     try {
-      const url = this.apiUrlControl.value || 'http://localhost:3333/api';
-      const response = await fetch(`${url}/health`);
-      this.apiStatus.set(response.ok);
+      await firstValueFrom(this.apiClient.healthCheck());
+      this.apiStatus.set(true);
     } catch {
       this.apiStatus.set(false);
     }

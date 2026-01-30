@@ -113,7 +113,15 @@ export interface MarketingSecretsDto extends AuditedEntityDto {
  * Social Platform Strategy DTO
  */
 export interface SocialPlatformStrategyDto {
-  platform: 'YouTube' | 'TikTok' | 'Instagram' | 'Twitter' | 'Discord' | 'Reddit' | 'Twitch' | 'Other';
+  platform:
+    | 'YouTube'
+    | 'TikTok'
+    | 'Instagram'
+    | 'Twitter'
+    | 'Discord'
+    | 'Reddit'
+    | 'Twitch'
+    | 'Other';
   postingFrequency: string;
   contentTypes: string[]; // What to post
   bestPractices: string[];
@@ -143,7 +151,11 @@ export interface GrowthHackingSecretsDto extends AuditedEntityDto {
   gameId: string;
 
   // 🚀 Proven Growth Hacks
-  top10GrowthHacks: { hack: string; effectiveness: number; implementation: string }[];
+  top10GrowthHacks: {
+    hack: string;
+    effectiveness: number;
+    implementation: string;
+  }[];
   quickWins: string[]; // Easy tactics with big impact
   experimentIdeas: string[]; // Things to try
   unconventionalTactics: string[]; // Outside-the-box ideas
@@ -155,7 +167,12 @@ export interface GrowthHackingSecretsDto extends AuditedEntityDto {
   networkEffects: string[]; // Value from more users
 
   // 🎯 Acquisition Channels
-  channelPerformance: { channel: string; cost: number; quality: number; volume: number }[];
+  channelPerformance: {
+    channel: string;
+    cost: number;
+    quality: number;
+    volume: number;
+  }[];
   channelOptimization: string[]; // Optimizing each channel
   newChannelTesting: string[]; // Testing new channels
   channelMix: string; // Optimal channel allocation
@@ -254,7 +271,7 @@ export interface LiveOpsPlaybookDto extends AuditedEntityDto {
 
   // 🔄 Update Strategy
   updateFrequency: string; // How often to update
-  patchNotes Optimization: string[]; // Communication updates
+  patchNotesOptimization: string[]; // Communication updates
   featureRollout: string[]; // Releasing new features
   contentPipeline: string; // Planning ahead
   playerFeedbackIntegration: string[]; // Acting on feedback
@@ -398,7 +415,7 @@ export interface UltimateSuccessChecklistDto extends AuditedEntityDto {
 
   // 🎯 Phase-Specific Priorities
   conceptPhase: PhaseChecklistDto;
-  prototyping Phase: PhaseChecklistDto;
+  prototypingPhase: PhaseChecklistDto;
   preProduction: PhaseChecklistDto;
   production: PhaseChecklistDto;
   alphaPhase: PhaseChecklistDto;

@@ -5,7 +5,14 @@ import { AuditedEntityDto } from './base.dto';
  */
 export interface ROIAnalysisDto extends AuditedEntityDto {
   gameId: string;
-  itemType: 'Feature' | 'Marketing Tactic' | 'System' | 'Content' | 'Update' | 'Tool' | 'Other';
+  itemType:
+    | 'Feature'
+    | 'Marketing Tactic'
+    | 'System'
+    | 'Content'
+    | 'Update'
+    | 'Tool'
+    | 'Other';
   itemName: string;
 
   // 💰 Investment Required
@@ -27,7 +34,7 @@ export interface ROIAnalysisDto extends AuditedEntityDto {
   paybackPeriod: number; // Months to break even
   netPresentValue: number; // NPV over 12 months
   confidenceLevel: 'Low' | 'Medium' | 'High' | 'Very High'; // How sure are we?
-  
+
   // ⏱️ Timeline
   timeToImplement: number; // Days
   timeToImpact: number; // Days until you see results
@@ -64,7 +71,13 @@ export interface MoneyEstimateDto {
   expected: number; // Most likely
   maximum: number; // Best case
   currency: string; // USD, EUR, etc.
-  timeframe: 'Daily' | 'Weekly' | 'Monthly' | 'Quarterly' | 'Yearly' | 'Lifetime';
+  timeframe:
+    | 'Daily'
+    | 'Weekly'
+    | 'Monthly'
+    | 'Quarterly'
+    | 'Yearly'
+    | 'Lifetime';
   confidenceLevel: 'Low' | 'Medium' | 'High' | 'Very High';
   assumptions: string[]; // What we're assuming
 }
@@ -119,7 +132,7 @@ export interface FeatureImpactEstimateDto extends AuditedEntityDto {
   monetizationPotential: number; // 1-10 scale
   arpdauLift: PercentageEstimateDto; // Avg revenue per daily active user
   conversionRateImpact: PercentageEstimateDto;
-  
+
   // 👥 User Growth Impact
   userAcquisitionLift: NumberEstimateDto;
   viralCoefficient: number; // How many new users per existing user
@@ -138,7 +151,7 @@ export interface FeatureImpactEstimateDto extends AuditedEntityDto {
   monthlyActiveUsersLift: PercentageEstimateDto;
   engagementScore: number; // 1-10 scale
   addictionPotential: number; // 1-10 scale
-  
+
   // ⏱️ Implementation
   developmentEffort: DevelopmentEffortDto;
   technicalRisk: TechnicalRiskDto;
@@ -213,7 +226,7 @@ export interface MarketingTacticROIDto extends AuditedEntityDto {
   recommended: boolean;
   bestFor: string[]; // When to use this tactic
   avoidIf: string[]; // When NOT to use
-  optimization Tips: string[];
+  optimizationTips: string[];
 }
 
 /**
@@ -269,7 +282,15 @@ export interface ContentROIDto extends AuditedEntityDto {
   contentId: string;
   gameId: string;
   contentName: string;
-  contentType: 'Map' | 'Level' | 'Quest' | 'Character' | 'Item' | 'Event' | 'Mode' | 'Other';
+  contentType:
+    | 'Map'
+    | 'Level'
+    | 'Quest'
+    | 'Character'
+    | 'Item'
+    | 'Event'
+    | 'Mode'
+    | 'Other';
 
   // 💰 Creation Cost
   creationCost: MoneyEstimateDto;
@@ -290,7 +311,7 @@ export interface ContentROIDto extends AuditedEntityDto {
   // 🎯 Impact
   engagementLift: PercentageEstimateDto;
   retentionLift: PercentageEstimateDto;
-  socialMedia Buzz: number; // 1-10 estimated viral potential
+  socialMediaBuzz: number; // 1-10 estimated viral potential
 
   // ⏱️ Lifespan
   contentLifespan: number; // Days before players exhaust it
@@ -325,7 +346,7 @@ export interface UpdateImpactDto extends AuditedEntityDto {
   weekOneImpact: string;
   monthOneImpact: string;
   longTermImpact: string;
-  
+
   // 🚨 Risk Assessment
   bugRisk: 'Low' | 'Medium' | 'High';
   balanceRisk: 'Low' | 'Medium' | 'High';
@@ -504,5 +525,5 @@ export interface ScenarioDto {
   year1Revenue: number;
   year1Profit: number;
   year1Users: number;
-  assumpt ions: string[];
+  assumptions: string[];
 }

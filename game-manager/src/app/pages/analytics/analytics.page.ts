@@ -1,17 +1,8 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-
-interface Game {
-  genre: string;
-  platform: string;
-  successMetrics?: {
-    revenueMonthly: number;
-    concurrentPlayers: number;
-    retentionRateDay1: number;
-  };
-}
+import { GameStore } from '@aiawi-ws/game-data';
 
 interface CategoryStats {
   name: string;
@@ -31,7 +22,7 @@ interface CategoryStats {
         <p class="text-muted-foreground">Aggregated performance insights</p>
       </div>
 
-      @if (loading()) {
+      @if (store.loading()) {
         <div class="text-center py-12 text-muted-foreground">
           Loading analytics...
         </div>
@@ -151,52 +142,35 @@ interface CategoryStats {
   `,
 })
 export class AnalyticsPage implements OnInit {
-  loading = signal(true);
-  totalRevenue = signal(0);
-  totalPlayers = signal(0);
-  avgRetention = signal(0);
-  genreStats = signal<CategoryStats[]>([]);
-  platformStats = signal<CategoryStats[]>([]);
-  insights = signal<string[]>([]);
+  readonly store = inject(GameStore);
 
-  ngOnInit() {
-    this.loadData();
-  }
+  totalRevenue = computed(() =>
+    this.store
+      .games()
+      .reduce((sum, g) => sum + (g.successMetrics?.revenueMonthly || 0), 0),
+  );
 
-  async loadData() {
-    try {
-      const response = await fetch('http://localhost:3333/api/games');
-      const data = await response.json();
-      const games: Game[] = data.items || [];
+  totalPlayers = computed(() =>
+    this.store
+      .games()
+      .reduce((sum, g) => sum + (g.successMetrics?.concurrentPlayers || 0), 0),
+  );
 
-      this.calculateStats(games);
-    } catch (error) {
-      console.error('Failed to load analytics:', error);
-    } finally {
-      this.loading.set(false);
-    }
-  }
+  avgRetention = computed(() => {
+    const games = this.store
+      .games()
+      .filter((g) => g.successMetrics?.retentionRateDay1);
+    if (games.length === 0) return 0;
+    const sum = games.reduce(
+      (s, g) => s + (g.successMetrics?.retentionRateDay1 || 0),
+      0,
+    );
+    return sum / games.length;
+  });
 
-  private calculateStats(games: Game[]) {
-    let revenue = 0;
-    let players = 0;
-    let retention = 0;
-    let retentionCount = 0;
-
+  genreStats = computed<CategoryStats[]>(() => {
     const genres: Record<string, CategoryStats> = {};
-    const platforms: Record<string, CategoryStats> = {};
-
-    games.forEach((game) => {
-      const metrics = game.successMetrics;
-      if (metrics) {
-        revenue += metrics.revenueMonthly;
-        players += metrics.concurrentPlayers;
-        if (metrics.retentionRateDay1) {
-          retention += metrics.retentionRateDay1;
-          retentionCount++;
-        }
-      }
-
+    this.store.games().forEach((game) => {
       if (game.genre) {
         if (!genres[game.genre]) {
           genres[game.genre] = {
@@ -206,11 +180,18 @@ export class AnalyticsPage implements OnInit {
             count: 0,
           };
         }
-        genres[game.genre].revenue += metrics?.revenueMonthly || 0;
-        genres[game.genre].players += metrics?.concurrentPlayers || 0;
+        genres[game.genre].revenue += game.successMetrics?.revenueMonthly || 0;
+        genres[game.genre].players +=
+          game.successMetrics?.concurrentPlayers || 0;
         genres[game.genre].count++;
       }
+    });
+    return Object.values(genres).sort((a, b) => b.revenue - a.revenue);
+  });
 
+  platformStats = computed<CategoryStats[]>(() => {
+    const platforms: Record<string, CategoryStats> = {};
+    this.store.games().forEach((game) => {
       if (game.platform) {
         if (!platforms[game.platform]) {
           platforms[game.platform] = {
@@ -220,39 +201,45 @@ export class AnalyticsPage implements OnInit {
             count: 0,
           };
         }
-        platforms[game.platform].revenue += metrics?.revenueMonthly || 0;
-        platforms[game.platform].players += metrics?.concurrentPlayers || 0;
+        platforms[game.platform].revenue +=
+          game.successMetrics?.revenueMonthly || 0;
+        platforms[game.platform].players +=
+          game.successMetrics?.concurrentPlayers || 0;
         platforms[game.platform].count++;
       }
     });
+    return Object.values(platforms).sort((a, b) => b.revenue - a.revenue);
+  });
 
-    this.totalRevenue.set(revenue);
-    this.totalPlayers.set(players);
-    this.avgRetention.set(retentionCount > 0 ? retention / retentionCount : 0);
-    this.genreStats.set(
-      Object.values(genres).sort((a, b) => b.revenue - a.revenue),
-    );
-    this.platformStats.set(
-      Object.values(platforms).sort((a, b) => b.revenue - a.revenue),
-    );
+  insights = computed(() => {
+    const games = this.store.games();
+    const platforms = this.store.platforms();
+    const genres = this.genreStats();
+    const topGenre = genres[0];
 
-    const topGenre = Object.values(genres).sort(
-      (a, b) => b.revenue - a.revenue,
-    )[0];
     const insightsList = [
-      `${games.length} games are being tracked across ${Object.keys(platforms).length} platforms.`,
+      `${games.length} games are being tracked across ${platforms.length} platforms.`,
     ];
+
     if (topGenre) {
       insightsList.push(
         `${topGenre.name} is the highest-grossing genre with $${this.formatNumber(topGenre.revenue)}/mo.`,
       );
     }
+
     if (this.avgRetention() > 50) {
       insightsList.push(
         `Average D1 retention of ${this.avgRetention().toFixed(1)}% is above industry average.`,
       );
     }
-    this.insights.set(insightsList);
+
+    return insightsList;
+  });
+
+  ngOnInit() {
+    if (this.store.games().length === 0) {
+      this.store.loadGames();
+    }
   }
 
   getPlatformEmoji(platform: string): string {

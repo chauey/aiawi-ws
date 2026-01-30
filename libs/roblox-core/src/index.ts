@@ -4,6 +4,7 @@
 // ========== CONFIG ==========
 export * from "./config/gameConfig";
 export * from "./config/featureRegistry";
+export * from "./config/gameMetadata";
 
 // ========== UI COMPONENTS ==========
 export * from "./ui/actionBar";

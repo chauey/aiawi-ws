@@ -27,6 +27,8 @@ import { getTutorialSteps } from "shared/featureRegistry";
 import { createUIToggle } from "./uiToggle";
 import { createBattlePassUI, toggleBattlePass } from "./battlePassUI";
 import { createPetSelectionUI } from "./petUI";
+import { createStarterPackUI, showStarterPackPopup } from "./starterPackUI";
+import { createLimitedOffersUI } from "./limitedOffersUI";
 
 const player = Players.LocalPlayer;
 
@@ -551,6 +553,18 @@ createBattlePassUI();
 
 // Create Pet Selection UI
 createPetSelectionUI();
+
+// Create Starter Pack UI (for new players)
+createStarterPackUI();
+
+// Create Limited Offers UI (daily specials)
+createLimitedOffersUI();
+
+// Show starter pack popup after 3 seconds (for new players)
+task.delay(3, () => {
+	// TODO: Check if player is new (level < 10)
+	showStarterPackPopup();
+});
 
 // Register action bar callbacks to toggle existing panels
 const playerGui = player.WaitForChild("PlayerGui") as PlayerGui;

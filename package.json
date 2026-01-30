@@ -19,15 +19,18 @@
     "@ng-icons/lucide": "^33.0.0",
     "@spartan-ng/brain": "^0.0.1-alpha.610",
     "@tailwindcss/postcss": "^4.1.18",
+    "better-sqlite3": "^12.6.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "cors": "^2.8.6",
     "embla-carousel-angular": "^20.0.0",
     "express": "^4.21.2",
     "ngx-sonner": ">=3.0.0",
     "postcss": "^8.5.6",
     "rxjs": "~7.8.0",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@angular-devkit/core": "~21.1.0",
@@ -42,6 +45,7 @@
     "@nx/eslint": "22.4.1",
     "@nx/eslint-plugin": "22.4.1",
     "@nx/js": "22.4.1",
+    "@nx/node": "^22.4.3",
     "@nx/playwright": "22.4.1",
     "@nx/web": "22.4.1",
     "@nx/workspace": "22.4.1",
@@ -51,6 +55,8 @@
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/cors": "^2.8.19",
     "@types/express": "^4.17.21",
     "@types/node": "20.19.9",
     "@typescript-eslint/utils": "^8.40.0",
@@ -64,9 +70,12 @@
     "nx": "22.4.1",
     "postcss-url": "~10.1.3",
     "prettier": "~3.6.2",
+    "ts-node": "^10.9.2",
     "tslib": "^2.3.0",
+    "tsx": "^4.21.0",
     "tw-animate-css": "^1.4.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0"
-  }
+  },
+  "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad"
 }

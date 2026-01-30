@@ -1,0 +1,41 @@
+{
+  "name": "game-data-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/game-data-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/game-data-api",
+        "main": "apps/game-data-api/src/main.ts",
+        "tsConfig": "apps/game-data-api/tsconfig.app.json",
+        "assets": ["apps/game-data-api/src/assets"]
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "game-data-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "game-data-api:build:development"
+        },
+        "production": {
+          "buildTarget": "game-data-api:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

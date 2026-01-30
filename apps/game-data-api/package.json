@@ -1,0 +1,11 @@
+{
+  "name": "game-data-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ../../dist/apps/game-data-api/main.js",
+    "dev": "ts-node src/main.ts",
+    "seed": "ts-node src/database/seed.ts",
+    "build": "tsc"
+  }
+}

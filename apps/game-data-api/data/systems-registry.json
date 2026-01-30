@@ -341,6 +341,36 @@
         "Online status",
         "Play together"
       ]
+    },
+    {
+      "id": "fishing-system",
+      "name": "Fishing System",
+      "description": "Complete fishing mechanics including species, locations, rods, baits, and progression",
+      "category": "Gameplay",
+      "sourcePath": "libs/roblox-core/src/gameplay/fishingSystem.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Game-agnostic fishing system with rarity rolling, quality mechanics, XP progression, collection tracking, and sell system.",
+      "configKeys": [
+        "RARITY_CHANCES",
+        "BASE_CATCH_TIME_MS",
+        "LEVEL_XP_REQUIRED",
+        "QUALITY_CHANCES",
+        "SELL_MULTIPLIERS",
+        "WEIGHT_BONUS_PER_LEVEL",
+        "XP_PER_CATCH"
+      ],
+      "linkedGames": ["lkfy-lgnd-0000-0000-000000000002"],
+      "features": [
+        "Fish species with rarities",
+        "Fishing locations with unlock levels",
+        "Rods and baits with bonuses",
+        "Quality system (poor/normal/good/perfect)",
+        "Level progression with XP",
+        "Personal record tracking",
+        "Collection/discovery system",
+        "Sell mechanics"
+      ]
     }
   ]
 }

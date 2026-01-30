@@ -40,6 +40,24 @@
         "cwd": "apps/dragon-legends",
         "command": "npx rojo plugin install"
       }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx vitest run --config apps/dragon-legends/vitest.config.ts"
+      }
+    },
+    "test:watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx vitest --config apps/dragon-legends/vitest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx eslint apps/dragon-legends/src --ext .ts"
+      }
     }
   }
 }

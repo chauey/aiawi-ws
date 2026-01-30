@@ -55,16 +55,13 @@ export class GameRepository {
   /**
    * Update a game
    */
-  update(id: string, dto: UpdateGameDto, modifierId?: string): GameDto | null {
+  update(id: string, dto: UpdateGameDto, _modifierId?: string): GameDto | null {
     const game = this.storage.getGameById(id);
     if (!game) return null;
 
-    const success = this.storage.updateGame(id, {
-      ...dto,
-      lastModifierId: modifierId,
-    });
+    const success = this.storage.updateGame(id, dto as Partial<GameDto>);
 
-    return success ? this.storage.getGameById(id)! : null;
+    return success ? (this.storage.getGameById(id) ?? null) : null;
   }
 
   /**

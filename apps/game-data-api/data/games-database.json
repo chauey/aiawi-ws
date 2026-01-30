@@ -1601,11 +1601,318 @@
       },
       "creationTime": "2026-01-30T18:07:00.000Z",
       "lastModificationTime": "2026-01-30T18:07:00.000Z"
+    },
+    {
+      "id": "drgn-lgnd-0000-0000-000000000001",
+      "name": "🐉 Dragon Legends",
+      "developer": "AI AWI Studios",
+      "genre": "RPG",
+      "releaseDate": "2026-03-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Our Game",
+      "description": "Epic dragon collection and breeding RPG. Collect rare dragons, breed for unique hybrids, battle in arenas, trade with players, and join clans for exclusive rewards. Built with our roblox-core library.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "dragons",
+        "collection",
+        "breeding",
+        "rpg",
+        "trading",
+        "clans",
+        "gacha",
+        "pvp"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasProgressionSystem": true,
+        "hasGachaSystem": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true,
+        "hasMultiplayer": true,
+        "hasGuilds": true,
+        "hasPvP": true,
+        "hasPvE": true,
+        "hasRaids": true,
+        "hasDailies": true,
+        "hasQuests": true,
+        "hasAchievements": true,
+        "hasLevelSystem": true
+      },
+      "priorityScore": 100,
+      "recommendedForReplication": false,
+      "strengths": [
+        "Full-featured core library",
+        "Breeding genetics system",
+        "Clan system",
+        "Daily rewards with VIP",
+        "Balanced economy"
+      ],
+      "weaknesses": ["In development", "Needs art assets"],
+      "uniqueSellingPoints": [
+        "Dragon breeding with genetics",
+        "Elemental type advantages",
+        "Clan boss raids",
+        "Trading economy"
+      ],
+      "lessonsLearned": [
+        "Core library reduces dev time 80%",
+        "Type-safe development with roblox-ts"
+      ],
+      "features": [
+        {
+          "id": "drgn-feat-0001",
+          "name": "Dragon Breeding System",
+          "description": "Breed dragons with genetic inheritance for rare traits and mutations",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Hard",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 9,
+          "technicalNotes": "Genetics system with dominant/recessive traits. Mutation chances. Breeding cooldowns."
+        },
+        {
+          "id": "drgn-feat-0002",
+          "name": "Elemental Battle System",
+          "description": "Rock-paper-scissors elemental advantages in dragon battles",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 7,
+          "technicalNotes": "Fire > Nature > Water > Fire. Special abilities per element."
+        },
+        {
+          "id": "drgn-feat-0003",
+          "name": "Clan System",
+          "description": "Join clans for perks, boss raids, and social features",
+          "category": "Social",
+          "importance": "High",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 6,
+          "technicalNotes": "Uses roblox-core clans module. Contributions, ranks, and exclusive rewards."
+        },
+        {
+          "id": "drgn-feat-0004",
+          "name": "Daily Rewards with Streaks",
+          "description": "Login daily for escalating rewards with VIP multipliers",
+          "category": "Retention",
+          "importance": "High",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 8,
+          "monetizationPotential": 5,
+          "technicalNotes": "Uses roblox-core dailyRewards module. 7-day cycle with milestone bonuses."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 0,
+        "concurrentPlayers": 0,
+        "peakConcurrentPlayers": 0,
+        "averageSessionLength": 0,
+        "retentionRateDay1": 0,
+        "retentionRateDay7": 0,
+        "retentionRateDay30": 0,
+        "revenueTotal": 0,
+        "revenueMonthly": 0,
+        "conversionRate": 0,
+        "averageRevenuePerUser": 0
+      },
+      "creationTime": "2026-01-30T19:45:00.000Z",
+      "lastModificationTime": "2026-01-30T19:45:00.000Z"
+    },
+    {
+      "id": "lkfy-lgnd-0000-0000-000000000002",
+      "name": "🎣 Lucky Fish Legends",
+      "developer": "AI AWI Studios",
+      "genre": "Simulator",
+      "releaseDate": "2026-04-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Our Game",
+      "description": "Cast your luck. Catch legends. Flex forever. A fishing + RNG hybrid combining Fish It!'s viral loop with Sol's RNG monetization. One-tap fishing for fish with extreme rarities (1:10M) and visible aura effects.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "fishing",
+        "rng",
+        "collection",
+        "trading",
+        "gacha",
+        "viral",
+        "flex",
+        "auras"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasProgressionSystem": true,
+        "hasGachaSystem": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true,
+        "hasMultiplayer": true,
+        "hasGuilds": true,
+        "hasDailies": true
+      },
+      "priorityScore": 100,
+      "recommendedForReplication": false,
+      "strengths": [
+        "Combines #1 game loop with highest margin model",
+        "Low dev complexity",
+        "Viral potential",
+        "82% predicted success rate"
+      ],
+      "weaknesses": ["Trend-dependent", "Competition from clones"],
+      "uniqueSellingPoints": [
+        "Fish with visible bioluminescent auras",
+        "1:10M Legendary Kraken",
+        "Cross-biome fishing (ocean, volcano, space)",
+        "Fish evolution/mutation system"
+      ],
+      "lessonsLearned": [
+        "Data-driven game design",
+        "Perfect Game Formula calculation"
+      ],
+      "features": [
+        {
+          "id": "lkfy-feat-0001",
+          "name": "One-Tap Fishing",
+          "description": "Simple tap mechanic to catch fish with RNG rarity",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 8,
+          "technicalNotes": "Tap timing affects catch rates. Premium rods increase rare fish chance. Viral clip potential."
+        },
+        {
+          "id": "lkfy-feat-0002",
+          "name": "Extreme Rarity Tiers",
+          "description": "Fish rarities from 1:10 to 1:10,000,000 inspired by Sol's RNG",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 10,
+          "technicalNotes": "Rarity tiers: Common (1:10), Rare (1:100), Epic (1:1000), Legendary (1:10000), Mythic (1:100000), Godly (1:1M), Kraken (1:10M)"
+        },
+        {
+          "id": "lkfy-feat-0003",
+          "name": "Visible Aura Effects",
+          "description": "Rare fish display bioluminescent auras for flex culture",
+          "category": "Social",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 9,
+          "technicalNotes": "Particle effects scale with rarity. Glows visible to all players. Status symbol."
+        },
+        {
+          "id": "lkfy-feat-0004",
+          "name": "Luck Boost Gamepasses",
+          "description": "2x, 5x, 10x luck multipliers for Robux",
+          "category": "Monetization",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 7,
+          "monetizationPotential": 10,
+          "technicalNotes": "Permanent and timed boosts. Stack with events. Primary revenue driver."
+        },
+        {
+          "id": "lkfy-feat-0005",
+          "name": "Trading System",
+          "description": "Player-to-player fish trading for economy and retention",
+          "category": "Social",
+          "importance": "Must-Have",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 7,
+          "technicalNotes": "Uses roblox-core trading module. Trade windows, history, scam prevention."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 0,
+        "concurrentPlayers": 0,
+        "peakConcurrentPlayers": 0,
+        "averageSessionLength": 0,
+        "retentionRateDay1": 70,
+        "retentionRateDay7": 52,
+        "retentionRateDay30": 32,
+        "revenueTotal": 0,
+        "revenueMonthly": 0,
+        "conversionRate": 15,
+        "averageRevenuePerUser": 3.5
+      },
+      "creationTime": "2026-01-30T19:45:00.000Z",
+      "lastModificationTime": "2026-01-30T19:45:00.000Z"
+    },
+    {
+      "id": "coin-coll-0000-0000-000000000003",
+      "name": "🪙 Coin Collector",
+      "developer": "AI AWI Studios",
+      "genre": "Simulation",
+      "releaseDate": "2026-01-15T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Our Game",
+      "description": "Simple coin collection game used as our roblox-ts learning project and testing ground. Basic mechanics but fully functional with our core library integration.",
+      "monetizationModel": "Free",
+      "tags": ["starter", "learning", "coins", "collection", "simple"],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasProgressionSystem": true,
+        "hasLeaderboards": true,
+        "hasVirtualCurrency": true
+      },
+      "priorityScore": 30,
+      "recommendedForReplication": false,
+      "strengths": [
+        "Simple and working",
+        "Good for testing",
+        "Core library integration"
+      ],
+      "weaknesses": ["Basic mechanics", "Limited content", "No monetization"],
+      "uniqueSellingPoints": ["Learning project"],
+      "lessonsLearned": [
+        "roblox-ts basics",
+        "Rojo workflow",
+        "Core library patterns"
+      ],
+      "features": [],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 0,
+        "concurrentPlayers": 0,
+        "peakConcurrentPlayers": 0,
+        "averageSessionLength": 0,
+        "retentionRateDay1": 0,
+        "retentionRateDay7": 0,
+        "retentionRateDay30": 0,
+        "revenueTotal": 0,
+        "revenueMonthly": 0,
+        "conversionRate": 0,
+        "averageRevenuePerUser": 0
+      },
+      "creationTime": "2026-01-30T19:45:00.000Z",
+      "lastModificationTime": "2026-01-30T19:45:00.000Z"
     }
   ],
   "metadata": {
     "version": "1.0.0",
-    "lastUpdated": "2026-01-30T18:07:00.000Z",
-    "totalGames": 17
+    "lastUpdated": "2026-01-30T19:45:00.000Z",
+    "totalGames": 20
   }
 }

@@ -25,7 +25,7 @@ export * from './monetization/firstPurchase';
 export * from './monetization/limitedOffers';
 export * from './monetization/gifting';
 export * from './monetization/starterPacks';
-export * from './monetization/gachaSystem'; // NEW: Gacha/egg system
+export * from './monetization/gachaSystem'; // Gacha/egg system
 
 // ========== ANALYTICS ==========
 export * from './analytics/analytics';
@@ -40,10 +40,13 @@ export * from './security/moderation';
 export * from './retention/psychology';
 export * from './retention/notifications';
 export * from './retention/questSystem'; // Daily/weekly quests
-export * from './retention/dailyRewards'; // NEW: Streak-based daily rewards
+export * from './retention/dailyRewards'; // Streak-based daily rewards
 
 // ========== SOCIAL ==========
 export * from './social/friends';
 export * from './social/trading';
 export * from './social/matchmaking'; // ELO matchmaking
-export * from './social/clans'; // NEW: Clan/guild system
+export * from './social/clans'; // Clan/guild system
+
+// ========== GAMEPLAY ==========
+export * from './gameplay/fishingSystem'; // Fishing mechanics

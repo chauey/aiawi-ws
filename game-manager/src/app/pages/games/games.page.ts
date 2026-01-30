@@ -1,7 +1,13 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { BrnSelectImports } from '@spartan-ng/brain/select';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 interface Game {
   id: string;
@@ -20,101 +26,132 @@ interface Game {
 @Component({
   selector: 'app-games',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    ReactiveFormsModule,
+    HlmButtonImports,
+    HlmInputImports,
+    HlmCardImports,
+    HlmBadgeImports,
+    BrnSelectImports,
+    HlmSelectImports,
+  ],
   template: `
-    <div class="games-page">
-      <div class="page-header">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div
+        class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6"
+      >
         <div>
-          <h1>Games Database</h1>
-          <p>Browse and manage all tracked games</p>
+          <h1 class="text-2xl font-bold">Games Database</h1>
+          <p class="text-muted-foreground">
+            Browse and manage all tracked games
+          </p>
         </div>
-        <button class="btn-primary" (click)="showAddModal = true">
-          + Add Game
-        </button>
+        <button hlmBtn>+ Add Game</button>
       </div>
 
       <!-- Filters -->
-      <div class="filters">
+      <div class="flex flex-wrap gap-3 mb-6">
         <input
+          hlmInput
           type="text"
           placeholder="Search games..."
-          [(ngModel)]="searchQuery"
-          (input)="filterGames()"
-          class="search-input"
+          [formControl]="searchControl"
+          class="flex-1 min-w-[200px]"
         />
 
-        <select
-          [(ngModel)]="genreFilter"
-          (change)="filterGames()"
-          class="filter-select"
-        >
-          <option value="">All Genres</option>
-          @for (genre of genres(); track genre) {
-            <option [value]="genre">{{ genre }}</option>
-          }
-        </select>
+        <brn-select [formControl]="genreControl" placeholder="All Genres">
+          <hlm-select-trigger class="w-[150px]">
+            <hlm-select-value />
+          </hlm-select-trigger>
+          <hlm-select-content>
+            <hlm-option value="">All Genres</hlm-option>
+            @for (genre of genres(); track genre) {
+              <hlm-option [value]="genre">{{ genre }}</hlm-option>
+            }
+          </hlm-select-content>
+        </brn-select>
 
-        <select
-          [(ngModel)]="ownershipFilter"
-          (change)="filterGames()"
-          class="filter-select"
-        >
-          <option value="">All Types</option>
-          <option value="Our Game">Our Games</option>
-          <option value="Competitor">Competitors</option>
-          <option value="Reference">Reference</option>
-        </select>
+        <brn-select [formControl]="ownershipControl" placeholder="All Types">
+          <hlm-select-trigger class="w-[150px]">
+            <hlm-select-value />
+          </hlm-select-trigger>
+          <hlm-select-content>
+            <hlm-option value="">All Types</hlm-option>
+            <hlm-option value="Our Game">Our Games</hlm-option>
+            <hlm-option value="Competitor">Competitors</hlm-option>
+            <hlm-option value="Reference">Reference</hlm-option>
+          </hlm-select-content>
+        </brn-select>
       </div>
 
       <!-- Games Grid -->
       @if (loading()) {
-        <div class="loading">Loading games...</div>
+        <div class="text-center py-12 text-muted-foreground">
+          Loading games...
+        </div>
       } @else if (filteredGames().length === 0) {
-        <div class="empty">No games found</div>
+        <div class="text-center py-12 text-muted-foreground">
+          No games found
+        </div>
       } @else {
-        <div class="games-grid">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        >
           @for (game of filteredGames(); track game.id) {
-            <a [routerLink]="['/games', game.id]" class="game-card">
-              <div class="game-header">
-                <h3>{{ game.name }}</h3>
-                <span class="badge" [class]="getOwnershipClass(game.ownership)">
-                  {{ game.ownership || 'Reference' }}
-                </span>
-              </div>
-
-              <div class="game-meta">
-                <span>{{ game.developer }}</span>
-                <span class="dot">•</span>
-                <span>{{ game.genre }}</span>
+            <a
+              [routerLink]="['/games', game.id]"
+              hlmCard
+              class="block hover:border-primary transition-colors"
+            >
+              <div hlmCardHeader class="pb-2">
+                <div class="flex justify-between items-start gap-2">
+                  <h3 hlmCardTitle class="text-base">{{ game.name }}</h3>
+                  <span hlmBadge [variant]="getBadgeVariant(game.ownership)">
+                    {{ game.ownership || 'Reference' }}
+                  </span>
+                </div>
+                <p hlmCardDescription>
+                  {{ game.developer }} • {{ game.genre }}
+                </p>
               </div>
 
               @if (game.successMetrics) {
-                <div class="game-stats">
-                  <div class="stat">
-                    <span class="stat-value"
-                      >\${{
-                        formatNumber(game.successMetrics.revenueMonthly)
-                      }}/mo</span
-                    >
-                    <span class="stat-label">Revenue</span>
-                  </div>
-                  <div class="stat">
-                    <span class="stat-value">{{
-                      formatNumber(game.successMetrics.concurrentPlayers)
-                    }}</span>
-                    <span class="stat-label">Players</span>
-                  </div>
-                  <div class="stat">
-                    <span class="stat-value"
-                      >{{ game.successMetrics.retentionRateDay1 }}%</span
-                    >
-                    <span class="stat-label">D1 Retention</span>
+                <div hlmCardContent class="pt-0">
+                  <div class="grid grid-cols-3 gap-2 p-3 bg-muted rounded-lg">
+                    <div class="text-center">
+                      <div class="text-sm font-semibold">
+                        {{
+                          '$' +
+                            formatNumber(game.successMetrics.revenueMonthly)
+                        }}/mo
+                      </div>
+                      <div class="text-xs text-muted-foreground">Revenue</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-sm font-semibold">
+                        {{
+                          formatNumber(game.successMetrics.concurrentPlayers)
+                        }}
+                      </div>
+                      <div class="text-xs text-muted-foreground">Players</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-sm font-semibold">
+                        {{ game.successMetrics.retentionRateDay1 }}%
+                      </div>
+                      <div class="text-xs text-muted-foreground">D1 Ret.</div>
+                    </div>
                   </div>
                 </div>
               }
 
-              <div class="game-platform">
-                <span class="platform-badge">{{ game.platform }}</span>
+              <div hlmCardFooter class="pt-2">
+                <span class="text-xs px-2 py-1 bg-secondary rounded">{{
+                  game.platform
+                }}</span>
               </div>
             </a>
           }
@@ -122,222 +159,47 @@ interface Game {
       }
     </div>
   `,
-  styles: `
-    .games-page {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .page-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-    }
-
-    .page-header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 0 0 0.5rem 0;
-    }
-
-    .page-header p {
-      color: var(--text-secondary, #666);
-      margin: 0;
-    }
-
-    .btn-primary {
-      padding: 0.75rem 1.5rem;
-      background: oklch(0.6 0.2 260);
-      color: white;
-      border: none;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .btn-primary:hover {
-      background: oklch(0.55 0.22 260);
-    }
-
-    /* Filters */
-    .filters {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .search-input {
-      flex: 1;
-      min-width: 200px;
-      padding: 0.75rem 1rem;
-      background: var(--bg-secondary, #f5f5f5);
-      border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 0.5rem;
-      color: inherit;
-      font-size: 1rem;
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: oklch(0.6 0.2 260);
-    }
-
-    .filter-select {
-      padding: 0.75rem 1rem;
-      background: var(--bg-secondary, #f5f5f5);
-      border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 0.5rem;
-      color: inherit;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    /* Games Grid */
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1rem;
-    }
-
-    .game-card {
-      display: block;
-      padding: 1.25rem;
-      background: var(--bg-secondary, #f5f5f5);
-      border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 0.75rem;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-    }
-
-    .game-card:hover {
-      border-color: oklch(0.6 0.2 260);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px oklch(0 0 0 / 0.1);
-    }
-
-    .game-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.5rem;
-    }
-
-    .game-header h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin: 0;
-    }
-
-    .badge {
-      padding: 0.25rem 0.5rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      border-radius: 9999px;
-    }
-
-    .badge.our-game {
-      background: oklch(0.65 0.2 145 / 0.2);
-      color: oklch(0.5 0.2 145);
-    }
-
-    .badge.competitor {
-      background: oklch(0.6 0.25 25 / 0.2);
-      color: oklch(0.5 0.25 25);
-    }
-
-    .badge.reference {
-      background: oklch(0.6 0.2 260 / 0.2);
-      color: oklch(0.5 0.2 260);
-    }
-
-    .game-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.875rem;
-      color: var(--text-secondary, #666);
-      margin-bottom: 1rem;
-    }
-
-    .dot {
-      opacity: 0.5;
-    }
-
-    .game-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-      padding: 0.75rem;
-      background: var(--bg-tertiary, #eee);
-      border-radius: 0.5rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .stat {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 0.875rem;
-      font-weight: 600;
-    }
-
-    .stat-label {
-      font-size: 0.7rem;
-      color: var(--text-secondary, #666);
-    }
-
-    .game-platform {
-      display: flex;
-    }
-
-    .platform-badge {
-      padding: 0.25rem 0.5rem;
-      font-size: 0.75rem;
-      background: var(--bg-tertiary, #eee);
-      border-radius: 0.25rem;
-    }
-
-    .loading,
-    .empty {
-      padding: 3rem;
-      text-align: center;
-      color: var(--text-secondary, #666);
-    }
-
-    @media (max-width: 640px) {
-      .page-header {
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .btn-primary {
-        width: 100%;
-      }
-    }
-  `,
 })
 export class GamesPage implements OnInit {
+  private fb = inject(FormBuilder);
+
   loading = signal(true);
   games = signal<Game[]>([]);
-  filteredGames = signal<Game[]>([]);
   genres = signal<string[]>([]);
 
-  searchQuery = '';
-  genreFilter = '';
-  ownershipFilter = '';
-  showAddModal = false;
+  searchControl = this.fb.control('');
+  genreControl = this.fb.control('');
+  ownershipControl = this.fb.control('');
+
+  filteredGames = computed(() => {
+    let filtered = this.games();
+    const search = this.searchControl.value?.toLowerCase() || '';
+    const genre = this.genreControl.value || '';
+    const ownership = this.ownershipControl.value || '';
+
+    if (search) {
+      filtered = filtered.filter(
+        (g) =>
+          g.name.toLowerCase().includes(search) ||
+          g.developer.toLowerCase().includes(search),
+      );
+    }
+    if (genre) {
+      filtered = filtered.filter((g) => g.genre === genre);
+    }
+    if (ownership) {
+      filtered = filtered.filter((g) => g.ownership === ownership);
+    }
+    return filtered;
+  });
 
   ngOnInit() {
     this.loadGames();
+
+    // Subscribe to form changes to trigger recompute
+    this.searchControl.valueChanges.subscribe(() => this.filteredGames());
+    this.genreControl.valueChanges.subscribe(() => this.filteredGames());
+    this.ownershipControl.valueChanges.subscribe(() => this.filteredGames());
   }
 
   async loadGames() {
@@ -347,12 +209,11 @@ export class GamesPage implements OnInit {
       const games = data.items || [];
 
       this.games.set(games);
-      this.filteredGames.set(games);
 
       const uniqueGenres = [...new Set(games.map((g: Game) => g.genre))]
         .filter(Boolean)
-        .sort();
-      this.genres.set(uniqueGenres as string[]);
+        .sort() as string[];
+      this.genres.set(uniqueGenres);
     } catch (error) {
       console.error('Failed to load games:', error);
     } finally {
@@ -360,41 +221,22 @@ export class GamesPage implements OnInit {
     }
   }
 
-  filterGames() {
-    let filtered = this.games();
-
-    if (this.searchQuery) {
-      const query = this.searchQuery.toLowerCase();
-      filtered = filtered.filter(
-        (g) =>
-          g.name.toLowerCase().includes(query) ||
-          g.developer.toLowerCase().includes(query),
-      );
+  getBadgeVariant(
+    ownership: string | undefined,
+  ): 'default' | 'secondary' | 'destructive' | 'outline' {
+    switch (ownership) {
+      case 'Our Game':
+        return 'default';
+      case 'Competitor':
+        return 'destructive';
+      default:
+        return 'secondary';
     }
-
-    if (this.genreFilter) {
-      filtered = filtered.filter((g) => g.genre === this.genreFilter);
-    }
-
-    if (this.ownershipFilter) {
-      filtered = filtered.filter((g) => g.ownership === this.ownershipFilter);
-    }
-
-    this.filteredGames.set(filtered);
   }
 
   formatNumber(num: number): string {
-    if (num >= 1000000) {
-      return (num / 1000000).toFixed(1) + 'M';
-    }
-    if (num >= 1000) {
-      return (num / 1000).toFixed(1) + 'K';
-    }
+    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+    if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
     return num.toString();
-  }
-
-  getOwnershipClass(ownership: string | undefined): string {
-    if (!ownership) return 'reference';
-    return ownership.toLowerCase().replace(' ', '-');
   }
 }

@@ -1,0 +1,130 @@
+---
+description: Angular development rules for this workspace
+globs:
+  - "**/*.ts"
+  - "**/*.html"
+  - "**/*.scss"
+  - "**/*.css"
+---
+
+# Angular Development Rules
+
+## Core Principles
+
+1. **Use Reactive Forms** - Never use template-driven forms (ngModel for forms). Always use `FormBuilder`, `FormGroup`, and `FormControl`.
+
+2. **Minimal CSS** - Use Tailwind utility classes. No custom SCSS/CSS files unless absolutely necessary. Inline styles via Tailwind.
+
+3. **Spartan UI Controls** - Use `@spartan-ng/ui-*` components (hlm-* directives) instead of Angular Material or custom HTML controls:
+   - `hlm-button` for buttons
+   - `hlm-input` for text inputs
+   - `hlm-select` for dropdowns
+   - `hlm-card` for cards
+   - `hlm-table` for data tables
+   - `hlm-badge` for status indicators
+   - `hlm-dialog` for modals
+
+4. **NgRx Signal Store** - Use `@ngrx/signals` for state management, not classic NgRx with actions/reducers:
+   ```typescript
+   export const GameStore = signalStore(
+     withState({ games: [], loading: false }),
+     withComputed((state) => ({
+       gameCount: computed(() => state.games().length)
+     })),
+     withMethods((store, http = inject(HttpClient)) => ({
+       loadGames: rxMethod<void>(...)
+     }))
+   );
+   ```
+
+5. **Tailwind CSS** - Use Tailwind v4 with OKLCH color tokens. Dark mode first.
+
+## Component Patterns
+
+### Standalone Components
+Always use standalone components with inline templates when possible:
+```typescript
+@Component({
+  selector: 'app-example',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, HlmButtonDirective],
+  template: `...`
+})
+```
+
+### Dependency Injection
+Use `inject()` function, not constructor injection:
+```typescript
+// ✅ Good
+private http = inject(HttpClient);
+private store = inject(GameStore);
+
+// ❌ Bad
+constructor(private http: HttpClient) {}
+```
+
+### Signals
+Prefer Angular signals over BehaviorSubject:
+```typescript
+// ✅ Good
+loading = signal(false);
+games = signal<Game[]>([]);
+
+// ❌ Bad
+loading$ = new BehaviorSubject(false);
+```
+
+### Forms
+Always use Reactive Forms:
+```typescript
+// ✅ Good
+form = inject(FormBuilder).group({
+  name: ['', Validators.required],
+  genre: ['']
+});
+
+// ❌ Bad - Template-driven
+<input [(ngModel)]="name">
+```
+
+## Spartan UI Usage
+
+Components are available via the `@spartan-ng/helm/*` namespace:
+
+```typescript
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmInputDirective } from '@spartan-ng/helm/input';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmBadgeDirective } from '@spartan-ng/helm/badge';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { HlmTableImports } from '@spartan-ng/helm/table';
+import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { HlmDialogImports } from '@spartan-ng/helm/dialog';
+```
+
+Generate new components with:
+```bash
+npx nx g @spartan-ng/cli:ui <component> --project=<app-name>
+```
+
+## File Structure
+
+```
+app/
+├── pages/           # Route components
+├── components/      # Shared components
+├── services/        # Injectable services
+└── store/           # NgRx Signal Stores
+
+libs/
+├── ui/              # Spartan UI components
+├── data-access/     # API clients and stores
+└── shared/          # Shared types/utilities
+```
+
+## Naming Conventions
+
+- Components: `feature.component.ts` or `feature.page.ts` (for route pages)
+- Stores: `feature.store.ts`
+- Services: `feature.service.ts`
+- Models: `feature.model.ts`

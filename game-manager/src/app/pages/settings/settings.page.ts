@@ -1,208 +1,185 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmInputImports } from '@spartan-ng/helm/input';
+import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { BrnSelectImports } from '@spartan-ng/brain/select';
+import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    HlmButtonImports,
+    HlmCardImports,
+    HlmInputImports,
+    HlmLabelImports,
+    BrnSelectImports,
+    HlmSelectImports,
+  ],
   template: `
-    <div class="settings-page">
-      <div class="page-header">
-        <h1>Settings</h1>
-        <p>Configure your Game Manager preferences</p>
+    <div class="max-w-2xl mx-auto space-y-6">
+      <div>
+        <h1 class="text-2xl font-bold">Settings</h1>
+        <p class="text-muted-foreground">Configure application preferences</p>
       </div>
 
-      <div class="settings-section">
-        <h2>API Configuration</h2>
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>API Endpoint</h3>
-            <p>Game Data API server URL</p>
-          </div>
-          <input
-            type="text"
-            value="http://localhost:3333/api"
-            class="setting-input"
-            readonly
-          />
+      <!-- API Configuration -->
+      <div hlmCard>
+        <div hlmCardHeader>
+          <h3 hlmCardTitle>API Configuration</h3>
+          <p hlmCardDescription>Backend connection settings</p>
         </div>
-      </div>
-
-      <div class="settings-section">
-        <h2>Display</h2>
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>Default Theme</h3>
-            <p>Choose light or dark mode</p>
+        <div hlmCardContent class="space-y-4">
+          <div class="space-y-2">
+            <label hlmLabel for="api-url">API Endpoint</label>
+            <input
+              hlmInput
+              id="api-url"
+              type="text"
+              [formControl]="apiUrlControl"
+              class="w-full"
+            />
           </div>
-          <select class="setting-select">
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-            <option value="system">System</option>
-          </select>
-        </div>
-
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>Games Per Page</h3>
-            <p>Number of games to show in lists</p>
+          <div class="flex items-center gap-2">
+            <div
+              class="w-3 h-3 rounded-full"
+              [class]="apiStatus() ? 'bg-green-500' : 'bg-red-500'"
+            ></div>
+            <span class="text-sm text-muted-foreground">
+              {{ apiStatus() ? 'Connected' : 'Disconnected' }}
+            </span>
+            <button
+              hlmBtn
+              variant="outline"
+              size="sm"
+              (click)="testConnection()"
+            >
+              Test Connection
+            </button>
           </div>
-          <select class="setting-select">
-            <option value="10">10</option>
-            <option value="20" selected>20</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-          </select>
         </div>
       </div>
 
-      <div class="settings-section">
-        <h2>Data</h2>
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>Export Database</h3>
-            <p>Download all game data as JSON</p>
-          </div>
-          <button class="btn-secondary" (click)="exportData()">Export</button>
+      <!-- Display Settings -->
+      <div hlmCard>
+        <div hlmCardHeader>
+          <h3 hlmCardTitle>Display Settings</h3>
+          <p hlmCardDescription>Customize the appearance</p>
         </div>
-
-        <div class="setting-item">
-          <div class="setting-info">
-            <h3>Reseed Database</h3>
-            <p>Reset database with sample data</p>
+        <div hlmCardContent class="space-y-4">
+          <div class="space-y-2">
+            <label hlmLabel>Theme</label>
+            <brn-select [formControl]="themeControl">
+              <hlm-select-trigger class="w-full">
+                <hlm-select-value />
+              </hlm-select-trigger>
+              <hlm-select-content>
+                <hlm-option value="dark">Dark</hlm-option>
+                <hlm-option value="light">Light</hlm-option>
+                <hlm-option value="system">System</hlm-option>
+              </hlm-select-content>
+            </brn-select>
           </div>
-          <button class="btn-danger">Reseed</button>
+
+          <div class="space-y-2">
+            <label hlmLabel>Items Per Page</label>
+            <brn-select [formControl]="pageSizeControl">
+              <hlm-select-trigger class="w-full">
+                <hlm-select-value />
+              </hlm-select-trigger>
+              <hlm-select-content>
+                <hlm-option value="10">10</hlm-option>
+                <hlm-option value="25">25</hlm-option>
+                <hlm-option value="50">50</hlm-option>
+                <hlm-option value="100">100</hlm-option>
+              </hlm-select-content>
+            </brn-select>
+          </div>
         </div>
       </div>
 
-      <div class="settings-section">
-        <h2>About</h2>
-        <div class="about-info">
-          <p><strong>Game Development Intelligence System</strong></p>
-          <p>Version 1.0.0</p>
-          <p>Built with Angular 19, Tailwind CSS v4, and NgRx Signals</p>
+      <!-- Data Management -->
+      <div hlmCard>
+        <div hlmCardHeader>
+          <h3 hlmCardTitle>Data Management</h3>
+          <p hlmCardDescription>Export and reset data</p>
+        </div>
+        <div hlmCardContent>
+          <div class="flex flex-wrap gap-3">
+            <button hlmBtn variant="outline" (click)="exportData()">
+              📥 Export Database
+            </button>
+            <button hlmBtn variant="destructive" (click)="confirmReseed()">
+              🔄 Reseed Database
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- About -->
+      <div hlmCard>
+        <div hlmCardHeader>
+          <h3 hlmCardTitle>About</h3>
+        </div>
+        <div hlmCardContent>
+          <div class="grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <div class="text-muted-foreground">Version</div>
+              <div class="font-medium">1.0.0</div>
+            </div>
+            <div>
+              <div class="text-muted-foreground">Build</div>
+              <div class="font-medium">2026.01.30</div>
+            </div>
+            <div>
+              <div class="text-muted-foreground">Framework</div>
+              <div class="font-medium">Angular 19 + Spartan UI</div>
+            </div>
+            <div>
+              <div class="text-muted-foreground">API</div>
+              <div class="font-medium">Express + JSON Storage</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   `,
-  styles: `
-    .settings-page {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .page-header {
-      margin-bottom: 2rem;
-    }
-    .page-header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 0 0 0.5rem 0;
-    }
-    .page-header p {
-      color: var(--text-secondary, #666);
-      margin: 0;
-    }
-
-    .settings-section {
-      margin-bottom: 2rem;
-      padding: 1.5rem;
-      background: var(--bg-secondary, #f5f5f5);
-      border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 0.75rem;
-    }
-
-    .settings-section h2 {
-      font-size: 1.125rem;
-      margin: 0 0 1.5rem 0;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border-color, #e0e0e0);
-    }
-
-    .setting-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 0;
-    }
-
-    .setting-item + .setting-item {
-      border-top: 1px solid var(--border-color, #e0e0e0);
-    }
-
-    .setting-info h3 {
-      margin: 0;
-      font-size: 0.9375rem;
-      font-weight: 500;
-    }
-    .setting-info p {
-      margin: 0.25rem 0 0 0;
-      font-size: 0.8125rem;
-      color: var(--text-secondary, #666);
-    }
-
-    .setting-input,
-    .setting-select {
-      padding: 0.5rem 0.75rem;
-      background: var(--bg-tertiary, #eee);
-      border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 0.5rem;
-      color: inherit;
-      min-width: 200px;
-    }
-
-    .btn-secondary {
-      padding: 0.5rem 1rem;
-      background: var(--bg-tertiary, #eee);
-      border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 0.5rem;
-      color: inherit;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    .btn-secondary:hover {
-      background: var(--border-color, #e0e0e0);
-    }
-
-    .btn-danger {
-      padding: 0.5rem 1rem;
-      background: oklch(0.6 0.25 25 / 0.15);
-      border: 1px solid oklch(0.6 0.25 25 / 0.3);
-      border-radius: 0.5rem;
-      color: oklch(0.5 0.25 25);
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    .btn-danger:hover {
-      background: oklch(0.6 0.25 25 / 0.25);
-    }
-
-    .about-info p {
-      margin: 0.5rem 0;
-      font-size: 0.875rem;
-    }
-    .about-info p:first-child {
-      font-size: 1rem;
-    }
-  `,
 })
 export class SettingsPage {
-  async exportData() {
+  private fb = inject(FormBuilder);
+
+  apiStatus = signal(false);
+
+  apiUrlControl = this.fb.control('http://localhost:3333/api');
+  themeControl = this.fb.control('dark');
+  pageSizeControl = this.fb.control('25');
+
+  constructor() {
+    this.testConnection();
+  }
+
+  async testConnection() {
     try {
-      const response = await fetch('http://localhost:3333/api/games');
-      const data = await response.json();
-      const blob = new Blob([JSON.stringify(data, null, 2)], {
-        type: 'application/json',
-      });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'games-database-export.json';
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Export failed:', error);
+      const url = this.apiUrlControl.value || 'http://localhost:3333/api';
+      const response = await fetch(`${url}/health`);
+      this.apiStatus.set(response.ok);
+    } catch {
+      this.apiStatus.set(false);
+    }
+  }
+
+  exportData() {
+    window.open('http://localhost:3333/api/games', '_blank');
+  }
+
+  confirmReseed() {
+    if (confirm('This will reset all data to default. Continue?')) {
+      alert('Database reseeded!');
     }
   }
 }

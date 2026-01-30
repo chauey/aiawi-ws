@@ -1,352 +1,238 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
-interface GameSummary {
+interface Game {
+  id: string;
   name: string;
   genre: string;
-  revenueMonthly: number;
-  concurrentPlayers: number;
+  ownership?: string;
+  successMetrics?: {
+    revenueMonthly: number;
+    concurrentPlayers: number;
+  };
+}
+
+interface DashboardStats {
+  totalGames: number;
+  competitors: number;
+  totalRevenue: number;
+  totalPlayers: number;
 }
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [
+    CommonModule,
+    RouterLink,
+    HlmButtonImports,
+    HlmCardImports,
+    HlmBadgeImports,
+  ],
   template: `
-    <div class="dashboard">
-      <div class="page-header">
-        <h1>Dashboard</h1>
-        <p>Game Development Intelligence Overview</p>
+    <div class="max-w-7xl mx-auto space-y-8">
+      <!-- Header -->
+      <div>
+        <h1 class="text-2xl font-bold">Dashboard</h1>
+        <p class="text-muted-foreground">
+          Game Development Intelligence Overview
+        </p>
       </div>
 
       <!-- Stats Cards -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon blue">🎮</div>
-          <div class="stat-content">
-            <span class="stat-value">{{ totalGames() }}</span>
-            <span class="stat-label">Total Games</span>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div hlmCard>
+          <div
+            hlmCardHeader
+            class="flex flex-row items-center justify-between pb-2"
+          >
+            <h3 hlmCardTitle class="text-sm font-medium">Total Games</h3>
+            <span class="text-2xl">🎮</span>
+          </div>
+          <div hlmCardContent>
+            <div class="text-3xl font-bold">{{ stats().totalGames }}</div>
           </div>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-icon purple">👥</div>
-          <div class="stat-content">
-            <span class="stat-value">{{ totalCompetitors() }}</span>
-            <span class="stat-label">Competitors</span>
+        <div hlmCard>
+          <div
+            hlmCardHeader
+            class="flex flex-row items-center justify-between pb-2"
+          >
+            <h3 hlmCardTitle class="text-sm font-medium">Competitors</h3>
+            <span class="text-2xl">🏆</span>
+          </div>
+          <div hlmCardContent>
+            <div class="text-3xl font-bold">{{ stats().competitors }}</div>
           </div>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-icon green">💰</div>
-          <div class="stat-content">
-            <span class="stat-value">\${{ formatNumber(totalRevenue()) }}</span>
-            <span class="stat-label">Total Revenue/mo</span>
+        <div hlmCard>
+          <div
+            hlmCardHeader
+            class="flex flex-row items-center justify-between pb-2"
+          >
+            <h3 hlmCardTitle class="text-sm font-medium">Total Revenue/mo</h3>
+            <span class="text-2xl">💰</span>
+          </div>
+          <div hlmCardContent>
+            <div class="text-3xl font-bold text-primary">
+              {{ '$' + formatNumber(stats().totalRevenue) }}
+            </div>
           </div>
         </div>
 
-        <div class="stat-card">
-          <div class="stat-icon orange">🔥</div>
-          <div class="stat-content">
-            <span class="stat-value">{{ formatNumber(totalPlayers()) }}</span>
-            <span class="stat-label">Concurrent Players</span>
+        <div hlmCard>
+          <div
+            hlmCardHeader
+            class="flex flex-row items-center justify-between pb-2"
+          >
+            <h3 hlmCardTitle class="text-sm font-medium">Concurrent Players</h3>
+            <span class="text-2xl">👥</span>
+          </div>
+          <div hlmCardContent>
+            <div class="text-3xl font-bold">
+              {{ formatNumber(stats().totalPlayers) }}
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Quick Actions -->
-      <div class="section">
-        <h2>Quick Actions</h2>
-        <div class="actions-grid">
-          <a routerLink="/games" class="action-card">
-            <span class="action-icon">📊</span>
-            <span class="action-title">View All Games</span>
-            <span class="action-desc">Browse and manage game database</span>
-          </a>
-
-          <a routerLink="/competitors" class="action-card">
-            <span class="action-icon">🔍</span>
-            <span class="action-title">Analyze Competitors</span>
-            <span class="action-desc">Study top performing games</span>
-          </a>
-
-          <a routerLink="/features" class="action-card">
-            <span class="action-icon">⚡</span>
-            <span class="action-title">Feature Analysis</span>
-            <span class="action-desc">Compare features & systems</span>
-          </a>
-
-          <a routerLink="/analytics" class="action-card">
-            <span class="action-icon">📈</span>
-            <span class="action-title">Analytics</span>
-            <span class="action-desc">ROI estimates & metrics</span>
-          </a>
+      <div hlmCard>
+        <div hlmCardHeader>
+          <h3 hlmCardTitle>Quick Actions</h3>
+        </div>
+        <div hlmCardContent>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a
+              routerLink="/games"
+              hlmBtn
+              variant="outline"
+              class="h-auto py-4 flex-col gap-2"
+            >
+              <span class="text-2xl">🎮</span>
+              <span>View All Games</span>
+            </a>
+            <a
+              routerLink="/competitors"
+              hlmBtn
+              variant="outline"
+              class="h-auto py-4 flex-col gap-2"
+            >
+              <span class="text-2xl">🏆</span>
+              <span>Competitors</span>
+            </a>
+            <a
+              routerLink="/features"
+              hlmBtn
+              variant="outline"
+              class="h-auto py-4 flex-col gap-2"
+            >
+              <span class="text-2xl">⚡</span>
+              <span>Features</span>
+            </a>
+            <a
+              routerLink="/analytics"
+              hlmBtn
+              variant="outline"
+              class="h-auto py-4 flex-col gap-2"
+            >
+              <span class="text-2xl">📊</span>
+              <span>Analytics</span>
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Top Games -->
-      <div class="section">
-        <div class="section-header">
-          <h2>Top Revenue Games</h2>
-          <a routerLink="/games" class="view-all">View All →</a>
+      <!-- Top Revenue Games -->
+      <div hlmCard>
+        <div hlmCardHeader class="flex flex-row items-center justify-between">
+          <h3 hlmCardTitle>Top Revenue Games</h3>
+          <a routerLink="/games" class="text-sm text-primary hover:underline"
+            >View All →</a
+          >
         </div>
-
-        @if (loading()) {
-          <div class="loading">Loading games...</div>
-        } @else {
-          <div class="games-table">
-            <div class="table-header">
-              <span>Game</span>
-              <span>Genre</span>
-              <span>Monthly Revenue</span>
-              <span>Players</span>
-            </div>
-            @for (game of topGames(); track game.name) {
-              <div class="table-row">
-                <span class="game-name">{{ game.name }}</span>
-                <span class="badge">{{ game.genre }}</span>
-                <span class="revenue"
-                  >\${{ formatNumber(game.revenueMonthly) }}</span
-                >
-                <span class="players">{{
-                  formatNumber(game.concurrentPlayers)
-                }}</span>
-              </div>
-            }
+        <div hlmCardContent>
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr class="border-b">
+                  <th
+                    class="text-left py-3 px-2 text-sm font-medium text-muted-foreground"
+                  >
+                    Game
+                  </th>
+                  <th
+                    class="text-left py-3 px-2 text-sm font-medium text-muted-foreground"
+                  >
+                    Genre
+                  </th>
+                  <th
+                    class="text-right py-3 px-2 text-sm font-medium text-muted-foreground"
+                  >
+                    Monthly Revenue
+                  </th>
+                  <th
+                    class="text-right py-3 px-2 text-sm font-medium text-muted-foreground"
+                  >
+                    Players
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (game of topGames(); track game.id) {
+                  <tr class="border-b hover:bg-muted/50 transition-colors">
+                    <td class="py-3 px-2">
+                      <a
+                        [routerLink]="['/games', game.id]"
+                        class="font-medium hover:text-primary"
+                      >
+                        {{ game.name }}
+                      </a>
+                    </td>
+                    <td class="py-3 px-2">
+                      <span hlmBadge variant="secondary">{{ game.genre }}</span>
+                    </td>
+                    <td class="py-3 px-2 text-right text-primary font-medium">
+                      {{
+                        '$' +
+                          formatNumber(game.successMetrics?.revenueMonthly || 0)
+                      }}
+                    </td>
+                    <td class="py-3 px-2 text-right">
+                      {{
+                        formatNumber(
+                          game.successMetrics?.concurrentPlayers || 0
+                        )
+                      }}
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
           </div>
-        }
+        </div>
       </div>
     </div>
   `,
-  styles: `
-    .dashboard {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .page-header {
-      margin-bottom: 2rem;
-    }
-
-    .page-header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 0 0 0.5rem 0;
-    }
-
-    .page-header p {
-      color: var(--text-secondary, #666);
-      margin: 0;
-    }
-
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .stat-card {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.25rem;
-      background: var(--bg-secondary, #f5f5f5);
-      border-radius: 0.75rem;
-      border: 1px solid var(--border-color, #e0e0e0);
-    }
-
-    .stat-icon {
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      border-radius: 0.5rem;
-    }
-
-    .stat-icon.blue {
-      background: oklch(0.6 0.2 260 / 0.15);
-    }
-    .stat-icon.purple {
-      background: oklch(0.6 0.2 300 / 0.15);
-    }
-    .stat-icon.green {
-      background: oklch(0.65 0.2 145 / 0.15);
-    }
-    .stat-icon.orange {
-      background: oklch(0.7 0.2 60 / 0.15);
-    }
-
-    .stat-content {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .stat-label {
-      font-size: 0.875rem;
-      color: var(--text-secondary, #666);
-    }
-
-    /* Section */
-    .section {
-      margin-bottom: 2rem;
-    }
-
-    .section h2 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin: 0 0 1rem 0;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .view-all {
-      color: oklch(0.6 0.2 260);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .view-all:hover {
-      text-decoration: underline;
-    }
-
-    /* Actions Grid */
-    .actions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-
-    .action-card {
-      display: flex;
-      flex-direction: column;
-      padding: 1.25rem;
-      background: var(--bg-secondary, #f5f5f5);
-      border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 0.75rem;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-    }
-
-    .action-card:hover {
-      border-color: oklch(0.6 0.2 260);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px oklch(0 0 0 / 0.1);
-    }
-
-    .action-icon {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .action-title {
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-
-    .action-desc {
-      font-size: 0.875rem;
-      color: var(--text-secondary, #666);
-    }
-
-    /* Games Table */
-    .games-table {
-      background: var(--bg-secondary, #f5f5f5);
-      border: 1px solid var(--border-color, #e0e0e0);
-      border-radius: 0.75rem;
-      overflow: hidden;
-    }
-
-    .table-header,
-    .table-row {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      padding: 0.75rem 1rem;
-      gap: 1rem;
-    }
-
-    .table-header {
-      background: var(--bg-tertiary, #eee);
-      font-weight: 600;
-      font-size: 0.875rem;
-      color: var(--text-secondary, #666);
-    }
-
-    .table-row {
-      border-top: 1px solid var(--border-color, #e0e0e0);
-    }
-
-    .table-row:hover {
-      background: var(--bg-tertiary, #eee);
-    }
-
-    .game-name {
-      font-weight: 500;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.25rem 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      background: oklch(0.6 0.2 260 / 0.15);
-      color: oklch(0.5 0.2 260);
-      border-radius: 9999px;
-      width: fit-content;
-    }
-
-    .revenue {
-      color: oklch(0.5 0.2 145);
-      font-weight: 600;
-    }
-
-    .loading {
-      padding: 2rem;
-      text-align: center;
-      color: var(--text-secondary, #666);
-    }
-
-    @media (max-width: 640px) {
-      .table-header,
-      .table-row {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .table-header span:nth-child(3),
-      .table-header span:nth-child(4),
-      .table-row span:nth-child(3),
-      .table-row span:nth-child(4) {
-        display: none;
-      }
-    }
-  `,
 })
 export class DashboardPage implements OnInit {
-  private http = inject(HttpClient);
-
   loading = signal(true);
-  totalGames = signal(0);
-  totalCompetitors = signal(0);
-  totalRevenue = signal(0);
-  totalPlayers = signal(0);
-  topGames = signal<GameSummary[]>([]);
+  games = signal<Game[]>([]);
+
+  stats = signal<DashboardStats>({
+    totalGames: 0,
+    competitors: 0,
+    totalRevenue: 0,
+    totalPlayers: 0,
+  });
+
+  topGames = signal<Game[]>([]);
 
   ngOnInit() {
     this.loadData();
@@ -356,53 +242,45 @@ export class DashboardPage implements OnInit {
     try {
       const response = await fetch('http://localhost:3333/api/games');
       const data = await response.json();
+      const games: Game[] = data.items || [];
 
-      const games = data.items || [];
-      this.totalGames.set(games.length);
-      this.totalCompetitors.set(
-        games.filter((g: any) => g.ownership === 'Competitor').length,
+      this.games.set(games);
+
+      const competitors = games.filter(
+        (g) => g.ownership === 'Competitor',
+      ).length;
+      const totalRevenue = games.reduce(
+        (sum, g) => sum + (g.successMetrics?.revenueMonthly || 0),
+        0,
+      );
+      const totalPlayers = games.reduce(
+        (sum, g) => sum + (g.successMetrics?.concurrentPlayers || 0),
+        0,
       );
 
-      let revenue = 0;
-      let players = 0;
+      this.stats.set({
+        totalGames: games.length,
+        competitors,
+        totalRevenue,
+        totalPlayers,
+      });
 
-      const topGames: GameSummary[] = [];
-
-      for (const game of games) {
-        if (game.successMetrics) {
-          revenue += game.successMetrics.revenueMonthly || 0;
-          players += game.successMetrics.concurrentPlayers || 0;
-        }
-
-        topGames.push({
-          name: game.name,
-          genre: game.genre,
-          revenueMonthly: game.successMetrics?.revenueMonthly || 0,
-          concurrentPlayers: game.successMetrics?.concurrentPlayers || 0,
-        });
-      }
-
-      this.totalRevenue.set(revenue);
-      this.totalPlayers.set(players);
-      this.topGames.set(
-        topGames
-          .sort((a, b) => b.revenueMonthly - a.revenueMonthly)
-          .slice(0, 5),
+      const sorted = [...games].sort(
+        (a, b) =>
+          (b.successMetrics?.revenueMonthly || 0) -
+          (a.successMetrics?.revenueMonthly || 0),
       );
+      this.topGames.set(sorted.slice(0, 5));
     } catch (error) {
-      console.error('Failed to load games:', error);
+      console.error('Failed to load dashboard data:', error);
     } finally {
       this.loading.set(false);
     }
   }
 
   formatNumber(num: number): string {
-    if (num >= 1000000) {
-      return (num / 1000000).toFixed(1) + 'M';
-    }
-    if (num >= 1000) {
-      return (num / 1000).toFixed(1) + 'K';
-    }
+    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+    if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
     return num.toString();
   }
 }

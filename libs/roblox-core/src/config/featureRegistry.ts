@@ -46,12 +46,28 @@ export const FEATURES: Feature[] = [
     },
   },
   {
+    id: 'fishing',
+    name: 'Fish',
+    icon: '🎣',
+    enabled: true,
+    zone: 'actionBar',
+    order: 2,
+    color: Color3.fromRGB(50, 150, 200),
+    panelName: 'FishingPanel',
+    uiName: 'FishingUI',
+    tutorialStep: {
+      title: '🎣 Fishing',
+      description:
+        'Cast your line and catch legendary fish! Visit the pond to start fishing.',
+    },
+  },
+  {
     id: 'eggs',
     name: 'Eggs',
     icon: '🥚',
     enabled: true,
     zone: 'actionBar',
-    order: 2,
+    order: 3,
     color: Color3.fromRGB(255, 200, 80),
     panelName: 'EggPanel',
     uiName: 'EggShopUI',
@@ -66,7 +82,7 @@ export const FEATURES: Feature[] = [
     icon: '🗺️',
     enabled: true,
     zone: 'actionBar',
-    order: 3,
+    order: 4,
     color: Color3.fromRGB(100, 180, 255),
     panelName: 'MapPanel',
     uiName: 'MapShopUI',
@@ -81,7 +97,7 @@ export const FEATURES: Feature[] = [
     icon: '🐾',
     enabled: true,
     zone: 'actionBar',
-    order: 4,
+    order: 5,
     color: Color3.fromRGB(255, 150, 80),
     panelName: 'PetContainer',
     uiName: 'PetUI',
@@ -96,7 +112,7 @@ export const FEATURES: Feature[] = [
     icon: '⚔️',
     enabled: true,
     zone: 'actionBar',
-    order: 5,
+    order: 6,
     color: Color3.fromRGB(220, 80, 100),
     panelName: 'BattlePanel',
     uiName: 'BattlesUI',
@@ -111,7 +127,7 @@ export const FEATURES: Feature[] = [
     icon: '🎡',
     enabled: true,
     zone: 'actionBar',
-    order: 6,
+    order: 7,
     color: Color3.fromRGB(180, 100, 220),
     panelName: 'WheelPanel',
     uiName: 'LuckyWheelUI',
@@ -126,7 +142,7 @@ export const FEATURES: Feature[] = [
     icon: '✨',
     enabled: true,
     zone: 'actionBar',
-    order: 7,
+    order: 8,
     color: Color3.fromRGB(100, 220, 150),
     panelName: 'EvoPanel',
     uiName: 'EvolutionUI',
@@ -141,7 +157,7 @@ export const FEATURES: Feature[] = [
     icon: '🔥',
     enabled: true,
     zone: 'actionBar',
-    order: 8,
+    order: 9,
     color: Color3.fromRGB(255, 100, 50),
     panelName: 'FusionPanel',
     uiName: 'FusionUI',
@@ -156,7 +172,7 @@ export const FEATURES: Feature[] = [
     icon: '🎮',
     enabled: true,
     zone: 'actionBar',
-    order: 9,
+    order: 10,
     color: Color3.fromRGB(80, 180, 150),
     panelName: 'GamesPanel',
     uiName: 'MinigamesUI',
@@ -367,7 +383,7 @@ export const FEATURES: Feature[] = [
 
 export function getFeaturesByZone(zone: FeatureZone): Feature[] {
   return FEATURES.filter((f) => f.enabled && f.zone === zone).sort(
-    (a, b) => a.order < b.order,
+    (a, b) => a.order - b.order,
   );
 }
 
@@ -409,8 +425,8 @@ export function getTutorialSteps(): { title: string; description: string }[] {
       };
       const zoneA = zonePriority[a.zone];
       const zoneB = zonePriority[b.zone];
-      if (zoneA !== zoneB) return zoneA < zoneB;
-      return a.order < b.order;
+      if (zoneA !== zoneB) return zoneA - zoneB;
+      return a.order - b.order;
     })
     .map((f) => f.tutorialStep as { title: string; description: string });
 }

@@ -35,7 +35,7 @@ import { createBattlePassUI, toggleBattlePass } from './battlePassUI';
 import { createPetSelectionUI } from './petUI';
 import { createStarterPackUI, showStarterPackPopup } from './starterPackUI';
 import { createLimitedOffersUI } from './limitedOffersUI';
-import { initFishingUI } from './fishingUI';
+import { initFishingUI, toggleFishingUI } from './fishingUI';
 
 const player = Players.LocalPlayer;
 
@@ -593,6 +593,12 @@ registerActionCallback('shop', () => {
     .FindFirstChild('ShopUI')
     ?.FindFirstChild('ShopPanel') as Frame | undefined;
   if (panel) panel.Visible = !panel.Visible;
+});
+
+registerActionCallback('fishing', () => {
+  // Uses toggleFishingUI from fishingUI module
+  toggleFishingUI();
+  print('🎣 Fishing button clicked!');
 });
 
 registerActionCallback('eggs', () => {

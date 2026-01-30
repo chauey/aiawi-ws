@@ -882,7 +882,7 @@ export function initFishingUI(): void {
   };
 
   // Create UI (starts hidden)
-  const ui = createFishingUI();
+  createFishingUI();
   mainFrame.Visible = false; // Start hidden until player goes to fishing spot
 
   // Listen for OpenFishingUI remote from fishing spots

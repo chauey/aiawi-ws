@@ -8,13 +8,10 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import {
   // Types
   PetRarity,
-  PetSpecies,
   OwnedPet,
   EggType,
   PlayerPetState,
   PetConfig,
-  HatchResult,
-  EvolveResult,
 
   // Config
   DEFAULT_PET_CONFIG,

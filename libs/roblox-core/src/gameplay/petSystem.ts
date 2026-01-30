@@ -621,6 +621,7 @@ export function hatchEgg(
  * Calculate XP needed for a level
  */
 export function getPetXpForLevel(level: number, config: PetConfig): number {
+  if (level <= 0) return 0;
   return Math.floor(
     config.baseXpPerLevel * Math.pow(config.levelMultiplier, level - 1),
   );

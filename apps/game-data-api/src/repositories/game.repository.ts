@@ -59,13 +59,17 @@ export class GameRepository {
   /**
    * Update a game
    */
-  update(id: string, dto: UpdateGameDto, _modifierId?: string): GameDto | null {
+  update(id: string, dto: UpdateGameDto, modifierId?: string): GameDto | null {
+    // modifierId can be used for audit logging in the future
+    void modifierId;
     const game = this.storage.getGameById(id);
     if (!game) return null;
 
     const success = this.storage.updateGame(id, dto as Partial<GameDto>);
+    if (!success) return null;
 
-    return success ? (this.storage.getGameById(id) ?? null) : null;
+    const updated = this.storage.getGameById(id);
+    return updated ?? null;
   }
 
   /**
@@ -109,8 +113,12 @@ export class GameRepository {
       );
     }
 
-    if (filter.minPriorityScore !== undefined) {
-      games = games.filter((g) => g.priorityScore >= filter.minPriorityScore!);
+    if (
+      filter.minPriorityScore !== undefined &&
+      filter.minPriorityScore !== null
+    ) {
+      const minScore = filter.minPriorityScore;
+      games = games.filter((g) => g.priorityScore >= minScore);
     }
 
     if (filter.recommendedOnly) {
@@ -169,8 +177,10 @@ export class GameRepository {
     const sorting = filter.sorting || 'priorityScore DESC';
     const [sortField, sortOrder] = sorting.split(' ');
     games.sort((a, b) => {
-      const aVal = (a as any)[sortField];
-      const bVal = (b as any)[sortField];
+      const aRecord = a as unknown as Record<string, unknown>;
+      const bRecord = b as unknown as Record<string, unknown>;
+      const aVal = aRecord[sortField];
+      const bVal = bRecord[sortField];
       const comparison = aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
       return sortOrder === 'DESC' ? -comparison : comparison;
     });

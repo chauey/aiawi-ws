@@ -60,8 +60,13 @@ import { HlmBadgeImports } from '@spartan-ng/helm/badge';
       <!-- Overlay for mobile -->
       @if (sidebarOpen()) {
         <div
+          role="button"
+          tabindex="0"
+          aria-label="Close sidebar"
           class="fixed inset-0 z-40 bg-black/50 lg:hidden"
           (click)="sidebarOpen.set(false)"
+          (keydown.enter)="sidebarOpen.set(false)"
+          (keydown.escape)="sidebarOpen.set(false)"
         ></div>
       }
 

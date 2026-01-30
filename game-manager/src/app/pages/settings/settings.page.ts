@@ -75,8 +75,8 @@ import { firstValueFrom } from 'rxjs';
         </div>
         <div hlmCardContent class="space-y-4">
           <div class="space-y-2">
-            <label hlmLabel>Theme</label>
-            <brn-select [formControl]="themeControl">
+            <label hlmLabel for="theme-select">Theme</label>
+            <brn-select [formControl]="themeControl" id="theme-select">
               <hlm-select-trigger class="w-full">
                 <hlm-select-value />
               </hlm-select-trigger>
@@ -89,8 +89,8 @@ import { firstValueFrom } from 'rxjs';
           </div>
 
           <div class="space-y-2">
-            <label hlmLabel>Items Per Page</label>
-            <brn-select [formControl]="pageSizeControl">
+            <label hlmLabel for="page-size-select">Items Per Page</label>
+            <brn-select [formControl]="pageSizeControl" id="page-size-select">
               <hlm-select-trigger class="w-full">
                 <hlm-select-value />
               </hlm-select-trigger>

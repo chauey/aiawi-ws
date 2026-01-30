@@ -9,6 +9,8 @@ import {
   GameStore,
   GameFeatureFlags,
   SuccessMetricDto,
+  TutorialStepDto,
+  GameDto,
 } from '@aiawi-ws/game-data';
 
 interface SystemInfo {
@@ -635,7 +637,7 @@ export class GameDetailPage implements OnInit {
     id: TabId;
     label: string;
     icon: string;
-    count?: (game: any) => number;
+    count?: (game: GameDto) => number;
   }[] = [
     { id: 'overview', label: 'Overview', icon: '📊' },
     {
@@ -702,7 +704,9 @@ export class GameDetailPage implements OnInit {
       });
   }
 
-  groupTutorials(tutorials: any[]): { name: string; steps: any[] }[] {
+  groupTutorials(
+    tutorials: TutorialStepDto[],
+  ): { name: string; steps: TutorialStepDto[] }[] {
     const grouped = tutorials.reduce(
       (acc, step) => {
         const name = step.tutorialName || 'Unnamed Tutorial';
@@ -710,12 +714,12 @@ export class GameDetailPage implements OnInit {
         acc[name].push(step);
         return acc;
       },
-      {} as Record<string, any[]>,
+      {} as Record<string, TutorialStepDto[]>,
     );
 
     return Object.entries(grouped).map(([name, steps]) => ({
       name,
-      steps: (steps as any[]).sort((a, b) => a.stepNumber - b.stepNumber),
+      steps: steps.sort((a, b) => a.stepNumber - b.stepNumber),
     }));
   }
 

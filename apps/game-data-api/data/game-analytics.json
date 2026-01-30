@@ -1,0 +1,746 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-01-30T18:19:00.000Z",
+    "dataSource": "RoMonitor Stats, Roblox Charts, Browser Research",
+    "gamesAnalyzed": 17
+  },
+
+  "genreAnalytics": [
+    {
+      "genre": "Fishing/Collection Simulator",
+      "gamesAnalyzed": 2,
+      "totalPlayers": 1100000,
+      "averageRetention": { "d1": 68, "d7": 48, "d30": 28 },
+      "averageArpu": 2.5,
+      "averageSessionLength": 30,
+      "averageConversionRate": 12,
+      "growthPotential": "S",
+      "marginPotential": "A",
+      "retentionPotential": "B",
+      "developmentComplexity": "Low",
+      "marketSaturation": "Low",
+      "competitorCount": 5,
+      "trendDirection": "rising",
+      "topFeatures": [
+        "One-tap gameplay",
+        "Rarity collection",
+        "Trading",
+        "Leaderboards"
+      ],
+      "bestMonetizationModels": [
+        "Premium rods/tools",
+        "Luck boosts",
+        "Storage expansion"
+      ],
+      "successFactors": ["Simple loop", "Viral clips", "Social competition"],
+      "commonMistakes": ["Too complex", "Slow progression", "No flex culture"]
+    },
+    {
+      "genre": "RNG/Luck Simulator",
+      "gamesAnalyzed": 1,
+      "totalPlayers": 350000,
+      "averageRetention": { "d1": 65, "d7": 45, "d30": 25 },
+      "averageArpu": 5.8,
+      "averageSessionLength": 60,
+      "averageConversionRate": 20,
+      "growthPotential": "A",
+      "marginPotential": "S",
+      "retentionPotential": "B",
+      "developmentComplexity": "Low",
+      "marketSaturation": "Low",
+      "competitorCount": 8,
+      "trendDirection": "rising",
+      "topFeatures": [
+        "Pure RNG rolling",
+        "Visible auras/effects",
+        "Luck boosts",
+        "Trading"
+      ],
+      "bestMonetizationModels": [
+        "Luck multipliers",
+        "Auto-roll passes",
+        "Storage slots"
+      ],
+      "successFactors": ["Zero skill barrier", "Flex culture", "Gambling loop"],
+      "commonMistakes": [
+        "Not enough rarity tiers",
+        "Invisible rewards",
+        "Pay-to-win perception"
+      ]
+    },
+    {
+      "genre": "Pet Simulator",
+      "gamesAnalyzed": 3,
+      "totalPlayers": 750000,
+      "averageRetention": { "d1": 72, "d7": 58, "d30": 42 },
+      "averageArpu": 4.2,
+      "averageSessionLength": 45,
+      "averageConversionRate": 15,
+      "growthPotential": "A",
+      "marginPotential": "S",
+      "retentionPotential": "A",
+      "developmentComplexity": "Medium",
+      "marketSaturation": "Medium",
+      "competitorCount": 20,
+      "trendDirection": "stable",
+      "topFeatures": [
+        "Pet collection",
+        "Gacha/eggs",
+        "Trading economy",
+        "Rebirth/prestige"
+      ],
+      "bestMonetizationModels": [
+        "Exclusive eggs",
+        "VIP passes",
+        "2x multipliers"
+      ],
+      "successFactors": [
+        "Collection addiction",
+        "Trading economy",
+        "Constant updates"
+      ],
+      "commonMistakes": ["Boring pets", "No trading", "Static content"]
+    },
+    {
+      "genre": "Fashion/Social Competition",
+      "gamesAnalyzed": 1,
+      "totalPlayers": 400000,
+      "averageRetention": { "d1": 60, "d7": 40, "d30": 25 },
+      "averageArpu": 3.0,
+      "averageSessionLength": 40,
+      "averageConversionRate": 10,
+      "growthPotential": "A",
+      "marginPotential": "A",
+      "retentionPotential": "B",
+      "developmentComplexity": "Medium",
+      "marketSaturation": "Low",
+      "competitorCount": 3,
+      "trendDirection": "rising",
+      "topFeatures": [
+        "Timed rounds",
+        "Player voting",
+        "Theme-based",
+        "Runway walks"
+      ],
+      "bestMonetizationModels": ["Premium clothing", "VIP themes", "Emotes"],
+      "successFactors": [
+        "Social validation",
+        "Creative expression",
+        "Competition"
+      ],
+      "commonMistakes": [
+        "Limited assets",
+        "Voting manipulation",
+        "Too long rounds"
+      ]
+    },
+    {
+      "genre": "Anime Combat/Battlegrounds",
+      "gamesAnalyzed": 2,
+      "totalPlayers": 900000,
+      "averageRetention": { "d1": 63, "d7": 48, "d30": 33 },
+      "averageArpu": 3.5,
+      "averageSessionLength": 35,
+      "averageConversionRate": 12,
+      "growthPotential": "A",
+      "marginPotential": "A",
+      "retentionPotential": "A",
+      "developmentComplexity": "Expert",
+      "marketSaturation": "Medium",
+      "competitorCount": 15,
+      "trendDirection": "stable",
+      "topFeatures": [
+        "Character movesets",
+        "Combo systems",
+        "1v1 arena",
+        "Ranked matchmaking"
+      ],
+      "bestMonetizationModels": ["Character unlocks", "Skins", "XP boosts"],
+      "successFactors": [
+        "Satisfying combat feel",
+        "Anime IP appeal",
+        "Skill expression"
+      ],
+      "commonMistakes": [
+        "Unbalanced characters",
+        "Boring combat",
+        "No skill ceiling"
+      ]
+    },
+    {
+      "genre": "Meme/Brainrot Survival",
+      "gamesAnalyzed": 2,
+      "totalPlayers": 1368000,
+      "averageRetention": { "d1": 52, "d7": 32, "d30": 18 },
+      "averageArpu": 1.2,
+      "averageSessionLength": 20,
+      "averageConversionRate": 6,
+      "growthPotential": "S",
+      "marginPotential": "C",
+      "retentionPotential": "D",
+      "developmentComplexity": "Low",
+      "marketSaturation": "Low",
+      "competitorCount": 10,
+      "trendDirection": "rising",
+      "topFeatures": [
+        "Meme characters",
+        "Simple survival",
+        "Short rounds",
+        "Viral moments"
+      ],
+      "bestMonetizationModels": ["Character skins", "Skip levels", "Revives"],
+      "successFactors": ["Trend riding", "Viral clips", "Easy to understand"],
+      "commonMistakes": [
+        "Missing the trend",
+        "Too much content",
+        "Not shareable"
+      ]
+    },
+    {
+      "genre": "Competitive FPS",
+      "gamesAnalyzed": 2,
+      "totalPlayers": 265000,
+      "averageRetention": { "d1": 55, "d7": 40, "d30": 28 },
+      "averageArpu": 4.5,
+      "averageSessionLength": 42,
+      "averageConversionRate": 8,
+      "growthPotential": "B",
+      "marginPotential": "A",
+      "retentionPotential": "A",
+      "developmentComplexity": "Expert",
+      "marketSaturation": "Medium",
+      "competitorCount": 12,
+      "trendDirection": "stable",
+      "topFeatures": [
+        "Ranked matchmaking",
+        "Weapon skins",
+        "Clan wars",
+        "Esports potential"
+      ],
+      "bestMonetizationModels": [
+        "Skin crates",
+        "Battle pass",
+        "Prestige items"
+      ],
+      "successFactors": [
+        "Skill expression",
+        "Cosmetic flex",
+        "Competitive integrity"
+      ],
+      "commonMistakes": ["Pay-to-win weapons", "Bad matchmaking", "Cheaters"]
+    },
+    {
+      "genre": "Roleplay/Social Sandbox",
+      "gamesAnalyzed": 2,
+      "totalPlayers": 900000,
+      "averageRetention": { "d1": 62, "d7": 50, "d30": 38 },
+      "averageArpu": 2.8,
+      "averageSessionLength": 52,
+      "averageConversionRate": 10,
+      "growthPotential": "A",
+      "marginPotential": "B",
+      "retentionPotential": "A",
+      "developmentComplexity": "Hard",
+      "marketSaturation": "Medium",
+      "competitorCount": 8,
+      "trendDirection": "stable",
+      "topFeatures": ["Houses", "Vehicles", "Jobs", "Social systems"],
+      "bestMonetizationModels": [
+        "Premium houses",
+        "Premium vehicles",
+        "VIP access"
+      ],
+      "successFactors": [
+        "Emergent gameplay",
+        "Social sandbox",
+        "Family-friendly"
+      ],
+      "commonMistakes": [
+        "Too restrictive",
+        "No social hooks",
+        "Poor performance"
+      ]
+    }
+  ],
+
+  "featureAnalytics": [
+    {
+      "featureName": "Trading System",
+      "featureCategory": "Social",
+      "gamesWithFeature": 14,
+      "adoptionRate": 82,
+      "retentionImpact": 9,
+      "revenueImpact": 7,
+      "engagementImpact": 10,
+      "growthImpact": 8,
+      "implementationComplexity": "Medium",
+      "developmentTimeWeeks": 3,
+      "maintenanceBurden": "Medium",
+      "roiScore": 95,
+      "priorityRank": 1,
+      "bestPairedWith": ["Collection System", "Gacha/Eggs", "Rarity Tiers"],
+      "conflictsWith": []
+    },
+    {
+      "featureName": "Gacha/Egg System",
+      "featureCategory": "Monetization",
+      "gamesWithFeature": 12,
+      "adoptionRate": 71,
+      "retentionImpact": 8,
+      "revenueImpact": 10,
+      "engagementImpact": 9,
+      "growthImpact": 7,
+      "implementationComplexity": "Medium",
+      "developmentTimeWeeks": 2,
+      "maintenanceBurden": "Low",
+      "roiScore": 98,
+      "priorityRank": 2,
+      "bestPairedWith": [
+        "Trading System",
+        "Collection System",
+        "Daily Rewards"
+      ],
+      "conflictsWith": []
+    },
+    {
+      "featureName": "Daily Rewards/Login Streaks",
+      "featureCategory": "Retention",
+      "gamesWithFeature": 15,
+      "adoptionRate": 88,
+      "retentionImpact": 10,
+      "revenueImpact": 5,
+      "engagementImpact": 7,
+      "growthImpact": 5,
+      "implementationComplexity": "Easy",
+      "developmentTimeWeeks": 1,
+      "maintenanceBurden": "Low",
+      "roiScore": 92,
+      "priorityRank": 3,
+      "bestPairedWith": ["VIP System", "Milestone Rewards"],
+      "conflictsWith": []
+    },
+    {
+      "featureName": "Leaderboards",
+      "featureCategory": "Social",
+      "gamesWithFeature": 13,
+      "adoptionRate": 76,
+      "retentionImpact": 7,
+      "revenueImpact": 4,
+      "engagementImpact": 8,
+      "growthImpact": 8,
+      "implementationComplexity": "Easy",
+      "developmentTimeWeeks": 1,
+      "maintenanceBurden": "Low",
+      "roiScore": 88,
+      "priorityRank": 4,
+      "bestPairedWith": ["Competition", "Rewards", "Social Sharing"],
+      "conflictsWith": []
+    },
+    {
+      "featureName": "Rebirth/Prestige System",
+      "featureCategory": "Progression",
+      "gamesWithFeature": 10,
+      "adoptionRate": 59,
+      "retentionImpact": 10,
+      "revenueImpact": 6,
+      "engagementImpact": 9,
+      "growthImpact": 5,
+      "implementationComplexity": "Easy",
+      "developmentTimeWeeks": 1,
+      "maintenanceBurden": "Low",
+      "roiScore": 90,
+      "priorityRank": 5,
+      "bestPairedWith": ["Multipliers", "Exclusive Unlocks", "Progression"],
+      "conflictsWith": []
+    },
+    {
+      "featureName": "VIP/Premium Pass",
+      "featureCategory": "Monetization",
+      "gamesWithFeature": 11,
+      "adoptionRate": 65,
+      "retentionImpact": 7,
+      "revenueImpact": 9,
+      "engagementImpact": 6,
+      "growthImpact": 4,
+      "implementationComplexity": "Easy",
+      "developmentTimeWeeks": 1,
+      "maintenanceBurden": "Low",
+      "roiScore": 85,
+      "priorityRank": 6,
+      "bestPairedWith": ["2x Multipliers", "Exclusive Items", "Early Access"],
+      "conflictsWith": []
+    },
+    {
+      "featureName": "Visible Flex Items (Auras/Effects)",
+      "featureCategory": "Social",
+      "gamesWithFeature": 8,
+      "adoptionRate": 47,
+      "retentionImpact": 6,
+      "revenueImpact": 9,
+      "engagementImpact": 8,
+      "growthImpact": 7,
+      "implementationComplexity": "Medium",
+      "developmentTimeWeeks": 2,
+      "maintenanceBurden": "Low",
+      "roiScore": 87,
+      "priorityRank": 7,
+      "bestPairedWith": ["Rarity System", "Trading", "Gacha"],
+      "conflictsWith": []
+    },
+    {
+      "featureName": "Quest System",
+      "featureCategory": "Progression",
+      "gamesWithFeature": 12,
+      "adoptionRate": 71,
+      "retentionImpact": 8,
+      "revenueImpact": 5,
+      "engagementImpact": 8,
+      "growthImpact": 5,
+      "implementationComplexity": "Medium",
+      "developmentTimeWeeks": 2,
+      "maintenanceBurden": "Medium",
+      "roiScore": 78,
+      "priorityRank": 8,
+      "bestPairedWith": ["Daily Rewards", "Achievements", "Progression"],
+      "conflictsWith": []
+    },
+    {
+      "featureName": "Clan/Guild System",
+      "featureCategory": "Social",
+      "gamesWithFeature": 9,
+      "adoptionRate": 53,
+      "retentionImpact": 9,
+      "revenueImpact": 6,
+      "engagementImpact": 9,
+      "growthImpact": 7,
+      "implementationComplexity": "Medium",
+      "developmentTimeWeeks": 3,
+      "maintenanceBurden": "Medium",
+      "roiScore": 82,
+      "priorityRank": 9,
+      "bestPairedWith": ["Clan Wars", "Contributions", "Exclusive Perks"],
+      "conflictsWith": []
+    },
+    {
+      "featureName": "Player Voting System",
+      "featureCategory": "Social",
+      "gamesWithFeature": 2,
+      "adoptionRate": 12,
+      "retentionImpact": 7,
+      "revenueImpact": 5,
+      "engagementImpact": 10,
+      "growthImpact": 9,
+      "implementationComplexity": "Medium",
+      "developmentTimeWeeks": 2,
+      "maintenanceBurden": "Low",
+      "roiScore": 85,
+      "priorityRank": 10,
+      "bestPairedWith": ["Competition", "Themes", "Social Validation"],
+      "conflictsWith": ["Solo gameplay"]
+    }
+  ],
+
+  "gameAnalytics": {
+    "f1sh-1t00-0000-0000-000000000001": {
+      "gameId": "f1sh-1t00-0000-0000-000000000001",
+      "gameName": "Fish It!",
+      "growthMetrics": {
+        "dailyActiveUsers": 940000,
+        "weeklyActiveUsers": 4500000,
+        "monthlyActiveUsers": 12000000,
+        "playerGrowthRate30d": 85,
+        "playerGrowthRate90d": 340,
+        "viralCoefficient": 1.8,
+        "trendingScore": 98,
+        "momentumDirection": "rising",
+        "daysAtTrend": 45,
+        "peakPositionReached": 1,
+        "currentChartPosition": 1
+      },
+      "revenueMetrics": {
+        "estimatedMonthlyRevenue": 2500000,
+        "arpu": 2.1,
+        "arppu": 18.0,
+        "conversionRate": 12,
+        "marginScore": 85
+      },
+      "retentionMetrics": {
+        "d1Retention": 70,
+        "d7Retention": 50,
+        "d30Retention": 30,
+        "averageSessionLength": 25,
+        "dauMauRatio": 31,
+        "retentionScore": 75
+      },
+      "compositeScores": {
+        "overallSuccessScore": 95,
+        "replicationWorthiness": 98,
+        "growthRank": "S",
+        "marginRank": "A",
+        "retentionRank": "B",
+        "developmentEffort": "Low",
+        "roiPotential": 95,
+        "riskLevel": "Low"
+      }
+    },
+    "sols-rng0-0000-0000-000000000002": {
+      "gameId": "sols-rng0-0000-0000-000000000002",
+      "gameName": "Sol's RNG",
+      "growthMetrics": {
+        "dailyActiveUsers": 350000,
+        "weeklyActiveUsers": 1800000,
+        "monthlyActiveUsers": 5000000,
+        "playerGrowthRate30d": 45,
+        "playerGrowthRate90d": 180,
+        "viralCoefficient": 1.4,
+        "trendingScore": 88,
+        "momentumDirection": "stable",
+        "daysAtTrend": 120,
+        "peakPositionReached": 3,
+        "currentChartPosition": 8
+      },
+      "revenueMetrics": {
+        "estimatedMonthlyRevenue": 3200000,
+        "arpu": 5.8,
+        "arppu": 29.0,
+        "conversionRate": 20,
+        "marginScore": 98
+      },
+      "retentionMetrics": {
+        "d1Retention": 65,
+        "d7Retention": 45,
+        "d30Retention": 25,
+        "averageSessionLength": 60,
+        "dauMauRatio": 28,
+        "retentionScore": 68
+      },
+      "compositeScores": {
+        "overallSuccessScore": 88,
+        "replicationWorthiness": 95,
+        "growthRank": "A",
+        "marginRank": "S",
+        "retentionRank": "B",
+        "developmentEffort": "Low",
+        "roiPotential": 98,
+        "riskLevel": "Low"
+      }
+    }
+  },
+
+  "perfectGameFormula": {
+    "optimizeFor": "balanced",
+    "targetAudience": "Ages 8-16, Gen Alpha/Z, mobile-first Roblox players",
+    "developmentBudget": "Medium",
+
+    "recommendedGenre": "Fishing + RNG Hybrid Simulator",
+    "genreRationale": "Combines #1 concurrent (Fish It!) with highest margin (Sol's RNG). Low development complexity, high ROI potential.",
+
+    "recommendedFeatures": [
+      {
+        "feature": "One-Tap Fishing Core Loop",
+        "priority": "Must-Have",
+        "expectedImpact": "Viral clips, easy onboarding, addictive loop",
+        "implementationOrder": 1
+      },
+      {
+        "feature": "Fish Collection with Extreme Rarity Tiers",
+        "priority": "Must-Have",
+        "expectedImpact": "Collection addiction + flex culture (1:1 to 1:10,000,000 rarities)",
+        "implementationOrder": 2
+      },
+      {
+        "feature": "Visible Aura/Effects for Rare Fish",
+        "priority": "Must-Have",
+        "expectedImpact": "Social flex, status display, drives desire for rare items",
+        "implementationOrder": 3
+      },
+      {
+        "feature": "Player Trading System",
+        "priority": "Must-Have",
+        "expectedImpact": "Social stickiness, economy, retention",
+        "implementationOrder": 4
+      },
+      {
+        "feature": "Daily Login Rewards with Streaks",
+        "priority": "Must-Have",
+        "expectedImpact": "+15% D7 retention",
+        "implementationOrder": 5
+      },
+      {
+        "feature": "Gacha Fishing Rods (Premium)",
+        "priority": "Must-Have",
+        "expectedImpact": "Primary revenue driver, luck-based acquisition",
+        "implementationOrder": 6
+      },
+      {
+        "feature": "Real-time Leaderboards",
+        "priority": "Should-Have",
+        "expectedImpact": "Competition, social proof, engagement",
+        "implementationOrder": 7
+      },
+      {
+        "feature": "Rebirth/Prestige System",
+        "priority": "Should-Have",
+        "expectedImpact": "Extends game life, creates goals",
+        "implementationOrder": 8
+      },
+      {
+        "feature": "Luck Boost Gamepasses",
+        "priority": "Should-Have",
+        "expectedImpact": "High-margin monetization (2x, 5x, 10x luck)",
+        "implementationOrder": 9
+      },
+      {
+        "feature": "VIP Pass (2x everything + exclusive fish)",
+        "priority": "Should-Have",
+        "expectedImpact": "Recurring revenue, whale retention",
+        "implementationOrder": 10
+      },
+      {
+        "feature": "Auto-Fish Pass",
+        "priority": "Nice-to-Have",
+        "expectedImpact": "Convenience monetization, AFK players",
+        "implementationOrder": 11
+      },
+      {
+        "feature": "Clan/Fishing Crew System",
+        "priority": "Nice-to-Have",
+        "expectedImpact": "Social retention, group goals",
+        "implementationOrder": 12
+      }
+    ],
+
+    "recommendedMonetization": {
+      "model": "Freemium with Premium Gacha + Luck Boosts",
+      "pricePoints": [
+        {
+          "item": "Starter Rod Pack",
+          "price": 49,
+          "rationale": "First purchase hook, 2x value"
+        },
+        {
+          "item": "Luck Boost (1hr)",
+          "price": 75,
+          "rationale": "Consumable, repeat purchase"
+        },
+        {
+          "item": "VIP Gamepass",
+          "price": 499,
+          "rationale": "One-time, whale anchor"
+        },
+        {
+          "item": "2x Luck Permanent",
+          "price": 799,
+          "rationale": "High-value, progression accelerator"
+        },
+        {
+          "item": "Exclusive Rod Crate",
+          "price": 199,
+          "rationale": "Gacha excitement, limited quantity"
+        },
+        {
+          "item": "Auto-Fish Pass",
+          "price": 349,
+          "rationale": "Convenience for busy players"
+        },
+        {
+          "item": "Storage Expansion",
+          "price": 149,
+          "rationale": "Quality-of-life, collectors need"
+        }
+      ],
+      "expectedArpu": 3.5,
+      "expectedConversion": 15
+    },
+
+    "projectedMetrics": {
+      "d1Retention": 70,
+      "d7Retention": 52,
+      "d30Retention": 32,
+      "monthlyRevenue": 1500000,
+      "concurrentPlayers": 250000,
+      "viralCoefficient": 1.5
+    },
+
+    "riskFactors": [
+      {
+        "risk": "Fishing trend fades",
+        "mitigation": "Add evolution/mutation mechanics to differentiate",
+        "severity": "Medium"
+      },
+      {
+        "risk": "Cloned by larger studio",
+        "mitigation": "Launch fast, build community, constant updates",
+        "severity": "Medium"
+      },
+      {
+        "risk": "Trading economy manipulation",
+        "mitigation": "Anti-bot, trade limits, value balancing",
+        "severity": "Low"
+      },
+      {
+        "risk": "Gambling perception backlash",
+        "mitigation": "Clear odds display, pity system, no real money trading",
+        "severity": "Low"
+      }
+    ],
+
+    "successProbability": 82,
+
+    "developmentPhases": [
+      {
+        "phase": "MVP (4 weeks)",
+        "duration": "4 weeks",
+        "features": ["Fishing loop", "10 fish types", "Basic rarity", "Coins"],
+        "milestones": ["Core loop fun tested", "Basic monetization"]
+      },
+      {
+        "phase": "Social Launch (2 weeks)",
+        "duration": "2 weeks",
+        "features": ["Trading", "Leaderboards", "Daily rewards", "50 fish"],
+        "milestones": ["Trading economy stable", "D1 retention >60%"]
+      },
+      {
+        "phase": "Monetization Polish (2 weeks)",
+        "duration": "2 weeks",
+        "features": ["VIP pass", "Luck boosts", "Premium rods", "Auras"],
+        "milestones": ["Conversion rate >10%", "ARPU >$2"]
+      },
+      {
+        "phase": "Growth Scale (Ongoing)",
+        "duration": "Ongoing",
+        "features": ["New fish monthly", "Events", "Seasons", "Clans"],
+        "milestones": ["100K concurrent", "$500K/month revenue"]
+      }
+    ],
+
+    "modelAfter": [
+      {
+        "gameId": "f1sh-1t00-0000-0000-000000000001",
+        "gameName": "Fish It!",
+        "takeaway": "Simple one-tap loop, viral clips, social leaderboards"
+      },
+      {
+        "gameId": "sols-rng0-0000-0000-000000000002",
+        "gameName": "Sol's RNG",
+        "takeaway": "Extreme rarity tiers, visible auras, luck boost monetization"
+      },
+      {
+        "gameId": "psim-99-0000-0000-000000000006",
+        "gameName": "Pet Simulator 99",
+        "takeaway": "Trading economy, exclusive items, constant content updates"
+      }
+    ],
+
+    "gameName": "🎣 Lucky Fish Legends",
+    "gameTagline": "Cast your luck. Catch legends. Flex forever.",
+    "uniqueHooks": [
+      "Fish have visible auras showing rarity (bioluminescent effects)",
+      "1:10,000,000 'Legendary Kraken' drives viral clips",
+      "Cross-biome fishing (ocean, volcano, space, void)",
+      "Fish evolve/mutate into rarer forms",
+      "Weekly 'Golden Hour' events with boosted rates"
+    ]
+  }
+}

@@ -4,6 +4,9 @@ export * from './lib/base.dto';
 // Core Game DTOs
 export * from './lib/game.dto';
 
+// Analytics DTOs
+export * from './lib/game-analytics.dto';
+
 // Lifecycle DTOs
 export * from './lib/lifecycle.dto';
 

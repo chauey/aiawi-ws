@@ -3,5 +3,19 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/roblox-core/src",
   "projectType": "library",
-  "tags": ["scope:roblox", "type:lib"]
+  "tags": ["scope:roblox", "type:lib"],
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx vitest run --config libs/roblox-core/vitest.config.ts"
+      }
+    },
+    "test:watch": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx vitest --config libs/roblox-core/vitest.config.ts"
+      }
+    }
+  }
 }

@@ -4,6 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 import { JsonStorageService } from './database/json-storage.service';
 import { GameRepository } from './repositories/game.repository';
 import { createGameRouter } from './routes/game.routes';
+import systemRoutes from './routes/system.routes';
 import { swaggerSpec } from './swagger/swagger.config';
 
 const app = express();
@@ -36,6 +37,7 @@ app.get('/api/docs.json', (req, res) => {
 
 // Routes
 app.use('/api/games', createGameRouter(gameRepository));
+app.use('/api/systems', systemRoutes);
 
 /**
  * @openapi

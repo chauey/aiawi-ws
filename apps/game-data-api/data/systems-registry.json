@@ -1,0 +1,346 @@
+{
+  "systems": [
+    {
+      "id": "daily-rewards",
+      "name": "Daily Rewards System",
+      "description": "Handles daily login rewards with streak bonuses, milestone rewards, and progressive reward tiers",
+      "category": "Retention",
+      "sourcePath": "libs/roblox-core/src/retention/dailyRewards.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Implements a streak-based daily reward calendar with configurable rewards per day, streak multipliers, and special milestone bonuses.",
+      "configKeys": [
+        "DAILY_REWARD_BASE",
+        "STREAK_MULTIPLIER",
+        "MAX_STREAK_DAYS",
+        "MILESTONE_DAYS"
+      ],
+      "linkedGames": [
+        "drgn-lgnd-0000-0000-000000000001",
+        "lkfy-lgnd-0000-0000-000000000002",
+        "coin-coll-0000-0000-000000000003"
+      ],
+      "features": [
+        "Streak tracking",
+        "Milestone bonuses",
+        "Catch-up mechanics",
+        "VIP bonus multipliers"
+      ]
+    },
+    {
+      "id": "quest-system",
+      "name": "Quest System",
+      "description": "Dynamic quest generation and tracking with daily, weekly, and story quests",
+      "category": "Retention",
+      "sourcePath": "libs/roblox-core/src/retention/questSystem.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Provides configurable quest types including daily rotating quests, weekly challenges, and permanent story progression quests.",
+      "configKeys": [
+        "DAILY_QUEST_COUNT",
+        "WEEKLY_QUEST_COUNT",
+        "QUEST_REFRESH_HOUR",
+        "XP_PER_QUEST"
+      ],
+      "linkedGames": [
+        "drgn-lgnd-0000-0000-000000000001",
+        "lkfy-lgnd-0000-0000-000000000002"
+      ],
+      "features": [
+        "Quest tracking",
+        "Auto-completion detection",
+        "Reward distribution",
+        "Quest chains"
+      ]
+    },
+    {
+      "id": "gacha-system",
+      "name": "Gacha System",
+      "description": "Configurable gacha/loot box mechanics with pity system and rate-up banners",
+      "category": "Monetization",
+      "sourcePath": "libs/roblox-core/src/monetization/gachaSystem.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Implements fair gacha mechanics with guaranteed pity at configurable pull counts, rate-up banners, and transparent probability display.",
+      "configKeys": [
+        "PITY_THRESHOLD",
+        "BASE_LEGENDARY_RATE",
+        "RATE_UP_MULTIPLIER",
+        "PULLS_PER_10X"
+      ],
+      "linkedGames": ["drgn-lgnd-0000-0000-000000000001"],
+      "features": [
+        "Pity counter",
+        "Rate-up banners",
+        "Multi-pull discounts",
+        "Probability display"
+      ]
+    },
+    {
+      "id": "trading-system",
+      "name": "Trading System",
+      "description": "Secure player-to-player trading with anti-scam protections",
+      "category": "Social",
+      "sourcePath": "libs/roblox-core/src/social/trading.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Provides a secure trading window with value validation, trade history, and rollback capabilities for detected exploits.",
+      "configKeys": [
+        "TRADE_TIMEOUT_SECONDS",
+        "MAX_ITEMS_PER_TRADE",
+        "TRADE_COOLDOWN_MINUTES",
+        "VALUE_DIFF_WARNING_PCT"
+      ],
+      "linkedGames": [
+        "drgn-lgnd-0000-0000-000000000001",
+        "lkfy-lgnd-0000-0000-000000000002"
+      ],
+      "features": [
+        "Trade windows",
+        "Value comparison",
+        "Trade history",
+        "Scam prevention"
+      ]
+    },
+    {
+      "id": "clan-system",
+      "name": "Clan System",
+      "description": "Guild/clan management with roles, permissions, and clan activities",
+      "category": "Social",
+      "sourcePath": "libs/roblox-core/src/social/clans.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Full clan management including creation, member roles, clan banks, clan quests, and inter-clan competition.",
+      "configKeys": [
+        "MAX_CLAN_SIZE",
+        "CLAN_CREATION_COST",
+        "CLAN_UPGRADE_COSTS",
+        "CLAN_BANK_LIMIT"
+      ],
+      "linkedGames": ["drgn-lgnd-0000-0000-000000000001"],
+      "features": [
+        "Clan creation",
+        "Role management",
+        "Clan banks",
+        "Clan wars"
+      ]
+    },
+    {
+      "id": "matchmaking",
+      "name": "Matchmaking System",
+      "description": "ELO-based matchmaking for PvP and co-op activities",
+      "category": "Social",
+      "sourcePath": "libs/roblox-core/src/social/matchmaking.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Implements skill-based matchmaking using ELO rating with configurable queue times and skill range expansion.",
+      "configKeys": [
+        "ELO_K_FACTOR",
+        "INITIAL_ELO",
+        "QUEUE_TIMEOUT_SECONDS",
+        "SKILL_RANGE_EXPANSION_RATE"
+      ],
+      "linkedGames": ["drgn-lgnd-0000-0000-000000000001"],
+      "features": [
+        "ELO ranking",
+        "Queue management",
+        "Skill-based pairing",
+        "Leaderboards"
+      ]
+    },
+    {
+      "id": "battle-pass",
+      "name": "Battle Pass System",
+      "description": "Seasonal battle pass with free and premium tracks",
+      "category": "Progression",
+      "sourcePath": "libs/roblox-core/src/progression/battlePass.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Implements a tiered battle pass with configurable seasons, free/premium tracks, and XP requirements per tier.",
+      "configKeys": [
+        "SEASON_DURATION_DAYS",
+        "TIERS_PER_SEASON",
+        "XP_PER_TIER",
+        "PREMIUM_PRICE"
+      ],
+      "linkedGames": [
+        "drgn-lgnd-0000-0000-000000000001",
+        "lkfy-lgnd-0000-0000-000000000002"
+      ],
+      "features": [
+        "Seasonal content",
+        "Free track",
+        "Premium track",
+        "Catch-up XP"
+      ]
+    },
+    {
+      "id": "anti-cheat",
+      "name": "Anti-Cheat System",
+      "description": "Server-side validation and exploit detection",
+      "category": "Security",
+      "sourcePath": "libs/roblox-core/src/security/antiCheat.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Comprehensive anti-cheat including speed detection, teleport detection, value validation, and automatic flagging.",
+      "configKeys": [
+        "MAX_SPEED_MULTIPLIER",
+        "TELEPORT_THRESHOLD",
+        "FLAG_THRESHOLD_COUNT",
+        "BAN_DURATION_HOURS"
+      ],
+      "linkedGames": [
+        "drgn-lgnd-0000-0000-000000000001",
+        "lkfy-lgnd-0000-0000-000000000002",
+        "coin-coll-0000-0000-000000000003"
+      ],
+      "features": [
+        "Speed detection",
+        "Teleport detection",
+        "Auto-flagging",
+        "Ban system"
+      ]
+    },
+    {
+      "id": "validation-service",
+      "name": "Validation Service",
+      "description": "Centralized input validation and sanitization",
+      "category": "Security",
+      "sourcePath": "libs/roblox-core/src/security/validationService.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Provides validation decorators and helper functions for all player inputs with configurable rules.",
+      "configKeys": [
+        "MAX_STRING_LENGTH",
+        "ALLOWED_CHARACTERS",
+        "RATE_LIMIT_PER_SECOND"
+      ],
+      "linkedGames": [
+        "drgn-lgnd-0000-0000-000000000001",
+        "lkfy-lgnd-0000-0000-000000000002",
+        "coin-coll-0000-0000-000000000003"
+      ],
+      "features": [
+        "Input validation",
+        "Sanitization",
+        "Rate limiting",
+        "Error handling"
+      ]
+    },
+    {
+      "id": "ab-testing",
+      "name": "A/B Testing System",
+      "description": "Feature flag and A/B test management for data-driven decisions",
+      "category": "Analytics",
+      "sourcePath": "libs/roblox-core/src/analytics/abTesting.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Allows running controlled experiments with configurable test groups, metrics tracking, and statistical analysis.",
+      "configKeys": [
+        "DEFAULT_TEST_DURATION_DAYS",
+        "MIN_SAMPLE_SIZE",
+        "CONFIDENCE_LEVEL"
+      ],
+      "linkedGames": ["drgn-lgnd-0000-0000-000000000001"],
+      "features": [
+        "Test groups",
+        "Metric tracking",
+        "Statistical analysis",
+        "Auto-graduation"
+      ]
+    },
+    {
+      "id": "starter-packs",
+      "name": "Starter Packs System",
+      "description": "One-time purchase starter packs for new players",
+      "category": "Monetization",
+      "sourcePath": "libs/roblox-core/src/monetization/starterPacks.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Configurable starter pack offerings with one-time purchase limits and level-gated availability.",
+      "configKeys": [
+        "STARTER_PACK_PRICE",
+        "STARTER_PACK_CONTENTS",
+        "LEVEL_REQUIREMENT"
+      ],
+      "linkedGames": [
+        "drgn-lgnd-0000-0000-000000000001",
+        "lkfy-lgnd-0000-0000-000000000002"
+      ],
+      "features": [
+        "One-time purchase",
+        "Value bundles",
+        "Level gating",
+        "Limited availability"
+      ]
+    },
+    {
+      "id": "limited-offers",
+      "name": "Limited Time Offers",
+      "description": "Time-limited deals and flash sales",
+      "category": "Monetization",
+      "sourcePath": "libs/roblox-core/src/monetization/limitedOffers.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Creates urgency with countdown timers, limited stock, and personalized offers based on player behavior.",
+      "configKeys": [
+        "OFFER_DURATION_HOURS",
+        "DISCOUNT_PERCENTAGE",
+        "STOCK_LIMIT"
+      ],
+      "linkedGames": ["drgn-lgnd-0000-0000-000000000001"],
+      "features": [
+        "Countdown timers",
+        "Limited stock",
+        "Personalized offers",
+        "Flash sales"
+      ]
+    },
+    {
+      "id": "data-store-helpers",
+      "name": "DataStore Helpers",
+      "description": "Utilities for safe Roblox DataStore operations",
+      "category": "Persistence",
+      "sourcePath": "libs/roblox-core/src/persistence/dataStoreHelpers.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Provides retry logic, caching, and session locking for reliable data persistence.",
+      "configKeys": [
+        "RETRY_COUNT",
+        "CACHE_DURATION_SECONDS",
+        "SESSION_LOCK_TIMEOUT"
+      ],
+      "linkedGames": [
+        "drgn-lgnd-0000-0000-000000000001",
+        "lkfy-lgnd-0000-0000-000000000002",
+        "coin-coll-0000-0000-000000000003"
+      ],
+      "features": ["Auto-retry", "Caching", "Session locking", "Backup saves"]
+    },
+    {
+      "id": "friends-system",
+      "name": "Friends System",
+      "description": "Friend list management with online status and invites",
+      "category": "Social",
+      "sourcePath": "libs/roblox-core/src/social/friends.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Extends Roblox's native friends with in-game friend rewards and referral tracking.",
+      "configKeys": [
+        "MAX_FRIENDS_DISPLAY",
+        "FRIEND_BONUS_MULTIPLIER",
+        "INVITE_REWARD"
+      ],
+      "linkedGames": [
+        "drgn-lgnd-0000-0000-000000000001",
+        "lkfy-lgnd-0000-0000-000000000002"
+      ],
+      "features": [
+        "Friend bonuses",
+        "Invite rewards",
+        "Online status",
+        "Play together"
+      ]
+    }
+  ]
+}

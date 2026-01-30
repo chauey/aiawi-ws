@@ -54,7 +54,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
           <hlm-select-trigger class="w-[150px]">
             <hlm-select-value />
           </hlm-select-trigger>
-          <hlm-select-content>
+          <hlm-select-content class="bg-background border border-border">
             <hlm-option value="">All Genres</hlm-option>
             @for (genre of store.genres(); track genre) {
               <hlm-option [value]="genre">{{ genre }}</hlm-option>
@@ -66,11 +66,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
           <hlm-select-trigger class="w-[150px]">
             <hlm-select-value />
           </hlm-select-trigger>
-          <hlm-select-content>
+          <hlm-select-content class="bg-background border border-border">
             <hlm-option value="">All Types</hlm-option>
-            <hlm-option value="Our Game">Our Games</hlm-option>
-            <hlm-option value="Competitor">Competitors</hlm-option>
-            <hlm-option value="Reference">Reference</hlm-option>
+            <hlm-option value="Our Game">⭐ Our Games</hlm-option>
+            <hlm-option value="Competitor">🎯 Competitors</hlm-option>
+            <hlm-option value="Reference">📚 Reference</hlm-option>
           </hlm-select-content>
         </brn-select>
       </div>
@@ -128,7 +128,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
                     </div>
                     <div class="text-center">
                       <div class="text-sm font-semibold">
-                        {{ game.successMetrics.retentionRateDay1 }}%
+                        {{ game.successMetrics.retentionRateDay1 ?? 0 }}%
                       </div>
                       <div class="text-xs text-muted-foreground">D1 Ret.</div>
                     </div>
@@ -208,7 +208,8 @@ export class GamesPage implements OnInit {
     }
   }
 
-  formatNumber(num: number): string {
+  formatNumber(num: number | undefined | null): string {
+    if (num === undefined || num === null) return '0';
     if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
     if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
     return num.toString();

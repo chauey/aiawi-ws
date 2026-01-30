@@ -251,6 +251,85 @@ export interface SuccessFactorDto extends AuditedEntityDto {
 }
 
 /**
+ * Game Requirement DTO - For tracking features/tasks to implement
+ */
+export interface GameRequirementDto extends AuditedEntityDto {
+  gameId: string;
+  title: string;
+  description: string;
+  category: string;
+  priority: string;
+  status: string;
+  estimatedHours?: number;
+  actualHours?: number;
+  assignee?: string;
+  linkedSystemId?: string;
+  linkedFeatureId?: string;
+  acceptanceCriteria: string[];
+  notes?: string;
+  dueDate?: Date;
+  completedDate?: Date;
+  tags: string[];
+}
+
+/**
+ * Game Setting DTO - Configuration values for the game
+ */
+export interface GameSettingDto extends AuditedEntityDto {
+  gameId: string;
+  key: string;
+  name: string;
+  description: string;
+  category: string;
+  valueType: 'number' | 'string' | 'boolean' | 'array' | 'object';
+  value: string;
+  defaultValue: string;
+  minValue?: number;
+  maxValue?: number;
+  isActive: boolean;
+  linkedSystemId?: string;
+  notes?: string;
+}
+
+/**
+ * Tutorial Step DTO - For onboarding and in-game help
+ */
+export interface TutorialStepDto extends AuditedEntityDto {
+  gameId: string;
+  tutorialId: string;
+  tutorialName: string;
+  stepNumber: number;
+  title: string;
+  instruction: string;
+  targetElement?: string;
+  action: 'Click' | 'Wait' | 'Input' | 'Move' | 'Look' | 'Custom';
+  validationCriteria?: string;
+  skipCondition?: string;
+  rewardOnComplete?: string;
+  voiceoverScript?: string;
+  animationId?: string;
+  durationMs?: number;
+  isRequired: boolean;
+  notes?: string;
+}
+
+/**
+ * Documentation Section DTO - For game manuals and docs
+ */
+export interface DocumentationSectionDto extends AuditedEntityDto {
+  gameId: string;
+  docType: string;
+  title: string;
+  content: string;
+  order: number;
+  parentSectionId?: string;
+  version: string;
+  lastUpdatedBy?: string;
+  isPublished: boolean;
+  tags: string[];
+}
+
+/**
  * Main Game DTO
  */
 export interface GameDto extends AuditedEntityDto {
@@ -281,6 +360,12 @@ export interface GameDto extends AuditedEntityDto {
   rewards: RewardStructureDto[];
   mechanics: GameMechanicDto[];
   successFactors: SuccessFactorDto[];
+
+  // Project Management (optional - for Our Games)
+  requirements?: GameRequirementDto[];
+  settings?: GameSettingDto[];
+  tutorials?: TutorialStepDto[];
+  documentation?: DocumentationSectionDto[];
 
   // Analysis
   strengths: string[];

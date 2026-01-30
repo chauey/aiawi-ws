@@ -1,166 +1,6 @@
 {
   "games": [
     {
-      "id": "6efaf721-3eae-4605-b415-737a2cb77f59",
-      "name": "Adopt Me!",
-      "developer": "Uplift Games",
-      "genre": "Simulation",
-      "releaseDate": "2017-07-14T00:00:00.000Z",
-      "platform": "Roblox",
-      "description": "Virtual pet adoption and nurturing game with trading, mini-games, and social features. One of the most successful games on Roblox.",
-      "monetizationModel": "Freemium",
-      "tags": ["pets", "trading", "social", "collection", "family-friendly"],
-      "priorityScore": 50,
-      "recommendedForReplication": false,
-      "strengths": [],
-      "weaknesses": [],
-      "uniqueSellingPoints": [],
-      "lessonsLearned": [],
-      "features": [
-        {
-          "id": "92d98070-603e-4a25-89cb-8dd9a2ea69b9",
-          "gameId": "6efaf721-3eae-4605-b415-737a2cb77f59",
-          "name": "Pet Collection System",
-          "description": "Extensive pet collection with different rarities and types",
-          "category": "Core Gameplay",
-          "importance": "Critical",
-          "implementationComplexity": "Medium",
-          "userEngagementImpact": 10,
-          "monetizationPotential": 10,
-          "technicalNotes": "Use rarity tiers (Common, Uncommon, Rare, Ultra-Rare, Legendary). Implement egg hatching mechanics with probabilities.",
-          "codeSnippets": "",
-          "creationTime": "2026-01-30T07:06:35.002Z"
-        },
-        {
-          "id": "aea48160-a639-41b4-bc5c-a611101d9bf2",
-          "gameId": "6efaf721-3eae-4605-b415-737a2cb77f59",
-          "name": "Trading System",
-          "description": "Player-to-player trading with security measures",
-          "category": "Social",
-          "importance": "Critical",
-          "implementationComplexity": "Hard",
-          "userEngagementImpact": 9,
-          "monetizationPotential": 8,
-          "technicalNotes": "Implement trade windows, confirmation dialogs, trade history, and scam prevention.",
-          "codeSnippets": "",
-          "creationTime": "2026-01-30T07:06:35.005Z"
-        },
-        {
-          "id": "e45b23ed-a5c5-4b8c-9e40-904d07f3c24b",
-          "gameId": "6efaf721-3eae-4605-b415-737a2cb77f59",
-          "name": "Housing System",
-          "description": "Customizable houses and furniture",
-          "category": "Customization",
-          "importance": "High",
-          "implementationComplexity": "Medium",
-          "userEngagementImpact": 8,
-          "monetizationPotential": 9,
-          "technicalNotes": "Furniture placement system with snap-to-grid and rotation.",
-          "codeSnippets": "",
-          "creationTime": "2026-01-30T07:06:35.008Z"
-        }
-      ],
-      "systems": [],
-      "rewards": [],
-      "mechanics": [],
-      "successFactors": [],
-      "successMetrics": {
-        "totalPlays": 38000000000,
-        "concurrentPlayers": 500000,
-        "peakConcurrentPlayers": 1600000,
-        "averageSessionLength": 45,
-        "retentionRateDay1": 75,
-        "retentionRateDay7": 60,
-        "retentionRateDay30": 45,
-        "revenueTotal": 50000000,
-        "revenueMonthly": 3000000,
-        "conversionRate": 12,
-        "averageRevenuePerUser": 5.2
-      },
-      "creationTime": "2026-01-30T07:06:34.997Z",
-      "lastModificationTime": "2026-01-30T07:06:35.008Z"
-    },
-    {
-      "id": "2c99070f-5863-452a-b2dc-883895d0280b",
-      "name": "Blox Fruits",
-      "developer": "Gamer Robot Inc.",
-      "genre": "RPG",
-      "releaseDate": "2019-01-10T00:00:00.000Z",
-      "platform": "Roblox",
-      "description": "One Piece-inspired RPG with devil fruit powers, grinding mechanics, PvP combat, and progression systems.",
-      "monetizationModel": "Freemium",
-      "tags": ["anime", "grinding", "pvp", "progression", "combat"],
-      "priorityScore": 50,
-      "recommendedForReplication": false,
-      "strengths": [],
-      "weaknesses": [],
-      "uniqueSellingPoints": [],
-      "lessonsLearned": [],
-      "features": [
-        {
-          "id": "7d55b834-1ac3-424c-9d70-f797088880f9",
-          "gameId": "2c99070f-5863-452a-b2dc-883895d0280b",
-          "name": "Devil Fruit System",
-          "description": "Collectible powers with unique abilities",
-          "category": "Core Gameplay",
-          "importance": "Critical",
-          "implementationComplexity": "Expert",
-          "userEngagementImpact": 10,
-          "monetizationPotential": 9,
-          "technicalNotes": "Each fruit has unique move sets. Implement spawn mechanics and fruit trading.",
-          "codeSnippets": "",
-          "creationTime": "2026-01-30T07:06:35.016Z"
-        },
-        {
-          "id": "05d3bba4-0e3d-4627-ba2b-0284c41f6051",
-          "gameId": "2c99070f-5863-452a-b2dc-883895d0280b",
-          "name": "Progression System",
-          "description": "Level-based progression with stats and skills",
-          "category": "Progression",
-          "importance": "Critical",
-          "implementationComplexity": "Hard",
-          "userEngagementImpact": 9,
-          "monetizationPotential": 7,
-          "technicalNotes": "XP from quests and combat. Stats: Melee, Defense, Sword, Gun. Level cap system.",
-          "codeSnippets": "",
-          "creationTime": "2026-01-30T07:06:35.018Z"
-        },
-        {
-          "id": "9e491f41-9c43-43df-8cce-281e3eaa8838",
-          "gameId": "2c99070f-5863-452a-b2dc-883895d0280b",
-          "name": "Boss Raids",
-          "description": "Challenging boss fights with rewards",
-          "category": "Content",
-          "importance": "High",
-          "implementationComplexity": "Hard",
-          "userEngagementImpact": 8,
-          "monetizationPotential": 6,
-          "technicalNotes": "Multi-phase boss fights with special drops and currencies.",
-          "codeSnippets": "",
-          "creationTime": "2026-01-30T07:06:35.021Z"
-        }
-      ],
-      "systems": [],
-      "rewards": [],
-      "mechanics": [],
-      "successFactors": [],
-      "successMetrics": {
-        "totalPlays": 45000000000,
-        "concurrentPlayers": 600000,
-        "peakConcurrentPlayers": 800000,
-        "averageSessionLength": 90,
-        "retentionRateDay1": 70,
-        "retentionRateDay7": 55,
-        "retentionRateDay30": 40,
-        "revenueTotal": 40000000,
-        "revenueMonthly": 2500000,
-        "conversionRate": 15,
-        "averageRevenuePerUser": 4.8
-      },
-      "creationTime": "2026-01-30T07:06:35.010Z",
-      "lastModificationTime": "2026-01-30T07:06:35.021Z"
-    },
-    {
       "id": "45af7234-3205-4c53-8146-7b03c630756e",
       "name": "Brookhaven RP",
       "developer": "Wolfpaq",
@@ -244,7 +84,11 @@
         "averageRevenuePerUser": 3.5
       },
       "creationTime": "2026-01-30T07:06:35.023Z",
-      "lastModificationTime": "2026-01-30T07:06:35.034Z"
+      "lastModificationTime": "2026-01-30T07:06:35.034Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "3a9332bf-d39e-44cc-9d7f-357a5ba6363c",
@@ -255,7 +99,13 @@
       "platform": "Roblox",
       "description": "Fast-paced obby/parkour game with randomly generated tower challenges. Simple but highly addictive.",
       "monetizationModel": "Freemium",
-      "tags": ["obby", "parkour", "competitive", "skill-based", "fast-paced"],
+      "tags": [
+        "obby",
+        "parkour",
+        "competitive",
+        "skill-based",
+        "fast-paced"
+      ],
       "priorityScore": 50,
       "recommendedForReplication": false,
       "strengths": [],
@@ -324,7 +174,11 @@
         "averageRevenuePerUser": 2.1
       },
       "creationTime": "2026-01-30T07:06:35.036Z",
-      "lastModificationTime": "2026-01-30T07:06:35.048Z"
+      "lastModificationTime": "2026-01-30T07:06:35.048Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "3a0decb4-2905-42f8-9d80-70002d0a0bf7",
@@ -335,7 +189,13 @@
       "platform": "Roblox",
       "description": "Tactical FPS with realistic weapons, customization, and various game modes. Often compared to Call of Duty.",
       "monetizationModel": "Freemium",
-      "tags": ["fps", "competitive", "tactical", "weapons", "multiplayer"],
+      "tags": [
+        "fps",
+        "competitive",
+        "tactical",
+        "weapons",
+        "multiplayer"
+      ],
       "priorityScore": 50,
       "recommendedForReplication": false,
       "strengths": [],
@@ -404,7 +264,11 @@
         "averageRevenuePerUser": 3.2
       },
       "creationTime": "2026-01-30T07:06:35.051Z",
-      "lastModificationTime": "2026-01-30T07:06:35.065Z"
+      "lastModificationTime": "2026-01-30T07:06:35.065Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "db005e5c-9601-48a4-9ff1-51444dabebba",
@@ -417,7 +281,13 @@
       "ownership": "Competitor",
       "description": "Virtual pet adoption and nurturing game with trading, mini-games, and social features. One of the most successful games on Roblox.",
       "monetizationModel": "Freemium",
-      "tags": ["pets", "trading", "social", "collection", "family-friendly"],
+      "tags": [
+        "pets",
+        "trading",
+        "social",
+        "collection",
+        "family-friendly"
+      ],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasTradingSystem": true,
@@ -523,7 +393,11 @@
         "averageRevenuePerUser": 5.2
       },
       "creationTime": "2026-01-30T07:13:34.776Z",
-      "lastModificationTime": "2026-01-30T07:13:34.790Z"
+      "lastModificationTime": "2026-01-30T07:13:34.790Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "4bffe41e-8917-43f2-a1a1-5e8bf91c3764",
@@ -536,7 +410,13 @@
       "ownership": "Competitor",
       "description": "One Piece-inspired RPG with devil fruit powers, grinding mechanics, PvP combat, and progression systems.",
       "monetizationModel": "Freemium",
-      "tags": ["anime", "grinding", "pvp", "progression", "combat"],
+      "tags": [
+        "anime",
+        "grinding",
+        "pvp",
+        "progression",
+        "combat"
+      ],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasTradingSystem": true,
@@ -614,430 +494,11 @@
         "averageRevenuePerUser": 4.8
       },
       "creationTime": "2026-01-30T07:13:34.794Z",
-      "lastModificationTime": "2026-01-30T07:13:34.800Z"
-    },
-    {
-      "id": "ccafcfba-1636-414b-a06d-5699d34b7d6d",
-      "name": "Coin Collector",
-      "developer": "AIAWI Studios",
-      "genre": "Simulation",
-      "releaseDate": "2026-01-28T00:00:00.000Z",
-      "platform": "Roblox",
-      "ageGroup": "Elementary (6-12)",
-      "ownership": "Our Game",
-      "description": "The ultimate coin collecting, pet raising, obstacle course game! Collect coins, buy pets from 16 types, explore 6 unique maps, compete on leaderboards, and steal coins from other players! Features daily rewards, egg hatching, rebirth system, lucky wheel, and more.",
-      "thumbnailUrl": "",
-      "gameUrl": "",
-      "monetizationModel": "Freemium",
-      "tags": [
-        "pets",
-        "collection",
-        "coins",
-        "obby",
-        "social",
-        "trading",
-        "gacha",
-        "minigames",
-        "roller-coasters"
-      ],
-      "featureFlags": {
-        "hasCollectionSystem": true,
-        "hasTradingSystem": true,
-        "hasProgressionSystem": true,
-        "hasCraftingSystem": false,
-        "hasBuildingSystem": false,
-        "hasMultiplayer": true,
-        "hasGuilds": true,
-        "hasChat": true,
-        "hasFriendSystem": true,
-        "hasLeaderboards": true,
-        "hasInAppPurchases": true,
-        "hasGachaSystem": true,
-        "hasSeasonPass": false,
-        "hasAds": false,
-        "hasVIPSystem": true,
-        "hasLevelSystem": true,
-        "hasSkillTree": false,
-        "hasAchievements": true,
-        "hasQuests": true,
-        "hasDailies": true,
-        "hasProcGeneratedContent": false,
-        "hasStoryMode": false,
-        "hasPvP": true,
-        "hasPvE": true,
-        "hasRaids": false,
-        "hasCharacterCustomization": true,
-        "hasHousingCustomization": false,
-        "hasSkinSystem": false,
-        "hasEmotes": false,
-        "hasVirtualCurrency": true,
-        "hasMarketplace": false,
-        "hasAuctions": false,
-        "hasCrossPlatform": false,
-        "hasCloudSaves": false,
-        "hasOfflineProgress": false
-      },
-      "priorityScore": 95,
-      "recommendedForReplication": false,
-      "strengths": [
-        "27 implemented features",
-        "Proven Pet Simulator formula",
-        "Multiple engagement loops",
-        "Strong monetization hooks"
-      ],
-      "weaknesses": ["New game, building player base", "Competitive market"],
-      "uniqueSellingPoints": [
-        "Coin stealing PvP mechanic",
-        "Roller coaster social rides",
-        "Pet evolution and fusion",
-        "Limited seasonal events"
-      ],
-      "lessonsLearned": [
-        "Gacha drives early revenue",
-        "Daily rewards boost D1 retention",
-        "Trading creates social stickiness"
-      ],
-      "features": [
-        {
-          "id": "d2aead98-0947-4718-89d5-ca328d673bf5",
-          "name": "Egg Hatching (Gacha)",
-          "description": "RNG-based pet acquisition with tiered rarity system",
-          "category": "Core Gameplay",
-          "importance": "Critical",
-          "implementationComplexity": "Medium",
-          "userEngagementImpact": 10,
-          "monetizationPotential": 10,
-          "technicalNotes": "Common 50%, Uncommon 30%, Rare 15%, Epic 4%, Legendary 0.5%, Mythic 0.1%",
-          "whatMakesItGreat": [
-            "Drives repeat purchases",
-            "Creates scarcity",
-            "Emotional wins"
-          ],
-          "improvementOpportunities": ["Pity system", "Guaranteed rates"],
-          "competitiveAdvantage": "Higher legendary rates than competitors",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        },
-        {
-          "id": "216cbb3e-a450-44c7-b8a6-c5240d5d2705",
-          "name": "Pet Collection System",
-          "description": "16 unique pets across 4 tiers with collection bonuses",
-          "category": "Core Gameplay",
-          "importance": "Critical",
-          "implementationComplexity": "Hard",
-          "userEngagementImpact": 10,
-          "monetizationPotential": 9,
-          "technicalNotes": "Pets follow player, auto-collect coins, have unique animations",
-          "whatMakesItGreat": [
-            "Pokemon-style addiction",
-            "Completionist appeal",
-            "Social flex"
-          ],
-          "improvementOpportunities": ["More pets", "Shiny variants"],
-          "competitiveAdvantage": "Pets have gameplay utility not just cosmetic",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        },
-        {
-          "id": "7b3f3042-1174-45d3-86d8-f0feca35e134",
-          "name": "Rebirth/Prestige System",
-          "description": "Reset progress for permanent multipliers",
-          "category": "Progression",
-          "importance": "Critical",
-          "implementationComplexity": "Easy",
-          "userEngagementImpact": 9,
-          "monetizationPotential": 7,
-          "technicalNotes": "Cost scaling: base * (1.5 ^ rebirthCount)",
-          "whatMakesItGreat": [
-            "Extends game life",
-            "Creates goals",
-            "Sense of achievement"
-          ],
-          "improvementOpportunities": ["Rebirth exclusive pets"],
-          "competitiveAdvantage": "Rebirth unlocks exclusive areas",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        },
-        {
-          "id": "fd2283a6-40c0-4122-b3ec-45125dc091a2",
-          "name": "Daily Login Rewards",
-          "description": "7-day escalating reward calendar that repeats",
-          "category": "Retention",
-          "importance": "Critical",
-          "implementationComplexity": "Easy",
-          "userEngagementImpact": 8,
-          "monetizationPotential": 5,
-          "technicalNotes": "Rewards: 10 → 25 → 50 → 100 → 200 → 350 → 500 coins",
-          "whatMakesItGreat": [
-            "Simple but effective",
-            "Creates habit",
-            "FOMO for missed days"
-          ],
-          "improvementOpportunities": ["Premium streak track"],
-          "competitiveAdvantage": "Streak resets give catch-up mechanics",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        },
-        {
-          "id": "84d2c2a0-b565-41e4-bde5-e46bcc6d405e",
-          "name": "Trading System",
-          "description": "Secure player-to-player trading with confirmation",
-          "category": "Social",
-          "importance": "High",
-          "implementationComplexity": "Hard",
-          "userEngagementImpact": 8,
-          "monetizationPotential": 6,
-          "technicalNotes": "Double confirm, trade history, scam prevention",
-          "whatMakesItGreat": [
-            "Creates community",
-            "Player economy",
-            "Social bonds"
-          ],
-          "improvementOpportunities": ["Trade value estimator"],
-          "competitiveAdvantage": "Secure trade logs prevent scams",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        }
-      ],
-      "systems": [],
-      "rewards": [],
-      "mechanics": [],
-      "successFactors": [],
-      "successMetrics": {
-        "totalPlays": 0,
-        "concurrentPlayers": 0,
-        "peakConcurrentPlayers": 0,
-        "averageSessionLength": 0,
-        "retentionRateDay1": 0,
-        "retentionRateDay7": 0,
-        "retentionRateDay30": 0,
-        "revenueTotal": 0,
-        "revenueMonthly": 0,
-        "conversionRate": 0,
-        "averageRevenuePerUser": 0
-      },
-      "creationTime": "2026-01-30T09:24:34.418Z",
-      "lastModificationTime": "2026-01-30T09:24:34.418Z"
-    },
-    {
-      "id": "fff76d54-a358-4f1d-8afa-7d3c57062f65",
-      "name": "Dragon Legends",
-      "developer": "AIAWI Studios",
-      "genre": "RPG",
-      "releaseDate": "2026-03-01T00:00:00.000Z",
-      "platform": "Roblox",
-      "ageGroup": "Teen (13-17)",
-      "ownership": "Our Game",
-      "description": "Dragon Legends combines pet collection with anime-style combat! Collect 50+ dragons, breed rare hybrids, battle in elemental combat, raid world bosses, and compete in clan wars. Dragon breeding, evolution, and PvP arena create deep engagement loops.",
-      "thumbnailUrl": "",
-      "gameUrl": "",
-      "monetizationModel": "Freemium",
-      "tags": [
-        "dragons",
-        "collection",
-        "breeding",
-        "combat",
-        "pvp",
-        "gacha",
-        "clans",
-        "anime",
-        "rpg",
-        "boss-raids"
-      ],
-      "featureFlags": {
-        "hasCollectionSystem": true,
-        "hasTradingSystem": true,
-        "hasProgressionSystem": true,
-        "hasCraftingSystem": true,
-        "hasBuildingSystem": false,
-        "hasMultiplayer": true,
-        "hasGuilds": true,
-        "hasChat": true,
-        "hasFriendSystem": true,
-        "hasLeaderboards": true,
-        "hasInAppPurchases": true,
-        "hasGachaSystem": true,
-        "hasSeasonPass": true,
-        "hasAds": false,
-        "hasVIPSystem": true,
-        "hasLevelSystem": true,
-        "hasSkillTree": true,
-        "hasAchievements": true,
-        "hasQuests": true,
-        "hasDailies": true,
-        "hasProcGeneratedContent": false,
-        "hasStoryMode": false,
-        "hasPvP": true,
-        "hasPvE": true,
-        "hasRaids": true,
-        "hasCharacterCustomization": true,
-        "hasHousingCustomization": false,
-        "hasSkinSystem": true,
-        "hasEmotes": false,
-        "hasVirtualCurrency": true,
-        "hasMarketplace": true,
-        "hasAuctions": false,
-        "hasCrossPlatform": false,
-        "hasCloudSaves": false,
-        "hasOfflineProgress": false
-      },
-      "priorityScore": 98,
-      "recommendedForReplication": true,
-      "strengths": [
-        "Combines proven formulas (Pet Sim + Blox Fruits)",
-        "Dragon breeding creates unique value",
-        "Elemental combat adds depth",
-        "Strong clan/social features",
-        "Multiple monetization points"
-      ],
-      "weaknesses": [
-        "Higher development complexity",
-        "Requires combat balancing",
-        "Competitive RPG market"
-      ],
-      "uniqueSellingPoints": [
-        "Dragon breeding system with genetic inheritance",
-        "Elemental rock-paper-scissors combat",
-        "3-stage dragon evolution with legendary forms",
-        "Weekly clan wars with territory control",
-        "World boss raids with server-wide participation"
-      ],
-      "lessonsLearned": [
-        "Breeding creates endless content without dev work",
-        "Elemental combat easy to understand, hard to master",
-        "Clans drive long-term retention",
-        "World bosses create community events"
-      ],
-      "features": [
-        {
-          "id": "b868ccf8-7a9f-4b80-9a05-78bf851f837c",
-          "name": "Dragon Breeding System",
-          "description": "Combine two dragons to create unique hybrid offspring with inherited traits",
-          "category": "Core Gameplay",
-          "importance": "Critical",
-          "implementationComplexity": "Expert",
-          "userEngagementImpact": 10,
-          "monetizationPotential": 10,
-          "technicalNotes": "Genetic system: element inheritance, stat variance, rare mutation chance (5%)",
-          "whatMakesItGreat": [
-            "User-generated content",
-            "Infinite replayability",
-            "Trading value"
-          ],
-          "improvementOpportunities": ["Shiny breeding", "Legendary fusion"],
-          "competitiveAdvantage": "True genetic system not found in other Roblox games",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        },
-        {
-          "id": "779cca85-0828-418c-bced-11935eabff7b",
-          "name": "Elemental Combat System",
-          "description": "Turn-based battles with elemental type advantages",
-          "category": "Core Gameplay",
-          "importance": "Critical",
-          "implementationComplexity": "Hard",
-          "userEngagementImpact": 9,
-          "monetizationPotential": 7,
-          "technicalNotes": "Fire > Ice > Electric > Water > Fire. Nature, Shadow, Light triangle.",
-          "whatMakesItGreat": [
-            "Strategic depth",
-            "Easy to learn",
-            "Team building"
-          ],
-          "improvementOpportunities": ["Weather effects", "Terrain bonuses"],
-          "competitiveAdvantage": "More strategic than button-mashing combat",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        },
-        {
-          "id": "87bec39f-9455-4377-9845-a82d9352d3ab",
-          "name": "Dragon Evolution",
-          "description": "3-stage evolution with legendary transformation",
-          "category": "Progression",
-          "importance": "Critical",
-          "implementationComplexity": "Medium",
-          "userEngagementImpact": 9,
-          "monetizationPotential": 8,
-          "technicalNotes": "Baby (1-10) → Teen (11-25) → Adult (26-50) → Legendary (50 + item)",
-          "whatMakesItGreat": [
-            "Visual progression",
-            "Power growth",
-            "Investment feeling"
-          ],
-          "improvementOpportunities": ["Branch evolution paths"],
-          "competitiveAdvantage": "Legendary forms require rare items from raids",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        },
-        {
-          "id": "3f6ba925-0608-4478-a5df-2947613b41b3",
-          "name": "Clan Wars",
-          "description": "Weekly team-based battles with territory control",
-          "category": "Social",
-          "importance": "High",
-          "implementationComplexity": "Hard",
-          "userEngagementImpact": 9,
-          "monetizationPotential": 6,
-          "technicalNotes": "Up to 50 members, weekly reset, exclusive dragon rewards",
-          "whatMakesItGreat": [
-            "Team bonding",
-            "Competitive drive",
-            "Weekly events"
-          ],
-          "improvementOpportunities": ["Clan levels", "Perks system"],
-          "competitiveAdvantage": "Territory control gives clan-wide bonuses",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        },
-        {
-          "id": "78632fbe-4d87-4f33-a102-1694a92a7e19",
-          "name": "World Boss Raids",
-          "description": "Server-wide cooperative boss battles",
-          "category": "Content",
-          "importance": "High",
-          "implementationComplexity": "Expert",
-          "userEngagementImpact": 10,
-          "monetizationPotential": 8,
-          "technicalNotes": "Multi-phase battles, contribution-based rewards, rare dragon drops",
-          "whatMakesItGreat": [
-            "Community events",
-            "Epic scale",
-            "Rare rewards"
-          ],
-          "improvementOpportunities": ["Rotating boss schedule"],
-          "competitiveAdvantage": "Exclusive legendary dragons only from raids",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        },
-        {
-          "id": "77ce6401-e06d-4a95-85e2-d5aa96eba011",
-          "name": "PvP Arena",
-          "description": "Ranked 1v1 and 3v3 dragon battles with seasonal rewards",
-          "category": "Content",
-          "importance": "High",
-          "implementationComplexity": "Hard",
-          "userEngagementImpact": 8,
-          "monetizationPotential": 7,
-          "technicalNotes": "ELO-based matchmaking, season reset, exclusive ranked rewards",
-          "whatMakesItGreat": [
-            "Competitive drive",
-            "Skill expression",
-            "Bragging rights"
-          ],
-          "improvementOpportunities": ["Tournaments", "Spectator mode"],
-          "competitiveAdvantage": "Balanced matchmaking prevents newbie stomping",
-          "creationTime": "2026-01-30T09:24:34.418Z"
-        }
-      ],
-      "systems": [],
-      "rewards": [],
-      "mechanics": [],
-      "successFactors": [],
-      "successMetrics": {
-        "totalPlays": 0,
-        "concurrentPlayers": 0,
-        "peakConcurrentPlayers": 0,
-        "averageSessionLength": 0,
-        "retentionRateDay1": 0,
-        "retentionRateDay7": 0,
-        "retentionRateDay30": 0,
-        "revenueTotal": 0,
-        "revenueMonthly": 0,
-        "conversionRate": 0,
-        "averageRevenuePerUser": 0
-      },
-      "creationTime": "2026-01-30T09:24:34.418Z",
-      "lastModificationTime": "2026-01-30T09:24:34.418Z"
+      "lastModificationTime": "2026-01-30T07:13:34.800Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "f1sh-1t00-0000-0000-000000000001",
@@ -1076,7 +537,10 @@
         "Low dev complexity",
         "Massive player base"
       ],
-      "weaknesses": ["Trend-dependent", "Easy to clone"],
+      "weaknesses": [
+        "Trend-dependent",
+        "Easy to clone"
+      ],
       "uniqueSellingPoints": [
         "One-tap fishing",
         "Rare fish flex culture",
@@ -1125,7 +589,11 @@
         "retentionRateDay30": 30
       },
       "creationTime": "2026-01-30T18:07:00.000Z",
-      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "sols-rng0-0000-0000-000000000002",
@@ -1138,7 +606,14 @@
       "ownership": "Competitor",
       "description": "Pure RNG/luck simulator where players roll for rare 'auras'. Zero skill barrier - anyone can get lucky. Capitalizes on gambling psychology and flex culture.",
       "monetizationModel": "Freemium",
-      "tags": ["rng", "luck", "gacha", "aura", "flex", "gambling"],
+      "tags": [
+        "rng",
+        "luck",
+        "gacha",
+        "aura",
+        "flex",
+        "gambling"
+      ],
       "featureFlags": {
         "hasGachaSystem": true,
         "hasCollectionSystem": true,
@@ -1155,7 +630,10 @@
         "Pure dopamine loop",
         "Flex culture"
       ],
-      "weaknesses": ["Gambling concerns", "Can feel pointless"],
+      "weaknesses": [
+        "Gambling concerns",
+        "Can feel pointless"
+      ],
       "uniqueSellingPoints": [
         "Pure RNG gameplay",
         "Visible auras as status",
@@ -1205,7 +683,11 @@
         "conversionRate": 20
       },
       "creationTime": "2026-01-30T18:07:00.000Z",
-      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "dti0-0000-0000-0000-000000000003",
@@ -1218,7 +700,13 @@
       "ownership": "Competitor",
       "description": "Timed competitive fashion game with player voting. Massive social validation loops and creator expression. Consistently top 10 by concurrent players.",
       "monetizationModel": "Freemium",
-      "tags": ["fashion", "social", "voting", "competition", "customization"],
+      "tags": [
+        "fashion",
+        "social",
+        "voting",
+        "competition",
+        "customization"
+      ],
       "featureFlags": {
         "hasCharacterCustomization": true,
         "hasMultiplayer": true,
@@ -1234,7 +722,10 @@
         "Low dev barrier",
         "High retention"
       ],
-      "weaknesses": ["Niche audience", "Asset-heavy"],
+      "weaknesses": [
+        "Niche audience",
+        "Asset-heavy"
+      ],
       "uniqueSellingPoints": [
         "Theme-based rounds",
         "Player voting",
@@ -1282,7 +773,11 @@
         "retentionRateDay30": 25
       },
       "creationTime": "2026-01-30T18:07:00.000Z",
-      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "rvls-0000-0000-0000-000000000004",
@@ -1295,7 +790,13 @@
       "ownership": "Competitor",
       "description": "High-stakes competitive FPS with skill-based matchmaking. Monetizes through skins, crates, and prestige items. Growing esports potential.",
       "monetizationModel": "Freemium",
-      "tags": ["fps", "competitive", "esports", "skins", "ranked"],
+      "tags": [
+        "fps",
+        "competitive",
+        "esports",
+        "skins",
+        "ranked"
+      ],
       "featureFlags": {
         "hasPvP": true,
         "hasLeaderboards": true,
@@ -1311,7 +812,10 @@
         "Cosmetic monetization",
         "Esports potential"
       ],
-      "weaknesses": ["High dev complexity", "Competitive market"],
+      "weaknesses": [
+        "High dev complexity",
+        "Competitive market"
+      ],
       "uniqueSellingPoints": [
         "Ranked matchmaking",
         "Premium weapon skins",
@@ -1348,7 +852,11 @@
         "retentionRateDay30": 30
       },
       "creationTime": "2026-01-30T18:07:00.000Z",
-      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "tsb0-0000-0000-0000-000000000005",
@@ -1361,7 +869,13 @@
       "ownership": "Competitor",
       "description": "Peak anime combat game with visceral feedback. Characters from popular anime with unique movesets. Focus on feel-good combat and skill expression.",
       "monetizationModel": "Freemium",
-      "tags": ["anime", "combat", "fighting", "pvp", "skill"],
+      "tags": [
+        "anime",
+        "combat",
+        "fighting",
+        "pvp",
+        "skill"
+      ],
       "featureFlags": {
         "hasPvP": true,
         "hasCharacterCustomization": true,
@@ -1376,13 +890,19 @@
         "Anime IP appeal",
         "Skill expression"
       ],
-      "weaknesses": ["IP concerns", "Balance complexity"],
+      "weaknesses": [
+        "IP concerns",
+        "Balance complexity"
+      ],
       "uniqueSellingPoints": [
         "High-quality animations",
         "Combo systems",
         "1v1 arena"
       ],
-      "lessonsLearned": ["Combat feel > graphics", "Anime = built-in audience"],
+      "lessonsLearned": [
+        "Combat feel > graphics",
+        "Anime = built-in audience"
+      ],
       "features": [
         {
           "id": "tsb-feat-0001",
@@ -1410,7 +930,11 @@
         "retentionRateDay30": 30
       },
       "creationTime": "2026-01-30T18:07:00.000Z",
-      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "psim-99-0000-0000-000000000006",
@@ -1423,7 +947,13 @@
       "ownership": "Competitor",
       "description": "The gold standard of pet simulators. Infinite progression, massive trading economy, and exclusive eggs that drive high-ticket sales consistently.",
       "monetizationModel": "Freemium",
-      "tags": ["pets", "simulator", "collection", "trading", "gacha"],
+      "tags": [
+        "pets",
+        "simulator",
+        "collection",
+        "trading",
+        "gacha"
+      ],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasTradingSystem": true,
@@ -1441,7 +971,10 @@
         "Constant updates",
         "High-ticket items"
       ],
-      "weaknesses": ["Established competitor", "Complex to replicate"],
+      "weaknesses": [
+        "Established competitor",
+        "Complex to replicate"
+      ],
       "uniqueSellingPoints": [
         "Exclusive eggs ($50-100+)",
         "Pet fusion",
@@ -1480,7 +1013,11 @@
         "conversionRate": 18
       },
       "creationTime": "2026-01-30T18:07:00.000Z",
-      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "bee0-swrm-0000-0000-000000000007",
@@ -1493,7 +1030,13 @@
       "ownership": "Competitor",
       "description": "Deep complex mechanics hidden behind simple appearance. Rewards long-term planning and consistent daily logins. Extremely loyal player base.",
       "monetizationModel": "Freemium",
-      "tags": ["bees", "simulator", "farming", "collection", "progression"],
+      "tags": [
+        "bees",
+        "simulator",
+        "farming",
+        "collection",
+        "progression"
+      ],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasProgressionSystem": true,
@@ -1509,7 +1052,10 @@
         "Loyal community",
         "Years of content"
       ],
-      "weaknesses": ["High barrier to new players", "Slow initial progression"],
+      "weaknesses": [
+        "High barrier to new players",
+        "Slow initial progression"
+      ],
       "uniqueSellingPoints": [
         "Bee genetics system",
         "Field farming",
@@ -1535,7 +1081,11 @@
         "retentionRateDay30": 35
       },
       "creationTime": "2026-01-30T18:07:00.000Z",
-      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "brrt-escr-0000-0000-000000000008",
@@ -1548,7 +1098,13 @@
       "ownership": "Competitor",
       "description": "Viral meme-based survival game using Gen Alpha 'brainrot' characters. High-stakes escape gameplay with humorous elements. Currently top 3 by concurrent players.",
       "monetizationModel": "Freemium",
-      "tags": ["survival", "meme", "brainrot", "viral", "escape"],
+      "tags": [
+        "survival",
+        "meme",
+        "brainrot",
+        "viral",
+        "escape"
+      ],
       "featureFlags": {
         "hasMultiplayer": true,
         "hasCharacterCustomization": true,
@@ -1562,7 +1118,10 @@
         "Shareable moments",
         "Trend-riding"
       ],
-      "weaknesses": ["Trend-dependent", "Short lifespan"],
+      "weaknesses": [
+        "Trend-dependent",
+        "Short lifespan"
+      ],
       "uniqueSellingPoints": [
         "Brainrot characters",
         "Tsunami survival",
@@ -1600,7 +1159,11 @@
         "retentionRateDay30": 15
       },
       "creationTime": "2026-01-30T18:07:00.000Z",
-      "lastModificationTime": "2026-01-30T18:07:00.000Z"
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "drgn-lgnd-0000-0000-000000000001",
@@ -1650,7 +1213,10 @@
         "Daily rewards with VIP",
         "Balanced economy"
       ],
-      "weaknesses": ["In development", "Needs art assets"],
+      "weaknesses": [
+        "In development",
+        "Needs art assets"
+      ],
       "uniqueSellingPoints": [
         "Dragon breeding with genetics",
         "Elemental type advantages",
@@ -1725,7 +1291,234 @@
         "averageRevenuePerUser": 0
       },
       "creationTime": "2026-01-30T19:45:00.000Z",
-      "lastModificationTime": "2026-01-30T19:45:00.000Z"
+      "lastModificationTime": "2026-01-30T19:45:00.000Z",
+      "requirements": [
+        {
+          "id": "decb35e4-3dc5-4669-9d9e-d46c7fece05d",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "title": "Implement Dragon Breeding System",
+          "description": "Create a breeding mechanic where players can combine dragons to create new offspring with mixed traits",
+          "category": "Gameplay",
+          "priority": "Must Have",
+          "status": "In Progress",
+          "estimatedHours": 40,
+          "assignee": "Dev Team",
+          "acceptanceCriteria": [
+            "Dragons can be paired",
+            "Offspring inherits traits",
+            "Cooldown timer works",
+            "UI shows breeding progress"
+          ],
+          "tags": [
+            "core",
+            "breeding"
+          ],
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "97fe283b-6913-4d3c-bdbb-31af7b05a071",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "title": "Trading System Security Audit",
+          "description": "Review and harden the trading system against duplication exploits",
+          "category": "Technical",
+          "priority": "Must Have",
+          "status": "Planned",
+          "estimatedHours": 16,
+          "assignee": "Dev Team",
+          "acceptanceCriteria": [
+            "No item duplication possible",
+            "Transaction logging works",
+            "Rollback mechanism tested"
+          ],
+          "tags": [
+            "security",
+            "trading"
+          ],
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "389f84e5-6573-4855-b9d7-2f5087d0e98f",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "title": "Daily Reward Calendar UI",
+          "description": "Design and implement the daily reward calendar with progressive rewards",
+          "category": "UI/UX",
+          "priority": "Should Have",
+          "status": "Done",
+          "estimatedHours": 8,
+          "actualHours": 10,
+          "acceptanceCriteria": [
+            "Calendar shows 30 days",
+            "Current day highlighted",
+            "Claim button works",
+            "Streak bonus displayed"
+          ],
+          "tags": [
+            "ui",
+            "rewards"
+          ],
+          "creationTime": "2026-01-30T20:49:48.367Z",
+          "completedDate": "2026-01-30T20:49:48.367Z"
+        }
+      ],
+      "settings": [
+        {
+          "id": "30197eec-57d9-4c30-a8c9-6ad275ba658d",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "key": "STARTING_COINS",
+          "name": "Starting Coins",
+          "description": "Coins given to new players",
+          "category": "Economy",
+          "valueType": "number",
+          "value": "500",
+          "defaultValue": "500",
+          "minValue": 100,
+          "maxValue": 10000,
+          "isActive": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "2902b035-78f3-4e8a-ae44-0cd184a35dd5",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "key": "BREEDING_COOLDOWN_HOURS",
+          "name": "Breeding Cooldown",
+          "description": "Hours between breeding attempts",
+          "category": "Gameplay",
+          "valueType": "number",
+          "value": "24",
+          "defaultValue": "24",
+          "minValue": 1,
+          "maxValue": 168,
+          "isActive": true,
+          "linkedSystemId": "BreedingSystem",
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "7a51c007-5685-4eef-aa47-2754669138fc",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "key": "XP_PER_BATTLE",
+          "name": "XP Per Battle",
+          "description": "Base XP earned per battle",
+          "category": "Progression",
+          "valueType": "number",
+          "value": "50",
+          "defaultValue": "50",
+          "minValue": 10,
+          "maxValue": 500,
+          "isActive": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "d0baf36a-b3d4-4b63-a048-2a5b7f6e75d1",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "key": "DEBUG_MODE",
+          "name": "Debug Mode",
+          "description": "Enable debug overlays and logging",
+          "category": "Debug",
+          "valueType": "boolean",
+          "value": "false",
+          "defaultValue": "false",
+          "isActive": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "38ee2c50-9c8b-415b-9475-675408c10606",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "key": "DOUBLE_XP_WEEKEND",
+          "name": "Double XP Weekend",
+          "description": "Enable double XP for weekend events",
+          "category": "Feature Flags",
+          "valueType": "boolean",
+          "value": "false",
+          "defaultValue": "false",
+          "isActive": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        }
+      ],
+      "tutorials": [
+        {
+          "id": "f618bc88-4684-4d25-a67a-a7fe8309de15",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "tutorialId": "onboarding",
+          "tutorialName": "New Player Onboarding",
+          "stepNumber": 1,
+          "title": "Welcome!",
+          "instruction": "Welcome to Dragon Legends! Tap anywhere to continue.",
+          "action": "Click",
+          "isRequired": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "d629f3ce-f428-4afa-9775-c5db80833221",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "tutorialId": "onboarding",
+          "tutorialName": "New Player Onboarding",
+          "stepNumber": 2,
+          "title": "Your First Dragon",
+          "instruction": "This is your starter dragon! Tap on it to see its stats.",
+          "targetElement": "DragonCard",
+          "action": "Click",
+          "isRequired": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "1073425c-b3db-4064-ab9e-994e5bf1c8e7",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "tutorialId": "onboarding",
+          "tutorialName": "New Player Onboarding",
+          "stepNumber": 3,
+          "title": "Battle Arena",
+          "instruction": "Tap the Battle button to enter your first fight!",
+          "targetElement": "BattleButton",
+          "action": "Click",
+          "isRequired": true,
+          "rewardOnComplete": "100 Coins",
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "529f2d14-6da2-474a-a3b7-42de0c3fdf5a",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "tutorialId": "breeding",
+          "tutorialName": "Breeding Tutorial",
+          "stepNumber": 1,
+          "title": "Breeding Basics",
+          "instruction": "Select two dragons to breed them together.",
+          "targetElement": "BreedingPanel",
+          "action": "Click",
+          "isRequired": false,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        }
+      ],
+      "documentation": [
+        {
+          "id": "742de687-64a6-4e3d-a2f9-1fb8a1eff59a",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "docType": "Game Design Document",
+          "title": "Dragon Legends GDD",
+          "content": "# Dragon Legends\\n\\n## Overview\\nDragon Legends is a collection and breeding game where players collect, train, and breed dragons.\\n\\n## Core Loop\\n1. Collect dragons through eggs\\n2. Train dragons in battles\\n3. Breed dragons for new variants\\n4. Trade with other players",
+          "order": 1,
+          "version": "1.0",
+          "isPublished": true,
+          "tags": [
+            "gdd",
+            "overview"
+          ],
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "e8fbad32-af0e-4bd4-9056-1eb466911f3c",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "docType": "Economy Bible",
+          "title": "Economy Design",
+          "content": "# Economy Design\\n\\n## Currencies\\n- **Coins**: Soft currency, earned through gameplay\\n- **Gems**: Premium currency\\n\\n## Sinks & Faucets\\n- Faucets: Daily rewards, battles, achievements\\n- Sinks: Breeding, upgrades, cosmetics",
+          "order": 1,
+          "version": "1.0",
+          "isPublished": true,
+          "tags": [
+            "economy"
+          ],
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        }
+      ]
     },
     {
       "id": "lkfy-lgnd-0000-0000-000000000002",
@@ -1768,7 +1561,10 @@
         "Viral potential",
         "82% predicted success rate"
       ],
-      "weaknesses": ["Trend-dependent", "Competition from clones"],
+      "weaknesses": [
+        "Trend-dependent",
+        "Competition from clones"
+      ],
       "uniqueSellingPoints": [
         "Fish with visible bioluminescent auras",
         "1:10M Legendary Kraken",
@@ -1854,7 +1650,11 @@
         "averageRevenuePerUser": 3.5
       },
       "creationTime": "2026-01-30T19:45:00.000Z",
-      "lastModificationTime": "2026-01-30T19:45:00.000Z"
+      "lastModificationTime": "2026-01-30T19:45:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     },
     {
       "id": "coin-coll-0000-0000-000000000003",
@@ -1867,7 +1667,13 @@
       "ownership": "Our Game",
       "description": "Simple coin collection game used as our roblox-ts learning project and testing ground. Basic mechanics but fully functional with our core library integration.",
       "monetizationModel": "Free",
-      "tags": ["starter", "learning", "coins", "collection", "simple"],
+      "tags": [
+        "starter",
+        "learning",
+        "coins",
+        "collection",
+        "simple"
+      ],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasProgressionSystem": true,
@@ -1881,8 +1687,14 @@
         "Good for testing",
         "Core library integration"
       ],
-      "weaknesses": ["Basic mechanics", "Limited content", "No monetization"],
-      "uniqueSellingPoints": ["Learning project"],
+      "weaknesses": [
+        "Basic mechanics",
+        "Limited content",
+        "No monetization"
+      ],
+      "uniqueSellingPoints": [
+        "Learning project"
+      ],
       "lessonsLearned": [
         "roblox-ts basics",
         "Rojo workflow",
@@ -1907,7 +1719,11 @@
         "averageRevenuePerUser": 0
       },
       "creationTime": "2026-01-30T19:45:00.000Z",
-      "lastModificationTime": "2026-01-30T19:45:00.000Z"
+      "lastModificationTime": "2026-01-30T19:45:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
     }
   ],
   "metadata": {

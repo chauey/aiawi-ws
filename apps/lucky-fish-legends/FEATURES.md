@@ -1,0 +1,83 @@
+# Roblox Game - Master Feature List
+
+> **Priority order based on proven revenue mechanics from Pet Simulator X, Adopt Me, Blox Fruits**
+
+---
+
+## ✅ IMPLEMENTED FEATURES
+
+| #   | Feature                  | Priority    | Difficulty | Revenue        | Retention  | Status  |
+| --- | ------------------------ | ----------- | ---------- | -------------- | ---------- | ------- |
+| 1   | **Egg Hatching (Gacha)** | 🔴 CRITICAL | Medium     | 💰💰💰💰💰     | 🔥🔥🔥🔥🔥 | ✅ Done |
+| 2   | **Rebirth/Prestige**     | 🔴 CRITICAL | Easy       | 💰💰💰         | 🔥🔥🔥🔥🔥 | ✅ Done |
+| 3   | **Daily Login Rewards**  | 🔴 CRITICAL | Easy       | 💰💰           | 🔥🔥🔥🔥🔥 | ✅ Done |
+| 4   | **Daily Quests**         | 🟠 HIGH     | Medium     | 💰💰           | 🔥🔥🔥🔥   | ✅ Done |
+| 5   | **Lucky Wheel**          | 🟠 HIGH     | Easy       | 💰💰💰         | 🔥🔥🔥🔥   | ✅ Done |
+| 6   | **Pet Evolution**        | 🟠 HIGH     | Medium     | 💰💰💰         | 🔥🔥🔥🔥   | ✅ Done |
+| 7   | **Codes System**         | 🟠 HIGH     | Easy       | 💰 (marketing) | 🔥🔥🔥🔥   | ✅ Done |
+| 8   | **VIP Zone**             | 🔴 CRITICAL | Medium     | 💰💰💰💰💰     | 🔥🔥🔥🔥   | ✅ Done |
+| 9   | **Limited Events**       | 🔴 CRITICAL | Hard       | 💰💰💰💰       | 🔥🔥🔥🔥🔥 | ✅ Done |
+| 10  | **Pet Fusion**           | 🟠 HIGH     | Medium     | 💰💰💰         | 🔥🔥🔥🔥   | ✅ Done |
+| 11  | **Achievements**         | 🟡 MEDIUM   | Easy       | 💰             | 🔥🔥🔥     | ✅ Done |
+| 12  | **Clans/Teams**          | 🟡 MEDIUM   | Hard       | 💰💰           | 🔥🔥🔥🔥   | ✅ Done |
+| 13  | **Trading**              | 🟡 MEDIUM   | Hard       | 💰💰           | 🔥🔥🔥     | ✅ Done |
+| 14  | **Coin Stealing**        | 🟡 MEDIUM   | Easy       | 💰             | 🔥🔥🔥     | ✅ Done |
+| 15  | **Leaderboard**          | 🟡 MEDIUM   | Easy       | 💰             | 🔥🔥🔥     | ✅ Done |
+| 16  | **Pet System (16 pets)** | 🔴 CRITICAL | Hard       | 💰💰💰💰       | 🔥🔥🔥🔥🔥 | ✅ Done |
+| 17  | **Maps (6 worlds)**      | 🟠 HIGH     | Medium     | 💰💰💰         | 🔥🔥🔥     | ✅ Done |
+| 18  | **Obby Tower**           | 🟢 LOW      | Easy       | 💰             | 🔥🔥       | ✅ Done |
+| 19  | **Roller Coasters**      | 🟢 LOW      | Medium     | 💰             | 🔥🔥       | ✅ Done |
+| 20  | **Game Passes**          | 🟠 HIGH     | Easy       | 💰💰💰💰💰     | 🔥         | ✅ Done |
+| 21  | **Music Toggle**         | 🟢 LOW      | Easy       | -              | 🔥         | ✅ Done |
+| 22  | **NPC Companions**       | 🟢 LOW      | Easy       | 💰             | 🔥🔥       | ✅ Done |
+| 23  | **Tutorial**             | 🟡 MEDIUM   | Easy       | -              | 🔥🔥🔥     | ✅ Done |
+| 24  | **Premium Pass**         | 🔴 CRITICAL | Easy       | 💰💰💰💰💰     | 🔥🔥🔥     | ✅ Done |
+| 25  | **Pet Battles**          | 🟡 MEDIUM   | Hard       | 💰💰💰         | 🔥🔥🔥     | ✅ Done |
+| 26  | **Private Servers**      | 🟡 MEDIUM   | Easy       | 💰💰💰         | 🔥🔥       | ✅ Done |
+| 27  | **Minigames (4 games)**  | 🟢 LOW      | Medium     | 💰💰           | 🔥🔥🔥     | ✅ Done |
+
+---
+
+## 🎉 ALL PLANNED FEATURES COMPLETE!
+
+---
+
+## 💡 PROVEN ALGORITHMS
+
+**Gacha/Egg Rates:**
+
+- Common: 50-60%, Uncommon: 25-30%, Rare: 10-15%
+- Epic: 3-5%, Legendary: 0.5-1%, Mythic: 0.01-0.1%
+
+**Rebirth Scaling:** `cost = base * (1.5 ^ count)`
+
+**Daily Rewards:** 10 → 25 → 50 → 100 → 200 → 350 → 500
+
+---
+
+## 📁 FILE STRUCTURE
+
+```
+src/
+├── server/           # Server-side logic
+│   ├── pets.ts       # Pet system
+│   ├── eggHatching.ts # Gacha
+│   ├── rebirth.ts    # Prestige
+│   ├── quests.ts     # Daily quests
+│   ├── luckyWheel.ts # Spin wheel
+│   ├── petEvolution.ts # Evolution
+│   ├── codes.ts      # Codes
+│   └── ...
+├── client/           # Client UI
+│   ├── eggShopUI.ts
+│   ├── rebirthUI.ts
+│   ├── questUI.ts
+│   └── ...
+└── shared/           # Shared config
+    ├── config.ts     # Game balance
+    └── theme.ts      # Re-theming
+```
+
+---
+
+_Updated: 2026-01-28 | Total Systems: 27 ✅_

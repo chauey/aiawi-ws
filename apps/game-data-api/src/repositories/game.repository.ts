@@ -43,6 +43,10 @@ export class GameRepository {
       rewards: [],
       mechanics: [],
       successFactors: [],
+      requirements: [],
+      settings: [],
+      tutorials: [],
+      documentation: [],
       successMetrics: this.getDefaultSuccessMetrics(),
       creationTime: now,
       creatorId,
@@ -173,7 +177,7 @@ export class GameRepository {
 
     // Apply paging
     const skipCount = filter.skipCount || 0;
-    const maxResultCount = filter.maxResultCount || 10;
+    const maxResultCount = filter.maxResultCount || 100; // Default to 100 to show all games
     const items = games.slice(skipCount, skipCount + maxResultCount);
 
     return {

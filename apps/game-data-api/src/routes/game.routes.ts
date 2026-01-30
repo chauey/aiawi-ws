@@ -95,7 +95,7 @@ export function createGameRouter(repository: GameRepository): express.Router {
         skipCount: req.query.skipCount ? Number(req.query.skipCount) : 0,
         maxResultCount: req.query.maxResultCount
           ? Number(req.query.maxResultCount)
-          : 10,
+          : 100, // Default to 100 to show all games
         sorting: req.query.sorting as string,
       };
 

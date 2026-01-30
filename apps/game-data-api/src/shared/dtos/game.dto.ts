@@ -251,6 +251,151 @@ export interface SuccessFactorDto extends AuditedEntityDto {
 }
 
 /**
+ * Requirement Status
+ */
+export type RequirementStatus =
+  | 'Planned'
+  | 'In Progress'
+  | 'Blocked'
+  | 'Testing'
+  | 'Done';
+
+/**
+ * Requirement Priority
+ */
+export type RequirementPriority =
+  | 'Must Have'
+  | 'Should Have'
+  | 'Nice to Have'
+  | 'Future';
+
+/**
+ * Requirement Category
+ */
+export type RequirementCategory =
+  | 'Gameplay'
+  | 'Art'
+  | 'Audio'
+  | 'UI/UX'
+  | 'Technical'
+  | 'Monetization'
+  | 'Social'
+  | 'Analytics'
+  | 'Backend'
+  | 'Testing'
+  | 'Documentation';
+
+/**
+ * Game Requirement DTO - For tracking features/tasks to implement
+ */
+export interface GameRequirementDto extends AuditedEntityDto {
+  gameId: string;
+  title: string;
+  description: string;
+  category: RequirementCategory;
+  priority: RequirementPriority;
+  status: RequirementStatus;
+  estimatedHours?: number;
+  actualHours?: number;
+  assignee?: string;
+  linkedSystemId?: string; // Reference to a system in libs/roblox-core
+  linkedFeatureId?: string; // Reference to a feature
+  acceptanceCriteria: string[];
+  notes?: string;
+  dueDate?: Date;
+  completedDate?: Date;
+  tags: string[];
+}
+
+/**
+ * Setting Category
+ */
+export type SettingCategory =
+  | 'Economy'
+  | 'Gameplay'
+  | 'Difficulty'
+  | 'Rewards'
+  | 'Progression'
+  | 'Social'
+  | 'UI'
+  | 'Debug'
+  | 'Feature Flags';
+
+/**
+ * Game Setting DTO - Configuration values for the game
+ */
+export interface GameSettingDto extends AuditedEntityDto {
+  gameId: string;
+  key: string; // e.g., "STARTING_COINS", "XP_MULTIPLIER"
+  name: string; // Human-readable name
+  description: string;
+  category: SettingCategory;
+  valueType: 'number' | 'string' | 'boolean' | 'array' | 'object';
+  value: string; // JSON stringified value
+  defaultValue: string;
+  minValue?: number;
+  maxValue?: number;
+  isActive: boolean;
+  linkedSystemId?: string; // Which system uses this setting
+  notes?: string;
+}
+
+/**
+ * Tutorial Step DTO - For onboarding and in-game help
+ */
+export interface TutorialStepDto extends AuditedEntityDto {
+  gameId: string;
+  tutorialId: string; // Groups steps into tutorials
+  tutorialName: string;
+  stepNumber: number;
+  title: string;
+  instruction: string;
+  targetElement?: string; // UI element to highlight
+  action: 'Click' | 'Wait' | 'Input' | 'Move' | 'Look' | 'Custom';
+  validationCriteria?: string; // How to detect completion
+  skipCondition?: string; // When to skip this step
+  rewardOnComplete?: string;
+  voiceoverScript?: string;
+  animationId?: string;
+  durationMs?: number;
+  isRequired: boolean;
+  notes?: string;
+}
+
+/**
+ * Documentation Section Type
+ */
+export type DocumentationType =
+  | 'Game Design Document'
+  | 'Technical Spec'
+  | 'Player Guide'
+  | 'Developer Notes'
+  | 'Patch Notes'
+  | 'FAQ'
+  | 'Style Guide'
+  | 'Art Bible'
+  | 'Sound Design'
+  | 'Economy Bible'
+  | 'QA Checklist'
+  | 'Release Checklist';
+
+/**
+ * Documentation Section DTO - For game manuals and docs
+ */
+export interface DocumentationSectionDto extends AuditedEntityDto {
+  gameId: string;
+  docType: DocumentationType;
+  title: string;
+  content: string; // Markdown content
+  order: number;
+  parentSectionId?: string; // For nested sections
+  version: string;
+  lastUpdatedBy?: string;
+  isPublished: boolean;
+  tags: string[];
+}
+
+/**
  * Main Game DTO
  */
 export interface GameDto extends AuditedEntityDto {
@@ -281,6 +426,12 @@ export interface GameDto extends AuditedEntityDto {
   rewards: RewardStructureDto[];
   mechanics: GameMechanicDto[];
   successFactors: SuccessFactorDto[];
+
+  // Project Management
+  requirements: GameRequirementDto[];
+  settings: GameSettingDto[];
+  tutorials: TutorialStepDto[];
+  documentation: DocumentationSectionDto[];
 
   // Analysis
   strengths: string[];

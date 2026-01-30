@@ -371,6 +371,39 @@
         "Collection/discovery system",
         "Sell mechanics"
       ]
+    },
+    {
+      "id": "pet-system",
+      "name": "Pet Collection System",
+      "description": "Complete pet mechanics including hatching, evolution, leveling, and special variants",
+      "category": "Gameplay",
+      "sourcePath": "libs/roblox-core/src/gameplay/petSystem.ts",
+      "version": "1.0.0",
+      "status": "Production",
+      "documentation": "Game-agnostic pet system with egg hatching, rarity tiers, XP progression, evolution, shiny/golden/rainbow variants, and equip mechanics.",
+      "configKeys": [
+        "BASE_XP_PER_LEVEL",
+        "LEVEL_MULTIPLIER",
+        "MAX_PET_LEVEL",
+        "SHINY_POWER_BONUS",
+        "GOLDEN_POWER_BONUS",
+        "RAINBOW_POWER_BONUS",
+        "EVOLVE_POWER_MULTIPLIER"
+      ],
+      "linkedGames": [
+        "drgn-lgnd-0000-0000-000000000001",
+        "coin-coll-0000-0000-000000000003"
+      ],
+      "features": [
+        "Pet species with rarities",
+        "Egg hatching with incubators",
+        "Pet evolution system",
+        "XP and level progression",
+        "Shiny/Golden/Rainbow variants",
+        "Pet equipment slots",
+        "Collection tracking",
+        "Power-based coin multipliers"
+      ]
     }
   ]
 }

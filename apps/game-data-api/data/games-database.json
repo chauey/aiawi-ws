@@ -99,13 +99,7 @@
       "platform": "Roblox",
       "description": "Fast-paced obby/parkour game with randomly generated tower challenges. Simple but highly addictive.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "obby",
-        "parkour",
-        "competitive",
-        "skill-based",
-        "fast-paced"
-      ],
+      "tags": ["obby", "parkour", "competitive", "skill-based", "fast-paced"],
       "priorityScore": 50,
       "recommendedForReplication": false,
       "strengths": [],
@@ -189,13 +183,7 @@
       "platform": "Roblox",
       "description": "Tactical FPS with realistic weapons, customization, and various game modes. Often compared to Call of Duty.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "fps",
-        "competitive",
-        "tactical",
-        "weapons",
-        "multiplayer"
-      ],
+      "tags": ["fps", "competitive", "tactical", "weapons", "multiplayer"],
       "priorityScore": 50,
       "recommendedForReplication": false,
       "strengths": [],
@@ -281,13 +269,7 @@
       "ownership": "Competitor",
       "description": "Virtual pet adoption and nurturing game with trading, mini-games, and social features. One of the most successful games on Roblox.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "pets",
-        "trading",
-        "social",
-        "collection",
-        "family-friendly"
-      ],
+      "tags": ["pets", "trading", "social", "collection", "family-friendly"],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasTradingSystem": true,
@@ -410,13 +392,7 @@
       "ownership": "Competitor",
       "description": "One Piece-inspired RPG with devil fruit powers, grinding mechanics, PvP combat, and progression systems.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "anime",
-        "grinding",
-        "pvp",
-        "progression",
-        "combat"
-      ],
+      "tags": ["anime", "grinding", "pvp", "progression", "combat"],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasTradingSystem": true,
@@ -537,10 +513,7 @@
         "Low dev complexity",
         "Massive player base"
       ],
-      "weaknesses": [
-        "Trend-dependent",
-        "Easy to clone"
-      ],
+      "weaknesses": ["Trend-dependent", "Easy to clone"],
       "uniqueSellingPoints": [
         "One-tap fishing",
         "Rare fish flex culture",
@@ -606,14 +579,7 @@
       "ownership": "Competitor",
       "description": "Pure RNG/luck simulator where players roll for rare 'auras'. Zero skill barrier - anyone can get lucky. Capitalizes on gambling psychology and flex culture.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "rng",
-        "luck",
-        "gacha",
-        "aura",
-        "flex",
-        "gambling"
-      ],
+      "tags": ["rng", "luck", "gacha", "aura", "flex", "gambling"],
       "featureFlags": {
         "hasGachaSystem": true,
         "hasCollectionSystem": true,
@@ -630,10 +596,7 @@
         "Pure dopamine loop",
         "Flex culture"
       ],
-      "weaknesses": [
-        "Gambling concerns",
-        "Can feel pointless"
-      ],
+      "weaknesses": ["Gambling concerns", "Can feel pointless"],
       "uniqueSellingPoints": [
         "Pure RNG gameplay",
         "Visible auras as status",
@@ -700,13 +663,7 @@
       "ownership": "Competitor",
       "description": "Timed competitive fashion game with player voting. Massive social validation loops and creator expression. Consistently top 10 by concurrent players.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "fashion",
-        "social",
-        "voting",
-        "competition",
-        "customization"
-      ],
+      "tags": ["fashion", "social", "voting", "competition", "customization"],
       "featureFlags": {
         "hasCharacterCustomization": true,
         "hasMultiplayer": true,
@@ -722,10 +679,7 @@
         "Low dev barrier",
         "High retention"
       ],
-      "weaknesses": [
-        "Niche audience",
-        "Asset-heavy"
-      ],
+      "weaknesses": ["Niche audience", "Asset-heavy"],
       "uniqueSellingPoints": [
         "Theme-based rounds",
         "Player voting",
@@ -790,13 +744,7 @@
       "ownership": "Competitor",
       "description": "High-stakes competitive FPS with skill-based matchmaking. Monetizes through skins, crates, and prestige items. Growing esports potential.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "fps",
-        "competitive",
-        "esports",
-        "skins",
-        "ranked"
-      ],
+      "tags": ["fps", "competitive", "esports", "skins", "ranked"],
       "featureFlags": {
         "hasPvP": true,
         "hasLeaderboards": true,
@@ -812,10 +760,7 @@
         "Cosmetic monetization",
         "Esports potential"
       ],
-      "weaknesses": [
-        "High dev complexity",
-        "Competitive market"
-      ],
+      "weaknesses": ["High dev complexity", "Competitive market"],
       "uniqueSellingPoints": [
         "Ranked matchmaking",
         "Premium weapon skins",
@@ -869,13 +814,7 @@
       "ownership": "Competitor",
       "description": "Peak anime combat game with visceral feedback. Characters from popular anime with unique movesets. Focus on feel-good combat and skill expression.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "anime",
-        "combat",
-        "fighting",
-        "pvp",
-        "skill"
-      ],
+      "tags": ["anime", "combat", "fighting", "pvp", "skill"],
       "featureFlags": {
         "hasPvP": true,
         "hasCharacterCustomization": true,
@@ -890,19 +829,13 @@
         "Anime IP appeal",
         "Skill expression"
       ],
-      "weaknesses": [
-        "IP concerns",
-        "Balance complexity"
-      ],
+      "weaknesses": ["IP concerns", "Balance complexity"],
       "uniqueSellingPoints": [
         "High-quality animations",
         "Combo systems",
         "1v1 arena"
       ],
-      "lessonsLearned": [
-        "Combat feel > graphics",
-        "Anime = built-in audience"
-      ],
+      "lessonsLearned": ["Combat feel > graphics", "Anime = built-in audience"],
       "features": [
         {
           "id": "tsb-feat-0001",
@@ -947,13 +880,7 @@
       "ownership": "Competitor",
       "description": "The gold standard of pet simulators. Infinite progression, massive trading economy, and exclusive eggs that drive high-ticket sales consistently.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "pets",
-        "simulator",
-        "collection",
-        "trading",
-        "gacha"
-      ],
+      "tags": ["pets", "simulator", "collection", "trading", "gacha"],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasTradingSystem": true,
@@ -971,10 +898,7 @@
         "Constant updates",
         "High-ticket items"
       ],
-      "weaknesses": [
-        "Established competitor",
-        "Complex to replicate"
-      ],
+      "weaknesses": ["Established competitor", "Complex to replicate"],
       "uniqueSellingPoints": [
         "Exclusive eggs ($50-100+)",
         "Pet fusion",
@@ -1030,13 +954,7 @@
       "ownership": "Competitor",
       "description": "Deep complex mechanics hidden behind simple appearance. Rewards long-term planning and consistent daily logins. Extremely loyal player base.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "bees",
-        "simulator",
-        "farming",
-        "collection",
-        "progression"
-      ],
+      "tags": ["bees", "simulator", "farming", "collection", "progression"],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasProgressionSystem": true,
@@ -1052,10 +970,7 @@
         "Loyal community",
         "Years of content"
       ],
-      "weaknesses": [
-        "High barrier to new players",
-        "Slow initial progression"
-      ],
+      "weaknesses": ["High barrier to new players", "Slow initial progression"],
       "uniqueSellingPoints": [
         "Bee genetics system",
         "Field farming",
@@ -1098,13 +1013,7 @@
       "ownership": "Competitor",
       "description": "Viral meme-based survival game using Gen Alpha 'brainrot' characters. High-stakes escape gameplay with humorous elements. Currently top 3 by concurrent players.",
       "monetizationModel": "Freemium",
-      "tags": [
-        "survival",
-        "meme",
-        "brainrot",
-        "viral",
-        "escape"
-      ],
+      "tags": ["survival", "meme", "brainrot", "viral", "escape"],
       "featureFlags": {
         "hasMultiplayer": true,
         "hasCharacterCustomization": true,
@@ -1118,10 +1027,7 @@
         "Shareable moments",
         "Trend-riding"
       ],
-      "weaknesses": [
-        "Trend-dependent",
-        "Short lifespan"
-      ],
+      "weaknesses": ["Trend-dependent", "Short lifespan"],
       "uniqueSellingPoints": [
         "Brainrot characters",
         "Tsunami survival",
@@ -1213,10 +1119,7 @@
         "Daily rewards with VIP",
         "Balanced economy"
       ],
-      "weaknesses": [
-        "In development",
-        "Needs art assets"
-      ],
+      "weaknesses": ["In development", "Needs art assets"],
       "uniqueSellingPoints": [
         "Dragon breeding with genetics",
         "Elemental type advantages",
@@ -1309,10 +1212,7 @@
             "Cooldown timer works",
             "UI shows breeding progress"
           ],
-          "tags": [
-            "core",
-            "breeding"
-          ],
+          "tags": ["core", "breeding"],
           "creationTime": "2026-01-30T20:49:48.367Z"
         },
         {
@@ -1330,10 +1230,7 @@
             "Transaction logging works",
             "Rollback mechanism tested"
           ],
-          "tags": [
-            "security",
-            "trading"
-          ],
+          "tags": ["security", "trading"],
           "creationTime": "2026-01-30T20:49:48.367Z"
         },
         {
@@ -1352,10 +1249,7 @@
             "Claim button works",
             "Streak bonus displayed"
           ],
-          "tags": [
-            "ui",
-            "rewards"
-          ],
+          "tags": ["ui", "rewards"],
           "creationTime": "2026-01-30T20:49:48.367Z",
           "completedDate": "2026-01-30T20:49:48.367Z"
         }
@@ -1498,10 +1392,7 @@
           "order": 1,
           "version": "1.0",
           "isPublished": true,
-          "tags": [
-            "gdd",
-            "overview"
-          ],
+          "tags": ["gdd", "overview"],
           "creationTime": "2026-01-30T20:49:48.367Z"
         },
         {
@@ -1513,9 +1404,7 @@
           "order": 1,
           "version": "1.0",
           "isPublished": true,
-          "tags": [
-            "economy"
-          ],
+          "tags": ["economy"],
           "creationTime": "2026-01-30T20:49:48.367Z"
         }
       ]
@@ -1561,10 +1450,7 @@
         "Viral potential",
         "82% predicted success rate"
       ],
-      "weaknesses": [
-        "Trend-dependent",
-        "Competition from clones"
-      ],
+      "weaknesses": ["Trend-dependent", "Competition from clones"],
       "uniqueSellingPoints": [
         "Fish with visible bioluminescent auras",
         "1:10M Legendary Kraken",
@@ -1667,13 +1553,7 @@
       "ownership": "Our Game",
       "description": "Simple coin collection game used as our roblox-ts learning project and testing ground. Basic mechanics but fully functional with our core library integration.",
       "monetizationModel": "Free",
-      "tags": [
-        "starter",
-        "learning",
-        "coins",
-        "collection",
-        "simple"
-      ],
+      "tags": ["starter", "learning", "coins", "collection", "simple"],
       "featureFlags": {
         "hasCollectionSystem": true,
         "hasProgressionSystem": true,
@@ -1687,14 +1567,8 @@
         "Good for testing",
         "Core library integration"
       ],
-      "weaknesses": [
-        "Basic mechanics",
-        "Limited content",
-        "No monetization"
-      ],
-      "uniqueSellingPoints": [
-        "Learning project"
-      ],
+      "weaknesses": ["Basic mechanics", "Limited content", "No monetization"],
+      "uniqueSellingPoints": ["Learning project"],
       "lessonsLearned": [
         "roblox-ts basics",
         "Rojo workflow",
@@ -1724,11 +1598,315 @@
       "settings": [],
       "tutorials": [],
       "documentation": []
+    },
+    {
+      "id": "lkfy-lgnd-0000-0000-000000000002",
+      "name": "🎣 Lucky Fish Legends",
+      "developer": "AI AWI Studios",
+      "genre": "Simulator",
+      "releaseDate": "2026-02-15T00:00:00.000Z",
+      "platform": "Roblox",
+      "description": "A relaxing yet competitive fishing simulator. Cast your line, catch rare fish, complete your collection, and compete in tournaments!",
+      "monetizationModel": "Freemium",
+      "ownership": "Our Game",
+      "tags": [
+        "fishing",
+        "collection",
+        "simulator",
+        "competitive",
+        "casual",
+        "progression"
+      ],
+      "priorityScore": 90,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Relaxing core loop",
+        "Collection mechanics drive engagement",
+        "Clear progression path",
+        "Seasonal content potential"
+      ],
+      "weaknesses": ["Niche player base", "Requires content updates"],
+      "uniqueSellingPoints": [
+        "150+ fish species to collect",
+        "7 unique fishing locations",
+        "Quality-based fish grades",
+        "Personal record tracking"
+      ],
+      "lessonsLearned": [],
+      "features": [
+        {
+          "id": "fish-001",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Fishing Core Loop",
+          "description": "Cast, wait, reel - the fundamental fishing mechanic with timing minigames",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 6,
+          "technicalNotes": "Uses fishingSystem.ts from roblox-core. Cast time affected by rod and bait bonuses.",
+          "codeSnippets": "castLine(state, location) → reelIn(state, species, locations)",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "fish-002",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Fish Collection Album",
+          "description": "Track all 150+ fish species with rarity tiers and personal records",
+          "category": "Collection",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 5,
+          "technicalNotes": "getCollectionProgress() tracks discovered species. Personal records stored in recordCatches.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "fish-003",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Fishing Locations",
+          "description": "7 unique locations from Starter Pond to The Abyss, each with unlock levels",
+          "category": "World Design",
+          "importance": "High",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 8,
+          "monetizationPotential": 7,
+          "technicalNotes": "SAMPLE_LOCATIONS defines zones. Location rarityBoost affects fish quality.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "fish-004",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Rod & Bait System",
+          "description": "Upgrade rods for faster catches and better rarity. Baits boost specific fish.",
+          "category": "Progression",
+          "importance": "High",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 7,
+          "monetizationPotential": 9,
+          "technicalNotes": "SAMPLE_RODS (5 tiers) and SAMPLE_BAITS (4 types). Premium rods available for Robux.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "fish-005",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Fish Quality Grades",
+          "description": "Each catch rated Poor/Normal/Good/Perfect affecting sell price",
+          "category": "Gameplay Depth",
+          "importance": "Medium",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 6,
+          "monetizationPotential": 4,
+          "technicalNotes": "rollQuality() determines grade. Perfect = 2.5x sell price.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        }
+      ],
+      "systems": [
+        "fishing-system",
+        "daily-rewards",
+        "quest-system",
+        "trading-system",
+        "battle-pass",
+        "anti-cheat",
+        "datastore-helpers",
+        "friends-system",
+        "starter-packs"
+      ],
+      "rewards": [
+        {
+          "id": "reward-fish-001",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "New Species Bonus",
+          "type": "Achievement",
+          "currency": "XP",
+          "amount": 50,
+          "description": "Double XP for catching a species for the first time",
+          "unlockCondition": "First catch of any species",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "reward-fish-002",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Perfect Catch",
+          "type": "RNG",
+          "currency": "Coins",
+          "amount": 250,
+          "description": "2.5x sell multiplier for perfect quality fish",
+          "unlockCondition": "10% chance on any catch",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        }
+      ],
+      "mechanics": [
+        {
+          "id": "mech-fish-001",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Rarity Rolling",
+          "type": "RNG",
+          "description": "Each cast rolls rarity: Common 50%, Uncommon 25%, Rare 15%, Epic 7%, Legendary 2.5%, Mythic 0.5%",
+          "complexity": "Medium",
+          "userPerceivedFairness": 8,
+          "technicalNotes": "rollRarity() applies location and bait bonuses. Higher tier locations boost rare chances.",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "mech-fish-002",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Weight Variance",
+          "type": "Skill + RNG",
+          "description": "Fish weight varies by species. Heavier = more coins. Personal records tracked.",
+          "complexity": "Easy",
+          "userPerceivedFairness": 9,
+          "technicalNotes": "calculateWeight() uses baseWeight +/- weightVariance. Level bonus adds 2% per level.",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        }
+      ],
+      "successFactors": [
+        {
+          "id": "sf-fish-001",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "factor": "Collection Completionism",
+          "impact": "Critical",
+          "description": "Players driven to catch all 150+ species",
+          "evidenceSource": "Similar games like Fishing Simulator",
+          "replicability": 9
+        }
+      ],
+      "successMetrics": {
+        "totalPlays": 0,
+        "concurrentPlayers": 0,
+        "peakConcurrentPlayers": 0,
+        "averageSessionLength": 20,
+        "retentionRateDay1": 40,
+        "retentionRateDay7": 20,
+        "retentionRateDay30": 10,
+        "revenueTotal": 0,
+        "revenueMonthly": 0,
+        "conversionRate": 5,
+        "averageRevenuePerUser": 0.15
+      },
+      "featureFlags": {
+        "hasCollection": true,
+        "hasTrading": true,
+        "hasProgression": true,
+        "hasGacha": false,
+        "hasLeaderboards": true,
+        "hasIAP": true,
+        "hasMultiplayer": true,
+        "hasGuilds": false,
+        "hasDailyRewards": true
+      },
+      "creationTime": "2026-01-30T23:30:00.000Z",
+      "lastModificationTime": "2026-01-30T23:30:00.000Z",
+      "requirements": [
+        {
+          "id": "req-001",
+          "title": "Core Fishing Loop",
+          "description": "Cast line, wait for bite, reel in fish with timing minigame",
+          "category": "Core",
+          "priority": "Critical",
+          "status": "In Progress",
+          "estimatedEffort": "1 week"
+        },
+        {
+          "id": "req-002",
+          "title": "Collection Album UI",
+          "description": "Grid view of all species with silhouettes for undiscovered",
+          "category": "UI",
+          "priority": "High",
+          "status": "Planned",
+          "estimatedEffort": "3 days"
+        },
+        {
+          "id": "req-003",
+          "title": "7 Fishing Zones",
+          "description": "Build starter pond through abyss with unique aesthetics",
+          "category": "World",
+          "priority": "High",
+          "status": "Planned",
+          "estimatedEffort": "2 weeks"
+        },
+        {
+          "id": "req-004",
+          "title": "Rod Upgrade Shop",
+          "description": "5 rod tiers purchasable with coins and premium currency",
+          "category": "Monetization",
+          "priority": "Medium",
+          "status": "Planned",
+          "estimatedEffort": "2 days"
+        }
+      ],
+      "settings": [
+        {
+          "key": "RARITY_CHANCES",
+          "value": {
+            "common": 0.5,
+            "uncommon": 0.25,
+            "rare": 0.15,
+            "epic": 0.07,
+            "legendary": 0.025,
+            "mythic": 0.005
+          },
+          "category": "Gameplay",
+          "description": "Base probability for each fish rarity tier"
+        },
+        {
+          "key": "BASE_CATCH_TIME_MS",
+          "value": 3000,
+          "category": "Gameplay",
+          "description": "Default time in milliseconds to catch a fish"
+        },
+        {
+          "key": "XP_PER_LEVEL",
+          "value": "100 * 1.5^level",
+          "category": "Progression",
+          "description": "XP formula for leveling up"
+        }
+      ],
+      "tutorials": [
+        {
+          "tutorialName": "First Cast",
+          "stepNumber": 1,
+          "title": "Welcome to Lucky Fish Legends!",
+          "description": "Tap the Cast button to throw your line into the water"
+        },
+        {
+          "tutorialName": "First Cast",
+          "stepNumber": 2,
+          "title": "Wait for a Bite",
+          "description": "Watch the bobber. When it dips, tap Reel to catch!"
+        },
+        {
+          "tutorialName": "First Cast",
+          "stepNumber": 3,
+          "title": "Your First Catch!",
+          "description": "Congratulations! Check your Collection to see your discovery."
+        }
+      ],
+      "documentation": [
+        {
+          "id": "doc-001",
+          "title": "Fishing System Architecture",
+          "content": "Uses libs/roblox-core/src/gameplay/fishingSystem.ts. Key exports: castLine(), reelIn(), getCollectionProgress()",
+          "category": "Technical",
+          "lastUpdated": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "doc-002",
+          "title": "Monetization Strategy",
+          "content": "Core game free. Premium rods, special baits, and VIP location access drive revenue. Battle Pass for seasonal content.",
+          "category": "Business",
+          "lastUpdated": "2026-01-30T23:30:00.000Z"
+        }
+      ]
     }
   ],
   "metadata": {
     "version": "1.0.0",
-    "lastUpdated": "2026-01-30T19:45:00.000Z",
-    "totalGames": 20
+    "lastUpdated": "2026-01-30T23:37:00.000Z",
+    "totalGames": 21
   }
 }

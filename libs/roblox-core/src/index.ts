@@ -50,3 +50,4 @@ export * from './social/clans'; // Clan/guild system
 
 // ========== GAMEPLAY ==========
 export * from './gameplay/fishingSystem'; // Fishing mechanics
+export * from './gameplay/petSystem'; // Pet collection mechanics

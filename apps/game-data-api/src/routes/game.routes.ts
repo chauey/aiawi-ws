@@ -10,8 +10,74 @@ export function createGameRouter(repository: GameRepository): express.Router {
   const router = express.Router();
 
   /**
-   * GET /api/games
-   * Get all games with filtering and paging
+   * @openapi
+   * /api/games:
+   *   get:
+   *     tags:
+   *       - Games
+   *     summary: Get all games
+   *     description: Retrieve a paginated list of games with optional filtering
+   *     parameters:
+   *       - in: query
+   *         name: filter
+   *         schema:
+   *           type: string
+   *         description: Text search filter for game name
+   *       - in: query
+   *         name: genre
+   *         schema:
+   *           type: string
+   *         description: Filter by genre
+   *       - in: query
+   *         name: monetizationModel
+   *         schema:
+   *           type: string
+   *         description: Filter by monetization model
+   *       - in: query
+   *         name: minPriorityScore
+   *         schema:
+   *           type: number
+   *         description: Minimum priority score filter
+   *       - in: query
+   *         name: recommendedOnly
+   *         schema:
+   *           type: boolean
+   *         description: Only return recommended games
+   *       - in: query
+   *         name: tags
+   *         schema:
+   *           type: string
+   *         description: Comma-separated list of tags
+   *       - in: query
+   *         name: skipCount
+   *         schema:
+   *           type: number
+   *           default: 0
+   *         description: Number of items to skip (pagination)
+   *       - in: query
+   *         name: maxResultCount
+   *         schema:
+   *           type: number
+   *           default: 10
+   *         description: Maximum number of items to return
+   *       - in: query
+   *         name: sorting
+   *         schema:
+   *           type: string
+   *         description: Sorting field (e.g., 'name', 'priorityScore desc')
+   *     responses:
+   *       200:
+   *         description: Successful response
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/PagedResult'
+   *       500:
+   *         description: Internal server error
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/Error'
    */
   router.get('/', (req, res) => {
     try {
@@ -42,8 +108,36 @@ export function createGameRouter(repository: GameRepository): express.Router {
   });
 
   /**
-   * GET /api/games/:id
-   * Get a single game by ID
+   * @openapi
+   * /api/games/{id}:
+   *   get:
+   *     tags:
+   *       - Games
+   *     summary: Get a game by ID
+   *     description: Retrieve a single game by its unique identifier
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: string
+   *           format: uuid
+   *         description: Game ID
+   *     responses:
+   *       200:
+   *         description: Successful response
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/Game'
+   *       404:
+   *         description: Game not found
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/Error'
+   *       500:
+   *         description: Internal server error
    */
   router.get('/:id', (req, res) => {
     try {
@@ -59,8 +153,28 @@ export function createGameRouter(repository: GameRepository): express.Router {
   });
 
   /**
-   * POST /api/games
-   * Create a new game
+   * @openapi
+   * /api/games:
+   *   post:
+   *     tags:
+   *       - Games
+   *     summary: Create a new game
+   *     description: Add a new game to the database
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             $ref: '#/components/schemas/CreateGame'
+   *     responses:
+   *       201:
+   *         description: Game created successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/Game'
+   *       500:
+   *         description: Internal server error
    */
   router.post('/', (req, res) => {
     try {
@@ -78,8 +192,38 @@ export function createGameRouter(repository: GameRepository): express.Router {
   });
 
   /**
-   * PUT /api/games/:id
-   * Update a game
+   * @openapi
+   * /api/games/{id}:
+   *   put:
+   *     tags:
+   *       - Games
+   *     summary: Update a game
+   *     description: Update an existing game's properties
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: string
+   *           format: uuid
+   *         description: Game ID
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             $ref: '#/components/schemas/UpdateGame'
+   *     responses:
+   *       200:
+   *         description: Game updated successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/Game'
+   *       404:
+   *         description: Game not found
+   *       500:
+   *         description: Internal server error
    */
   router.put('/:id', (req, res) => {
     try {
@@ -102,8 +246,28 @@ export function createGameRouter(repository: GameRepository): express.Router {
   });
 
   /**
-   * DELETE /api/games/:id
-   * Delete a game
+   * @openapi
+   * /api/games/{id}:
+   *   delete:
+   *     tags:
+   *       - Games
+   *     summary: Delete a game
+   *     description: Remove a game from the database
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: string
+   *           format: uuid
+   *         description: Game ID
+   *     responses:
+   *       204:
+   *         description: Game deleted successfully
+   *       404:
+   *         description: Game not found
+   *       500:
+   *         description: Internal server error
    */
   router.delete('/:id', (req, res) => {
     try {
@@ -119,8 +283,57 @@ export function createGameRouter(repository: GameRepository): express.Router {
   });
 
   /**
-   * POST /api/games/:id/features
-   * Add a feature to a game
+   * @openapi
+   * /api/games/{id}/features:
+   *   post:
+   *     tags:
+   *       - Features
+   *     summary: Add a feature to a game
+   *     description: Create a new feature for an existing game
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: string
+   *           format: uuid
+   *         description: Game ID
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             type: object
+   *             properties:
+   *               name:
+   *                 type: string
+   *               description:
+   *                 type: string
+   *               category:
+   *                 type: string
+   *               importance:
+   *                 type: string
+   *                 enum: [Critical, High, Medium, Low]
+   *               implementationComplexity:
+   *                 type: string
+   *                 enum: [Easy, Medium, Hard, Expert]
+   *               userEngagementImpact:
+   *                 type: number
+   *               monetizationPotential:
+   *                 type: number
+   *               technicalNotes:
+   *                 type: string
+   *     responses:
+   *       201:
+   *         description: Feature created successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/Feature'
+   *       404:
+   *         description: Game not found
+   *       500:
+   *         description: Internal server error
    */
   router.post('/:id/features', (req, res) => {
     try {
@@ -138,8 +351,38 @@ export function createGameRouter(repository: GameRepository): express.Router {
   });
 
   /**
-   * PUT /api/games/:id/metrics
-   * Update success metrics for a game
+   * @openapi
+   * /api/games/{id}/metrics:
+   *   put:
+   *     tags:
+   *       - Metrics
+   *     summary: Update success metrics
+   *     description: Update the success metrics for a game
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: string
+   *           format: uuid
+   *         description: Game ID
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             $ref: '#/components/schemas/SuccessMetric'
+   *     responses:
+   *       200:
+   *         description: Metrics updated successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/Game'
+   *       404:
+   *         description: Game not found
+   *       500:
+   *         description: Internal server error
    */
   router.put('/:id/metrics', (req, res) => {
     try {

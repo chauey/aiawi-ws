@@ -6,7 +6,6 @@
 import {
   Players,
   ReplicatedStorage,
-  StarterGui,
   TweenService,
   UserInputService,
 } from '@rbxts/services';
@@ -25,7 +24,7 @@ let remotes: {
 };
 
 // Current state
-let currentState = {
+const currentState = {
   isFishing: false,
   isBiting: false,
   currentLocationId: 'starter_pond',
@@ -882,24 +881,60 @@ export function initFishingUI(): void {
     changeLocation: remotesFolder.WaitForChild('ChangeLocation') as RemoteEvent,
   };
 
-  // Create UI
-  createFishingUI();
+  // Create UI (starts hidden)
+  const ui = createFishingUI();
+  mainFrame.Visible = false; // Start hidden until player goes to fishing spot
+
+  // Listen for OpenFishingUI remote from fishing spots
+  const openRemote = ReplicatedStorage.WaitForChild('OpenFishingUI', 5) as
+    | RemoteEvent
+    | undefined;
+  if (openRemote) {
+    openRemote.OnClientEvent.Connect((locationId: string) => {
+      print(`[FishingUI] Opening UI at location: ${locationId}`);
+      currentState.currentLocationId = locationId;
+      mainFrame.Visible = true;
+      updateStatus(
+        `Welcome to ${locationId.gsub('_', ' ')[0]}! Press SPACE or click Cast to fish.`,
+      );
+    });
+  }
 
   // Connect events
   connectServerEvents();
 
-  // Keyboard shortcut: Space to cast/reel
+  // Keyboard shortcuts
   UserInputService.InputBegan.Connect((input, gameProcessed) => {
     if (gameProcessed) return;
 
-    if (input.KeyCode === Enum.KeyCode.Space) {
+    // Space to cast/reel when UI is visible
+    if (input.KeyCode === Enum.KeyCode.Space && mainFrame.Visible) {
       if (currentState.isFishing) {
         onReelClick();
       } else {
         onCastClick();
       }
     }
+
+    // F to toggle fishing UI
+    if (input.KeyCode === Enum.KeyCode.F) {
+      mainFrame.Visible = !mainFrame.Visible;
+    }
+
+    // Escape to close
+    if (input.KeyCode === Enum.KeyCode.Escape && mainFrame.Visible) {
+      mainFrame.Visible = false;
+    }
   });
 
-  print('[FishingUI] Ready!');
+  print('[FishingUI] Ready! Press F to toggle, go to a fishing spot to start!');
+}
+
+/**
+ * Toggle fishing UI visibility (for action bar)
+ */
+export function toggleFishingUI(): void {
+  if (mainFrame) {
+    mainFrame.Visible = !mainFrame.Visible;
+  }
 }

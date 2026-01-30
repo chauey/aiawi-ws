@@ -638,7 +638,6 @@ export function addPetXp(
   pet.experience += xp;
 
   let leveledUp = false;
-  let levelsGained = 0;
 
   while (
     pet.level < config.maxPetLevel &&
@@ -646,7 +645,6 @@ export function addPetXp(
   ) {
     pet.experience -= getPetXpForLevel(pet.level + 1, config);
     pet.level++;
-    levelsGained++;
     leveledUp = true;
   }
 
@@ -808,7 +806,7 @@ export function deletePet(
  */
 function updateCoinMultiplier(
   state: PlayerPetState,
-  allSpecies: PetSpecies[],
+  _allSpecies: PetSpecies[], // Kept for future use
 ): void {
   let multiplier = 1;
 

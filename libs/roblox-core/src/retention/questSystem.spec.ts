@@ -410,9 +410,11 @@ describe('Quest System', () => {
 
     it('should handle negative progress amount', () => {
       let quests = manager.generateQuests('daily');
-      quests = manager.updateProgress(quests, quests[0].questId, 5);
-      quests = manager.updateProgress(quests, quests[0].questId, -3);
-      expect(quests[0].progress).toBe(2);
+      const questId = quests[0].questId;
+      quests = manager.updateProgress(quests, questId, 5);
+      quests = manager.updateProgress(quests, questId, -3);
+      const quest = quests.find((q) => q.questId === questId);
+      expect(quest?.progress).toBe(2);
     });
   });
 });

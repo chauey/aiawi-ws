@@ -6,6 +6,7 @@ export default defineConfig({
     environment: 'node',
     include: ['libs/roblox-core/src/**/*.spec.ts'],
     exclude: ['**/node_modules/**'],
+    fileParallelism: false, // Avoid shared state conflicts
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

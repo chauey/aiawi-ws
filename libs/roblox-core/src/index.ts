@@ -39,9 +39,11 @@ export * from './security/moderation';
 // ========== RETENTION ==========
 export * from './retention/psychology';
 export * from './retention/notifications';
-export * from './retention/questSystem'; // NEW: Daily/weekly quests
+export * from './retention/questSystem'; // Daily/weekly quests
+export * from './retention/dailyRewards'; // NEW: Streak-based daily rewards
 
 // ========== SOCIAL ==========
 export * from './social/friends';
 export * from './social/trading';
-export * from './social/matchmaking'; // NEW: ELO matchmaking
+export * from './social/matchmaking'; // ELO matchmaking
+export * from './social/clans'; // NEW: Clan/guild system

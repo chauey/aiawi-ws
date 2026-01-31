@@ -537,24 +537,41 @@ function showCastingVisuals(): void {
   if (!fishingLine) {
     fishingLine = new Instance('Part');
     fishingLine.Name = 'FishingLine';
-    fishingLine.Size = new Vector3(0.05, 0.05, 15);
-    fishingLine.Color = new Color3(0.9, 0.9, 0.9); // Nearly transparent white
-    fishingLine.Transparency = 0.5;
+    fishingLine.Size = new Vector3(0.03, 0.03, 15); // Thin line
+    fishingLine.Color = new Color3(0.8, 0.8, 0.8); // Light gray
+    fishingLine.Transparency = 0.3;
     fishingLine.Material = Enum.Material.Neon;
     fishingLine.Anchored = true;
     fishingLine.CanCollide = false;
     fishingLine.Parent = Workspace;
   }
 
-  // Position line between rod and bobber
-  const rightHand = character.FindFirstChild('RightHand') as Part | undefined;
-  const handPos =
-    rightHand?.Position ?? rootPart.Position.add(new Vector3(0, 3, 0));
-  const bobberPos = floatingBobber.Position;
-  const midPoint = handPos.add(bobberPos).div(2);
-  const distance = handPos.sub(bobberPos).Magnitude;
+  // Get the rod tip position (from the fishing rod model)
+  let rodTipPos: Vector3;
+  if (fishingRodModel) {
+    const tip = fishingRodModel.FindFirstChild('Tip') as Part | undefined;
+    if (tip) {
+      // The tip of the rod is at the far end of the Tip part
+      rodTipPos = tip.CFrame.mul(new CFrame(0, 0, -tip.Size.Z / 2)).Position;
+    } else {
+      // Fallback: use the primary part position offset forward
+      rodTipPos =
+        fishingRodModel.PrimaryPart?.CFrame.mul(new CFrame(0, 0, -3))
+          .Position ?? rootPart.Position.add(new Vector3(0, 3, -2));
+    }
+  } else {
+    // No rod model, estimate position
+    rodTipPos = rootPart.Position.add(rootPart.CFrame.LookVector.mul(3)).add(
+      new Vector3(0, 1, 0),
+    );
+  }
 
-  fishingLine.Size = new Vector3(0.05, 0.05, distance);
+  // Position line from rod tip to bobber
+  const bobberPos = floatingBobber.Position;
+  const midPoint = rodTipPos.add(bobberPos).div(2);
+  const distance = rodTipPos.sub(bobberPos).Magnitude;
+
+  fishingLine.Size = new Vector3(0.03, 0.03, distance);
   fishingLine.CFrame = CFrame.lookAt(midPoint, bobberPos);
 
   // Create hook underneath bobber

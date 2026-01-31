@@ -1108,13 +1108,32 @@ function animateReeling(): void {
   const character = player.Character;
   if (!character) return;
 
-  const rootPart = character.FindFirstChild('HumanoidRootPart') as Part;
-  if (!rootPart) return;
+  // Get rod tip position for animation target
+  let endPos: Vector3;
 
-  // Animate bobber coming towards player
+  if (fishingRodModel) {
+    const tip = fishingRodModel.FindFirstChild('Tip') as Part | undefined;
+    if (tip) {
+      // Target: end of rod tip
+      endPos = tip.CFrame.mul(new CFrame(0, 0, -tip.Size.Z / 2)).Position;
+    } else if (fishingRodModel.PrimaryPart) {
+      // Fallback: rod handle forward
+      endPos = fishingRodModel.PrimaryPart.CFrame.mul(
+        new CFrame(0, 0, -3),
+      ).Position;
+    } else {
+      // Final fallback
+      const root = character.FindFirstChild('HumanoidRootPart') as Part;
+      endPos = root.Position.add(new Vector3(2, 1, -2));
+    }
+  } else {
+    const root = character.FindFirstChild('HumanoidRootPart') as Part;
+    endPos = root.Position.add(new Vector3(2, 1, -2));
+  }
+
+  // Animate bobber coming towards rod tip
   task.spawn(() => {
     const startPos = floatingBobber!.Position;
-    const endPos = rootPart.Position.add(new Vector3(0, 1, 0));
 
     for (let i = 0; i <= 10; i++) {
       if (!floatingBobber || !fishingLine) break;
@@ -1123,16 +1142,29 @@ function animateReeling(): void {
       const newPos = startPos.Lerp(endPos, t);
       floatingBobber.Position = newPos;
 
-      // Update line
-      const rightHand = character.FindFirstChild('RightHand') as
-        | Part
-        | undefined;
-      const handPos =
-        rightHand?.Position ?? rootPart.Position.add(new Vector3(0, 3, 0));
-      const midPoint = handPos.add(newPos).div(2);
-      const distance = handPos.sub(newPos).Magnitude;
+      // Update line from rod tip to bobber
+      let rodTipPos: Vector3;
+      if (fishingRodModel) {
+        const tip = fishingRodModel.FindFirstChild('Tip') as Part | undefined;
+        if (tip) {
+          rodTipPos = tip.CFrame.mul(
+            new CFrame(0, 0, -tip.Size.Z / 2),
+          ).Position;
+        } else if (fishingRodModel.PrimaryPart) {
+          rodTipPos = fishingRodModel.PrimaryPart.CFrame.mul(
+            new CFrame(0, 0, -3),
+          ).Position;
+        } else {
+          rodTipPos = endPos;
+        }
+      } else {
+        rodTipPos = endPos;
+      }
 
-      fishingLine.Size = new Vector3(0.05, 0.05, distance);
+      const midPoint = rodTipPos.add(newPos).div(2);
+      const distance = rodTipPos.sub(newPos).Magnitude;
+
+      fishingLine.Size = new Vector3(0.03, 0.03, distance);
       fishingLine.CFrame = CFrame.lookAt(midPoint, newPos);
 
       task.wait(0.05);

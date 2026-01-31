@@ -435,11 +435,15 @@ function createFishingRod(): Model {
 function showFishingRod(): void {
   const player = Players.LocalPlayer;
   const character = player.Character;
-  if (!character) return;
+  if (!character) {
+    print('[FishingUI] No character found for rod!');
+    return;
+  }
 
   // Clean up old rod
   if (fishingRodModel) {
     fishingRodModel.Destroy();
+    fishingRodModel = undefined;
   }
 
   // Create new rod
@@ -448,23 +452,34 @@ function showFishingRod(): void {
   // Find right arm/hand to attach to
   const rightHand = character.FindFirstChild('RightHand') as Part | undefined;
   const rightArm = character.FindFirstChild('Right Arm') as Part | undefined;
-  const attachPart = rightHand ?? rightArm;
+  const rootPart = character.FindFirstChild('HumanoidRootPart') as
+    | Part
+    | undefined;
 
-  if (attachPart && fishingRodModel.PrimaryPart) {
-    // Position rod in hand
-    fishingRodModel.PrimaryPart.CFrame = attachPart.CFrame.mul(
-      new CFrame(0, -0.5, -1.5).mul(CFrame.Angles(math.rad(-60), 0, 0)),
-    );
+  // Fallback attach point
+  const attachPart = rightHand ?? rightArm ?? rootPart;
 
-    // Weld to hand
-    const weld = new Instance('WeldConstraint');
-    weld.Part0 = attachPart;
-    weld.Part1 = fishingRodModel.PrimaryPart;
-    weld.Parent = fishingRodModel.PrimaryPart;
+  if (!attachPart) {
+    print('[FishingUI] No attach point found for rod!');
+    return;
   }
 
-  fishingRodModel.Parent = character;
-  print('[FishingUI] 🎣 Fishing Rod shown!');
+  // Parent first so it appears in world
+  fishingRodModel.Parent = Workspace;
+
+  if (fishingRodModel.PrimaryPart) {
+    // Position rod in front of player initially (anchored)
+    fishingRodModel.PrimaryPart.Anchored = true;
+    fishingRodModel.PrimaryPart.CFrame = attachPart.CFrame.mul(
+      new CFrame(0.5, 0, -1).mul(CFrame.Angles(math.rad(-45), math.rad(20), 0)),
+    );
+
+    // Keep it anchored so it doesn't fall, but update position periodically
+    print(
+      '[FishingUI] 🎣 Fishing Rod shown at',
+      fishingRodModel.PrimaryPart.Position,
+    );
+  }
 }
 
 /**

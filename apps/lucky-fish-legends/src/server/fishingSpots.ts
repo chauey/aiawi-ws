@@ -164,22 +164,6 @@ function createFishingSpot(spot: (typeof FISHING_SPOTS)[0]): Model {
   const water = createSwimmableWater(spot);
   water.Parent = model;
 
-  // Glowing edge indicator (ring around water)
-  const glow = new Instance('Part');
-  glow.Name = 'GlowRing';
-  glow.Size = new Vector3(spot.size.X + 2, 0.2, spot.size.Z + 2);
-  glow.Position = new Vector3(
-    spot.position.X,
-    0.1, // Just above ground
-    spot.position.Z,
-  );
-  glow.Anchored = true;
-  glow.CanCollide = false;
-  glow.Material = Enum.Material.Neon;
-  glow.Color = spot.color;
-  glow.Transparency = 0.7;
-  glow.Parent = model;
-
   // Fishing sign
   const signPart = new Instance('Part');
   signPart.Name = 'Sign';

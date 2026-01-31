@@ -36,6 +36,7 @@ import { createPetSelectionUI } from './petUI';
 import { createStarterPackUI, showStarterPackPopup } from './starterPackUI';
 import { createLimitedOffersUI } from './limitedOffersUI';
 import { initFishingUI, toggleFishingUI } from './fishingUI';
+import { initHatcherUI } from './hatcherUI';
 
 const player = Players.LocalPlayer;
 
@@ -672,5 +673,8 @@ registerActionCallback('battlepass', () => {
   toggleBattlePass();
 });
 
+// Initialize hatcher UI for egg placement
+initHatcherUI();
+
 showTutorial();
-print('🎮 29 systems! Ultimate fishing game with Battle Pass!');
+print('🎮 31 systems! Ultimate fishing game with Hatchers + Pet Bonuses!');

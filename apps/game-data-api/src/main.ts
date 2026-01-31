@@ -5,6 +5,8 @@ import { JsonStorageService } from './database/json-storage.service';
 import { GameRepository } from './repositories/game.repository';
 import { createGameRouter } from './routes/game.routes';
 import systemRoutes from './routes/system.routes';
+import productRoutes from './routes/product.routes';
+import companyRoutes from './routes/company.routes';
 import { swaggerSpec } from './swagger/swagger.config';
 
 const app = express();
@@ -25,7 +27,7 @@ app.use(
   swaggerUi.serve,
   swaggerUi.setup(swaggerSpec, {
     customCss: '.swagger-ui .topbar { display: none }',
-    customSiteTitle: 'Game Data API Documentation',
+    customSiteTitle: 'Product Intelligence API Documentation',
   }),
 );
 
@@ -35,8 +37,14 @@ app.get('/api/docs.json', (req, res) => {
   res.send(swaggerSpec);
 });
 
-// Routes
+// Routes - Legacy (Games)
 app.use('/api/games', createGameRouter(gameRepository));
+
+// Routes - New (Products & Companies)
+app.use('/api/products', productRoutes);
+app.use('/api/companies', companyRoutes);
+
+// Routes - Systems Discovery
 app.use('/api/systems', systemRoutes);
 
 /**

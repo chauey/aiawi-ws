@@ -33,6 +33,17 @@ const currentState = {
   currentLevel: 1,
 };
 
+// Fish inventory - stores caught fish
+interface CaughtFish {
+  name: string;
+  rarity: string;
+  weight: number;
+  value: number;
+  caughtAt: number; // tick time
+}
+const fishInventory: CaughtFish[] = [];
+let totalCoins = 0;
+
 // UI references
 let mainFrame: Frame;
 let castButton: TextButton;
@@ -449,32 +460,30 @@ function showFishingRod(): void {
   // Create new rod
   fishingRodModel = createFishingRod();
 
-  // Find right arm/hand to attach to
-  const rightHand = character.FindFirstChild('RightHand') as Part | undefined;
-  const rightArm = character.FindFirstChild('Right Arm') as Part | undefined;
+  // Get root part for positioning
   const rootPart = character.FindFirstChild('HumanoidRootPart') as
     | Part
     | undefined;
-
-  // Fallback attach point
-  const attachPart = rightHand ?? rightArm ?? rootPart;
-
-  if (!attachPart) {
-    print('[FishingUI] No attach point found for rod!');
+  if (!rootPart) {
+    print('[FishingUI] No HumanoidRootPart found!');
     return;
   }
 
-  // Parent first so it appears in world
+  // Parent to workspace
   fishingRodModel.Parent = Workspace;
 
   if (fishingRodModel.PrimaryPart) {
-    // Position rod in front of player initially (anchored)
-    fishingRodModel.PrimaryPart.Anchored = true;
-    fishingRodModel.PrimaryPart.CFrame = attachPart.CFrame.mul(
-      new CFrame(0.5, 0, -1).mul(CFrame.Angles(math.rad(-45), math.rad(20), 0)),
-    );
+    // Position rod in front and to the right of player, pointing forward
+    // Rod should be visible sticking out in front
+    const playerCFrame = rootPart.CFrame;
+    const rodOffset = new CFrame(1.5, 0.5, -2); // Right, up, forward
+    const rodRotation = CFrame.Angles(math.rad(30), 0, math.rad(-15)); // Tilt up and slightly right
 
-    // Keep it anchored so it doesn't fall, but update position periodically
+    fishingRodModel.PrimaryPart.Anchored = true;
+    fishingRodModel.PrimaryPart.CFrame = playerCFrame
+      .mul(rodOffset)
+      .mul(rodRotation);
+
     print(
       '[FishingUI] 🎣 Fishing Rod shown at',
       fishingRodModel.PrimaryPart.Position,
@@ -971,12 +980,30 @@ function endReelingMinigame(success: boolean): void {
         RARITY_COLORS[fish.rarity as keyof typeof RARITY_COLORS] ??
         new Color3(1, 1, 1);
 
+      // Add to inventory!
+      const caughtFish: CaughtFish = {
+        name: fish.name,
+        rarity: fish.rarity,
+        weight: fish.weight,
+        value: fish.value,
+        caughtAt: tick(),
+      };
+      fishInventory.push(caughtFish);
+      totalCoins += fish.value;
+
+      // Update inventory display
+      updateInventoryPanel();
+
       // Show fish model!
       showCaughtFish(fish.name, fish.rarity, fish.weight);
 
       statusLabel.TextColor3 = rarityColor;
       updateStatus(
-        `🎉 Caught a ${fish.rarity.upper()} ${fish.name}! (${fish.weight}kg) Worth ${fish.value} coins!`,
+        `🎉 Caught a ${fish.rarity.upper()} ${fish.name}! (${fish.weight}kg) +${fish.value} coins! (Total: ${totalCoins})`,
+      );
+
+      print(
+        `[FishingUI] 📦 Added ${fish.name} to inventory. Total fish: ${fishInventory.size()}, Coins: ${totalCoins}`,
       );
 
       // Reset color after 3 seconds
@@ -1362,6 +1389,110 @@ function refreshInventory(): void {
   });
 
   content.CanvasSize = new UDim2(0, 0, 0, inventory.size() * 55);
+}
+
+/**
+ * Update inventory panel with local fish inventory
+ */
+function updateInventoryPanel(): void {
+  const content = inventoryFrame.FindFirstChild('Content') as ScrollingFrame;
+  if (!content) return;
+
+  // Clear existing fish entries (keep layout)
+  for (const child of content.GetChildren()) {
+    if (!child.IsA('UIListLayout')) child.Destroy();
+  }
+
+  // Show header with totals
+  const header = new Instance('TextLabel');
+  header.Name = 'Header';
+  header.Size = new UDim2(1, -10, 0, 30);
+  header.BackgroundTransparency = 1;
+  header.Text = `🐟 ${fishInventory.size()} Fish | 💰 ${totalCoins} Coins`;
+  header.TextColor3 = new Color3(1, 0.9, 0.3);
+  header.TextSize = 16;
+  header.Font = Enum.Font.GothamBold;
+  header.TextXAlignment = Enum.TextXAlignment.Center;
+  header.LayoutOrder = -1;
+  header.Parent = content;
+
+  // Display each fish (most recent first)
+  for (let i = fishInventory.size() - 1; i >= 0; i--) {
+    const fish = fishInventory[i];
+    const displayIndex = fishInventory.size() - 1 - i;
+
+    const fishFrame = new Instance('Frame');
+    fishFrame.Name = `Fish${displayIndex}`;
+    fishFrame.Size = new UDim2(1, -10, 0, 45);
+    fishFrame.BackgroundColor3 = new Color3(0.12, 0.16, 0.25);
+    fishFrame.BorderSizePixel = 0;
+    fishFrame.LayoutOrder = displayIndex;
+    fishFrame.Parent = content;
+
+    const corner = new Instance('UICorner');
+    corner.CornerRadius = new UDim(0, 6);
+    corner.Parent = fishFrame;
+
+    const rarity = fish.rarity as keyof typeof RARITY_COLORS;
+    const rarityColor = RARITY_COLORS[rarity] ?? RARITY_COLORS.common;
+
+    // Fish name with rarity color
+    const nameLabel = new Instance('TextLabel');
+    nameLabel.Size = new UDim2(0.65, 0, 0, 22);
+    nameLabel.Position = new UDim2(0, 8, 0, 3);
+    nameLabel.BackgroundTransparency = 1;
+    nameLabel.Text = `${getRarityEmoji(fish.rarity)} ${fish.name}`;
+    nameLabel.TextColor3 = rarityColor;
+    nameLabel.TextSize = 13;
+    nameLabel.Font = Enum.Font.GothamBold;
+    nameLabel.TextXAlignment = Enum.TextXAlignment.Left;
+    nameLabel.Parent = fishFrame;
+
+    // Weight and value
+    const detailLabel = new Instance('TextLabel');
+    detailLabel.Size = new UDim2(0.65, 0, 0, 18);
+    detailLabel.Position = new UDim2(0, 8, 0, 24);
+    detailLabel.BackgroundTransparency = 1;
+    detailLabel.Text = `⚖️ ${fish.weight}kg • 💰 ${fish.value}`;
+    detailLabel.TextColor3 = new Color3(0.7, 0.7, 0.7);
+    detailLabel.TextSize = 11;
+    detailLabel.Font = Enum.Font.Gotham;
+    detailLabel.TextXAlignment = Enum.TextXAlignment.Left;
+    detailLabel.Parent = fishFrame;
+
+    // Rarity badge
+    const badge = new Instance('TextLabel');
+    badge.Size = new UDim2(0, 60, 0, 20);
+    badge.Position = new UDim2(1, -68, 0.5, -10);
+    badge.BackgroundColor3 = rarityColor;
+    badge.BackgroundTransparency = 0.3;
+    badge.Text = fish.rarity.upper();
+    badge.TextColor3 = new Color3(1, 1, 1);
+    badge.TextSize = 9;
+    badge.Font = Enum.Font.GothamBold;
+    badge.Parent = fishFrame;
+
+    const badgeCorner = new Instance('UICorner');
+    badgeCorner.CornerRadius = new UDim(0, 4);
+    badgeCorner.Parent = badge;
+  }
+
+  content.CanvasSize = new UDim2(0, 0, 0, 40 + fishInventory.size() * 50);
+}
+
+/**
+ * Get emoji for fish rarity
+ */
+function getRarityEmoji(rarity: string): string {
+  const emojis: Record<string, string> = {
+    common: '⚪',
+    uncommon: '🟢',
+    rare: '🔵',
+    epic: '🟣',
+    legendary: '🟠',
+    mythic: '🔴',
+  };
+  return emojis[rarity] ?? '⚪';
 }
 
 /**

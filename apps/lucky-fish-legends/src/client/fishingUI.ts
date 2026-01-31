@@ -6,6 +6,7 @@
 import {
   Players,
   ReplicatedStorage,
+  RunService,
   TweenService,
   UserInputService,
   Workspace,
@@ -65,6 +66,7 @@ const REEL_CLICKS_REQUIRED = 15;
 // 3D Fishing visuals
 let fishingLine: Part | undefined;
 let floatingBobber: Part | undefined;
+let rodUpdateConnection: RBXScriptConnection | undefined;
 
 // Fish rarity colors
 const RARITY_COLORS = {
@@ -451,7 +453,11 @@ function showFishingRod(): void {
     return;
   }
 
-  // Clean up old rod
+  // Clean up old rod and connection
+  if (rodUpdateConnection) {
+    rodUpdateConnection.Disconnect();
+    rodUpdateConnection = undefined;
+  }
   if (fishingRodModel) {
     fishingRodModel.Destroy();
     fishingRodModel = undefined;
@@ -472,29 +478,66 @@ function showFishingRod(): void {
   // Parent to workspace
   fishingRodModel.Parent = Workspace;
 
+  // Rod offset and rotation constants
+  const rodOffset = new CFrame(1.5, 0.5, -2); // Right, up, forward
+  const rodRotation = CFrame.Angles(math.rad(30), 0, math.rad(-15)); // Tilt up and slightly right
+
+  // Position initially
   if (fishingRodModel.PrimaryPart) {
-    // Position rod in front and to the right of player, pointing forward
-    // Rod should be visible sticking out in front
-    const playerCFrame = rootPart.CFrame;
-    const rodOffset = new CFrame(1.5, 0.5, -2); // Right, up, forward
-    const rodRotation = CFrame.Angles(math.rad(30), 0, math.rad(-15)); // Tilt up and slightly right
-
     fishingRodModel.PrimaryPart.Anchored = true;
-    fishingRodModel.PrimaryPart.CFrame = playerCFrame
-      .mul(rodOffset)
-      .mul(rodRotation);
-
-    print(
-      '[FishingUI] 🎣 Fishing Rod shown at',
-      fishingRodModel.PrimaryPart.Position,
-    );
+    fishingRodModel.PrimaryPart.CFrame =
+      rootPart.CFrame.mul(rodOffset).mul(rodRotation);
   }
+
+  // Update rod position every frame to follow player
+  rodUpdateConnection = RunService.RenderStepped.Connect(() => {
+    if (!fishingRodModel || !fishingRodModel.PrimaryPart) return;
+
+    const char = player.Character;
+    if (!char) return;
+
+    const root = char.FindFirstChild('HumanoidRootPart') as Part | undefined;
+    if (!root) return;
+
+    // Update rod to follow player
+    fishingRodModel.PrimaryPart.CFrame =
+      root.CFrame.mul(rodOffset).mul(rodRotation);
+
+    // Also update fishing line if it exists
+    if (fishingLine && floatingBobber) {
+      const tip = fishingRodModel.FindFirstChild('Tip') as Part | undefined;
+      let rodTipPos: Vector3;
+
+      if (tip) {
+        rodTipPos = tip.CFrame.mul(new CFrame(0, 0, -tip.Size.Z / 2)).Position;
+      } else {
+        rodTipPos = fishingRodModel.PrimaryPart.CFrame.mul(
+          new CFrame(0, 0, -3),
+        ).Position;
+      }
+
+      const bobberPos = floatingBobber.Position;
+      const midPoint = rodTipPos.add(bobberPos).div(2);
+      const distance = rodTipPos.sub(bobberPos).Magnitude;
+
+      fishingLine.Size = new Vector3(0.03, 0.03, distance);
+      fishingLine.CFrame = CFrame.lookAt(midPoint, bobberPos);
+    }
+  });
+
+  print('[FishingUI] 🎣 Fishing Rod shown and following player!');
 }
 
 /**
  * Hide the fishing rod
  */
 function hideFishingRod(): void {
+  // Disconnect update loop
+  if (rodUpdateConnection) {
+    rodUpdateConnection.Disconnect();
+    rodUpdateConnection = undefined;
+  }
+
   if (fishingRodModel) {
     fishingRodModel.Destroy();
     fishingRodModel = undefined;

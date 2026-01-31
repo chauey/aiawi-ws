@@ -32,7 +32,8 @@ import { setupPetBattles } from './petBattles';
 import { setupPrivateServers } from './privateServers';
 import { setupMinigames } from './minigames';
 import { setupDataStore } from './dataStore';
-import { initFishingSystem } from './fishing';
+// TODO: Port fishing system to local shared folder - currently uses @aiawi/roblox-core which doesn't work in roblox-ts
+// import { initFishingSystem } from './fishing';
 import { setupFishingSpots } from './fishingSpots';
 
 // Create remote event for pet selection
@@ -382,9 +383,10 @@ function init() {
   setupDataStore();
 
   // Setup fishing system (CORE GAMEPLAY for Lucky Fish Legends!)
-  initFishingSystem();
+  // TODO: Port fishing system to local shared folder
+  // initFishingSystem();
 
-  // Setup physical fishing spots in the world
+  // Setup physical fishing spots in the world (this still works!)
   setupFishingSpots();
 
   print('✅ Lucky Fish Legends ready! 30 systems loaded! 🎣');

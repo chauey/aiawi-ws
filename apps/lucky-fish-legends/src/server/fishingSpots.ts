@@ -7,27 +7,27 @@ const FISHING_SPOTS = [
     id: 'starter_pond',
     name: 'Starter Pond',
     position: new Vector3(30, 0, 30),
-    size: new Vector3(25, 4, 25),
+    size: new Vector3(20, 2, 20),
     color: Color3.fromRGB(50, 150, 200),
-    waterLevel: -1,
+    waterLevel: 0.5, // Slightly above ground
     hasPier: false,
   },
   {
     id: 'mystic_lake',
     name: 'Mystic Lake',
     position: new Vector3(-50, 0, -50),
-    size: new Vector3(40, 5, 40),
+    size: new Vector3(30, 3, 30),
     color: Color3.fromRGB(100, 80, 180),
-    waterLevel: -1,
+    waterLevel: 0.5,
     hasPier: true,
   },
   {
     id: 'ocean_pier',
     name: 'Ocean Pier',
     position: new Vector3(80, 0, 0),
-    size: new Vector3(60, 6, 40),
+    size: new Vector3(40, 3, 30),
     color: Color3.fromRGB(30, 100, 150),
-    waterLevel: -1.5,
+    waterLevel: 0.5,
     hasPier: true,
   },
 ];
@@ -134,26 +134,21 @@ function createPier(waterPos: Vector3, waterSize: Vector3): Model {
  * Create swimmable water with proper physics
  */
 function createSwimmableWater(spot: (typeof FISHING_SPOTS)[0]): Part {
-  // Main water volume (deep)
+  // Main water volume - positioned at ground level, going down
   const water = new Instance('Part');
   water.Name = 'Water';
-  water.Size = spot.size;
+  // Make water shallower for visibility (2 units deep)
+  water.Size = new Vector3(spot.size.X, 2, spot.size.Z);
   water.Position = new Vector3(
     spot.position.X,
-    spot.waterLevel - spot.size.Y / 2,
+    spot.waterLevel, // Water surface at waterLevel
     spot.position.Z,
   );
   water.Anchored = true;
-  water.CanCollide = false; // Players can swim through
-  water.Material = Enum.Material.Water;
-  water.Color = spot.color;
-  water.Transparency = 0.4;
-
-  // Add swimming force when player enters
-  const swimForce = new Instance('BodyVelocity');
-  swimForce.Name = 'SwimForce';
-  swimForce.MaxForce = new Vector3(0, 0, 0); // Disabled until player enters
-  swimForce.Parent = water;
+  water.CanCollide = false; // Players can walk/swim through
+  water.Material = Enum.Material.Glass; // Glass looks more like water than Water material
+  water.Color = new Color3(0.2, 0.5, 0.8); // Nice blue color
+  water.Transparency = 0.5; // Semi-transparent
 
   return water;
 }
@@ -169,37 +164,13 @@ function createFishingSpot(spot: (typeof FISHING_SPOTS)[0]): Model {
   const water = createSwimmableWater(spot);
   water.Parent = model;
 
-  // Sandy bottom
-  const bottom = new Instance('Part');
-  bottom.Name = 'Bottom';
-  bottom.Size = new Vector3(spot.size.X, 0.5, spot.size.Z);
-  bottom.Position = new Vector3(
-    spot.position.X,
-    spot.waterLevel - spot.size.Y,
-    spot.position.Z,
-  );
-  bottom.Anchored = true;
-  bottom.Material = Enum.Material.Sand;
-  bottom.BrickColor = new BrickColor('Brick yellow');
-  bottom.Parent = model;
-
-  // Shore/beach around water
-  const shore = new Instance('Part');
-  shore.Name = 'Shore';
-  shore.Size = new Vector3(spot.size.X + 6, 0.5, spot.size.Z + 6);
-  shore.Position = new Vector3(spot.position.X, 0.25, spot.position.Z);
-  shore.Anchored = true;
-  shore.Material = Enum.Material.Sand;
-  shore.BrickColor = new BrickColor('Brick yellow');
-  shore.Parent = model;
-
-  // Glowing edge indicator
+  // Glowing edge indicator (ring around water)
   const glow = new Instance('Part');
   glow.Name = 'GlowRing';
-  glow.Size = new Vector3(spot.size.X + 4, 0.3, spot.size.Z + 4);
+  glow.Size = new Vector3(spot.size.X + 2, 0.2, spot.size.Z + 2);
   glow.Position = new Vector3(
     spot.position.X,
-    spot.waterLevel + 0.2,
+    0.1, // Just above ground
     spot.position.Z,
   );
   glow.Anchored = true;

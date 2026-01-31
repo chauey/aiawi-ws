@@ -52,7 +52,6 @@ let reelingClickCount = 0;
 const REEL_CLICKS_REQUIRED = 15;
 
 // 3D Fishing visuals
-let fishingRodTool: Tool | undefined;
 let fishingLine: Part | undefined;
 let floatingBobber: Part | undefined;
 
@@ -375,82 +374,106 @@ function createPanel(name: string, title: string, size: UDim2): Frame {
 
 // ==================== 3D FISHING VISUALS ====================
 
+// Reference to rod model (not a Tool - avoids hotbar)
+let fishingRodModel: Model | undefined;
+
 /**
- * Create and equip the fishing rod tool
+ * Create the fishing rod as a Model (not Tool - avoids hotbar overlap)
  */
-function createFishingRod(): void {
-  const player = Players.LocalPlayer;
-  const character = player.Character ?? player.CharacterAdded.Wait()[0];
-
-  // Check if rod already exists
-  if (fishingRodTool) return;
-
-  // Create the fishing rod Tool
-  fishingRodTool = new Instance('Tool');
-  fishingRodTool.Name = 'FishingRod';
-  fishingRodTool.RequiresHandle = true;
-  fishingRodTool.CanBeDropped = false;
+function createFishingRod(): Model {
+  const rod = new Instance('Model');
+  rod.Name = 'FishingRod';
 
   // Create handle (the rod)
   const handle = new Instance('Part');
   handle.Name = 'Handle';
-  handle.Size = new Vector3(0.3, 0.3, 4);
+  handle.Size = new Vector3(0.2, 0.2, 3);
   handle.Color = new Color3(0.4, 0.25, 0.1); // Wood brown
   handle.Material = Enum.Material.Wood;
-  handle.Parent = fishingRodTool;
+  handle.CanCollide = false;
+  handle.Anchored = false;
+  handle.Parent = rod;
 
   // Rod tip (thinner)
   const tip = new Instance('Part');
   tip.Name = 'Tip';
-  tip.Size = new Vector3(0.15, 0.15, 2);
-  tip.Color = new Color3(0.3, 0.3, 0.3); // Gray
+  tip.Size = new Vector3(0.1, 0.1, 1.5);
+  tip.Color = new Color3(0.3, 0.3, 0.3);
   tip.Material = Enum.Material.Metal;
-  tip.Parent = handle;
+  tip.CanCollide = false;
+  tip.Parent = rod;
 
   const tipWeld = new Instance('WeldConstraint');
   tipWeld.Part0 = handle;
   tipWeld.Part1 = tip;
   tipWeld.Parent = tip;
-  tip.CFrame = handle.CFrame.mul(new CFrame(0, 0, -3));
+  tip.CFrame = handle.CFrame.mul(new CFrame(0, 0, -2.25));
 
   // Reel on rod
   const reel = new Instance('Part');
   reel.Name = 'Reel';
   reel.Shape = Enum.PartType.Cylinder;
-  reel.Size = new Vector3(0.5, 0.4, 0.4);
+  reel.Size = new Vector3(0.3, 0.25, 0.25);
   reel.Color = new Color3(0.6, 0.6, 0.6);
   reel.Material = Enum.Material.Metal;
-  reel.Parent = handle;
+  reel.CanCollide = false;
+  reel.Parent = rod;
 
   const reelWeld = new Instance('WeldConstraint');
   reelWeld.Part0 = handle;
   reelWeld.Part1 = reel;
   reelWeld.Parent = reel;
-  reel.CFrame = handle.CFrame.mul(new CFrame(0.3, 0, 1));
+  reel.CFrame = handle.CFrame.mul(new CFrame(0.2, 0, 0.8));
 
-  // Parent to player backpack
-  fishingRodTool.Parent = player.WaitForChild('Backpack');
-
-  print('[FishingUI] 🎣 Fishing Rod created!');
+  rod.PrimaryPart = handle;
+  return rod;
 }
 
 /**
- * Equip the fishing rod
+ * Show the fishing rod attached to character's hand
  */
-function equipFishingRod(): void {
+function showFishingRod(): void {
   const player = Players.LocalPlayer;
   const character = player.Character;
+  if (!character) return;
 
-  if (!fishingRodTool) {
-    createFishingRod();
+  // Clean up old rod
+  if (fishingRodModel) {
+    fishingRodModel.Destroy();
   }
 
-  if (fishingRodTool && character) {
-    const humanoid = character.FindFirstChildOfClass('Humanoid');
-    if (humanoid) {
-      humanoid.EquipTool(fishingRodTool);
-      print('[FishingUI] 🎣 Rod equipped!');
-    }
+  // Create new rod
+  fishingRodModel = createFishingRod();
+
+  // Find right arm/hand to attach to
+  const rightHand = character.FindFirstChild('RightHand') as Part | undefined;
+  const rightArm = character.FindFirstChild('Right Arm') as Part | undefined;
+  const attachPart = rightHand ?? rightArm;
+
+  if (attachPart && fishingRodModel.PrimaryPart) {
+    // Position rod in hand
+    fishingRodModel.PrimaryPart.CFrame = attachPart.CFrame.mul(
+      new CFrame(0, -0.5, -1.5).mul(CFrame.Angles(math.rad(-60), 0, 0)),
+    );
+
+    // Weld to hand
+    const weld = new Instance('WeldConstraint');
+    weld.Part0 = attachPart;
+    weld.Part1 = fishingRodModel.PrimaryPart;
+    weld.Parent = fishingRodModel.PrimaryPart;
+  }
+
+  fishingRodModel.Parent = character;
+  print('[FishingUI] 🎣 Fishing Rod shown!');
+}
+
+/**
+ * Hide the fishing rod
+ */
+function hideFishingRod(): void {
+  if (fishingRodModel) {
+    fishingRodModel.Destroy();
+    fishingRodModel = undefined;
   }
 }
 
@@ -465,7 +488,7 @@ function showCastingVisuals(): void {
   const rootPart = character.FindFirstChild('HumanoidRootPart') as Part;
   if (!rootPart) return;
 
-  equipFishingRod();
+  showFishingRod();
 
   // Create bobber in world
   if (!floatingBobber) {
@@ -588,6 +611,7 @@ function createSplashEffect(position: Vector3): void {
  * Hide fishing visuals when done
  */
 function hideCastingVisuals(): void {
+  hideFishingRod();
   if (floatingBobber) {
     floatingBobber.Destroy();
     floatingBobber = undefined;

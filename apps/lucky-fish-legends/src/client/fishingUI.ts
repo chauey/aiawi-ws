@@ -8,6 +8,7 @@ import {
   ReplicatedStorage,
   TweenService,
   UserInputService,
+  Workspace,
 } from '@rbxts/services';
 
 // Remote references
@@ -42,6 +43,11 @@ let inventoryFrame: Frame;
 let collectionFrame: Frame;
 let locationFrame: Frame;
 
+// 3D Fishing visuals
+let fishingRodTool: Tool | undefined;
+let fishingLine: Part | undefined;
+let floatingBobber: Part | undefined;
+
 // Fish rarity colors
 const RARITY_COLORS = {
   common: new Color3(0.6, 0.6, 0.6),
@@ -72,11 +78,11 @@ function createFishingUI(): ScreenGui {
   screenGui.ResetOnSpawn = false;
   screenGui.Parent = playerGui;
 
-  // Main container
+  // Main container - positioned above action bar
   mainFrame = new Instance('Frame');
   mainFrame.Name = 'MainFrame';
   mainFrame.Size = new UDim2(0, 350, 0, 200);
-  mainFrame.Position = new UDim2(0.5, -175, 1, -220);
+  mainFrame.Position = new UDim2(0.5, -175, 1, -320); // Higher to avoid action bar
   mainFrame.BackgroundColor3 = new Color3(0.1, 0.15, 0.25);
   mainFrame.BackgroundTransparency = 0.1;
   mainFrame.BorderSizePixel = 0;
@@ -318,6 +324,339 @@ function createPanel(name: string, title: string, size: UDim2): Frame {
   return panel;
 }
 
+// ==================== 3D FISHING VISUALS ====================
+
+/**
+ * Create and equip the fishing rod tool
+ */
+function createFishingRod(): void {
+  const player = Players.LocalPlayer;
+  const character = player.Character ?? player.CharacterAdded.Wait()[0];
+
+  // Check if rod already exists
+  if (fishingRodTool) return;
+
+  // Create the fishing rod Tool
+  fishingRodTool = new Instance('Tool');
+  fishingRodTool.Name = 'FishingRod';
+  fishingRodTool.RequiresHandle = true;
+  fishingRodTool.CanBeDropped = false;
+
+  // Create handle (the rod)
+  const handle = new Instance('Part');
+  handle.Name = 'Handle';
+  handle.Size = new Vector3(0.3, 0.3, 4);
+  handle.Color = new Color3(0.4, 0.25, 0.1); // Wood brown
+  handle.Material = Enum.Material.Wood;
+  handle.Parent = fishingRodTool;
+
+  // Rod tip (thinner)
+  const tip = new Instance('Part');
+  tip.Name = 'Tip';
+  tip.Size = new Vector3(0.15, 0.15, 2);
+  tip.Color = new Color3(0.3, 0.3, 0.3); // Gray
+  tip.Material = Enum.Material.Metal;
+  tip.Parent = handle;
+
+  const tipWeld = new Instance('WeldConstraint');
+  tipWeld.Part0 = handle;
+  tipWeld.Part1 = tip;
+  tipWeld.Parent = tip;
+  tip.CFrame = handle.CFrame.mul(new CFrame(0, 0, -3));
+
+  // Reel on rod
+  const reel = new Instance('Part');
+  reel.Name = 'Reel';
+  reel.Shape = Enum.PartType.Cylinder;
+  reel.Size = new Vector3(0.5, 0.4, 0.4);
+  reel.Color = new Color3(0.6, 0.6, 0.6);
+  reel.Material = Enum.Material.Metal;
+  reel.Parent = handle;
+
+  const reelWeld = new Instance('WeldConstraint');
+  reelWeld.Part0 = handle;
+  reelWeld.Part1 = reel;
+  reelWeld.Parent = reel;
+  reel.CFrame = handle.CFrame.mul(new CFrame(0.3, 0, 1));
+
+  // Parent to player backpack
+  fishingRodTool.Parent = player.WaitForChild('Backpack');
+
+  print('[FishingUI] 🎣 Fishing Rod created!');
+}
+
+/**
+ * Equip the fishing rod
+ */
+function equipFishingRod(): void {
+  const player = Players.LocalPlayer;
+  const character = player.Character;
+
+  if (!fishingRodTool) {
+    createFishingRod();
+  }
+
+  if (fishingRodTool && character) {
+    const humanoid = character.FindFirstChildOfClass('Humanoid');
+    if (humanoid) {
+      humanoid.EquipTool(fishingRodTool);
+      print('[FishingUI] 🎣 Rod equipped!');
+    }
+  }
+}
+
+/**
+ * Cast the fishing line into the water
+ */
+function showCastingVisuals(): void {
+  const player = Players.LocalPlayer;
+  const character = player.Character;
+  if (!character) return;
+
+  const rootPart = character.FindFirstChild('HumanoidRootPart') as Part;
+  if (!rootPart) return;
+
+  equipFishingRod();
+
+  // Create bobber in world
+  if (!floatingBobber) {
+    floatingBobber = new Instance('Part');
+    floatingBobber.Name = 'FloatingBobber';
+    floatingBobber.Shape = Enum.PartType.Ball;
+    floatingBobber.Size = new Vector3(0.8, 0.8, 0.8);
+    floatingBobber.Color = new Color3(1, 0.3, 0.1); // Orange/red
+    floatingBobber.Material = Enum.Material.Plastic;
+    floatingBobber.Anchored = true;
+    floatingBobber.CanCollide = false;
+    floatingBobber.Parent = Workspace;
+  }
+
+  // Position bobber in front of player
+  const forwardOffset = rootPart.CFrame.LookVector.mul(15);
+  floatingBobber.Position = rootPart.Position.add(forwardOffset).add(
+    new Vector3(0, -2, 0),
+  );
+
+  // Create fishing line
+  if (!fishingLine) {
+    fishingLine = new Instance('Part');
+    fishingLine.Name = 'FishingLine';
+    fishingLine.Size = new Vector3(0.05, 0.05, 15);
+    fishingLine.Color = new Color3(0.9, 0.9, 0.9); // Nearly transparent white
+    fishingLine.Transparency = 0.5;
+    fishingLine.Material = Enum.Material.Neon;
+    fishingLine.Anchored = true;
+    fishingLine.CanCollide = false;
+    fishingLine.Parent = Workspace;
+  }
+
+  // Position line between rod and bobber
+  const rightHand = character.FindFirstChild('RightHand') as Part | undefined;
+  const handPos =
+    rightHand?.Position ?? rootPart.Position.add(new Vector3(0, 3, 0));
+  const bobberPos = floatingBobber.Position;
+  const midPoint = handPos.add(bobberPos).div(2);
+  const distance = handPos.sub(bobberPos).Magnitude;
+
+  fishingLine.Size = new Vector3(0.05, 0.05, distance);
+  fishingLine.CFrame = CFrame.lookAt(midPoint, bobberPos);
+
+  // Create hook underneath bobber
+  const hook = new Instance('Part');
+  hook.Name = 'Hook';
+  hook.Size = new Vector3(0.2, 0.4, 0.1);
+  hook.Color = new Color3(0.5, 0.5, 0.5); // Silver/gray
+  hook.Material = Enum.Material.Metal;
+  hook.Anchored = true;
+  hook.CanCollide = false;
+  hook.Position = floatingBobber.Position.add(new Vector3(0, -0.8, 0));
+  hook.Parent = floatingBobber; // Parent to bobber so it moves with it
+
+  // Create splash effect at bobber location
+  createSplashEffect(floatingBobber.Position);
+
+  print('[FishingUI] 🎣 Cast line into water!');
+}
+
+/**
+ * Create splash particle effect
+ */
+function createSplashEffect(position: Vector3): void {
+  // Create splash particles
+  const splashPart = new Instance('Part');
+  splashPart.Name = 'Splash';
+  splashPart.Size = new Vector3(0.5, 0.5, 0.5);
+  splashPart.Transparency = 1;
+  splashPart.Anchored = true;
+  splashPart.CanCollide = false;
+  splashPart.Position = position;
+  splashPart.Parent = Workspace;
+
+  // Add particle emitter
+  const particles = new Instance('ParticleEmitter');
+  particles.Name = 'SplashParticles';
+  particles.Color = new ColorSequence(new Color3(0.7, 0.85, 1)); // Light blue water
+  particles.Size = new NumberSequence(0.5, 0);
+  particles.Transparency = new NumberSequence(0, 1);
+  particles.Lifetime = new NumberRange(0.3, 0.6);
+  particles.Rate = 0; // We'll emit manually
+  particles.Speed = new NumberRange(5, 10);
+  particles.SpreadAngle = new Vector2(45, 45);
+  particles.Parent = splashPart;
+
+  // Emit splash particles
+  particles.Emit(20);
+
+  // Create water ring effect
+  const ring = new Instance('Part');
+  ring.Name = 'SplashRing';
+  ring.Shape = Enum.PartType.Cylinder;
+  ring.Size = new Vector3(0.1, 2, 2);
+  ring.Orientation = new Vector3(0, 0, 90);
+  ring.Color = new Color3(0.8, 0.9, 1);
+  ring.Material = Enum.Material.Neon;
+  ring.Transparency = 0.5;
+  ring.Anchored = true;
+  ring.CanCollide = false;
+  ring.Position = position.add(new Vector3(0, 0.1, 0));
+  ring.Parent = Workspace;
+
+  // Animate ring expanding
+  task.spawn(() => {
+    for (let i = 0; i < 10; i++) {
+      ring.Size = new Vector3(0.1, 2 + i, 2 + i);
+      ring.Transparency = 0.5 + i * 0.05;
+      task.wait(0.05);
+    }
+    ring.Destroy();
+  });
+
+  // Clean up splash part after particles finish
+  task.delay(1, () => splashPart.Destroy());
+}
+
+/**
+ * Hide fishing visuals when done
+ */
+function hideCastingVisuals(): void {
+  if (floatingBobber) {
+    floatingBobber.Destroy();
+    floatingBobber = undefined;
+  }
+  if (fishingLine) {
+    fishingLine.Destroy();
+    fishingLine = undefined;
+  }
+  print('[FishingUI] 🎣 Reeled in line!');
+}
+
+/**
+ * Animate bobber when fish bites (3D)
+ */
+function animateBobber3D(): void {
+  if (!floatingBobber) return;
+
+  // Bob up and down
+  const originalY = floatingBobber.Position.Y;
+
+  task.spawn(() => {
+    for (let i = 0; i < 10; i++) {
+      if (!floatingBobber) break;
+      const offset = math.sin(i * 2) * 0.5;
+      floatingBobber.Position = new Vector3(
+        floatingBobber.Position.X,
+        originalY + offset,
+        floatingBobber.Position.Z,
+      );
+      task.wait(0.1);
+    }
+  });
+}
+
+// ==================== FISH DATA (Client-side simulation) ====================
+
+const FISH_TYPES = [
+  {
+    name: 'Goldfish',
+    rarity: 'common',
+    minWeight: 0.1,
+    maxWeight: 0.5,
+    value: 5,
+  },
+  { name: 'Carp', rarity: 'common', minWeight: 0.5, maxWeight: 2, value: 10 },
+  { name: 'Bass', rarity: 'uncommon', minWeight: 1, maxWeight: 4, value: 25 },
+  {
+    name: 'Trout',
+    rarity: 'uncommon',
+    minWeight: 0.5,
+    maxWeight: 3,
+    value: 20,
+  },
+  { name: 'Catfish', rarity: 'rare', minWeight: 2, maxWeight: 8, value: 50 },
+  { name: 'Pike', rarity: 'rare', minWeight: 3, maxWeight: 10, value: 75 },
+  {
+    name: 'Swordfish',
+    rarity: 'epic',
+    minWeight: 10,
+    maxWeight: 50,
+    value: 200,
+  },
+  {
+    name: 'Lucky Koi',
+    rarity: 'legendary',
+    minWeight: 1,
+    maxWeight: 5,
+    value: 500,
+  },
+  {
+    name: 'Golden Dragon Fish',
+    rarity: 'mythic',
+    minWeight: 5,
+    maxWeight: 20,
+    value: 2000,
+  },
+];
+
+/**
+ * Simulate catching a fish (client-side, no server needed)
+ */
+function simulateCatch():
+  | { name: string; rarity: string; weight: number; value: number }
+  | undefined {
+  // Random rarity roll
+  const roll = math.random();
+  let targetRarity: string;
+
+  if (roll < 0.01)
+    targetRarity = 'mythic'; // 1%
+  else if (roll < 0.05)
+    targetRarity = 'legendary'; // 4%
+  else if (roll < 0.15)
+    targetRarity = 'epic'; // 10%
+  else if (roll < 0.35)
+    targetRarity = 'rare'; // 20%
+  else if (roll < 0.6)
+    targetRarity = 'uncommon'; // 25%
+  else targetRarity = 'common'; // 40%
+
+  // Find fish of that rarity
+  const fishPool = FISH_TYPES.filter((f) => f.rarity === targetRarity);
+  if (fishPool.size() === 0) return undefined;
+
+  const fish = fishPool[math.random(0, fishPool.size() - 1)];
+  const weight =
+    math.random() * (fish.maxWeight - fish.minWeight) + fish.minWeight;
+
+  return {
+    name: fish.name,
+    rarity: fish.rarity,
+    weight: math.floor(weight * 100) / 100, // 2 decimal places
+    value: math.floor(fish.value * (1 + weight / fish.maxWeight)),
+  };
+}
+
+// ==================== BUTTON HANDLERS ====================
+
 /**
  * Cast line handler
  */
@@ -327,10 +666,25 @@ function onCastClick(): void {
     return;
   }
 
+  // Show 3D visuals
+  showCastingVisuals();
+
+  // Fire to server if available
   remotes?.castLine?.FireServer(currentState.currentLocationId);
-  updateStatus('Casting line...');
+  updateStatus('🎣 Casting line... wait for a bite!');
   currentState.isFishing = true;
   updateButtonStates();
+
+  // Client-side simulation: simulate a bite after 2-5 seconds
+  const waitTime = math.random(2, 5);
+  task.delay(waitTime, () => {
+    if (currentState.isFishing) {
+      currentState.isBiting = true;
+      updateStatus('🐟 A fish is biting! Click Reel to catch it!');
+      updateButtonStates();
+      animateBobber3D();
+    }
+  });
 }
 
 /**
@@ -338,12 +692,204 @@ function onCastClick(): void {
  */
 function onReelClick(): void {
   if (!currentState.isFishing) {
-    updateStatus('Not fishing yet!');
+    updateStatus('Cast your line first!');
     return;
   }
 
   remotes?.reelIn?.FireServer();
-  updateStatus('Reeling in...');
+
+  updateStatus('🎣 Reeling in...');
+
+  // Animate reeling (shorten line)
+  animateReeling();
+
+  // Client-side simulation
+  if (currentState.isBiting) {
+    const fish = simulateCatch();
+    if (fish) {
+      const rarityColor =
+        RARITY_COLORS[fish.rarity as keyof typeof RARITY_COLORS] ??
+        new Color3(1, 1, 1);
+
+      // Show fish model!
+      showCaughtFish(fish.name, fish.rarity, fish.weight);
+
+      statusLabel.TextColor3 = rarityColor;
+      updateStatus(
+        `🎉 Caught a ${fish.rarity.upper()} ${fish.name}! (${fish.weight}kg) Worth ${fish.value} coins!`,
+      );
+
+      // Reset color after 3 seconds
+      task.delay(3, () => {
+        statusLabel.TextColor3 = new Color3(0.9, 0.9, 0.9);
+      });
+    } else {
+      updateStatus('The fish got away! 😢');
+    }
+  } else {
+    updateStatus('No fish biting yet... reeled in empty.');
+  }
+
+  // Hide 3D visuals after delay
+  task.delay(1.5, () => {
+    hideCastingVisuals();
+  });
+
+  currentState.isFishing = false;
+  currentState.isBiting = false;
+  updateButtonStates();
+}
+
+/**
+ * Animate the fishing line reeling in
+ */
+function animateReeling(): void {
+  if (!fishingLine || !floatingBobber) return;
+
+  const player = Players.LocalPlayer;
+  const character = player.Character;
+  if (!character) return;
+
+  const rootPart = character.FindFirstChild('HumanoidRootPart') as Part;
+  if (!rootPart) return;
+
+  // Animate bobber coming towards player
+  task.spawn(() => {
+    const startPos = floatingBobber!.Position;
+    const endPos = rootPart.Position.add(new Vector3(0, 1, 0));
+
+    for (let i = 0; i <= 10; i++) {
+      if (!floatingBobber || !fishingLine) break;
+
+      const t = i / 10;
+      const newPos = startPos.Lerp(endPos, t);
+      floatingBobber.Position = newPos;
+
+      // Update line
+      const rightHand = character.FindFirstChild('RightHand') as
+        | Part
+        | undefined;
+      const handPos =
+        rightHand?.Position ?? rootPart.Position.add(new Vector3(0, 3, 0));
+      const midPoint = handPos.add(newPos).div(2);
+      const distance = handPos.sub(newPos).Magnitude;
+
+      fishingLine.Size = new Vector3(0.05, 0.05, distance);
+      fishingLine.CFrame = CFrame.lookAt(midPoint, newPos);
+
+      task.wait(0.05);
+    }
+  });
+}
+
+/**
+ * Show the caught fish model
+ */
+function showCaughtFish(name: string, rarity: string, weight: number): void {
+  const player = Players.LocalPlayer;
+  const character = player.Character;
+  if (!character) return;
+
+  const rootPart = character.FindFirstChild('HumanoidRootPart') as Part;
+  if (!rootPart) return;
+
+  // Get rarity color
+  const rarityColor =
+    RARITY_COLORS[rarity as keyof typeof RARITY_COLORS] ??
+    new Color3(0.5, 0.5, 0.5);
+
+  // Create fish model (simple ellipsoid)
+  const fishModel = new Instance('Part');
+  fishModel.Name = 'CaughtFish';
+  fishModel.Shape = Enum.PartType.Ball;
+  fishModel.Size = new Vector3(
+    weight * 0.5 + 0.5,
+    weight * 0.3 + 0.3,
+    weight * 0.8 + 0.8,
+  ); // Size based on weight
+  fishModel.Color = rarityColor;
+  fishModel.Material = Enum.Material.SmoothPlastic;
+  fishModel.Anchored = true;
+  fishModel.CanCollide = false;
+  fishModel.Position = rootPart.Position.add(new Vector3(0, 3, 2));
+  fishModel.Parent = Workspace;
+
+  // Add tail (cone-like)
+  const tail = new Instance('WedgePart');
+  tail.Name = 'Tail';
+  tail.Size = new Vector3(
+    weight * 0.2 + 0.2,
+    weight * 0.3 + 0.3,
+    weight * 0.3 + 0.2,
+  );
+  tail.Color = rarityColor;
+  tail.Material = Enum.Material.SmoothPlastic;
+  tail.Orientation = new Vector3(0, 180, 0);
+  tail.Position = fishModel.Position.add(new Vector3(0, 0, weight * 0.5 + 0.5));
+  tail.Anchored = true;
+  tail.CanCollide = false;
+  tail.Parent = fishModel;
+
+  // Add eye
+  const eye = new Instance('Part');
+  eye.Name = 'Eye';
+  eye.Shape = Enum.PartType.Ball;
+  eye.Size = new Vector3(0.15, 0.15, 0.15);
+  eye.Color = new Color3(0, 0, 0);
+  eye.Material = Enum.Material.SmoothPlastic;
+  eye.Position = fishModel.Position.add(
+    new Vector3(weight * 0.15 + 0.1, 0.1, -(weight * 0.3 + 0.2)),
+  );
+  eye.Anchored = true;
+  eye.CanCollide = false;
+  eye.Parent = fishModel;
+
+  // Add name label above fish
+  const billboard = new Instance('BillboardGui');
+  billboard.Name = 'FishLabel';
+  billboard.Size = new UDim2(0, 100, 0, 30);
+  billboard.StudsOffset = new Vector3(0, 2, 0);
+  billboard.AlwaysOnTop = true;
+  billboard.Parent = fishModel;
+
+  const label = new Instance('TextLabel');
+  label.Size = new UDim2(1, 0, 1, 0);
+  label.BackgroundTransparency = 1;
+  label.Text = `${rarity.upper()} ${name}`;
+  label.TextColor3 = rarityColor;
+  label.TextStrokeTransparency = 0;
+  label.TextStrokeColor3 = new Color3(0, 0, 0);
+  label.Font = Enum.Font.GothamBold;
+  label.TextScaled = true;
+  label.Parent = billboard;
+
+  // Animate fish floating and rotating, then disappear
+  task.spawn(() => {
+    let rotation = 0;
+    for (let i = 0; i < 40; i++) {
+      if (!fishModel.Parent) break;
+
+      rotation += 9; // Rotate slowly
+      fishModel.CFrame = new CFrame(fishModel.Position).mul(
+        CFrame.Angles(0, math.rad(rotation), 0),
+      );
+      fishModel.Position = fishModel.Position.add(new Vector3(0, 0.02, 0)); // Float up
+
+      task.wait(0.05);
+    }
+
+    // Fade out
+    for (let i = 0; i < 10; i++) {
+      fishModel.Transparency = i / 10;
+      eye.Transparency = i / 10;
+      tail.Transparency = i / 10;
+      task.wait(0.05);
+    }
+
+    fishModel.Destroy();
+  });
+
+  print(`[FishingUI] 🐟 Showing caught ${rarity} ${name}!`);
 }
 
 /**

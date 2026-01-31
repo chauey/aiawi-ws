@@ -889,6 +889,39 @@ export function updatePetBonuses(
 ): void {
   currentPetBonus.fishingBonus = fishingBonus;
   currentPetBonus.coinBonus = coinBonus;
+
+  // Update UI display if it exists
+  if (mainFrame) {
+    let bonusLabel = mainFrame.FindFirstChild('PetBonusLabel') as
+      | TextLabel
+      | undefined;
+
+    if (!bonusLabel) {
+      // Create bonus display label
+      bonusLabel = new Instance('TextLabel');
+      bonusLabel.Name = 'PetBonusLabel';
+      bonusLabel.Size = new UDim2(0, 120, 0, 22);
+      bonusLabel.Position = new UDim2(1, -125, 0, 8);
+      bonusLabel.BackgroundColor3 = new Color3(0.2, 0.4, 0.3);
+      bonusLabel.BackgroundTransparency = 0.3;
+      bonusLabel.TextColor3 = new Color3(0.5, 1, 0.6);
+      bonusLabel.TextSize = 11;
+      bonusLabel.Font = Enum.Font.GothamBold;
+      bonusLabel.Parent = mainFrame;
+
+      const corner = new Instance('UICorner');
+      corner.CornerRadius = new UDim(0, 6);
+      corner.Parent = bonusLabel;
+    }
+
+    if (fishingBonus > 0 || coinBonus > 0) {
+      bonusLabel.Visible = true;
+      bonusLabel.Text = `🐾 +${fishingBonus}% 🎣 +${coinBonus}% 💰`;
+    } else {
+      bonusLabel.Visible = false;
+    }
+  }
+
   print(`🐾 Pet bonuses: +${fishingBonus}% fishing, +${coinBonus}% coins`);
 }
 

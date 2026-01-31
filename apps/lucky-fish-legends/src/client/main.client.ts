@@ -36,6 +36,7 @@ import { createPetSelectionUI } from './petUI';
 import { createStarterPackUI, showStarterPackPopup } from './starterPackUI';
 import { createLimitedOffersUI } from './limitedOffersUI';
 import { initFishingUI, toggleFishingUI } from './fishingUI';
+import { initAdvancedPetUI } from './advancedPetUI';
 
 const player = Players.LocalPlayer;
 
@@ -672,5 +673,8 @@ registerActionCallback('battlepass', () => {
   toggleBattlePass();
 });
 
+// Initialize advanced pet system UI
+initAdvancedPetUI();
+
 showTutorial();
-print('🎮 29 systems! Ultimate game with Battle Pass!');
+print('🎮 30 systems! Ultimate game with Battle Pass + Advanced Pets!');

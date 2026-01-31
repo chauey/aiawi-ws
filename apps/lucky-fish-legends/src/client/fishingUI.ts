@@ -857,36 +857,42 @@ function connectServerEvents(): void {
 export function initFishingUI(): void {
   print('[FishingUI] Initializing...');
 
-  // Wait for remotes
-  const remotesFolder = ReplicatedStorage.WaitForChild(
-    'FishingRemotes',
-    10,
-  ) as Folder;
-  if (!remotesFolder) {
-    warn('[FishingUI] FishingRemotes folder not found!');
-    return;
+  // Create UI first (starts hidden) - this enables the toggle button to work
+  createFishingUI();
+  mainFrame.Visible = false; // Start hidden until player toggles or visits fishing spot
+
+  // Try to connect to server remotes (optional - UI works without them)
+  const remotesFolder = ReplicatedStorage.FindFirstChild('FishingRemotes') as
+    | Folder
+    | undefined;
+
+  if (remotesFolder) {
+    print('[FishingUI] Found FishingRemotes, connecting...');
+    remotes = {
+      castLine: remotesFolder.FindFirstChild('CastLine') as RemoteEvent,
+      reelIn: remotesFolder.FindFirstChild('ReelIn') as RemoteEvent,
+      sellFish: remotesFolder.FindFirstChild('SellFish') as RemoteEvent,
+      equipRod: remotesFolder.FindFirstChild('EquipRod') as RemoteEvent,
+      equipBait: remotesFolder.FindFirstChild('EquipBait') as RemoteEvent,
+      getStats: remotesFolder.FindFirstChild('GetStats') as RemoteFunction,
+      getCollection: remotesFolder.FindFirstChild(
+        'GetCollection',
+      ) as RemoteFunction,
+      getInventory: remotesFolder.FindFirstChild(
+        'GetInventory',
+      ) as RemoteFunction,
+      changeLocation: remotesFolder.FindFirstChild(
+        'ChangeLocation',
+      ) as RemoteEvent,
+    };
+    connectServerEvents();
+  } else {
+    print('[FishingUI] FishingRemotes not found - running in UI-only mode');
+    updateStatus('🎣 Fishing UI ready! Server connection pending...');
   }
 
-  remotes = {
-    castLine: remotesFolder.WaitForChild('CastLine') as RemoteEvent,
-    reelIn: remotesFolder.WaitForChild('ReelIn') as RemoteEvent,
-    sellFish: remotesFolder.WaitForChild('SellFish') as RemoteEvent,
-    equipRod: remotesFolder.WaitForChild('EquipRod') as RemoteEvent,
-    equipBait: remotesFolder.WaitForChild('EquipBait') as RemoteEvent,
-    getStats: remotesFolder.WaitForChild('GetStats') as RemoteFunction,
-    getCollection: remotesFolder.WaitForChild(
-      'GetCollection',
-    ) as RemoteFunction,
-    getInventory: remotesFolder.WaitForChild('GetInventory') as RemoteFunction,
-    changeLocation: remotesFolder.WaitForChild('ChangeLocation') as RemoteEvent,
-  };
-
-  // Create UI (starts hidden)
-  createFishingUI();
-  mainFrame.Visible = false; // Start hidden until player goes to fishing spot
-
   // Listen for OpenFishingUI remote from fishing spots
-  const openRemote = ReplicatedStorage.WaitForChild('OpenFishingUI', 5) as
+  const openRemote = ReplicatedStorage.FindFirstChild('OpenFishingUI') as
     | RemoteEvent
     | undefined;
   if (openRemote) {
@@ -899,9 +905,6 @@ export function initFishingUI(): void {
       );
     });
   }
-
-  // Connect events
-  connectServerEvents();
 
   // Keyboard shortcuts
   UserInputService.InputBegan.Connect((input, gameProcessed) => {

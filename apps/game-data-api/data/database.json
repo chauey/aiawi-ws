@@ -1,0 +1,2980 @@
+{
+  "games": [
+    {
+      "id": "45af7234-3205-4c53-8146-7b03c630756e",
+      "name": "Brookhaven RP",
+      "developer": "Wolfpaq",
+      "genre": "RPG",
+      "releaseDate": "2020-04-21T00:00:00.000Z",
+      "platform": "Roblox",
+      "description": "Role-playing town simulation with customization, vehicles, houses, and social interactions.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "roleplay",
+        "social",
+        "simulation",
+        "customization",
+        "open-world"
+      ],
+      "priorityScore": 50,
+      "recommendedForReplication": false,
+      "strengths": [],
+      "weaknesses": [],
+      "uniqueSellingPoints": [],
+      "lessonsLearned": [],
+      "features": [
+        {
+          "id": "3c64bfbc-b484-4ae2-b646-06a047c5ac65",
+          "gameId": "45af7234-3205-4c53-8146-7b03c630756e",
+          "name": "Avatar Customization",
+          "description": "Extensive character customization options",
+          "category": "Customization",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 10,
+          "technicalNotes": "Clothing, hair, accessories, animations. Use catalog system with premium items.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:06:35.028Z"
+        },
+        {
+          "id": "d885ec46-58f7-41c0-985e-2bc928992820",
+          "gameId": "45af7234-3205-4c53-8146-7b03c630756e",
+          "name": "Vehicle System",
+          "description": "Drivable cars, boats, and helicopters",
+          "category": "Gameplay",
+          "importance": "High",
+          "implementationComplexity": "Hard",
+          "userEngagementImpact": 8,
+          "monetizationPotential": 8,
+          "technicalNotes": "Physics-based driving. Spawn system. Garage and ownership system.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:06:35.031Z"
+        },
+        {
+          "id": "6ef9de14-6884-4a64-aa69-f2beb2446875",
+          "gameId": "45af7234-3205-4c53-8146-7b03c630756e",
+          "name": "Property System",
+          "description": "Houses and buildings players can own and customize",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Hard",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 9,
+          "technicalNotes": "Instance-based interiors. Furniture placement. Premium houses with Robux.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:06:35.034Z"
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 32000000000,
+        "concurrentPlayers": 400000,
+        "peakConcurrentPlayers": 750000,
+        "averageSessionLength": 60,
+        "retentionRateDay1": 65,
+        "retentionRateDay7": 50,
+        "retentionRateDay30": 35,
+        "revenueTotal": 30000000,
+        "revenueMonthly": 2000000,
+        "conversionRate": 10,
+        "averageRevenuePerUser": 3.5
+      },
+      "creationTime": "2026-01-30T07:06:35.023Z",
+      "lastModificationTime": "2026-01-30T07:06:35.034Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "3a9332bf-d39e-44cc-9d7f-357a5ba6363c",
+      "name": "Tower of Hell",
+      "developer": "YXCeptional Studios",
+      "genre": "Platformer",
+      "releaseDate": "2018-06-18T00:00:00.000Z",
+      "platform": "Roblox",
+      "description": "Fast-paced obby/parkour game with randomly generated tower challenges. Simple but highly addictive.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "obby",
+        "parkour",
+        "competitive",
+        "skill-based",
+        "fast-paced"
+      ],
+      "priorityScore": 50,
+      "recommendedForReplication": false,
+      "strengths": [],
+      "weaknesses": [],
+      "uniqueSellingPoints": [],
+      "lessonsLearned": [],
+      "features": [
+        {
+          "id": "f75b6dec-6f4b-4423-9580-e9eef14b66ce",
+          "gameId": "3a9332bf-d39e-44cc-9d7f-357a5ba6363c",
+          "name": "Procedural Generation",
+          "description": "Randomly generated tower sections each round",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Hard",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 5,
+          "technicalNotes": "Pool of tower sections. Random selection algorithm. Balance difficulty curve.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:06:35.043Z"
+        },
+        {
+          "id": "ede56ab2-78d5-455b-a774-7e49339b3bec",
+          "gameId": "3a9332bf-d39e-44cc-9d7f-357a5ba6363c",
+          "name": "Leaderboard System",
+          "description": "Real-time competitive rankings",
+          "category": "Social",
+          "importance": "High",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 8,
+          "monetizationPotential": 4,
+          "technicalNotes": "Track fastest completion times. Display top players. Reset each round.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:06:35.046Z"
+        },
+        {
+          "id": "3160e09c-3332-457c-b4e9-b7cd7ff43002",
+          "gameId": "3a9332bf-d39e-44cc-9d7f-357a5ba6363c",
+          "name": "Mutators/Modifiers",
+          "description": "Special game modes that change physics or rules",
+          "category": "Content",
+          "importance": "Medium",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 7,
+          "monetizationPotential": 6,
+          "technicalNotes": "Examples: Low gravity, speed boost, inverted controls. VIP-exclusive modes.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:06:35.048Z"
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 28000000000,
+        "concurrentPlayers": 150000,
+        "peakConcurrentPlayers": 300000,
+        "averageSessionLength": 30,
+        "retentionRateDay1": 60,
+        "retentionRateDay7": 45,
+        "retentionRateDay30": 30,
+        "revenueTotal": 15000000,
+        "revenueMonthly": 800000,
+        "conversionRate": 8,
+        "averageRevenuePerUser": 2.1
+      },
+      "creationTime": "2026-01-30T07:06:35.036Z",
+      "lastModificationTime": "2026-01-30T07:06:35.048Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "3a0decb4-2905-42f8-9d80-70002d0a0bf7",
+      "name": "Phantom Forces",
+      "developer": "StyLiS Studios",
+      "genre": "Shooter",
+      "releaseDate": "2015-08-29T00:00:00.000Z",
+      "platform": "Roblox",
+      "description": "Tactical FPS with realistic weapons, customization, and various game modes. Often compared to Call of Duty.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "fps",
+        "competitive",
+        "tactical",
+        "weapons",
+        "multiplayer"
+      ],
+      "priorityScore": 50,
+      "recommendedForReplication": false,
+      "strengths": [],
+      "weaknesses": [],
+      "uniqueSellingPoints": [],
+      "lessonsLearned": [],
+      "features": [
+        {
+          "id": "3739ebd9-c23b-4caa-bc77-322c30e0a305",
+          "gameId": "3a0decb4-2905-42f8-9d80-70002d0a0bf7",
+          "name": "Weapon Customization",
+          "description": "Deep gun customization with attachments",
+          "category": "Progression",
+          "importance": "Critical",
+          "implementationComplexity": "Expert",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 8,
+          "technicalNotes": "Optics, barrels, grips, ammo types. Stat modifications. Unlock system.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:06:35.058Z"
+        },
+        {
+          "id": "e07a6fce-7c81-4a80-ba33-75ca747acb58",
+          "gameId": "3a0decb4-2905-42f8-9d80-70002d0a0bf7",
+          "name": "Ballistics System",
+          "description": "Realistic bullet physics and damage",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Expert",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 3,
+          "technicalNotes": "Bullet drop, penetration, damage falloff. Raycast-based hit detection.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:06:35.062Z"
+        },
+        {
+          "id": "316e267a-e62f-4789-a71d-f55cee842632",
+          "gameId": "3a0decb4-2905-42f8-9d80-70002d0a0bf7",
+          "name": "Progression System",
+          "description": "Rank-based weapon and attachment unlocks",
+          "category": "Progression",
+          "importance": "High",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 8,
+          "monetizationPotential": 7,
+          "technicalNotes": "XP from kills, objectives, score. Weapon unlocks at specific ranks.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:06:35.065Z"
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 2000000000,
+        "concurrentPlayers": 15000,
+        "peakConcurrentPlayers": 45000,
+        "averageSessionLength": 40,
+        "retentionRateDay1": 55,
+        "retentionRateDay7": 40,
+        "retentionRateDay30": 25,
+        "revenueTotal": 8000000,
+        "revenueMonthly": 400000,
+        "conversionRate": 7,
+        "averageRevenuePerUser": 3.2
+      },
+      "creationTime": "2026-01-30T07:06:35.051Z",
+      "lastModificationTime": "2026-01-30T07:06:35.065Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "db005e5c-9601-48a4-9ff1-51444dabebba",
+      "name": "Adopt Me!",
+      "developer": "Uplift Games",
+      "genre": "Simulation",
+      "releaseDate": "2017-07-14T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Competitor",
+      "description": "Virtual pet adoption and nurturing game with trading, mini-games, and social features. One of the most successful games on Roblox.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "pets",
+        "trading",
+        "social",
+        "collection",
+        "family-friendly"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasProgressionSystem": true,
+        "hasCraftingSystem": false,
+        "hasBuildingSystem": false,
+        "hasMultiplayer": true,
+        "hasGuilds": false,
+        "hasChat": true,
+        "hasFriendSystem": true,
+        "hasLeaderboards": false,
+        "hasInAppPurchases": true,
+        "hasGachaSystem": true,
+        "hasSeasonPass": false,
+        "hasAds": false,
+        "hasVIPSystem": false,
+        "hasLevelSystem": false,
+        "hasSkillTree": false,
+        "hasAchievements": false,
+        "hasQuests": false,
+        "hasDailies": false,
+        "hasProcGeneratedContent": false,
+        "hasStoryMode": false,
+        "hasPvP": false,
+        "hasPvE": true,
+        "hasRaids": false,
+        "hasCharacterCustomization": true,
+        "hasHousingCustomization": true,
+        "hasSkinSystem": false,
+        "hasEmotes": false,
+        "hasVirtualCurrency": true,
+        "hasMarketplace": false,
+        "hasAuctions": false,
+        "hasCrossPlatform": false,
+        "hasCloudSaves": false,
+        "hasOfflineProgress": false
+      },
+      "priorityScore": 50,
+      "recommendedForReplication": false,
+      "strengths": [],
+      "weaknesses": [],
+      "uniqueSellingPoints": [],
+      "lessonsLearned": [],
+      "features": [
+        {
+          "id": "0c6a6e2b-60d8-4f72-98c5-70d236708a80",
+          "gameId": "db005e5c-9601-48a4-9ff1-51444dabebba",
+          "name": "Pet Collection System",
+          "description": "Extensive pet collection with different rarities and types",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 10,
+          "technicalNotes": "Use rarity tiers (Common, Uncommon, Rare, Ultra-Rare, Legendary). Implement egg hatching mechanics with probabilities.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:13:34.783Z"
+        },
+        {
+          "id": "f8c147b0-eaf4-4a20-8c1c-9ba2681f1190",
+          "gameId": "db005e5c-9601-48a4-9ff1-51444dabebba",
+          "name": "Trading System",
+          "description": "Player-to-player trading with security measures",
+          "category": "Social",
+          "importance": "Critical",
+          "implementationComplexity": "Hard",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 8,
+          "technicalNotes": "Implement trade windows, confirmation dialogs, trade history, and scam prevention.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:13:34.787Z"
+        },
+        {
+          "id": "9f0bfa83-0be9-4e80-875f-67c5f370a1df",
+          "gameId": "db005e5c-9601-48a4-9ff1-51444dabebba",
+          "name": "Housing System",
+          "description": "Customizable houses and furniture",
+          "category": "Customization",
+          "importance": "High",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 8,
+          "monetizationPotential": 9,
+          "technicalNotes": "Furniture placement system with snap-to-grid and rotation.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:13:34.790Z"
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 38000000000,
+        "concurrentPlayers": 500000,
+        "peakConcurrentPlayers": 1600000,
+        "averageSessionLength": 45,
+        "retentionRateDay1": 75,
+        "retentionRateDay7": 60,
+        "retentionRateDay30": 45,
+        "revenueTotal": 50000000,
+        "revenueMonthly": 3000000,
+        "conversionRate": 12,
+        "averageRevenuePerUser": 5.2
+      },
+      "creationTime": "2026-01-30T07:13:34.776Z",
+      "lastModificationTime": "2026-01-30T07:13:34.790Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "4bffe41e-8917-43f2-a1a1-5e8bf91c3764",
+      "name": "Blox Fruits",
+      "developer": "Gamer Robot Inc.",
+      "genre": "RPG",
+      "releaseDate": "2019-01-10T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Teen (13-17)",
+      "ownership": "Competitor",
+      "description": "One Piece-inspired RPG with devil fruit powers, grinding mechanics, PvP combat, and progression systems.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "anime",
+        "grinding",
+        "pvp",
+        "progression",
+        "combat"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasProgressionSystem": true,
+        "hasCraftingSystem": false,
+        "hasBuildingSystem": false,
+        "hasMultiplayer": true,
+        "hasGuilds": false,
+        "hasChat": true,
+        "hasFriendSystem": false,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasGachaSystem": true,
+        "hasSeasonPass": false,
+        "hasAds": false,
+        "hasVIPSystem": false,
+        "hasLevelSystem": true,
+        "hasSkillTree": true,
+        "hasAchievements": false,
+        "hasQuests": true,
+        "hasDailies": false,
+        "hasProcGeneratedContent": false,
+        "hasStoryMode": false,
+        "hasPvP": true,
+        "hasPvE": true,
+        "hasRaids": true,
+        "hasCharacterCustomization": false,
+        "hasHousingCustomization": false,
+        "hasSkinSystem": false,
+        "hasEmotes": false,
+        "hasVirtualCurrency": true,
+        "hasMarketplace": false,
+        "hasAuctions": false,
+        "hasCrossPlatform": false,
+        "hasCloudSaves": false,
+        "hasOfflineProgress": false
+      },
+      "priorityScore": 50,
+      "recommendedForReplication": false,
+      "strengths": [],
+      "weaknesses": [],
+      "uniqueSellingPoints": [],
+      "lessonsLearned": [],
+      "features": [
+        {
+          "id": "99a2bd70-aff4-4843-af5c-ec4693127d59",
+          "gameId": "4bffe41e-8917-43f2-a1a1-5e8bf91c3764",
+          "name": "Devil Fruit System",
+          "description": "Collectible powers with unique abilities",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Expert",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 9,
+          "technicalNotes": "Each fruit has unique move sets. Implement spawn mechanics and fruit trading.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T07:13:34.800Z"
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 45000000000,
+        "concurrentPlayers": 600000,
+        "peakConcurrentPlayers": 800000,
+        "averageSessionLength": 90,
+        "retentionRateDay1": 70,
+        "retentionRateDay7": 55,
+        "retentionRateDay30": 40,
+        "revenueTotal": 40000000,
+        "revenueMonthly": 2500000,
+        "conversionRate": 15,
+        "averageRevenuePerUser": 4.8
+      },
+      "creationTime": "2026-01-30T07:13:34.794Z",
+      "lastModificationTime": "2026-01-30T07:13:34.800Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "f1sh-1t00-0000-0000-000000000001",
+      "name": "Fish It! 🐟",
+      "developer": "Unknown Studio",
+      "genre": "Simulator",
+      "releaseDate": "2025-11-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Competitor",
+      "description": "Viral fishing simulator with simple tap-to-catch mechanics, rare fish collection, and social competition. Currently the #1 game on Roblox by concurrent players.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "fishing",
+        "simulator",
+        "viral",
+        "collection",
+        "social",
+        "gacha"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasProgressionSystem": true,
+        "hasGachaSystem": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true,
+        "hasMultiplayer": true
+      },
+      "priorityScore": 98,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Extremely simple loop",
+        "Viral TikTok clips",
+        "Low dev complexity",
+        "Massive player base"
+      ],
+      "weaknesses": [
+        "Trend-dependent",
+        "Easy to clone"
+      ],
+      "uniqueSellingPoints": [
+        "One-tap fishing",
+        "Rare fish flex culture",
+        "Real-time leaderboards"
+      ],
+      "lessonsLearned": [
+        "Simple is better",
+        "Viral moments drive growth",
+        "Collection = retention"
+      ],
+      "features": [
+        {
+          "id": "f1sh-feat-0001",
+          "name": "One-Tap Fishing",
+          "description": "Simple tap mechanic to catch fish with RNG rarity",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 8,
+          "technicalNotes": "Tap timing affects catch rates. Premium rods increase rare fish chance."
+        },
+        {
+          "id": "f1sh-feat-0002",
+          "name": "Fish Collection",
+          "description": "Hundreds of fish with tiered rarity (Common to Mythic)",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 10,
+          "technicalNotes": "Fish have rarity, value, and display mechanics. Collection bonuses."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 5000000000,
+        "concurrentPlayers": 940000,
+        "peakConcurrentPlayers": 1200000,
+        "averageSessionLength": 25,
+        "retentionRateDay1": 70,
+        "retentionRateDay7": 50,
+        "retentionRateDay30": 30
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "sols-rng0-0000-0000-000000000002",
+      "name": "Sol's RNG",
+      "developer": "Sol Studios",
+      "genre": "Luck Simulator",
+      "releaseDate": "2025-08-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Teen (13-17)",
+      "ownership": "Competitor",
+      "description": "Pure RNG/luck simulator where players roll for rare 'auras'. Zero skill barrier - anyone can get lucky. Capitalizes on gambling psychology and flex culture.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "rng",
+        "luck",
+        "gacha",
+        "aura",
+        "flex",
+        "gambling"
+      ],
+      "featureFlags": {
+        "hasGachaSystem": true,
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true
+      },
+      "priorityScore": 95,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Highest margin monetization",
+        "Zero skill barrier",
+        "Pure dopamine loop",
+        "Flex culture"
+      ],
+      "weaknesses": [
+        "Gambling concerns",
+        "Can feel pointless"
+      ],
+      "uniqueSellingPoints": [
+        "Pure RNG gameplay",
+        "Visible auras as status",
+        "Extremely rare items"
+      ],
+      "lessonsLearned": [
+        "Rarity = value",
+        "Players pay for luck boosts",
+        "Flex drives engagement"
+      ],
+      "features": [
+        {
+          "id": "sols-feat-0001",
+          "name": "Aura Rolling System",
+          "description": "Roll for random auras with extreme rarity tiers",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 10,
+          "technicalNotes": "Rarity from 1:10 to 1:10,000,000+. Luck boosts sold for Robux."
+        },
+        {
+          "id": "sols-feat-0002",
+          "name": "Aura Display",
+          "description": "Visible auras around player as status symbols",
+          "category": "Social",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 8,
+          "technicalNotes": "Particle effects, glow, and size scale with rarity."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 8000000000,
+        "concurrentPlayers": 350000,
+        "peakConcurrentPlayers": 600000,
+        "averageSessionLength": 60,
+        "retentionRateDay1": 65,
+        "retentionRateDay7": 45,
+        "retentionRateDay30": 25,
+        "conversionRate": 20
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "dti0-0000-0000-0000-000000000003",
+      "name": "Dress To Impress",
+      "developer": "DTI Studios",
+      "genre": "Fashion / Social",
+      "releaseDate": "2024-06-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Teen (13-17)",
+      "ownership": "Competitor",
+      "description": "Timed competitive fashion game with player voting. Massive social validation loops and creator expression. Consistently top 10 by concurrent players.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "fashion",
+        "social",
+        "voting",
+        "competition",
+        "customization"
+      ],
+      "featureFlags": {
+        "hasCharacterCustomization": true,
+        "hasMultiplayer": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true
+      },
+      "priorityScore": 90,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Social validation",
+        "Creator expression",
+        "Low dev barrier",
+        "High retention"
+      ],
+      "weaknesses": [
+        "Niche audience",
+        "Asset-heavy"
+      ],
+      "uniqueSellingPoints": [
+        "Theme-based rounds",
+        "Player voting",
+        "Runway walks"
+      ],
+      "lessonsLearned": [
+        "Social validation drives engagement",
+        "Creativity + competition = magic"
+      ],
+      "features": [
+        {
+          "id": "dti-feat-0001",
+          "name": "Timed Outfit Creation",
+          "description": "Limited time to create themed outfits",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 9,
+          "technicalNotes": "5-10 minute rounds. Theme announced at start. Premium items give advantage."
+        },
+        {
+          "id": "dti-feat-0002",
+          "name": "Player Voting System",
+          "description": "Players vote on each other's outfits to determine winner",
+          "category": "Social",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 6,
+          "technicalNotes": "Anonymous voting. Points based on votes received. Anti-gaming measures."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 6000000000,
+        "concurrentPlayers": 400000,
+        "peakConcurrentPlayers": 550000,
+        "averageSessionLength": 40,
+        "retentionRateDay1": 60,
+        "retentionRateDay7": 40,
+        "retentionRateDay30": 25
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "rvls-0000-0000-0000-000000000004",
+      "name": "RIVALS",
+      "developer": "Rivals Studios",
+      "genre": "Competitive FPS",
+      "releaseDate": "2025-03-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Teen (13-17)",
+      "ownership": "Competitor",
+      "description": "High-stakes competitive FPS with skill-based matchmaking. Monetizes through skins, crates, and prestige items. Growing esports potential.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "fps",
+        "competitive",
+        "esports",
+        "skins",
+        "ranked"
+      ],
+      "featureFlags": {
+        "hasPvP": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasSkinSystem": true,
+        "hasGachaSystem": true,
+        "hasMultiplayer": true
+      },
+      "priorityScore": 85,
+      "recommendedForReplication": false,
+      "strengths": [
+        "Skill expression",
+        "Cosmetic monetization",
+        "Esports potential"
+      ],
+      "weaknesses": [
+        "High dev complexity",
+        "Competitive market"
+      ],
+      "uniqueSellingPoints": [
+        "Ranked matchmaking",
+        "Premium weapon skins",
+        "Clan wars"
+      ],
+      "lessonsLearned": [
+        "Skill games need cosmetic flex",
+        "Ranked = retention"
+      ],
+      "features": [
+        {
+          "id": "rvls-feat-0001",
+          "name": "Ranked Matchmaking",
+          "description": "ELO-based competitive matchmaking system",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Hard",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 5,
+          "technicalNotes": "Seasonal resets. Rank rewards. Anti-smurf detection."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 3000000000,
+        "concurrentPlayers": 250000,
+        "peakConcurrentPlayers": 400000,
+        "averageSessionLength": 45,
+        "retentionRateDay1": 55,
+        "retentionRateDay7": 40,
+        "retentionRateDay30": 30
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "tsb0-0000-0000-0000-000000000005",
+      "name": "The Strongest Battlegrounds",
+      "developer": "TSB Studios",
+      "genre": "Anime Combat",
+      "releaseDate": "2023-09-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Teen (13-17)",
+      "ownership": "Competitor",
+      "description": "Peak anime combat game with visceral feedback. Characters from popular anime with unique movesets. Focus on feel-good combat and skill expression.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "anime",
+        "combat",
+        "fighting",
+        "pvp",
+        "skill"
+      ],
+      "featureFlags": {
+        "hasPvP": true,
+        "hasCharacterCustomization": true,
+        "hasProgressionSystem": true,
+        "hasInAppPurchases": true,
+        "hasMultiplayer": true
+      },
+      "priorityScore": 88,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Satisfying combat feel",
+        "Anime IP appeal",
+        "Skill expression"
+      ],
+      "weaknesses": [
+        "IP concerns",
+        "Balance complexity"
+      ],
+      "uniqueSellingPoints": [
+        "High-quality animations",
+        "Combo systems",
+        "1v1 arena"
+      ],
+      "lessonsLearned": [
+        "Combat feel > graphics",
+        "Anime = built-in audience"
+      ],
+      "features": [
+        {
+          "id": "tsb-feat-0001",
+          "name": "Character Movesets",
+          "description": "Unique abilities and combos per character",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Expert",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 8,
+          "technicalNotes": "Each character has 4-6 unique moves. Combo chains. Special ultimates."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 7000000000,
+        "concurrentPlayers": 300000,
+        "peakConcurrentPlayers": 500000,
+        "averageSessionLength": 35,
+        "retentionRateDay1": 60,
+        "retentionRateDay7": 45,
+        "retentionRateDay30": 30
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "psim-99-0000-0000-000000000006",
+      "name": "Pet Simulator 99",
+      "developer": "BIG Games",
+      "genre": "Collection Simulator",
+      "releaseDate": "2023-12-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Competitor",
+      "description": "The gold standard of pet simulators. Infinite progression, massive trading economy, and exclusive eggs that drive high-ticket sales consistently.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "pets",
+        "simulator",
+        "collection",
+        "trading",
+        "gacha"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasProgressionSystem": true,
+        "hasGachaSystem": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true,
+        "hasMultiplayer": true
+      },
+      "priorityScore": 95,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Infinite progression",
+        "Trading economy",
+        "Constant updates",
+        "High-ticket items"
+      ],
+      "weaknesses": [
+        "Established competitor",
+        "Complex to replicate"
+      ],
+      "uniqueSellingPoints": [
+        "Exclusive eggs ($50-100+)",
+        "Pet fusion",
+        "World areas"
+      ],
+      "lessonsLearned": [
+        "Scarcity drives value",
+        "Trading = social retention",
+        "Constant updates = loyalty"
+      ],
+      "features": [
+        {
+          "id": "ps99-feat-0001",
+          "name": "Exclusive Egg Sales",
+          "description": "Limited-time eggs with exclusive pets at premium prices",
+          "category": "Monetization",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 8,
+          "monetizationPotential": 10,
+          "technicalNotes": "$50-100+ eggs. FOMO mechanics. Limited quantity available."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 12000000000,
+        "concurrentPlayers": 200000,
+        "peakConcurrentPlayers": 400000,
+        "averageSessionLength": 50,
+        "retentionRateDay1": 70,
+        "retentionRateDay7": 55,
+        "retentionRateDay30": 40,
+        "conversionRate": 18
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "bee0-swrm-0000-0000-000000000007",
+      "name": "Bee Swarm Simulator",
+      "developer": "Onett",
+      "genre": "Farming Simulator",
+      "releaseDate": "2018-03-21T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Competitor",
+      "description": "Deep complex mechanics hidden behind simple appearance. Rewards long-term planning and consistent daily logins. Extremely loyal player base.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "bees",
+        "simulator",
+        "farming",
+        "collection",
+        "progression"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasProgressionSystem": true,
+        "hasQuests": true,
+        "hasDailies": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true
+      },
+      "priorityScore": 80,
+      "recommendedForReplication": false,
+      "strengths": [
+        "Deep hidden complexity",
+        "Loyal community",
+        "Years of content"
+      ],
+      "weaknesses": [
+        "High barrier to new players",
+        "Slow initial progression"
+      ],
+      "uniqueSellingPoints": [
+        "Bee genetics system",
+        "Field farming",
+        "Quest chains"
+      ],
+      "lessonsLearned": [
+        "Depth = longevity",
+        "Community = retention",
+        "Patience pays off"
+      ],
+      "features": [],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 10000000000,
+        "concurrentPlayers": 100000,
+        "peakConcurrentPlayers": 250000,
+        "averageSessionLength": 60,
+        "retentionRateDay1": 55,
+        "retentionRateDay7": 45,
+        "retentionRateDay30": 35
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "brrt-escr-0000-0000-000000000008",
+      "name": "Escape Tsunami For Brainrots!",
+      "developer": "Brainrot Studios",
+      "genre": "Survival / Meme",
+      "releaseDate": "2025-12-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Competitor",
+      "description": "Viral meme-based survival game using Gen Alpha 'brainrot' characters. High-stakes escape gameplay with humorous elements. Currently top 3 by concurrent players.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "survival",
+        "meme",
+        "brainrot",
+        "viral",
+        "escape"
+      ],
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasCharacterCustomization": true,
+        "hasInAppPurchases": true
+      },
+      "priorityScore": 92,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Viral meme appeal",
+        "Easy to develop",
+        "Shareable moments",
+        "Trend-riding"
+      ],
+      "weaknesses": [
+        "Trend-dependent",
+        "Short lifespan"
+      ],
+      "uniqueSellingPoints": [
+        "Brainrot characters",
+        "Tsunami survival",
+        "Short intense rounds"
+      ],
+      "lessonsLearned": [
+        "Ride trends fast",
+        "Memes = virality",
+        "Simple survival loops work"
+      ],
+      "features": [
+        {
+          "id": "brrt-feat-0001",
+          "name": "Tsunami Escape",
+          "description": "Timed escape from rising water/tsunami",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 6,
+          "technicalNotes": "Simple obby mechanics. Rising water timer. Multiple escape paths."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 2000000000,
+        "concurrentPlayers": 883000,
+        "peakConcurrentPlayers": 1000000,
+        "averageSessionLength": 20,
+        "retentionRateDay1": 50,
+        "retentionRateDay7": 30,
+        "retentionRateDay30": 15
+      },
+      "creationTime": "2026-01-30T18:07:00.000Z",
+      "lastModificationTime": "2026-01-30T18:07:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "drgn-lgnd-0000-0000-000000000001",
+      "name": "🐉 Dragon Legends",
+      "developer": "AI AWI Studios",
+      "genre": "RPG",
+      "releaseDate": "2026-03-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Our Game",
+      "description": "Epic dragon collection and breeding RPG. Collect rare dragons, breed for unique hybrids, battle in arenas, trade with players, and join clans for exclusive rewards. Built with our roblox-core library.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "dragons",
+        "collection",
+        "breeding",
+        "rpg",
+        "trading",
+        "clans",
+        "gacha",
+        "pvp"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasProgressionSystem": true,
+        "hasGachaSystem": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true,
+        "hasMultiplayer": true,
+        "hasGuilds": true,
+        "hasPvP": true,
+        "hasPvE": true,
+        "hasRaids": true,
+        "hasDailies": true,
+        "hasQuests": true,
+        "hasAchievements": true,
+        "hasLevelSystem": true
+      },
+      "priorityScore": 100,
+      "recommendedForReplication": false,
+      "strengths": [
+        "Full-featured core library",
+        "Breeding genetics system",
+        "Clan system",
+        "Daily rewards with VIP",
+        "Balanced economy"
+      ],
+      "weaknesses": [
+        "In development",
+        "Needs art assets"
+      ],
+      "uniqueSellingPoints": [
+        "Dragon breeding with genetics",
+        "Elemental type advantages",
+        "Clan boss raids",
+        "Trading economy"
+      ],
+      "lessonsLearned": [
+        "Core library reduces dev time 80%",
+        "Type-safe development with roblox-ts"
+      ],
+      "features": [
+        {
+          "id": "drgn-feat-0001",
+          "name": "Dragon Breeding System",
+          "description": "Breed dragons with genetic inheritance for rare traits and mutations",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Hard",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 9,
+          "technicalNotes": "Genetics system with dominant/recessive traits. Mutation chances. Breeding cooldowns."
+        },
+        {
+          "id": "drgn-feat-0002",
+          "name": "Elemental Battle System",
+          "description": "Rock-paper-scissors elemental advantages in dragon battles",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 7,
+          "technicalNotes": "Fire > Nature > Water > Fire. Special abilities per element."
+        },
+        {
+          "id": "drgn-feat-0003",
+          "name": "Clan System",
+          "description": "Join clans for perks, boss raids, and social features",
+          "category": "Social",
+          "importance": "High",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 6,
+          "technicalNotes": "Uses roblox-core clans module. Contributions, ranks, and exclusive rewards."
+        },
+        {
+          "id": "drgn-feat-0004",
+          "name": "Daily Rewards with Streaks",
+          "description": "Login daily for escalating rewards with VIP multipliers",
+          "category": "Retention",
+          "importance": "High",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 8,
+          "monetizationPotential": 5,
+          "technicalNotes": "Uses roblox-core dailyRewards module. 7-day cycle with milestone bonuses."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 0,
+        "concurrentPlayers": 0,
+        "peakConcurrentPlayers": 0,
+        "averageSessionLength": 0,
+        "retentionRateDay1": 0,
+        "retentionRateDay7": 0,
+        "retentionRateDay30": 0,
+        "revenueTotal": 0,
+        "revenueMonthly": 0,
+        "conversionRate": 0,
+        "averageRevenuePerUser": 0
+      },
+      "creationTime": "2026-01-30T19:45:00.000Z",
+      "lastModificationTime": "2026-01-30T19:45:00.000Z",
+      "requirements": [
+        {
+          "id": "decb35e4-3dc5-4669-9d9e-d46c7fece05d",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "title": "Implement Dragon Breeding System",
+          "description": "Create a breeding mechanic where players can combine dragons to create new offspring with mixed traits",
+          "category": "Gameplay",
+          "priority": "Must Have",
+          "status": "In Progress",
+          "estimatedHours": 40,
+          "assignee": "Dev Team",
+          "acceptanceCriteria": [
+            "Dragons can be paired",
+            "Offspring inherits traits",
+            "Cooldown timer works",
+            "UI shows breeding progress"
+          ],
+          "tags": [
+            "core",
+            "breeding"
+          ],
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "97fe283b-6913-4d3c-bdbb-31af7b05a071",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "title": "Trading System Security Audit",
+          "description": "Review and harden the trading system against duplication exploits",
+          "category": "Technical",
+          "priority": "Must Have",
+          "status": "Planned",
+          "estimatedHours": 16,
+          "assignee": "Dev Team",
+          "acceptanceCriteria": [
+            "No item duplication possible",
+            "Transaction logging works",
+            "Rollback mechanism tested"
+          ],
+          "tags": [
+            "security",
+            "trading"
+          ],
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "389f84e5-6573-4855-b9d7-2f5087d0e98f",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "title": "Daily Reward Calendar UI",
+          "description": "Design and implement the daily reward calendar with progressive rewards",
+          "category": "UI/UX",
+          "priority": "Should Have",
+          "status": "Done",
+          "estimatedHours": 8,
+          "actualHours": 10,
+          "acceptanceCriteria": [
+            "Calendar shows 30 days",
+            "Current day highlighted",
+            "Claim button works",
+            "Streak bonus displayed"
+          ],
+          "tags": [
+            "ui",
+            "rewards"
+          ],
+          "creationTime": "2026-01-30T20:49:48.367Z",
+          "completedDate": "2026-01-30T20:49:48.367Z"
+        }
+      ],
+      "settings": [
+        {
+          "id": "30197eec-57d9-4c30-a8c9-6ad275ba658d",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "key": "STARTING_COINS",
+          "name": "Starting Coins",
+          "description": "Coins given to new players",
+          "category": "Economy",
+          "valueType": "number",
+          "value": "500",
+          "defaultValue": "500",
+          "minValue": 100,
+          "maxValue": 10000,
+          "isActive": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "2902b035-78f3-4e8a-ae44-0cd184a35dd5",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "key": "BREEDING_COOLDOWN_HOURS",
+          "name": "Breeding Cooldown",
+          "description": "Hours between breeding attempts",
+          "category": "Gameplay",
+          "valueType": "number",
+          "value": "24",
+          "defaultValue": "24",
+          "minValue": 1,
+          "maxValue": 168,
+          "isActive": true,
+          "linkedSystemId": "BreedingSystem",
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "7a51c007-5685-4eef-aa47-2754669138fc",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "key": "XP_PER_BATTLE",
+          "name": "XP Per Battle",
+          "description": "Base XP earned per battle",
+          "category": "Progression",
+          "valueType": "number",
+          "value": "50",
+          "defaultValue": "50",
+          "minValue": 10,
+          "maxValue": 500,
+          "isActive": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "d0baf36a-b3d4-4b63-a048-2a5b7f6e75d1",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "key": "DEBUG_MODE",
+          "name": "Debug Mode",
+          "description": "Enable debug overlays and logging",
+          "category": "Debug",
+          "valueType": "boolean",
+          "value": "false",
+          "defaultValue": "false",
+          "isActive": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "38ee2c50-9c8b-415b-9475-675408c10606",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "key": "DOUBLE_XP_WEEKEND",
+          "name": "Double XP Weekend",
+          "description": "Enable double XP for weekend events",
+          "category": "Feature Flags",
+          "valueType": "boolean",
+          "value": "false",
+          "defaultValue": "false",
+          "isActive": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        }
+      ],
+      "tutorials": [
+        {
+          "id": "f618bc88-4684-4d25-a67a-a7fe8309de15",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "tutorialId": "onboarding",
+          "tutorialName": "New Player Onboarding",
+          "stepNumber": 1,
+          "title": "Welcome!",
+          "instruction": "Welcome to Dragon Legends! Tap anywhere to continue.",
+          "action": "Click",
+          "isRequired": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "d629f3ce-f428-4afa-9775-c5db80833221",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "tutorialId": "onboarding",
+          "tutorialName": "New Player Onboarding",
+          "stepNumber": 2,
+          "title": "Your First Dragon",
+          "instruction": "This is your starter dragon! Tap on it to see its stats.",
+          "targetElement": "DragonCard",
+          "action": "Click",
+          "isRequired": true,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "1073425c-b3db-4064-ab9e-994e5bf1c8e7",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "tutorialId": "onboarding",
+          "tutorialName": "New Player Onboarding",
+          "stepNumber": 3,
+          "title": "Battle Arena",
+          "instruction": "Tap the Battle button to enter your first fight!",
+          "targetElement": "BattleButton",
+          "action": "Click",
+          "isRequired": true,
+          "rewardOnComplete": "100 Coins",
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "529f2d14-6da2-474a-a3b7-42de0c3fdf5a",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "tutorialId": "breeding",
+          "tutorialName": "Breeding Tutorial",
+          "stepNumber": 1,
+          "title": "Breeding Basics",
+          "instruction": "Select two dragons to breed them together.",
+          "targetElement": "BreedingPanel",
+          "action": "Click",
+          "isRequired": false,
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        }
+      ],
+      "documentation": [
+        {
+          "id": "742de687-64a6-4e3d-a2f9-1fb8a1eff59a",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "docType": "Game Design Document",
+          "title": "Dragon Legends GDD",
+          "content": "# Dragon Legends\\n\\n## Overview\\nDragon Legends is a collection and breeding game where players collect, train, and breed dragons.\\n\\n## Core Loop\\n1. Collect dragons through eggs\\n2. Train dragons in battles\\n3. Breed dragons for new variants\\n4. Trade with other players",
+          "order": 1,
+          "version": "1.0",
+          "isPublished": true,
+          "tags": [
+            "gdd",
+            "overview"
+          ],
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        },
+        {
+          "id": "e8fbad32-af0e-4bd4-9056-1eb466911f3c",
+          "gameId": "drgn-lgnd-0000-0000-000000000001",
+          "docType": "Economy Bible",
+          "title": "Economy Design",
+          "content": "# Economy Design\\n\\n## Currencies\\n- **Coins**: Soft currency, earned through gameplay\\n- **Gems**: Premium currency\\n\\n## Sinks & Faucets\\n- Faucets: Daily rewards, battles, achievements\\n- Sinks: Breeding, upgrades, cosmetics",
+          "order": 1,
+          "version": "1.0",
+          "isPublished": true,
+          "tags": [
+            "economy"
+          ],
+          "creationTime": "2026-01-30T20:49:48.367Z"
+        }
+      ]
+    },
+    {
+      "id": "lkfy-lgnd-0000-0000-000000000002",
+      "name": "🎣 Lucky Fish Legends",
+      "developer": "AI AWI Studios",
+      "genre": "Simulator",
+      "releaseDate": "2026-04-01T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Our Game",
+      "description": "Cast your luck. Catch legends. Flex forever. A fishing + RNG hybrid combining Fish It!'s viral loop with Sol's RNG monetization. One-tap fishing for fish with extreme rarities (1:10M) and visible aura effects.",
+      "monetizationModel": "Freemium",
+      "tags": [
+        "fishing",
+        "rng",
+        "collection",
+        "trading",
+        "gacha",
+        "viral",
+        "flex",
+        "auras"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasTradingSystem": true,
+        "hasProgressionSystem": true,
+        "hasGachaSystem": true,
+        "hasLeaderboards": true,
+        "hasInAppPurchases": true,
+        "hasVirtualCurrency": true,
+        "hasMultiplayer": true,
+        "hasGuilds": true,
+        "hasDailies": true
+      },
+      "priorityScore": 100,
+      "recommendedForReplication": false,
+      "strengths": [
+        "Combines #1 game loop with highest margin model",
+        "Low dev complexity",
+        "Viral potential",
+        "82% predicted success rate"
+      ],
+      "weaknesses": [
+        "Trend-dependent",
+        "Competition from clones"
+      ],
+      "uniqueSellingPoints": [
+        "Fish with visible bioluminescent auras",
+        "1:10M Legendary Kraken",
+        "Cross-biome fishing (ocean, volcano, space)",
+        "Fish evolution/mutation system"
+      ],
+      "lessonsLearned": [
+        "Data-driven game design",
+        "Perfect Game Formula calculation"
+      ],
+      "features": [
+        {
+          "id": "lkfy-feat-0001",
+          "name": "One-Tap Fishing",
+          "description": "Simple tap mechanic to catch fish with RNG rarity",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 8,
+          "technicalNotes": "Tap timing affects catch rates. Premium rods increase rare fish chance. Viral clip potential."
+        },
+        {
+          "id": "lkfy-feat-0002",
+          "name": "Extreme Rarity Tiers",
+          "description": "Fish rarities from 1:10 to 1:10,000,000 inspired by Sol's RNG",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 10,
+          "technicalNotes": "Rarity tiers: Common (1:10), Rare (1:100), Epic (1:1000), Legendary (1:10000), Mythic (1:100000), Godly (1:1M), Kraken (1:10M)"
+        },
+        {
+          "id": "lkfy-feat-0003",
+          "name": "Visible Aura Effects",
+          "description": "Rare fish display bioluminescent auras for flex culture",
+          "category": "Social",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 9,
+          "technicalNotes": "Particle effects scale with rarity. Glows visible to all players. Status symbol."
+        },
+        {
+          "id": "lkfy-feat-0004",
+          "name": "Luck Boost Gamepasses",
+          "description": "2x, 5x, 10x luck multipliers for Robux",
+          "category": "Monetization",
+          "importance": "Critical",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 7,
+          "monetizationPotential": 10,
+          "technicalNotes": "Permanent and timed boosts. Stack with events. Primary revenue driver."
+        },
+        {
+          "id": "lkfy-feat-0005",
+          "name": "Trading System",
+          "description": "Player-to-player fish trading for economy and retention",
+          "category": "Social",
+          "importance": "Must-Have",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 7,
+          "technicalNotes": "Uses roblox-core trading module. Trade windows, history, scam prevention."
+        }
+      ],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 0,
+        "concurrentPlayers": 0,
+        "peakConcurrentPlayers": 0,
+        "averageSessionLength": 0,
+        "retentionRateDay1": 70,
+        "retentionRateDay7": 52,
+        "retentionRateDay30": 32,
+        "revenueTotal": 0,
+        "revenueMonthly": 0,
+        "conversionRate": 15,
+        "averageRevenuePerUser": 3.5
+      },
+      "creationTime": "2026-01-30T19:45:00.000Z",
+      "lastModificationTime": "2026-01-30T19:45:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "coin-coll-0000-0000-000000000003",
+      "name": "🪙 Coin Collector",
+      "developer": "AI AWI Studios",
+      "genre": "Simulation",
+      "releaseDate": "2026-01-15T00:00:00.000Z",
+      "platform": "Roblox",
+      "ageGroup": "Elementary (6-12)",
+      "ownership": "Our Game",
+      "description": "Simple coin collection game used as our roblox-ts learning project and testing ground. Basic mechanics but fully functional with our core library integration.",
+      "monetizationModel": "Free",
+      "tags": [
+        "starter",
+        "learning",
+        "coins",
+        "collection",
+        "simple"
+      ],
+      "featureFlags": {
+        "hasCollectionSystem": true,
+        "hasProgressionSystem": true,
+        "hasLeaderboards": true,
+        "hasVirtualCurrency": true
+      },
+      "priorityScore": 30,
+      "recommendedForReplication": false,
+      "strengths": [
+        "Simple and working",
+        "Good for testing",
+        "Core library integration"
+      ],
+      "weaknesses": [
+        "Basic mechanics",
+        "Limited content",
+        "No monetization"
+      ],
+      "uniqueSellingPoints": [
+        "Learning project"
+      ],
+      "lessonsLearned": [
+        "roblox-ts basics",
+        "Rojo workflow",
+        "Core library patterns"
+      ],
+      "features": [],
+      "systems": [],
+      "rewards": [],
+      "mechanics": [],
+      "successFactors": [],
+      "successMetrics": {
+        "totalPlays": 0,
+        "concurrentPlayers": 0,
+        "peakConcurrentPlayers": 0,
+        "averageSessionLength": 0,
+        "retentionRateDay1": 0,
+        "retentionRateDay7": 0,
+        "retentionRateDay30": 0,
+        "revenueTotal": 0,
+        "revenueMonthly": 0,
+        "conversionRate": 0,
+        "averageRevenuePerUser": 0
+      },
+      "creationTime": "2026-01-30T19:45:00.000Z",
+      "lastModificationTime": "2026-01-30T19:45:00.000Z",
+      "requirements": [],
+      "settings": [],
+      "tutorials": [],
+      "documentation": []
+    },
+    {
+      "id": "lkfy-lgnd-0000-0000-000000000002",
+      "name": "🎣 Lucky Fish Legends",
+      "developer": "AI AWI Studios",
+      "genre": "Simulator",
+      "releaseDate": "2026-02-15T00:00:00.000Z",
+      "platform": "Roblox",
+      "description": "A relaxing yet competitive fishing simulator. Cast your line, catch rare fish, complete your collection, and compete in tournaments!",
+      "monetizationModel": "Freemium",
+      "ownership": "Our Game",
+      "tags": [
+        "fishing",
+        "collection",
+        "simulator",
+        "competitive",
+        "casual",
+        "progression"
+      ],
+      "priorityScore": 90,
+      "recommendedForReplication": true,
+      "strengths": [
+        "Relaxing core loop",
+        "Collection mechanics drive engagement",
+        "Clear progression path",
+        "Seasonal content potential"
+      ],
+      "weaknesses": [
+        "Niche player base",
+        "Requires content updates"
+      ],
+      "uniqueSellingPoints": [
+        "150+ fish species to collect",
+        "7 unique fishing locations",
+        "Quality-based fish grades",
+        "Personal record tracking"
+      ],
+      "lessonsLearned": [],
+      "features": [
+        {
+          "id": "fish-001",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Fishing Core Loop",
+          "description": "Cast, wait, reel - the fundamental fishing mechanic with timing minigames",
+          "category": "Core Gameplay",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 10,
+          "monetizationPotential": 6,
+          "technicalNotes": "Uses fishingSystem.ts from roblox-core. Cast time affected by rod and bait bonuses.",
+          "codeSnippets": "castLine(state, location) → reelIn(state, species, locations)",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "fish-002",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Fish Collection Album",
+          "description": "Track all 150+ fish species with rarity tiers and personal records",
+          "category": "Collection",
+          "importance": "Critical",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 9,
+          "monetizationPotential": 5,
+          "technicalNotes": "getCollectionProgress() tracks discovered species. Personal records stored in recordCatches.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "fish-003",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Fishing Locations",
+          "description": "7 unique locations from Starter Pond to The Abyss, each with unlock levels",
+          "category": "World Design",
+          "importance": "High",
+          "implementationComplexity": "Medium",
+          "userEngagementImpact": 8,
+          "monetizationPotential": 7,
+          "technicalNotes": "SAMPLE_LOCATIONS defines zones. Location rarityBoost affects fish quality.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "fish-004",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Rod & Bait System",
+          "description": "Upgrade rods for faster catches and better rarity. Baits boost specific fish.",
+          "category": "Progression",
+          "importance": "High",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 7,
+          "monetizationPotential": 9,
+          "technicalNotes": "SAMPLE_RODS (5 tiers) and SAMPLE_BAITS (4 types). Premium rods available for Robux.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "fish-005",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Fish Quality Grades",
+          "description": "Each catch rated Poor/Normal/Good/Perfect affecting sell price",
+          "category": "Gameplay Depth",
+          "importance": "Medium",
+          "implementationComplexity": "Easy",
+          "userEngagementImpact": 6,
+          "monetizationPotential": 4,
+          "technicalNotes": "rollQuality() determines grade. Perfect = 2.5x sell price.",
+          "codeSnippets": "",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        }
+      ],
+      "systems": [
+        "fishing-system",
+        "daily-rewards",
+        "quest-system",
+        "trading-system",
+        "battle-pass",
+        "anti-cheat",
+        "datastore-helpers",
+        "friends-system",
+        "starter-packs"
+      ],
+      "rewards": [
+        {
+          "id": "reward-fish-001",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "New Species Bonus",
+          "type": "Achievement",
+          "currency": "XP",
+          "amount": 50,
+          "description": "Double XP for catching a species for the first time",
+          "unlockCondition": "First catch of any species",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "reward-fish-002",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Perfect Catch",
+          "type": "RNG",
+          "currency": "Coins",
+          "amount": 250,
+          "description": "2.5x sell multiplier for perfect quality fish",
+          "unlockCondition": "10% chance on any catch",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        }
+      ],
+      "mechanics": [
+        {
+          "id": "mech-fish-001",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Rarity Rolling",
+          "type": "RNG",
+          "description": "Each cast rolls rarity: Common 50%, Uncommon 25%, Rare 15%, Epic 7%, Legendary 2.5%, Mythic 0.5%",
+          "complexity": "Medium",
+          "userPerceivedFairness": 8,
+          "technicalNotes": "rollRarity() applies location and bait bonuses. Higher tier locations boost rare chances.",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "mech-fish-002",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "name": "Weight Variance",
+          "type": "Skill + RNG",
+          "description": "Fish weight varies by species. Heavier = more coins. Personal records tracked.",
+          "complexity": "Easy",
+          "userPerceivedFairness": 9,
+          "technicalNotes": "calculateWeight() uses baseWeight +/- weightVariance. Level bonus adds 2% per level.",
+          "creationTime": "2026-01-30T23:30:00.000Z"
+        }
+      ],
+      "successFactors": [
+        {
+          "id": "sf-fish-001",
+          "gameId": "lkfy-lgnd-0000-0000-000000000002",
+          "factor": "Collection Completionism",
+          "impact": "Critical",
+          "description": "Players driven to catch all 150+ species",
+          "evidenceSource": "Similar games like Fishing Simulator",
+          "replicability": 9
+        }
+      ],
+      "successMetrics": {
+        "totalPlays": 0,
+        "concurrentPlayers": 0,
+        "peakConcurrentPlayers": 0,
+        "averageSessionLength": 20,
+        "retentionRateDay1": 40,
+        "retentionRateDay7": 20,
+        "retentionRateDay30": 10,
+        "revenueTotal": 0,
+        "revenueMonthly": 0,
+        "conversionRate": 5,
+        "averageRevenuePerUser": 0.15
+      },
+      "featureFlags": {
+        "hasCollection": true,
+        "hasTrading": true,
+        "hasProgression": true,
+        "hasGacha": false,
+        "hasLeaderboards": true,
+        "hasIAP": true,
+        "hasMultiplayer": true,
+        "hasGuilds": false,
+        "hasDailyRewards": true
+      },
+      "creationTime": "2026-01-30T23:30:00.000Z",
+      "lastModificationTime": "2026-01-30T23:30:00.000Z",
+      "requirements": [
+        {
+          "id": "req-001",
+          "title": "Core Fishing Loop",
+          "description": "Cast line, wait for bite, reel in fish with timing minigame",
+          "category": "Core",
+          "priority": "Critical",
+          "status": "In Progress",
+          "estimatedEffort": "1 week"
+        },
+        {
+          "id": "req-002",
+          "title": "Collection Album UI",
+          "description": "Grid view of all species with silhouettes for undiscovered",
+          "category": "UI",
+          "priority": "High",
+          "status": "Planned",
+          "estimatedEffort": "3 days"
+        },
+        {
+          "id": "req-003",
+          "title": "7 Fishing Zones",
+          "description": "Build starter pond through abyss with unique aesthetics",
+          "category": "World",
+          "priority": "High",
+          "status": "Planned",
+          "estimatedEffort": "2 weeks"
+        },
+        {
+          "id": "req-004",
+          "title": "Rod Upgrade Shop",
+          "description": "5 rod tiers purchasable with coins and premium currency",
+          "category": "Monetization",
+          "priority": "Medium",
+          "status": "Planned",
+          "estimatedEffort": "2 days"
+        }
+      ],
+      "settings": [
+        {
+          "key": "RARITY_CHANCES",
+          "value": {
+            "common": 0.5,
+            "uncommon": 0.25,
+            "rare": 0.15,
+            "epic": 0.07,
+            "legendary": 0.025,
+            "mythic": 0.005
+          },
+          "category": "Gameplay",
+          "description": "Base probability for each fish rarity tier"
+        },
+        {
+          "key": "BASE_CATCH_TIME_MS",
+          "value": 3000,
+          "category": "Gameplay",
+          "description": "Default time in milliseconds to catch a fish"
+        },
+        {
+          "key": "XP_PER_LEVEL",
+          "value": "100 * 1.5^level",
+          "category": "Progression",
+          "description": "XP formula for leveling up"
+        }
+      ],
+      "tutorials": [
+        {
+          "tutorialName": "First Cast",
+          "stepNumber": 1,
+          "title": "Welcome to Lucky Fish Legends!",
+          "description": "Tap the Cast button to throw your line into the water"
+        },
+        {
+          "tutorialName": "First Cast",
+          "stepNumber": 2,
+          "title": "Wait for a Bite",
+          "description": "Watch the bobber. When it dips, tap Reel to catch!"
+        },
+        {
+          "tutorialName": "First Cast",
+          "stepNumber": 3,
+          "title": "Your First Catch!",
+          "description": "Congratulations! Check your Collection to see your discovery."
+        }
+      ],
+      "documentation": [
+        {
+          "id": "doc-001",
+          "title": "Fishing System Architecture",
+          "content": "Uses libs/roblox-core/src/gameplay/fishingSystem.ts. Key exports: castLine(), reelIn(), getCollectionProgress()",
+          "category": "Technical",
+          "lastUpdated": "2026-01-30T23:30:00.000Z"
+        },
+        {
+          "id": "doc-002",
+          "title": "Monetization Strategy",
+          "content": "Core game free. Premium rods, special baits, and VIP location access drive revenue. Battle Pass for seasonal content.",
+          "category": "Business",
+          "lastUpdated": "2026-01-30T23:30:00.000Z"
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "52af7b97-ed7c-4e94-85d3-f8a877d22ae8",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Claude",
+      "slug": "claude",
+      "tagline": "AI assistant by Anthropic",
+      "description": "Constitutional AI assistant focused on being helpful, harmless, and honest.",
+      "screenshotUrls": [],
+      "category": "AI Assistant",
+      "subcategory": "Chatbot",
+      "platforms": [
+        "Web",
+        "API"
+      ],
+      "targetAudiences": [
+        "Developers",
+        "Adults (25-44)",
+        "Enterprise"
+      ],
+      "relationship": "Reference",
+      "status": "Growing",
+      "featureFlags": {
+        "hasUserAccounts": true,
+        "hasAPI": true,
+        "hasAIGeneration": true,
+        "hasAIAssistant": true,
+        "hasNaturalLanguage": true,
+        "hasFreeTier": true,
+        "hasSubscription": true
+      },
+      "features": [],
+      "monetizationModel": "Freemium",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "startingPrice": 20,
+      "metrics": {
+        "totalUsers": 10000000,
+        "monthlyActiveUsers": 5000000,
+        "averageRating": 4.8
+      },
+      "strengths": [
+        "Safety",
+        "Long context",
+        "Coding ability"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "200K context window",
+        "Constitutional AI",
+        "Artifacts feature"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 95,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "ai",
+        "chatbot",
+        "llm",
+        "productivity"
+      ]
+    },
+    {
+      "id": "b538a974-809b-42a1-876e-d422a5d7fee0",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "ChatGPT",
+      "slug": "chatgpt",
+      "tagline": "Conversational AI by OpenAI",
+      "description": "AI chatbot powered by GPT models for conversation, writing, and coding.",
+      "screenshotUrls": [],
+      "category": "AI Assistant",
+      "subcategory": "Chatbot",
+      "platforms": [
+        "Web",
+        "iOS",
+        "Android",
+        "API"
+      ],
+      "targetAudiences": [
+        "General",
+        "Developers"
+      ],
+      "relationship": "Competitor",
+      "status": "Mature",
+      "featureFlags": {
+        "hasUserAccounts": true,
+        "hasAPI": true,
+        "hasMobileApp": true,
+        "hasAIGeneration": true,
+        "hasAIAssistant": true,
+        "hasNaturalLanguage": true,
+        "hasFreeTier": true,
+        "hasSubscription": true
+      },
+      "features": [],
+      "monetizationModel": "Freemium",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "startingPrice": 20,
+      "metrics": {
+        "totalUsers": 200000000,
+        "monthlyActiveUsers": 100000000,
+        "averageRating": 4.6
+      },
+      "strengths": [
+        "Market leader",
+        "GPT-4",
+        "Plugin ecosystem"
+      ],
+      "weaknesses": [
+        "Rate limits",
+        "Hallucinations"
+      ],
+      "uniqueSellingPoints": [],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 90,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "ai",
+        "chatbot",
+        "llm"
+      ]
+    },
+    {
+      "id": "d99e0d5b-cf31-41a2-8853-e7d4b5006d99",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Google Data Analytics Certificate",
+      "slug": "google-data-analytics",
+      "tagline": "Launch your career in data analytics",
+      "description": "Professional certificate program by Google covering data analysis, visualization, and SQL.",
+      "screenshotUrls": [],
+      "category": "Certification",
+      "subcategory": "Data Science",
+      "platforms": [
+        "Web"
+      ],
+      "targetAudiences": [
+        "Adults (25-44)",
+        "Students"
+      ],
+      "relationship": "Reference",
+      "status": "Mature",
+      "featureFlags": {
+        "hasUserAccounts": true,
+        "hasProgress": true,
+        "hasAchievements": true,
+        "hasContentCreation": false
+      },
+      "features": [],
+      "monetizationModel": "Subscription",
+      "pricingTiers": [],
+      "hasFreeTier": false,
+      "freeTrialDays": 7,
+      "startingPrice": 39,
+      "metrics": {
+        "totalUsers": 2000000,
+        "averageRating": 4.8,
+        "reviewCount": 150000
+      },
+      "strengths": [
+        "Google brand",
+        "Job-ready skills",
+        "Capstone project"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 85,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "course",
+        "data-analytics",
+        "google",
+        "certificate"
+      ]
+    },
+    {
+      "id": "0de78707-1691-4aae-9158-1ed4ad5a1dde",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Notion",
+      "slug": "notion-app",
+      "tagline": "Your connected workspace",
+      "description": "All-in-one workspace combining notes, docs, wikis, and databases.",
+      "screenshotUrls": [],
+      "category": "SaaS Application",
+      "subcategory": "Notes Taking",
+      "platforms": [
+        "Web",
+        "iOS",
+        "Android",
+        "Windows",
+        "macOS"
+      ],
+      "targetAudiences": [
+        "Adults (25-44)",
+        "Startups",
+        "Enterprise"
+      ],
+      "relationship": "Competitor",
+      "status": "Mature",
+      "featureFlags": {
+        "hasUserAccounts": true,
+        "hasTeams": true,
+        "hasRealTimeCollab": true,
+        "hasTemplates": true,
+        "hasAPI": true,
+        "hasAIGeneration": true,
+        "hasMobileApp": true,
+        "hasFreeTier": true,
+        "hasSubscription": true
+      },
+      "features": [],
+      "monetizationModel": "Freemium",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "startingPrice": 10,
+      "metrics": {
+        "totalUsers": 30000000,
+        "monthlyActiveUsers": 10000000,
+        "averageRating": 4.7
+      },
+      "strengths": [
+        "Flexibility",
+        "Database blocks",
+        "Template gallery"
+      ],
+      "weaknesses": [
+        "Learning curve",
+        "Offline support"
+      ],
+      "uniqueSellingPoints": [],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 88,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "productivity",
+        "notes",
+        "database",
+        "wiki"
+      ]
+    },
+    {
+      "id": "eba1c600-50f9-49c4-b8e9-e8fa58dbc0cc",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Life360",
+      "slug": "life360-app",
+      "tagline": "Keep your family safe",
+      "description": "Family locator and safety app with location sharing, crash detection, and driving insights.",
+      "screenshotUrls": [],
+      "category": "Family App",
+      "subcategory": "Location Sharing",
+      "platforms": [
+        "iOS",
+        "Android"
+      ],
+      "targetAudiences": [
+        "Parents",
+        "Families"
+      ],
+      "relationship": "Competitor",
+      "status": "Mature",
+      "featureFlags": {
+        "hasUserAccounts": true,
+        "hasMobileApp": true,
+        "hasPushNotifications": true,
+        "hasFreeTier": true,
+        "hasSubscription": true
+      },
+      "features": [],
+      "monetizationModel": "Freemium",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "startingPrice": 8,
+      "metrics": {
+        "totalUsers": 50000000,
+        "monthlyActiveUsers": 35000000,
+        "averageRating": 4.5
+      },
+      "strengths": [
+        "Real-time location",
+        "Crash detection",
+        "Place alerts"
+      ],
+      "weaknesses": [
+        "Battery usage",
+        "Privacy concerns"
+      ],
+      "uniqueSellingPoints": [],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 82,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "family",
+        "location",
+        "safety",
+        "parenting"
+      ]
+    },
+    {
+      "id": "04616efd-0757-4639-9145-2f1a8658f4ca",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "OurHome",
+      "slug": "ourhome",
+      "tagline": "Family chores made easy",
+      "description": "Chore and reward system for families with task assignments and point tracking.",
+      "screenshotUrls": [],
+      "category": "Family App",
+      "subcategory": "Other",
+      "platforms": [
+        "iOS",
+        "Android",
+        "Web"
+      ],
+      "targetAudiences": [
+        "Parents",
+        "Families",
+        "Children (5-12)"
+      ],
+      "relationship": "Reference",
+      "status": "Growing",
+      "featureFlags": {
+        "hasUserAccounts": true,
+        "hasMobileApp": true,
+        "hasRewards": true,
+        "hasProgress": true,
+        "hasPushNotifications": true,
+        "hasFreeTier": true
+      },
+      "features": [],
+      "monetizationModel": "Freemium",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "startingPrice": 5,
+      "metrics": {
+        "totalUsers": 2000000,
+        "averageRating": 4.6
+      },
+      "strengths": [
+        "Gamification",
+        "Kid-friendly",
+        "Reward system"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "Point-based rewards",
+        "Family banking"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 75,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "family",
+        "chores",
+        "kids",
+        "rewards",
+        "gamification"
+      ]
+    },
+    {
+      "id": "e1932281-5463-4694-a4f2-987c09497be4",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Pet Simulator X",
+      "slug": "pet-simulator-x",
+      "tagline": "Collect and hatch epic pets!",
+      "description": "Roblox game where players collect coins, hatch eggs, and collect pets with trading.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Simulation",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Children (5-12)",
+        "Teens (13-17)"
+      ],
+      "relationship": "Inspiration",
+      "status": "Mature",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasLeaderboards": true,
+        "hasAchievements": true,
+        "hasRewards": true,
+        "hasProgress": true,
+        "hasMicroTransactions": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 100000000,
+        "monthlyActiveUsers": 20000000,
+        "averageRating": 4.8
+      },
+      "strengths": [
+        "Pet collection",
+        "Egg hatching",
+        "Trading system"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "Huge variety of pets",
+        "Regular updates",
+        "Events"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 95,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "pets",
+        "simulator",
+        "collection"
+      ]
+    }
+  ],
+  "companies": [
+    {
+      "id": "d721ed53-6660-4f52-8849-d4af9e86005e",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Coursera",
+      "slug": "coursera",
+      "description": "Online learning platform partnering with universities and companies to offer courses, certificates, and degrees.",
+      "tagline": "Learn without limits",
+      "companyType": "EdTech",
+      "relationship": "Reference",
+      "size": "Large (201-1000)",
+      "stage": "Publicly Traded",
+      "foundedYear": 2012,
+      "contact": {
+        "website": "https://coursera.org",
+        "linkedIn": "https://linkedin.com/company/coursera",
+        "twitter": "https://twitter.com/coursera",
+        "headquarters": "Mountain View, CA",
+        "country": "USA"
+      },
+      "funding": {
+        "totalFunding": 464000000,
+        "isPublic": true,
+        "stockSymbol": "COUR",
+        "employees": 1500,
+        "annualRevenue": 500000000
+      },
+      "metrics": {
+        "totalUsers": 136000000,
+        "monthlyActiveUsers": 20000000
+      },
+      "productIds": [],
+      "strengths": [
+        "University partnerships",
+        "Degree programs",
+        "Enterprise sales"
+      ],
+      "weaknesses": [
+        "High course prices",
+        "Completion rates"
+      ],
+      "opportunities": [],
+      "threats": [],
+      "targetMarkets": [
+        "Higher Education",
+        "Professional Development",
+        "Enterprise Training"
+      ],
+      "primaryAudience": "",
+      "competitorIds": [],
+      "strategicNotes": "",
+      "threatLevel": "High",
+      "partnershipPotential": 5,
+      "acquisitionTarget": false,
+      "tags": [
+        "edtech",
+        "online-learning",
+        "mooc",
+        "certificates"
+      ]
+    },
+    {
+      "id": "60439dc7-eeb6-45e1-a6cb-725bdb02ead5",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Udemy",
+      "slug": "udemy",
+      "description": "Marketplace for online learning with 200,000+ courses taught by expert instructors.",
+      "tagline": "Learn anything, on your schedule",
+      "companyType": "EdTech",
+      "relationship": "Competitor",
+      "size": "Large (201-1000)",
+      "stage": "Publicly Traded",
+      "foundedYear": 2010,
+      "contact": {
+        "website": "https://udemy.com",
+        "headquarters": "San Francisco, CA",
+        "country": "USA"
+      },
+      "funding": {
+        "totalFunding": 300000000,
+        "isPublic": true,
+        "stockSymbol": "UDMY",
+        "employees": 1000,
+        "annualRevenue": 600000000
+      },
+      "metrics": {
+        "totalUsers": 67000000,
+        "monthlyActiveUsers": 15000000
+      },
+      "productIds": [],
+      "strengths": [
+        "Marketplace model",
+        "Price flexibility",
+        "Course variety"
+      ],
+      "weaknesses": [
+        "Quality inconsistency",
+        "No accreditation"
+      ],
+      "opportunities": [],
+      "threats": [],
+      "targetMarkets": [],
+      "primaryAudience": "",
+      "competitorIds": [],
+      "strategicNotes": "",
+      "threatLevel": "High",
+      "partnershipPotential": 5,
+      "acquisitionTarget": false,
+      "tags": [
+        "edtech",
+        "marketplace",
+        "online-courses"
+      ]
+    },
+    {
+      "id": "347ff0d4-d1eb-4428-86b3-80cca260269d",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Anthropic",
+      "slug": "anthropic",
+      "description": "AI safety company building reliable, interpretable AI systems.",
+      "tagline": "AI research company focused on safety",
+      "companyType": "AI Company",
+      "relationship": "Reference",
+      "size": "Medium (51-200)",
+      "stage": "Series C+",
+      "foundedYear": 2021,
+      "contact": {
+        "website": "https://anthropic.com",
+        "headquarters": "San Francisco, CA",
+        "country": "USA"
+      },
+      "funding": {
+        "totalFunding": 7300000000,
+        "lastRoundAmount": 4000000000,
+        "isPublic": false,
+        "employees": 500,
+        "valuation": 18000000000
+      },
+      "metrics": {},
+      "productIds": [],
+      "strengths": [
+        "Safety focus",
+        "Constitutional AI",
+        "Enterprise adoption"
+      ],
+      "weaknesses": [],
+      "opportunities": [],
+      "threats": [],
+      "targetMarkets": [
+        "Enterprise AI",
+        "Developer Tools",
+        "Consumer AI"
+      ],
+      "primaryAudience": "",
+      "competitorIds": [],
+      "strategicNotes": "",
+      "threatLevel": "Low",
+      "partnershipPotential": 5,
+      "acquisitionTarget": false,
+      "tags": [
+        "ai",
+        "llm",
+        "safety",
+        "claude"
+      ]
+    },
+    {
+      "id": "9ce966b9-e295-43d5-8472-9569bebfc249",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "OpenAI",
+      "slug": "openai",
+      "description": "AI research and deployment company with mission to ensure AGI benefits humanity.",
+      "tagline": "Creating safe AGI",
+      "companyType": "AI Company",
+      "relationship": "Reference",
+      "size": "Medium (51-200)",
+      "stage": "Series C+",
+      "foundedYear": 2015,
+      "contact": {
+        "website": "https://openai.com",
+        "headquarters": "San Francisco, CA",
+        "country": "USA"
+      },
+      "funding": {
+        "totalFunding": 11300000000,
+        "isPublic": false,
+        "employees": 800,
+        "valuation": 86000000000,
+        "annualRevenue": 2000000000
+      },
+      "metrics": {
+        "totalUsers": 200000000,
+        "monthlyActiveUsers": 100000000
+      },
+      "productIds": [],
+      "strengths": [
+        "Market leader",
+        "GPT models",
+        "Microsoft partnership"
+      ],
+      "weaknesses": [
+        "Safety concerns",
+        "Competition increasing"
+      ],
+      "opportunities": [],
+      "threats": [],
+      "targetMarkets": [],
+      "primaryAudience": "",
+      "competitorIds": [],
+      "strategicNotes": "",
+      "threatLevel": "Low",
+      "partnershipPotential": 5,
+      "acquisitionTarget": false,
+      "tags": [
+        "ai",
+        "llm",
+        "chatgpt",
+        "gpt"
+      ]
+    },
+    {
+      "id": "cd04f52e-2cba-4806-8974-394965adb8b1",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Notion",
+      "slug": "notion",
+      "description": "All-in-one workspace for notes, docs, wikis, and project management.",
+      "tagline": "One tool for your whole team",
+      "companyType": "Productivity",
+      "relationship": "Competitor",
+      "size": "Medium (51-200)",
+      "stage": "Series C+",
+      "foundedYear": 2013,
+      "contact": {
+        "website": "https://notion.so",
+        "headquarters": "San Francisco, CA",
+        "country": "USA"
+      },
+      "funding": {
+        "totalFunding": 343000000,
+        "isPublic": false,
+        "employees": 500,
+        "valuation": 10000000000
+      },
+      "metrics": {
+        "totalUsers": 30000000,
+        "monthlyActiveUsers": 10000000
+      },
+      "productIds": [],
+      "strengths": [
+        "Flexibility",
+        "Template ecosystem",
+        "AI integration"
+      ],
+      "weaknesses": [
+        "Learning curve",
+        "Mobile experience"
+      ],
+      "opportunities": [],
+      "threats": [],
+      "targetMarkets": [],
+      "primaryAudience": "",
+      "competitorIds": [],
+      "strategicNotes": "",
+      "threatLevel": "Medium",
+      "partnershipPotential": 5,
+      "acquisitionTarget": false,
+      "tags": [
+        "productivity",
+        "notes",
+        "wiki",
+        "project-management"
+      ]
+    },
+    {
+      "id": "1ae647fd-dab0-48cc-a47d-1fee5b58568e",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Obsidian",
+      "slug": "obsidian",
+      "description": "Knowledge base that works on local Markdown files with powerful linking.",
+      "tagline": "A second brain, for you, forever",
+      "companyType": "Productivity",
+      "size": "Small (11-50)",
+      "stage": "Bootstrapped",
+      "foundedYear": 2020,
+      "contact": {
+        "website": "https://obsidian.md",
+        "country": "Canada"
+      },
+      "funding": {
+        "totalFunding": 0,
+        "isPublic": false,
+        "employees": 20
+      },
+      "metrics": {
+        "totalUsers": 1000000
+      },
+      "productIds": [],
+      "strengths": [
+        "Local-first",
+        "Plugin ecosystem",
+        "Privacy"
+      ],
+      "weaknesses": [
+        "No real-time collab",
+        "Developer-focused"
+      ],
+      "opportunities": [],
+      "threats": [],
+      "targetMarkets": [],
+      "primaryAudience": "",
+      "competitorIds": [],
+      "strategicNotes": "",
+      "threatLevel": "Low",
+      "partnershipPotential": 5,
+      "acquisitionTarget": false,
+      "tags": [
+        "productivity",
+        "notes",
+        "markdown",
+        "pkm"
+      ]
+    },
+    {
+      "id": "f1994ca4-f85d-44a9-a014-f69718f8562d",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Life360",
+      "slug": "life360",
+      "description": "Family safety and location sharing platform with 50M active families.",
+      "tagline": "Everyday family safety",
+      "companyType": "Family Tech",
+      "relationship": "Competitor",
+      "size": "Medium (51-200)",
+      "stage": "Publicly Traded",
+      "foundedYear": 2008,
+      "contact": {
+        "website": "https://life360.com",
+        "headquarters": "San Francisco, CA",
+        "country": "USA"
+      },
+      "funding": {
+        "totalFunding": 160000000,
+        "isPublic": true,
+        "stockSymbol": "LIF",
+        "employees": 500,
+        "annualRevenue": 300000000
+      },
+      "metrics": {
+        "totalUsers": 50000000,
+        "monthlyActiveUsers": 35000000
+      },
+      "productIds": [],
+      "strengths": [
+        "Market leader",
+        "Location accuracy",
+        "Teen safety"
+      ],
+      "weaknesses": [
+        "Privacy concerns",
+        "Battery drain"
+      ],
+      "opportunities": [],
+      "threats": [],
+      "targetMarkets": [],
+      "primaryAudience": "",
+      "competitorIds": [],
+      "strategicNotes": "",
+      "threatLevel": "High",
+      "partnershipPotential": 5,
+      "acquisitionTarget": false,
+      "tags": [
+        "family",
+        "location",
+        "safety",
+        "mobile"
+      ]
+    },
+    {
+      "id": "3c70db29-8447-4fbf-b5e8-428cc9ca6e70",
+      "creationTime": "2026-01-31T05:27:09.127Z",
+      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Cozi",
+      "slug": "cozi",
+      "description": "Family organizer app for shared calendars, lists, and meal planning.",
+      "tagline": "The #1 organizing app for families",
+      "companyType": "Family Tech",
+      "relationship": "Reference",
+      "size": "Small (11-50)",
+      "stage": "Acquired",
+      "foundedYear": 2005,
+      "contact": {
+        "website": "https://cozi.com",
+        "country": "USA"
+      },
+      "funding": {
+        "totalFunding": 25000000,
+        "isPublic": false,
+        "employees": 50
+      },
+      "metrics": {
+        "totalUsers": 25000000
+      },
+      "productIds": [],
+      "strengths": [
+        "Simple UX",
+        "Shared calendars",
+        "Recipe integration"
+      ],
+      "weaknesses": [
+        "Dated design",
+        "Limited features"
+      ],
+      "opportunities": [],
+      "threats": [],
+      "targetMarkets": [],
+      "primaryAudience": "",
+      "competitorIds": [],
+      "strategicNotes": "",
+      "threatLevel": "Low",
+      "partnershipPotential": 5,
+      "acquisitionTarget": false,
+      "tags": [
+        "family",
+        "calendar",
+        "organization"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "2.0.0",
+    "lastUpdated": "2026-01-31T05:27:09.211Z",
+    "totalGames": 17,
+    "totalProducts": 7,
+    "totalCompanies": 8
+  }
+}

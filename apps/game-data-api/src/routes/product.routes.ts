@@ -1,6 +1,6 @@
 import express, { Router, Request, Response } from 'express';
 import { ProductRepository } from '../repositories/product.repository';
-import { JsonStorageService } from '../database/json-storage.service';
+import { getStorage } from '../database/storage';
 import {
   CreateProductDto,
   UpdateProductDto,
@@ -9,7 +9,7 @@ import {
 } from '../shared/dtos/product.dto';
 
 const router: Router = express.Router();
-const storage = new JsonStorageService();
+const storage = getStorage();
 const productRepo = new ProductRepository(storage);
 
 /**

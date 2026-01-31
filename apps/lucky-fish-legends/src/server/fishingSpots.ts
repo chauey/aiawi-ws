@@ -131,26 +131,157 @@ function createPier(waterPos: Vector3, waterSize: Vector3): Model {
 }
 
 /**
- * Create swimmable water with proper physics
+ * Create a proper pond with depression and water
  */
-function createSwimmableWater(spot: (typeof FISHING_SPOTS)[0]): Part {
-  // Main water volume - positioned at ground level, going down
+function createPondWithWater(spot: (typeof FISHING_SPOTS)[0]): Model {
+  const pond = new Instance('Model');
+  pond.Name = 'Pond';
+
+  const pondDepth = 2;
+  const edgeThickness = 1;
+
+  // Pond floor (bottom of the pond)
+  const floor = new Instance('Part');
+  floor.Name = 'PondFloor';
+  floor.Size = new Vector3(spot.size.X, 0.5, spot.size.Z);
+  floor.Position = new Vector3(spot.position.X, -pondDepth, spot.position.Z);
+  floor.Anchored = true;
+  floor.Material = Enum.Material.Sand;
+  floor.Color = new Color3(0.6, 0.5, 0.3); // Sandy brown
+  floor.Parent = pond;
+
+  // Pond walls (4 edges that go into the ground)
+  // North wall
+  const northWall = new Instance('Part');
+  northWall.Name = 'NorthWall';
+  northWall.Size = new Vector3(
+    spot.size.X + edgeThickness * 2,
+    pondDepth,
+    edgeThickness,
+  );
+  northWall.Position = new Vector3(
+    spot.position.X,
+    -pondDepth / 2,
+    spot.position.Z + spot.size.Z / 2 + edgeThickness / 2,
+  );
+  northWall.Anchored = true;
+  northWall.Material = Enum.Material.Slate;
+  northWall.Color = new Color3(0.4, 0.35, 0.3); // Stone color
+  northWall.Parent = pond;
+
+  // South wall
+  const southWall = northWall.Clone();
+  southWall.Name = 'SouthWall';
+  southWall.Position = new Vector3(
+    spot.position.X,
+    -pondDepth / 2,
+    spot.position.Z - spot.size.Z / 2 - edgeThickness / 2,
+  );
+  southWall.Parent = pond;
+
+  // East wall
+  const eastWall = new Instance('Part');
+  eastWall.Name = 'EastWall';
+  eastWall.Size = new Vector3(edgeThickness, pondDepth, spot.size.Z);
+  eastWall.Position = new Vector3(
+    spot.position.X + spot.size.X / 2 + edgeThickness / 2,
+    -pondDepth / 2,
+    spot.position.Z,
+  );
+  eastWall.Anchored = true;
+  eastWall.Material = Enum.Material.Slate;
+  eastWall.Color = new Color3(0.4, 0.35, 0.3);
+  eastWall.Parent = pond;
+
+  // West wall
+  const westWall = eastWall.Clone();
+  westWall.Name = 'WestWall';
+  westWall.Position = new Vector3(
+    spot.position.X - spot.size.X / 2 - edgeThickness / 2,
+    -pondDepth / 2,
+    spot.position.Z,
+  );
+  westWall.Parent = pond;
+
+  // Ground rim around the pond (so it blends with terrain)
+  const rim = new Instance('Part');
+  rim.Name = 'PondRim';
+  rim.Size = new Vector3(spot.size.X + 4, 0.3, spot.size.Z + 4);
+  rim.Position = new Vector3(spot.position.X, 0.15, spot.position.Z);
+  rim.Anchored = true;
+  rim.Material = Enum.Material.Grass;
+  rim.Color = new Color3(0.3, 0.5, 0.2); // Grass green
+  rim.CanCollide = true;
+  rim.Parent = pond;
+
+  // Cut a hole in the rim (make it a frame shape) - use 4 parts
+  rim.Transparency = 1; // Hide the full rim
+
+  // North rim piece
+  const rimN = new Instance('Part');
+  rimN.Name = 'RimNorth';
+  rimN.Size = new Vector3(spot.size.X + 4, 0.3, 2);
+  rimN.Position = new Vector3(
+    spot.position.X,
+    0.15,
+    spot.position.Z + spot.size.Z / 2 + 1,
+  );
+  rimN.Anchored = true;
+  rimN.Material = Enum.Material.Grass;
+  rimN.Color = new Color3(0.3, 0.5, 0.2);
+  rimN.Parent = pond;
+
+  // South rim piece
+  const rimS = rimN.Clone();
+  rimS.Name = 'RimSouth';
+  rimS.Position = new Vector3(
+    spot.position.X,
+    0.15,
+    spot.position.Z - spot.size.Z / 2 - 1,
+  );
+  rimS.Parent = pond;
+
+  // East rim piece
+  const rimE = new Instance('Part');
+  rimE.Name = 'RimEast';
+  rimE.Size = new Vector3(2, 0.3, spot.size.Z);
+  rimE.Position = new Vector3(
+    spot.position.X + spot.size.X / 2 + 1,
+    0.15,
+    spot.position.Z,
+  );
+  rimE.Anchored = true;
+  rimE.Material = Enum.Material.Grass;
+  rimE.Color = new Color3(0.3, 0.5, 0.2);
+  rimE.Parent = pond;
+
+  // West rim piece
+  const rimW = rimE.Clone();
+  rimW.Name = 'RimWest';
+  rimW.Position = new Vector3(
+    spot.position.X - spot.size.X / 2 - 1,
+    0.15,
+    spot.position.Z,
+  );
+  rimW.Parent = pond;
+
+  // Water (fills the pond)
   const water = new Instance('Part');
   water.Name = 'Water';
-  // Make water shallower for visibility (2 units deep)
-  water.Size = new Vector3(spot.size.X, 2, spot.size.Z);
+  water.Size = new Vector3(spot.size.X, pondDepth - 0.3, spot.size.Z);
   water.Position = new Vector3(
     spot.position.X,
-    spot.waterLevel, // Water surface at waterLevel
+    -pondDepth / 2 + 0.3,
     spot.position.Z,
   );
   water.Anchored = true;
-  water.CanCollide = false; // Players can walk/swim through
-  water.Material = Enum.Material.Glass; // Glass looks more like water than Water material
-  water.Color = new Color3(0.2, 0.5, 0.8); // Nice blue color
-  water.Transparency = 0.5; // Semi-transparent
+  water.CanCollide = false; // Can swim through
+  water.Material = Enum.Material.Glass;
+  water.Color = new Color3(0.15, 0.4, 0.7); // Nice deep blue
+  water.Transparency = 0.4;
+  water.Parent = pond;
 
-  return water;
+  return pond;
 }
 
 /**
@@ -160,9 +291,12 @@ function createFishingSpot(spot: (typeof FISHING_SPOTS)[0]): Model {
   const model = new Instance('Model');
   model.Name = `FishingSpot_${spot.id}`;
 
-  // Swimmable water
-  const water = createSwimmableWater(spot);
-  water.Parent = model;
+  // Create proper pond with depression and water
+  const pond = createPondWithWater(spot);
+  pond.Parent = model;
+
+  // Get reference to water for particles
+  const water = pond.FindFirstChild('Water') as Part;
 
   // Fishing sign
   const signPart = new Instance('Part');
@@ -248,8 +382,13 @@ function createFishingSpot(spot: (typeof FISHING_SPOTS)[0]): Model {
  * Create proximity prompt for fishing interaction
  */
 function addFishingPrompt(model: Model, spotId: string): void {
-  const water = model.FindFirstChild('Water') as Part;
-  if (!water) return;
+  // Water is inside the Pond sub-model
+  const pond = model.FindFirstChild('Pond') as Model | undefined;
+  const water = pond?.FindFirstChild('Water') as Part | undefined;
+  if (!water) {
+    print(`[FishingSpots] Warning: No water found in ${spotId}`);
+    return;
+  }
 
   const prompt = new Instance('ProximityPrompt');
   prompt.ActionText = 'Fish Here';

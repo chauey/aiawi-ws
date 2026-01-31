@@ -1302,7 +1302,8 @@ function toggleStats(): void {
 function toggleInventory(): void {
   inventoryFrame.Visible = !inventoryFrame.Visible;
   if (inventoryFrame.Visible) {
-    refreshInventory();
+    // Use local inventory data instead of server
+    updateInventoryPanel();
   }
 }
 

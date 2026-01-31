@@ -32,7 +32,6 @@ import { setupPetBattles } from './petBattles';
 import { setupPrivateServers } from './privateServers';
 import { setupMinigames } from './minigames';
 import { setupDataStore } from './dataStore';
-import { setupPetSystem } from './petSystem';
 // TODO: Port fishing system to local shared folder - currently uses @aiawi/roblox-core which doesn't work in roblox-ts
 // import { initFishingSystem } from './fishing';
 import { setupFishingSpots } from './fishingSpots';
@@ -337,9 +336,6 @@ function init() {
 
   // Setup egg hatching
   setupEggSystem();
-
-  // Setup advanced pet system with bonuses
-  setupPetSystem();
 
   // Setup rebirth
   setupRebirthSystem();

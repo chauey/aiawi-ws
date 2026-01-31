@@ -465,67 +465,79 @@ function showFishingRod(): void {
 
   // Create new rod
   fishingRodModel = createFishingRod();
-
-  // Get root part for positioning
-  const rootPart = character.FindFirstChild('HumanoidRootPart') as
-    | Part
-    | undefined;
-  if (!rootPart) {
-    print('[FishingUI] No HumanoidRootPart found!');
+  if (!fishingRodModel.PrimaryPart) {
+    print('[FishingUI] Rod has no PrimaryPart!');
     return;
   }
 
-  // Parent to workspace
-  fishingRodModel.Parent = Workspace;
+  // Find the right hand (R15) or right arm (R6)
+  const rightHand = character.FindFirstChild('RightHand') as Part | undefined;
+  const rightArm = character.FindFirstChild('Right Arm') as Part | undefined;
+  const handPart = rightHand ?? rightArm;
 
-  // Rod offset and rotation constants
-  const rodOffset = new CFrame(1.5, 0.5, -2); // Right, up, forward
-  const rodRotation = CFrame.Angles(math.rad(30), 0, math.rad(-15)); // Tilt up and slightly right
-
-  // Position initially
-  if (fishingRodModel.PrimaryPart) {
+  if (!handPart) {
+    print('[FishingUI] No hand found, using root position');
+    // Fallback to old behavior
+    const rootPart = character.FindFirstChild('HumanoidRootPart') as Part;
+    fishingRodModel.Parent = Workspace;
     fishingRodModel.PrimaryPart.Anchored = true;
-    fishingRodModel.PrimaryPart.CFrame =
-      rootPart.CFrame.mul(rodOffset).mul(rodRotation);
+    fishingRodModel.PrimaryPart.CFrame = rootPart.CFrame.mul(
+      new CFrame(1.5, 0.5, -2),
+    );
+    return;
   }
 
-  // Update rod position every frame to follow player
+  // Make rod parts not anchored so they can be welded
+  for (const part of fishingRodModel.GetDescendants()) {
+    if (part.IsA('BasePart')) {
+      part.Anchored = false;
+      part.CanCollide = false;
+    }
+  }
+
+  // Position rod in hand - handle at palm, rod pointing forward
+  // Offset: grip position relative to hand
+  const gripOffset = new CFrame(0, 0, -0.5); // Forward from palm
+  const gripRotation = CFrame.Angles(math.rad(-70), 0, math.rad(10)); // Tilt rod up and slightly outward
+
+  fishingRodModel.PrimaryPart.CFrame =
+    handPart.CFrame.mul(gripOffset).mul(gripRotation);
+
+  // Weld rod to hand
+  const weld = new Instance('WeldConstraint');
+  weld.Name = 'HandWeld';
+  weld.Part0 = handPart;
+  weld.Part1 = fishingRodModel.PrimaryPart;
+  weld.Parent = fishingRodModel.PrimaryPart;
+
+  // Parent rod to character so it moves with them
+  fishingRodModel.Parent = character;
+
+  // Update fishing line every frame (rod follows automatically via weld)
   rodUpdateConnection = RunService.RenderStepped.Connect(() => {
     if (!fishingRodModel || !fishingRodModel.PrimaryPart) return;
+    if (!fishingLine || !floatingBobber) return;
 
-    const char = player.Character;
-    if (!char) return;
+    const tip = fishingRodModel.FindFirstChild('Tip') as Part | undefined;
+    let rodTipPos: Vector3;
 
-    const root = char.FindFirstChild('HumanoidRootPart') as Part | undefined;
-    if (!root) return;
-
-    // Update rod to follow player
-    fishingRodModel.PrimaryPart.CFrame =
-      root.CFrame.mul(rodOffset).mul(rodRotation);
-
-    // Also update fishing line if it exists
-    if (fishingLine && floatingBobber) {
-      const tip = fishingRodModel.FindFirstChild('Tip') as Part | undefined;
-      let rodTipPos: Vector3;
-
-      if (tip) {
-        rodTipPos = tip.CFrame.mul(new CFrame(0, 0, -tip.Size.Z / 2)).Position;
-      } else {
-        rodTipPos = fishingRodModel.PrimaryPart.CFrame.mul(
-          new CFrame(0, 0, -3),
-        ).Position;
-      }
-
-      const bobberPos = floatingBobber.Position;
-      const midPoint = rodTipPos.add(bobberPos).div(2);
-      const distance = rodTipPos.sub(bobberPos).Magnitude;
-
-      fishingLine.Size = new Vector3(0.03, 0.03, distance);
-      fishingLine.CFrame = CFrame.lookAt(midPoint, bobberPos);
+    if (tip) {
+      rodTipPos = tip.CFrame.mul(new CFrame(0, 0, -tip.Size.Z / 2)).Position;
+    } else {
+      rodTipPos = fishingRodModel.PrimaryPart.CFrame.mul(
+        new CFrame(0, 0, -3),
+      ).Position;
     }
+
+    const bobberPos = floatingBobber.Position;
+    const midPoint = rodTipPos.add(bobberPos).div(2);
+    const distance = rodTipPos.sub(bobberPos).Magnitude;
+
+    fishingLine.Size = new Vector3(0.03, 0.03, distance);
+    fishingLine.CFrame = CFrame.lookAt(midPoint, bobberPos);
   });
 
-  print('[FishingUI] 🎣 Fishing Rod shown and following player!');
+  print('[FishingUI] 🎣 Fishing Rod welded to hand!');
 }
 
 /**

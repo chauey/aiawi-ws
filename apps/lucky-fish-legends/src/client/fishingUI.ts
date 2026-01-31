@@ -485,15 +485,15 @@ function showFishingRod(): void {
   const gripOffset = new CFrame(0, 0, -0.3); // Forward from palm
   const gripRotation = CFrame.Angles(math.rad(-60), 0, math.rad(15)); // Tilt up
 
-  // Position initially
+  // Position initially using SetPrimaryPartCFrame (moves whole model)
   const rightHand = character.FindFirstChild('RightHand') as Part | undefined;
   const rightArm = character.FindFirstChild('Right Arm') as Part | undefined;
   const rootPart = character.FindFirstChild('HumanoidRootPart') as Part;
 
   const handPart = rightHand ?? rightArm ?? rootPart;
-  if (handPart && fishingRodModel.PrimaryPart) {
-    fishingRodModel.PrimaryPart.CFrame =
-      handPart.CFrame.mul(gripOffset).mul(gripRotation);
+  if (handPart) {
+    const targetCFrame = handPart.CFrame.mul(gripOffset).mul(gripRotation);
+    fishingRodModel.SetPrimaryPartCFrame(targetCFrame);
   }
 
   // Update rod position every frame relative to hand
@@ -511,9 +511,9 @@ function showFishingRod(): void {
 
     if (!attachPart) return;
 
-    // Update rod position to follow hand
-    fishingRodModel.PrimaryPart.CFrame =
-      attachPart.CFrame.mul(gripOffset).mul(gripRotation);
+    // Update WHOLE rod model position to follow hand
+    const targetCFrame = attachPart.CFrame.mul(gripOffset).mul(gripRotation);
+    fishingRodModel.SetPrimaryPartCFrame(targetCFrame);
 
     // Also update fishing line if it exists
     if (fishingLine && floatingBobber) {

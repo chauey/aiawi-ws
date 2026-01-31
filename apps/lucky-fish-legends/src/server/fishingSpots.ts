@@ -1,33 +1,162 @@
 // Fishing Spots - Physical fishing locations in the game world
 import { Workspace, ReplicatedStorage } from '@rbxts/services';
 
-// Define fishing spot locations (starter pond near spawn)
+// Define fishing spot locations
 const FISHING_SPOTS = [
   {
     id: 'starter_pond',
     name: 'Starter Pond',
-    position: new Vector3(30, 1, 30),
-    size: new Vector3(20, 3, 20),
+    position: new Vector3(30, 0, 30),
+    size: new Vector3(25, 4, 25),
     color: Color3.fromRGB(50, 150, 200),
-    waterLevel: 0.5,
+    waterLevel: -1,
+    hasPier: false,
   },
   {
     id: 'mystic_lake',
     name: 'Mystic Lake',
-    position: new Vector3(-50, 1, -50),
-    size: new Vector3(30, 3, 30),
+    position: new Vector3(-50, 0, -50),
+    size: new Vector3(40, 5, 40),
     color: Color3.fromRGB(100, 80, 180),
-    waterLevel: 0.5,
+    waterLevel: -1,
+    hasPier: true,
   },
   {
     id: 'ocean_pier',
     name: 'Ocean Pier',
-    position: new Vector3(80, 1, 0),
-    size: new Vector3(40, 3, 15),
+    position: new Vector3(80, 0, 0),
+    size: new Vector3(60, 6, 40),
     color: Color3.fromRGB(30, 100, 150),
-    waterLevel: 0.5,
+    waterLevel: -1.5,
+    hasPier: true,
   },
 ];
+
+/**
+ * Create a wooden pier structure
+ */
+function createPier(waterPos: Vector3, waterSize: Vector3): Model {
+  const pier = new Instance('Model');
+  pier.Name = 'Pier';
+
+  // Pier planks (walkable surface)
+  const planks = new Instance('Part');
+  planks.Name = 'Planks';
+  planks.Size = new Vector3(4, 0.3, 15);
+  planks.Position = new Vector3(
+    waterPos.X - waterSize.X / 2 - 2,
+    2,
+    waterPos.Z,
+  );
+  planks.Anchored = true;
+  planks.Material = Enum.Material.Wood;
+  planks.BrickColor = new BrickColor('Brown');
+  planks.Parent = pier;
+
+  // Add wood texture lines
+  const texture = new Instance('Texture');
+  texture.Texture = 'rbxassetid://9873284556'; // Wood plank texture
+  texture.Face = Enum.NormalId.Top;
+  texture.StudsPerTileU = 2;
+  texture.StudsPerTileV = 4;
+  texture.Parent = planks;
+
+  // Support posts
+  for (let i = 0; i < 3; i++) {
+    const post = new Instance('Part');
+    post.Name = `Post_${i}`;
+    post.Size = new Vector3(0.5, 4, 0.5);
+    post.Position = new Vector3(
+      planks.Position.X - 1.5 + i * 1.5,
+      0,
+      planks.Position.Z - 6,
+    );
+    post.Anchored = true;
+    post.Material = Enum.Material.Wood;
+    post.BrickColor = new BrickColor('Dark taupe');
+    post.Parent = pier;
+
+    // Second row
+    const post2 = post.Clone();
+    post2.Position = new Vector3(
+      planks.Position.X - 1.5 + i * 1.5,
+      0,
+      planks.Position.Z + 6,
+    );
+    post2.Parent = pier;
+  }
+
+  // Pier railing
+  const railing = new Instance('Part');
+  railing.Name = 'Railing';
+  railing.Size = new Vector3(0.2, 1, 15);
+  railing.Position = new Vector3(planks.Position.X + 2, 2.8, planks.Position.Z);
+  railing.Anchored = true;
+  railing.Material = Enum.Material.Wood;
+  railing.BrickColor = new BrickColor('Brown');
+  railing.Parent = pier;
+
+  // Railing posts
+  for (let i = 0; i < 4; i++) {
+    const railPost = new Instance('Part');
+    railPost.Name = `RailPost_${i}`;
+    railPost.Size = new Vector3(0.3, 1.5, 0.3);
+    railPost.Position = new Vector3(
+      planks.Position.X + 1.8,
+      2.5,
+      planks.Position.Z - 6 + i * 4,
+    );
+    railPost.Anchored = true;
+    railPost.Material = Enum.Material.Wood;
+    railPost.BrickColor = new BrickColor('Dark taupe');
+    railPost.Parent = pier;
+  }
+
+  // Dock extension into water
+  const dock = new Instance('Part');
+  dock.Name = 'Dock';
+  dock.Size = new Vector3(3, 0.3, 8);
+  dock.Position = new Vector3(
+    waterPos.X - waterSize.X / 2 + 3,
+    1.5,
+    waterPos.Z,
+  );
+  dock.Anchored = true;
+  dock.Material = Enum.Material.Wood;
+  dock.BrickColor = new BrickColor('Brown');
+  dock.Parent = pier;
+
+  pier.Parent = Workspace;
+  return pier;
+}
+
+/**
+ * Create swimmable water with proper physics
+ */
+function createSwimmableWater(spot: (typeof FISHING_SPOTS)[0]): Part {
+  // Main water volume (deep)
+  const water = new Instance('Part');
+  water.Name = 'Water';
+  water.Size = spot.size;
+  water.Position = new Vector3(
+    spot.position.X,
+    spot.waterLevel - spot.size.Y / 2,
+    spot.position.Z,
+  );
+  water.Anchored = true;
+  water.CanCollide = false; // Players can swim through
+  water.Material = Enum.Material.Water;
+  water.Color = spot.color;
+  water.Transparency = 0.4;
+
+  // Add swimming force when player enters
+  const swimForce = new Instance('BodyVelocity');
+  swimForce.Name = 'SwimForce';
+  swimForce.MaxForce = new Vector3(0, 0, 0); // Disabled until player enters
+  swimForce.Parent = water;
+
+  return water;
+}
 
 /**
  * Create a visual fishing spot with water effect and indicator
@@ -36,36 +165,48 @@ function createFishingSpot(spot: (typeof FISHING_SPOTS)[0]): Model {
   const model = new Instance('Model');
   model.Name = `FishingSpot_${spot.id}`;
 
-  // Water surface
-  const water = new Instance('Part');
-  water.Name = 'Water';
-  water.Size = spot.size;
-  water.Position = new Vector3(
+  // Swimmable water
+  const water = createSwimmableWater(spot);
+  water.Parent = model;
+
+  // Sandy bottom
+  const bottom = new Instance('Part');
+  bottom.Name = 'Bottom';
+  bottom.Size = new Vector3(spot.size.X, 0.5, spot.size.Z);
+  bottom.Position = new Vector3(
     spot.position.X,
-    spot.waterLevel,
+    spot.waterLevel - spot.size.Y,
     spot.position.Z,
   );
-  water.Anchored = true;
-  water.CanCollide = false;
-  water.Material = Enum.Material.Water;
-  water.BrickColor = new BrickColor('Bright blue');
-  water.Transparency = 0.3;
-  water.Parent = model;
+  bottom.Anchored = true;
+  bottom.Material = Enum.Material.Sand;
+  bottom.BrickColor = new BrickColor('Brick yellow');
+  bottom.Parent = model;
+
+  // Shore/beach around water
+  const shore = new Instance('Part');
+  shore.Name = 'Shore';
+  shore.Size = new Vector3(spot.size.X + 6, 0.5, spot.size.Z + 6);
+  shore.Position = new Vector3(spot.position.X, 0.25, spot.position.Z);
+  shore.Anchored = true;
+  shore.Material = Enum.Material.Sand;
+  shore.BrickColor = new BrickColor('Brick yellow');
+  shore.Parent = model;
 
   // Glowing edge indicator
   const glow = new Instance('Part');
   glow.Name = 'GlowRing';
-  glow.Size = new Vector3(spot.size.X + 2, 0.5, spot.size.Z + 2);
+  glow.Size = new Vector3(spot.size.X + 4, 0.3, spot.size.Z + 4);
   glow.Position = new Vector3(
     spot.position.X,
-    spot.waterLevel + 0.1,
+    spot.waterLevel + 0.2,
     spot.position.Z,
   );
   glow.Anchored = true;
   glow.CanCollide = false;
   glow.Material = Enum.Material.Neon;
   glow.Color = spot.color;
-  glow.Transparency = 0.5;
+  glow.Transparency = 0.7;
   glow.Parent = model;
 
   // Fishing sign
@@ -73,14 +214,24 @@ function createFishingSpot(spot: (typeof FISHING_SPOTS)[0]): Model {
   signPart.Name = 'Sign';
   signPart.Size = new Vector3(3, 0.3, 0.3);
   signPart.Position = new Vector3(
-    spot.position.X - spot.size.X / 2 - 1,
+    spot.position.X - spot.size.X / 2 - 2,
     3,
-    spot.position.Z - spot.size.Z / 2 - 1,
+    spot.position.Z - spot.size.Z / 2 - 2,
   );
   signPart.Anchored = true;
   signPart.Material = Enum.Material.Wood;
   signPart.BrickColor = new BrickColor('Brown');
   signPart.Parent = model;
+
+  // Sign post
+  const signPost = new Instance('Part');
+  signPost.Name = 'SignPost';
+  signPost.Size = new Vector3(0.3, 4, 0.3);
+  signPost.Position = signPart.Position.add(new Vector3(0, -2, 0));
+  signPost.Anchored = true;
+  signPost.Material = Enum.Material.Wood;
+  signPost.BrickColor = new BrickColor('Brown');
+  signPost.Parent = model;
 
   // Sign text
   const billboard = new Instance('BillboardGui');
@@ -104,17 +255,37 @@ function createFishingSpot(spot: (typeof FISHING_SPOTS)[0]): Model {
   labelCorner.CornerRadius = new UDim(0, 8);
   labelCorner.Parent = label;
 
-  // Particles for visual interest
-  const particles = new Instance('ParticleEmitter');
-  particles.Color = new ColorSequence(spot.color);
-  particles.Size = new NumberSequence(0.5);
-  particles.Rate = 5;
-  particles.Lifetime = new NumberRange(2, 3);
-  particles.Speed = new NumberRange(0.5, 1);
-  particles.SpreadAngle = new Vector2(180, 180);
-  particles.Parent = water;
+  // Bubble particles in water
+  const bubbles = new Instance('ParticleEmitter');
+  bubbles.Name = 'Bubbles';
+  bubbles.Color = new ColorSequence(new Color3(0.9, 0.95, 1));
+  bubbles.Size = new NumberSequence(0.2, 0.5);
+  bubbles.Rate = 3;
+  bubbles.Lifetime = new NumberRange(3, 5);
+  bubbles.Speed = new NumberRange(0.5, 2);
+  bubbles.SpreadAngle = new Vector2(30, 30);
+  bubbles.Transparency = new NumberSequence(0.3, 1);
+  bubbles.Parent = water;
+
+  // Fish swimming (visual only)
+  const fishParticles = new Instance('ParticleEmitter');
+  fishParticles.Name = 'FishShadows';
+  fishParticles.Color = new ColorSequence(Color3.fromRGB(80, 80, 80));
+  fishParticles.Size = new NumberSequence(0.5, 1);
+  fishParticles.Rate = 1;
+  fishParticles.Lifetime = new NumberRange(5, 10);
+  fishParticles.Speed = new NumberRange(2, 5);
+  fishParticles.SpreadAngle = new Vector2(180, 10);
+  fishParticles.Transparency = new NumberSequence(0.7, 0.9);
+  fishParticles.Parent = water;
 
   model.Parent = Workspace;
+
+  // Add pier if this spot has one
+  if (spot.hasPier) {
+    createPier(spot.position, spot.size);
+  }
+
   return model;
 }
 
@@ -126,11 +297,11 @@ function addFishingPrompt(model: Model, spotId: string): void {
   if (!water) return;
 
   const prompt = new Instance('ProximityPrompt');
-  prompt.ActionText = 'Fish';
-  prompt.ObjectText = 'Fishing Spot';
+  prompt.ActionText = 'Fish Here';
+  prompt.ObjectText = '🎣 Fishing Spot';
   prompt.KeyboardKeyCode = Enum.KeyCode.E;
   prompt.HoldDuration = 0;
-  prompt.MaxActivationDistance = 10;
+  prompt.MaxActivationDistance = 15;
   prompt.RequiresLineOfSight = false;
   prompt.Parent = water;
 
@@ -169,7 +340,7 @@ export function setupFishingSpots(): void {
     const model = createFishingSpot(spot);
     addFishingPrompt(model, spot.id);
     print(
-      `  ✅ Created ${spot.name} at (${spot.position.X}, ${spot.position.Z})`,
+      `  ✅ Created ${spot.name} at (${spot.position.X}, ${spot.position.Z})${spot.hasPier ? ' with pier' : ''}`,
     );
   }
 

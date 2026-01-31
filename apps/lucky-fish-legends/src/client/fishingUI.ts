@@ -28,6 +28,7 @@ let remotes: {
 const currentState = {
   isFishing: false,
   isBiting: false,
+  isReeling: false,
   currentLocationId: 'starter_pond',
   currentLevel: 1,
 };
@@ -42,6 +43,13 @@ let statsFrame: Frame;
 let inventoryFrame: Frame;
 let collectionFrame: Frame;
 let locationFrame: Frame;
+
+// Reeling minigame UI
+let reelingProgressBar: Frame;
+let reelingProgressBackground: Frame;
+let clickCounterLabel: TextLabel;
+let reelingClickCount = 0;
+const REEL_CLICKS_REQUIRED = 15;
 
 // 3D Fishing visuals
 let fishingRodTool: Tool | undefined;
@@ -121,12 +129,53 @@ function createFishingUI(): ScreenGui {
   bobber = new Instance('ImageLabel');
   bobber.Name = 'Bobber';
   bobber.Size = new UDim2(0, 50, 0, 50);
-  bobber.Position = new UDim2(0.5, -25, 0, 65);
+  bobber.Position = new UDim2(0.5, -25, 0, 55);
   bobber.BackgroundTransparency = 1;
   bobber.Image = 'rbxassetid://6031094667'; // Default circle
   bobber.ImageColor3 = new Color3(1, 0.4, 0.2);
   bobber.Visible = false;
   bobber.Parent = mainFrame;
+
+  // Reeling progress bar (for click minigame)
+  const progressBackground = new Instance('Frame');
+  progressBackground.Name = 'ProgressBackground';
+  progressBackground.Size = new UDim2(0.8, 0, 0, 12);
+  progressBackground.Position = new UDim2(0.1, 0, 0, 95);
+  progressBackground.BackgroundColor3 = new Color3(0.2, 0.2, 0.3);
+  progressBackground.BorderSizePixel = 0;
+  progressBackground.Visible = false;
+  progressBackground.Parent = mainFrame;
+
+  const progressCorner = new Instance('UICorner');
+  progressCorner.CornerRadius = new UDim(0, 6);
+  progressCorner.Parent = progressBackground;
+
+  reelingProgressBar = new Instance('Frame');
+  reelingProgressBar.Name = 'ProgressFill';
+  reelingProgressBar.Size = new UDim2(0, 0, 1, 0);
+  reelingProgressBar.Position = new UDim2(0, 0, 0, 0);
+  reelingProgressBar.BackgroundColor3 = new Color3(0.2, 0.8, 0.3);
+  reelingProgressBar.BorderSizePixel = 0;
+  reelingProgressBar.Parent = progressBackground;
+
+  const progressFillCorner = new Instance('UICorner');
+  progressFillCorner.CornerRadius = new UDim(0, 6);
+  progressFillCorner.Parent = reelingProgressBar;
+
+  reelingProgressBackground = progressBackground;
+
+  // Click counter label
+  clickCounterLabel = new Instance('TextLabel');
+  clickCounterLabel.Name = 'ClickCounter';
+  clickCounterLabel.Size = new UDim2(0.8, 0, 0, 20);
+  clickCounterLabel.Position = new UDim2(0.1, 0, 0, 73);
+  clickCounterLabel.BackgroundTransparency = 1;
+  clickCounterLabel.Text = 'Click fast to reel! 0/20';
+  clickCounterLabel.TextColor3 = new Color3(1, 1, 0.5);
+  clickCounterLabel.TextSize = 12;
+  clickCounterLabel.Font = Enum.Font.GothamBold;
+  clickCounterLabel.Visible = false;
+  clickCounterLabel.Parent = mainFrame;
 
   // Cast button
   castButton = createButton(
@@ -576,6 +625,7 @@ function animateBobber3D(): void {
 // ==================== FISH DATA (Client-side simulation) ====================
 
 const FISH_TYPES = [
+  // Common (40%)
   {
     name: 'Goldfish',
     rarity: 'common',
@@ -584,6 +634,17 @@ const FISH_TYPES = [
     value: 5,
   },
   { name: 'Carp', rarity: 'common', minWeight: 0.5, maxWeight: 2, value: 10 },
+  {
+    name: 'Minnow',
+    rarity: 'common',
+    minWeight: 0.05,
+    maxWeight: 0.2,
+    value: 3,
+  },
+  { name: 'Sunfish', rarity: 'common', minWeight: 0.2, maxWeight: 1, value: 8 },
+  { name: 'Perch', rarity: 'common', minWeight: 0.3, maxWeight: 1.5, value: 7 },
+
+  // Uncommon (25%)
   { name: 'Bass', rarity: 'uncommon', minWeight: 1, maxWeight: 4, value: 25 },
   {
     name: 'Trout',
@@ -592,8 +653,36 @@ const FISH_TYPES = [
     maxWeight: 3,
     value: 20,
   },
+  {
+    name: 'Walleye',
+    rarity: 'uncommon',
+    minWeight: 1,
+    maxWeight: 5,
+    value: 30,
+  },
+  {
+    name: 'Crappie',
+    rarity: 'uncommon',
+    minWeight: 0.5,
+    maxWeight: 2,
+    value: 18,
+  },
+  {
+    name: 'Bluegill',
+    rarity: 'uncommon',
+    minWeight: 0.3,
+    maxWeight: 1.5,
+    value: 15,
+  },
+
+  // Rare (20%)
   { name: 'Catfish', rarity: 'rare', minWeight: 2, maxWeight: 8, value: 50 },
   { name: 'Pike', rarity: 'rare', minWeight: 3, maxWeight: 10, value: 75 },
+  { name: 'Salmon', rarity: 'rare', minWeight: 4, maxWeight: 15, value: 80 },
+  { name: 'Sturgeon', rarity: 'rare', minWeight: 5, maxWeight: 20, value: 90 },
+  { name: 'Muskie', rarity: 'rare', minWeight: 5, maxWeight: 15, value: 85 },
+
+  // Epic (10%)
   {
     name: 'Swordfish',
     rarity: 'epic',
@@ -601,6 +690,17 @@ const FISH_TYPES = [
     maxWeight: 50,
     value: 200,
   },
+  { name: 'Marlin', rarity: 'epic', minWeight: 20, maxWeight: 100, value: 300 },
+  { name: 'Tuna', rarity: 'epic', minWeight: 15, maxWeight: 60, value: 250 },
+  {
+    name: 'Mahi-Mahi',
+    rarity: 'epic',
+    minWeight: 8,
+    maxWeight: 35,
+    value: 180,
+  },
+
+  // Legendary (4%)
   {
     name: 'Lucky Koi',
     rarity: 'legendary',
@@ -609,11 +709,48 @@ const FISH_TYPES = [
     value: 500,
   },
   {
+    name: 'Rainbow Trout',
+    rarity: 'legendary',
+    minWeight: 3,
+    maxWeight: 12,
+    value: 600,
+  },
+  {
+    name: 'Spirit Eel',
+    rarity: 'legendary',
+    minWeight: 5,
+    maxWeight: 20,
+    value: 750,
+  },
+  {
+    name: 'Crystal Bass',
+    rarity: 'legendary',
+    minWeight: 2,
+    maxWeight: 8,
+    value: 550,
+  },
+
+  // Mythic (1%)
+  {
     name: 'Golden Dragon Fish',
     rarity: 'mythic',
     minWeight: 5,
     maxWeight: 20,
     value: 2000,
+  },
+  {
+    name: 'Ancient Leviathan',
+    rarity: 'mythic',
+    minWeight: 50,
+    maxWeight: 200,
+    value: 5000,
+  },
+  {
+    name: 'Phoenix Koi',
+    rarity: 'mythic',
+    minWeight: 3,
+    maxWeight: 15,
+    value: 3000,
   },
 ];
 
@@ -688,7 +825,7 @@ function onCastClick(): void {
 }
 
 /**
- * Reel in handler
+ * Reel in handler - starts the clicking minigame
  */
 function onReelClick(): void {
   if (!currentState.isFishing) {
@@ -696,15 +833,99 @@ function onReelClick(): void {
     return;
   }
 
+  // If minigame already in progress, count the click
+  if (currentState.isReeling) {
+    handleReelingClick();
+    return;
+  }
+
+  // If fish isn't biting, can't start minigame
+  if (!currentState.isBiting) {
+    updateStatus('No fish biting yet... wait for a bite!');
+    return;
+  }
+
+  // Start the clicking minigame!
+  startReelingMinigame();
+}
+
+/**
+ * Start the reeling minigame
+ */
+function startReelingMinigame(): void {
+  currentState.isReeling = true;
+  reelingClickCount = 0;
+
+  // Show minigame UI
+  reelingProgressBackground.Visible = true;
+  clickCounterLabel.Visible = true;
+  bobber.Visible = false;
+
+  updateReelingProgress();
+  updateStatus('🎣 CLICK FAST TO REEL IN! 🎣');
+
+  // Give them a time limit (5 seconds)
+  task.delay(5, () => {
+    if (currentState.isReeling) {
+      // Time's up! Fish got away
+      endReelingMinigame(false);
+    }
+  });
+}
+
+/**
+ * Handle a click during the reeling minigame
+ */
+function handleReelingClick(): void {
+  reelingClickCount++;
+  updateReelingProgress();
+
+  // Visual feedback for click
+  reelingProgressBar.BackgroundColor3 = new Color3(0.4, 1, 0.5);
+  task.delay(0.05, () => {
+    reelingProgressBar.BackgroundColor3 = new Color3(0.2, 0.8, 0.3);
+  });
+
+  if (reelingClickCount >= REEL_CLICKS_REQUIRED) {
+    // Success! Caught the fish!
+    endReelingMinigame(true);
+  }
+}
+
+/**
+ * Update the reeling progress bar
+ */
+function updateReelingProgress(): void {
+  const progress = reelingClickCount / REEL_CLICKS_REQUIRED;
+  reelingProgressBar.Size = new UDim2(progress, 0, 1, 0);
+  clickCounterLabel.Text = `Click fast to reel! ${reelingClickCount}/${REEL_CLICKS_REQUIRED}`;
+
+  // Change color based on progress
+  if (progress > 0.7) {
+    reelingProgressBar.BackgroundColor3 = new Color3(0.2, 1, 0.3);
+    clickCounterLabel.Text = `Almost there! ${reelingClickCount}/${REEL_CLICKS_REQUIRED}`;
+  } else if (progress > 0.4) {
+    reelingProgressBar.BackgroundColor3 = new Color3(0.8, 0.8, 0.2);
+  }
+}
+
+/**
+ * End the reeling minigame
+ */
+function endReelingMinigame(success: boolean): void {
+  currentState.isReeling = false;
+
+  // Hide minigame UI
+  reelingProgressBackground.Visible = false;
+  clickCounterLabel.Visible = false;
+
   remotes?.reelIn?.FireServer();
 
-  updateStatus('🎣 Reeling in...');
+  if (success) {
+    updateStatus('🎣 Reeling in...');
+    animateReeling();
 
-  // Animate reeling (shorten line)
-  animateReeling();
-
-  // Client-side simulation
-  if (currentState.isBiting) {
+    // Catch the fish!
     const fish = simulateCatch();
     if (fish) {
       const rarityColor =
@@ -723,11 +944,9 @@ function onReelClick(): void {
       task.delay(3, () => {
         statusLabel.TextColor3 = new Color3(0.9, 0.9, 0.9);
       });
-    } else {
-      updateStatus('The fish got away! 😢');
     }
   } else {
-    updateStatus('No fish biting yet... reeled in empty.');
+    updateStatus('😢 The fish got away! Click faster next time!');
   }
 
   // Hide 3D visuals after delay
@@ -737,6 +956,7 @@ function onReelClick(): void {
 
   currentState.isFishing = false;
   currentState.isBiting = false;
+  reelingClickCount = 0;
   updateButtonStates();
 }
 

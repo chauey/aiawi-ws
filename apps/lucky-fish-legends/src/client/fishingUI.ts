@@ -874,14 +874,36 @@ const FISH_TYPES = [
   },
 ];
 
+// Pet bonuses state (updated from server)
+const currentPetBonus = {
+  fishingBonus: 0, // % increase to rare fish
+  coinBonus: 0, // % increase to coin value
+};
+
+/**
+ * Update pet bonuses (called when pets are equipped/unequipped)
+ */
+export function updatePetBonuses(
+  fishingBonus: number,
+  coinBonus: number,
+): void {
+  currentPetBonus.fishingBonus = fishingBonus;
+  currentPetBonus.coinBonus = coinBonus;
+  print(`🐾 Pet bonuses: +${fishingBonus}% fishing, +${coinBonus}% coins`);
+}
+
 /**
  * Simulate catching a fish (client-side, no server needed)
+ * Pet bonuses increase rare fish chance and coin value
  */
 function simulateCatch():
   | { name: string; rarity: string; weight: number; value: number }
   | undefined {
-  // Random rarity roll
-  const roll = math.random();
+  // Apply pet fishing bonus to rarity roll
+  // Each 10% fishing bonus shifts the roll by 0.01 toward rarer fish
+  const bonusShift = currentPetBonus.fishingBonus * 0.001;
+  const roll = math.max(0, math.random() - bonusShift);
+
   let targetRarity: string;
 
   if (roll < 0.01)
@@ -904,11 +926,16 @@ function simulateCatch():
   const weight =
     math.random() * (fish.maxWeight - fish.minWeight) + fish.minWeight;
 
+  // Apply pet coin bonus to value
+  const coinMultiplier = 1 + currentPetBonus.coinBonus / 100;
+  const baseValue = math.floor(fish.value * (1 + weight / fish.maxWeight));
+  const finalValue = math.floor(baseValue * coinMultiplier);
+
   return {
     name: fish.name,
     rarity: fish.rarity,
     weight: math.floor(weight * 100) / 100, // 2 decimal places
-    value: math.floor(fish.value * (1 + weight / fish.maxWeight)),
+    value: finalValue,
   };
 }
 

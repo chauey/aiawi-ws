@@ -81,7 +81,9 @@
       "@aiawi-ws/game-types": ["libs/shared/game-types/src/index.ts"],
       "@aiawi-ws/product-intelligence": [
         "libs/features/product-intelligence/src/index.ts"
-      ]
+      ],
+      "@aiawi/shared-game-systems": ["libs/shared/game-systems/src/index.ts"],
+      "@aiawi/roblox-core": ["libs/roblox-core/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

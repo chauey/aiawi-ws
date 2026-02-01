@@ -196,33 +196,109 @@ export enum RobloxExperienceType {
 }
 
 /**
- * Core Game System (reusable mechanics)
+ * Game System Category - High-level groupings for organizing systems
+ */
+export enum GameSystemCategory {
+  // Core Mechanics
+  Gameplay = 'Gameplay',
+  Upgrades = 'Upgrades',
+  Progression = 'Progression',
+  Economy = 'Economy',
+
+  // Engagement
+  Retention = 'Retention',
+  Social = 'Social',
+
+  // Revenue
+  Monetization = 'Monetization',
+  Gamepasses = 'Gamepasses',
+  Products = 'Products',
+
+  // World & UX
+  World = 'World',
+  UI = 'UI',
+}
+
+/**
+ * Core Game System - Comprehensive list of reusable game mechanics
+ * Organized by category for feature tracking and analysis
  */
 export enum CoreGameSystem {
+  // ==================== GAMEPLAY SYSTEMS ====================
+  // Core mechanics that define the game loop
+  PlotSystem = 'Plot System', // Plot-based gameplay (tycoon/sim plots)
+  SlotSystem = 'Slot System', // Inventory/equipment slots
+  EggSystem = 'Egg System', // Egg collection/hatching
+  ItemSystem = 'Item System', // General item management
+  RodSystem = 'Rod System', // Fishing rod mechanics
+  FishSystem = 'Fish System', // Fish catching/collection
+  SellingSystem = 'Selling System', // Selling items for currency
+  BoxCollecting = 'Box Collecting', // Collecting spawned boxes/items
+  ToolSystem = 'Tool System', // Tool usage and switching
+  ConveyorSystem = 'Conveyor System', // Conveyor belt mechanics (tycoon)
+  RarityTimers = 'Rarity Timers', // Timer-based rarity spawns
+  BackpackSystem = 'Backpack/Satchel', // Inventory capacity
+
   // Collection Systems
   PetSystem = 'Pet System',
-  EggHatching = 'Egg Hatching',
+  PetCollection = 'Pet Collection',
   ItemCollection = 'Item Collection',
   CardCollection = 'Card Collection',
   MountSystem = 'Mount System',
+  IndexSystem = 'Index/Codex', // Collection completion tracking
 
-  // Progression
-  Rebirth = 'Rebirth/Prestige',
-  Leveling = 'Leveling System',
+  // Gacha/RNG Systems
+  EggHatching = 'Egg Hatching',
+  RaritySystem = 'Rarity System', // Common/Rare/Legendary/Mythic
+  MutationSystem = 'Mutation System', // Shiny/Golden variants
+  GachaRolls = 'Gacha/RNG Rolls',
+
+  // ==================== UPGRADE SYSTEMS ====================
+  // Systems that enhance player capabilities
+  FloorUpgrades = 'Floor Upgrades', // Expand play area
+  SlotUpgrades = 'Slot Upgrades', // Increase storage slots
+  RodUpgrades = 'Rod Upgrades', // Better fishing rods
+  ConveyorUpgrades = 'Conveyor Upgrades', // Faster conveyors
+  ToolUpgrades = 'Tool Upgrades', // Better tools
+  PetUpgrades = 'Pet Upgrades', // Pet leveling/fusion
+  BackpackUpgrades = 'Backpack Upgrades', // More inventory space
+  StatUpgrades = 'Stat Upgrades', // Player stat boosts
+
+  // ==================== PROGRESSION SYSTEMS ====================
+  // Long-term player advancement
+  RebirthSystem = 'Rebirth/Prestige',
+  LevelingSystem = 'Leveling System',
   SkillTree = 'Skill Tree',
-  Quests = 'Quest System',
-  Achievements = 'Achievement System',
-  DailyRewards = 'Daily Rewards',
+  QuestSystem = 'Quest System',
+  AchievementSystem = 'Achievement System',
   SeasonPass = 'Season/Battle Pass',
+  MilestoneRewards = 'Milestone Rewards',
+  Mastery = 'Mastery System',
 
-  // Economy
+  // ==================== RETENTION SYSTEMS ====================
+  // Daily engagement and comeback mechanics
+  DailyRewards = 'Daily Rewards',
+  DailySpin = 'Daily Spin/Wheel',
+  DailyLogin = 'Daily Login Bonus',
+  Streaks = 'Login Streaks',
+  Events = 'Limited Events',
+  PromoCodes = 'Promo Codes',
+  Giveaways = 'Giveaway System',
+  RegularUpdates = 'Regular Updates',
+  Notifications = 'Push Notifications',
+
+  // ==================== ECONOMY SYSTEMS ====================
+  // Currency and trading mechanics
   MultipleCurrencies = 'Multiple Currencies',
   Trading = 'Trading System',
   Marketplace = 'Player Marketplace',
   Crafting = 'Crafting System',
-  Upgrades = 'Upgrade System',
+  Recycling = 'Recycling/Salvage',
+  Gifting = 'Gifting System',
+  Auction = 'Auction System',
 
-  // Social
+  // ==================== SOCIAL SYSTEMS ====================
+  // Multiplayer and community features
   Multiplayer = 'Multiplayer',
   Guilds = 'Guilds/Clans',
   Leaderboards = 'Leaderboards',
@@ -230,28 +306,174 @@ export enum CoreGameSystem {
   Friends = 'Friend System',
   PvP = 'PvP Combat',
   Coop = 'Co-op Gameplay',
+  PartySystem = 'Party/Group System',
 
-  // Engagement
-  Events = 'Limited Events',
-  DailyLogin = 'Daily Login Bonus',
-  Codes = 'Promo Codes',
-  Giveaways = 'Giveaways',
-  Updates = 'Regular Updates',
+  // ==================== WORLD SYSTEMS ====================
+  // World navigation and customization
+  TeleportSystem = 'Teleport System',
+  Zones = 'Multiple Zones/Areas',
+  OpenWorld = 'Open World',
+  Housing = 'Player Housing',
+  CharacterCustomization = 'Character Customization',
 
-  // Monetization
-  GamePasses = 'Game Passes',
-  DevProducts = 'Developer Products',
-  RobuxPurchases = 'Robux Purchases',
+  // ==================== MONETIZATION - GAMEPASSES ====================
+  // One-time purchases
+  VIPGamepass = 'VIP Gamepass',
+  LuckGamepass = 'Luck Gamepass',
+  SuperLuckGamepass = 'Super Luck Gamepass',
+  X2Speed = 'x2 Speed Gamepass',
+  X2Hatch = 'x2 Hatch Speed',
+  X2Coins = 'x2 Coins Gamepass',
+  AutoCollect = 'Auto Collect Gamepass',
+  AutoSell = 'Auto Sell Gamepass',
+  AutoHatch = 'Auto Hatch Gamepass',
+  Fly = 'Fly Gamepass',
+  UnlimitedStorage = 'Unlimited Storage',
+  NoAds = 'No Ads Gamepass',
+
+  // ==================== MONETIZATION - DEV PRODUCTS ====================
+  // Repeatable purchases
+  SkipTimer = 'Skip Effect Timer', // Skip cooldowns/timers
+  ForceSpawnLegendary = 'Force Spawn Legendary',
+  ForceSpawnMythical = 'Force Spawn Mythical',
+  StarterPack = 'Starter Pack',
+  ExoticPack = 'Exotic Pack',
+  ItemProducts = 'Item Products', // Buy specific items
+  CashProducts = 'Cash/Coin Products', // Buy currency
+  RobuxCurrency = 'Robux Currency Packs',
+  LimitedOffers = 'Limited Time Offers',
+  FirstPurchaseBonus = 'First Purchase Bonus',
+  InstantRebirth = 'Instant Rebirth',
+  InventoryExpansion = 'Inventory Expansion',
+
+  // ==================== OTHER SYSTEMS ====================
   VIPServer = 'VIP Servers',
   PremiumBenefits = 'Premium Benefits',
+  ReferralSystem = 'Referral System',
+  ABTesting = 'A/B Testing',
+  Analytics = 'Analytics Integration',
+}
+
+/**
+ * System to Category mapping helper
+ */
+export const SYSTEM_CATEGORIES: Record<CoreGameSystem, GameSystemCategory> = {
+  // Gameplay
+  [CoreGameSystem.PlotSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.SlotSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.EggSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.ItemSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.RodSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.FishSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.SellingSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.BoxCollecting]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.ToolSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.ConveyorSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.RarityTimers]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.BackpackSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.PetSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.PetCollection]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.ItemCollection]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.CardCollection]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.MountSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.IndexSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.EggHatching]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.RaritySystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.MutationSystem]: GameSystemCategory.Gameplay,
+  [CoreGameSystem.GachaRolls]: GameSystemCategory.Gameplay,
+
+  // Upgrades
+  [CoreGameSystem.FloorUpgrades]: GameSystemCategory.Upgrades,
+  [CoreGameSystem.SlotUpgrades]: GameSystemCategory.Upgrades,
+  [CoreGameSystem.RodUpgrades]: GameSystemCategory.Upgrades,
+  [CoreGameSystem.ConveyorUpgrades]: GameSystemCategory.Upgrades,
+  [CoreGameSystem.ToolUpgrades]: GameSystemCategory.Upgrades,
+  [CoreGameSystem.PetUpgrades]: GameSystemCategory.Upgrades,
+  [CoreGameSystem.BackpackUpgrades]: GameSystemCategory.Upgrades,
+  [CoreGameSystem.StatUpgrades]: GameSystemCategory.Upgrades,
+
+  // Progression
+  [CoreGameSystem.RebirthSystem]: GameSystemCategory.Progression,
+  [CoreGameSystem.LevelingSystem]: GameSystemCategory.Progression,
+  [CoreGameSystem.SkillTree]: GameSystemCategory.Progression,
+  [CoreGameSystem.QuestSystem]: GameSystemCategory.Progression,
+  [CoreGameSystem.AchievementSystem]: GameSystemCategory.Progression,
+  [CoreGameSystem.SeasonPass]: GameSystemCategory.Progression,
+  [CoreGameSystem.MilestoneRewards]: GameSystemCategory.Progression,
+  [CoreGameSystem.Mastery]: GameSystemCategory.Progression,
+
+  // Retention
+  [CoreGameSystem.DailyRewards]: GameSystemCategory.Retention,
+  [CoreGameSystem.DailySpin]: GameSystemCategory.Retention,
+  [CoreGameSystem.DailyLogin]: GameSystemCategory.Retention,
+  [CoreGameSystem.Streaks]: GameSystemCategory.Retention,
+  [CoreGameSystem.Events]: GameSystemCategory.Retention,
+  [CoreGameSystem.PromoCodes]: GameSystemCategory.Retention,
+  [CoreGameSystem.Giveaways]: GameSystemCategory.Retention,
+  [CoreGameSystem.RegularUpdates]: GameSystemCategory.Retention,
+  [CoreGameSystem.Notifications]: GameSystemCategory.Retention,
+
+  // Economy
+  [CoreGameSystem.MultipleCurrencies]: GameSystemCategory.Economy,
+  [CoreGameSystem.Trading]: GameSystemCategory.Economy,
+  [CoreGameSystem.Marketplace]: GameSystemCategory.Economy,
+  [CoreGameSystem.Crafting]: GameSystemCategory.Economy,
+  [CoreGameSystem.Recycling]: GameSystemCategory.Economy,
+  [CoreGameSystem.Gifting]: GameSystemCategory.Economy,
+  [CoreGameSystem.Auction]: GameSystemCategory.Economy,
+
+  // Social
+  [CoreGameSystem.Multiplayer]: GameSystemCategory.Social,
+  [CoreGameSystem.Guilds]: GameSystemCategory.Social,
+  [CoreGameSystem.Leaderboards]: GameSystemCategory.Social,
+  [CoreGameSystem.Chat]: GameSystemCategory.Social,
+  [CoreGameSystem.Friends]: GameSystemCategory.Social,
+  [CoreGameSystem.PvP]: GameSystemCategory.Social,
+  [CoreGameSystem.Coop]: GameSystemCategory.Social,
+  [CoreGameSystem.PartySystem]: GameSystemCategory.Social,
 
   // World
-  OpenWorld = 'Open World',
-  Zones = 'Multiple Zones',
-  Teleportation = 'Teleportation',
-  Housing = 'Player Housing',
-  Customization = 'Character Customization',
-}
+  [CoreGameSystem.TeleportSystem]: GameSystemCategory.World,
+  [CoreGameSystem.Zones]: GameSystemCategory.World,
+  [CoreGameSystem.OpenWorld]: GameSystemCategory.World,
+  [CoreGameSystem.Housing]: GameSystemCategory.World,
+  [CoreGameSystem.CharacterCustomization]: GameSystemCategory.World,
+
+  // Gamepasses
+  [CoreGameSystem.VIPGamepass]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.LuckGamepass]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.SuperLuckGamepass]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.X2Speed]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.X2Hatch]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.X2Coins]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.AutoCollect]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.AutoSell]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.AutoHatch]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.Fly]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.UnlimitedStorage]: GameSystemCategory.Gamepasses,
+  [CoreGameSystem.NoAds]: GameSystemCategory.Gamepasses,
+
+  // Products (Dev Products)
+  [CoreGameSystem.SkipTimer]: GameSystemCategory.Products,
+  [CoreGameSystem.ForceSpawnLegendary]: GameSystemCategory.Products,
+  [CoreGameSystem.ForceSpawnMythical]: GameSystemCategory.Products,
+  [CoreGameSystem.StarterPack]: GameSystemCategory.Products,
+  [CoreGameSystem.ExoticPack]: GameSystemCategory.Products,
+  [CoreGameSystem.ItemProducts]: GameSystemCategory.Products,
+  [CoreGameSystem.CashProducts]: GameSystemCategory.Products,
+  [CoreGameSystem.RobuxCurrency]: GameSystemCategory.Products,
+  [CoreGameSystem.LimitedOffers]: GameSystemCategory.Products,
+  [CoreGameSystem.FirstPurchaseBonus]: GameSystemCategory.Products,
+  [CoreGameSystem.InstantRebirth]: GameSystemCategory.Products,
+  [CoreGameSystem.InventoryExpansion]: GameSystemCategory.Products,
+
+  // Monetization (Other)
+  [CoreGameSystem.VIPServer]: GameSystemCategory.Monetization,
+  [CoreGameSystem.PremiumBenefits]: GameSystemCategory.Monetization,
+  [CoreGameSystem.ReferralSystem]: GameSystemCategory.Monetization,
+  [CoreGameSystem.ABTesting]: GameSystemCategory.Monetization,
+  [CoreGameSystem.Analytics]: GameSystemCategory.Monetization,
+};
 
 /**
  * Success Factor for games

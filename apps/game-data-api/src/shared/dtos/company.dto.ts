@@ -63,6 +63,7 @@ export enum CompanyRelationship {
   Reference = 'Reference',
   Prospect = 'Prospect',
   Vendor = 'Vendor',
+  Complementary = 'Complementary',
 }
 
 /**

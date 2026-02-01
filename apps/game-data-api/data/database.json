@@ -2035,15 +2035,885 @@
   ],
   "products": [
     {
-      "id": "52af7b97-ed7c-4e94-85d3-f8a877d22ae8",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "88058380-2a49-4713-b9ac-292b3bfcc321",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Dragon Legends",
+      "slug": "dragon-legends",
+      "tagline": "Collect. Breed. Conquer.",
+      "description": "Epic dragon collection game with breeding, battling, and trading. Collect 500+ unique dragons across elemental types.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Simulation",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Children (5-12)",
+        "Teens (13-17)"
+      ],
+      "relationship": "Our Product",
+      "status": "In Development",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasLeaderboards": true,
+        "hasAchievements": true,
+        "hasRewards": true,
+        "hasProgress": true,
+        "hasMicroTransactions": true,
+        "hasTrading": true,
+        "hasCollection": true,
+        "hasBreeding": true,
+        "hasBattles": true,
+        "hasDailyRewards": true,
+        "hasEvents": true,
+        "hasGuilds": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 0,
+        "monthlyActiveUsers": 0,
+        "averageRating": 0,
+        "projectedMonthlyRevenue": 50000,
+        "developmentProgress": 35
+      },
+      "strengths": [
+        "Unique dragon theme differentiates from pet simulators",
+        "Breeding system adds depth beyond collection",
+        "Elemental combat creates strategic gameplay",
+        "Epic visual style appeals to older kids/teens",
+        "Trading economy for dragon marketplace"
+      ],
+      "weaknesses": [
+        "More complex than typical simulators",
+        "Needs strong balancing for combat",
+        "Higher art asset requirements"
+      ],
+      "uniqueSellingPoints": [
+        "Dragon breeding with genetics system",
+        "Elemental rock-paper-scissors combat",
+        "Dragon evolution chains",
+        "Aerial dragon racing",
+        "Guild dragon wars"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 90,
+      "recommendedForStudy": false,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "dragons",
+        "collection",
+        "breeding",
+        "our-game",
+        "development"
+      ]
+    },
+    {
+      "id": "2a492ee4-60d8-424f-90a3-c26a535ffd9b",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Lucky Fish Legends",
+      "slug": "lucky-fish-legends",
+      "tagline": "Cast your line, catch your fortune!",
+      "description": "Relaxing fishing simulator with rare fish collection, aquarium building, and underwater exploration.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Simulation",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Children (5-12)",
+        "Teens (13-17)",
+        "Adults (25-44)"
+      ],
+      "relationship": "Our Product",
+      "status": "In Development",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasLeaderboards": true,
+        "hasAchievements": true,
+        "hasRewards": true,
+        "hasProgress": true,
+        "hasMicroTransactions": true,
+        "hasTrading": true,
+        "hasCollection": true,
+        "hasAquarium": true,
+        "hasFishing": true,
+        "hasDailyRewards": true,
+        "hasEvents": true,
+        "hasSeasons": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 0,
+        "monthlyActiveUsers": 0,
+        "averageRating": 0,
+        "projectedMonthlyRevenue": 30000,
+        "developmentProgress": 20
+      },
+      "strengths": [
+        "Relaxing gameplay appeals to casual audience",
+        "Lower barrier to entry than combat games",
+        "Aquarium building = housing satisfaction",
+        "Seasonal fish create event-driven play",
+        "Underwater exploration adds adventure"
+      ],
+      "weaknesses": [
+        "Fishing niche smaller than pet collecting",
+        "Less viral potential than competitive games",
+        "Need variety to prevent repetition"
+      ],
+      "uniqueSellingPoints": [
+        "Custom aquarium building and decoration",
+        "Rare legendary fish with special abilities",
+        "Underwater diving exploration",
+        "Fish fusion for unique hybrids",
+        "Fishing tournaments with prizes"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 75,
+      "recommendedForStudy": false,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "fishing",
+        "collection",
+        "aquarium",
+        "our-game",
+        "development"
+      ]
+    },
+    {
+      "id": "5173add5-92d8-4fef-9779-3f5027e83fed",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Family Quest",
+      "slug": "family-quest",
+      "tagline": "Adventures for the whole family!",
+      "description": "Cooperative family adventure game with quests, puzzles, and rewards that parents and kids complete together.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Casual",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Families",
+        "Parents",
+        "Children (5-12)"
+      ],
+      "relationship": "Our Product",
+      "status": "Concept",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasAchievements": true,
+        "hasRewards": true,
+        "hasProgress": true,
+        "hasMicroTransactions": true,
+        "hasQuests": true,
+        "hasPuzzles": true,
+        "hasFamilyFeatures": true,
+        "hasParentControls": true,
+        "hasDailyRewards": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 0,
+        "monthlyActiveUsers": 0,
+        "averageRating": 0,
+        "projectedMonthlyRevenue": 20000,
+        "developmentProgress": 5
+      },
+      "strengths": [
+        "Underserved family co-op niche on Roblox",
+        "Parents want to play WITH kids safely",
+        "Educational elements appeal to parents",
+        "Lower competition than pet simulators",
+        "Cross-generational appeal"
+      ],
+      "weaknesses": [
+        "Smaller addressable market",
+        "Complex multiplayer coordination",
+        "Parents less likely to spend"
+      ],
+      "uniqueSellingPoints": [
+        "Designed for parent-child co-op",
+        "Age-appropriate content guaranteed",
+        "Educational puzzle elements",
+        "Family achievement system",
+        "Safe chat and moderation"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 60,
+      "recommendedForStudy": false,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "family",
+        "coop",
+        "adventure",
+        "our-game",
+        "concept"
+      ]
+    },
+    {
+      "id": "203d0a9f-9aeb-4129-a86f-016fccf06342",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Fish It! 🐟",
+      "slug": "fish-it",
+      "tagline": "The viral fishing sensation",
+      "description": "Currently #1 viral game on Roblox. Simple tap-to-catch fishing with rare fish collection and leaderboards.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Simulation",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Children (5-12)",
+        "Teens (13-17)"
+      ],
+      "relationship": "Inspiration",
+      "status": "Growing",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasLeaderboards": true,
+        "hasCollection": true,
+        "hasMicroTransactions": true,
+        "hasAchievements": true,
+        "hasDailyRewards": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 500000000,
+        "concurrentPlayers": 940000,
+        "monthlyActiveUsers": 50000000,
+        "dailyActiveUsers": 12000000,
+        "revenueMonthly": 1500000,
+        "revenueAnnual": 18000000,
+        "averageRating": 4.7,
+        "reviewCount": 350000,
+        "retentionDay1": 70,
+        "retentionDay7": 45,
+        "retentionDay30": 22
+      },
+      "strengths": [
+        "Extremely simple loop",
+        "Viral TikTok clips",
+        "Low dev complexity",
+        "Fast session times",
+        "Collection dopamine hits"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "One-tap fishing",
+        "Rare fish flex culture",
+        "Real-time leaderboards",
+        "Fish trading",
+        "Daily challenges"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 98,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "fishing",
+        "viral",
+        "simulator",
+        "reference"
+      ]
+    },
+    {
+      "id": "dc604a52-6e86-482f-89fa-4b71e79b3e7e",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Adopt Me!",
+      "slug": "adopt-me",
+      "tagline": "Virtual pet adoption and nurturing",
+      "description": "One of the most successful Roblox games ever. Pet collection, trading, housing, and social features.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Simulation",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Children (5-12)",
+        "Families"
+      ],
+      "relationship": "Competitor",
+      "status": "Mature",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasLeaderboards": false,
+        "hasCollection": true,
+        "hasTrading": true,
+        "hasMicroTransactions": true,
+        "hasHousing": true,
+        "hasDailyRewards": true,
+        "hasEvents": true,
+        "hasPets": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 3800000000,
+        "concurrentPlayers": 500000,
+        "monthlyActiveUsers": 100000000,
+        "dailyActiveUsers": 25000000,
+        "revenueMonthly": 3000000,
+        "revenueAnnual": 36000000,
+        "averageRating": 4.8,
+        "reviewCount": 2500000,
+        "retentionDay1": 65,
+        "retentionDay7": 38,
+        "retentionDay30": 18
+      },
+      "strengths": [
+        "Pet collection mastery",
+        "Trading economy",
+        "Event-driven updates",
+        "Strong social features",
+        "Family-friendly content"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "Pet aging system",
+        "House customization",
+        "Trading with friends",
+        "Neon/Mega neon pets",
+        "Seasonal events"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 95,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "pets",
+        "trading",
+        "social",
+        "competitor"
+      ]
+    },
+    {
+      "id": "84a224c5-2588-4a59-bdb3-713fd0b7bec2",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Blox Fruits",
+      "slug": "blox-fruits",
+      "tagline": "Anime-inspired devil fruit powers",
+      "description": "One Piece inspired RPG with grinding, PvP combat, fruit powers, and raids. Massive teen audience.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "RPG",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Teens (13-17)"
+      ],
+      "relationship": "Competitor",
+      "status": "Mature",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasLeaderboards": true,
+        "hasPvP": true,
+        "hasQuests": true,
+        "hasLevelSystem": true,
+        "hasMicroTransactions": true,
+        "hasTrading": true,
+        "hasBosses": true,
+        "hasGuilds": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 4500000000,
+        "concurrentPlayers": 600000,
+        "monthlyActiveUsers": 80000000,
+        "dailyActiveUsers": 18000000,
+        "revenueMonthly": 2500000,
+        "revenueAnnual": 30000000,
+        "averageRating": 4.6,
+        "reviewCount": 1800000,
+        "retentionDay1": 55,
+        "retentionDay7": 32,
+        "retentionDay30": 15
+      },
+      "strengths": [
+        "Deep grinding loop",
+        "Anime IP appeal",
+        "Regular content updates",
+        "Strong PvP community",
+        "Raid boss content"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "Devil fruit powers",
+        "Raid bosses",
+        "Fruit trading",
+        "Sea exploration",
+        "Awakening system"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 94,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "anime",
+        "rpg",
+        "combat",
+        "competitor"
+      ]
+    },
+    {
+      "id": "6cb0e56d-067f-4477-a280-1c5433e99536",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Brookhaven RP",
+      "slug": "brookhaven-rp",
+      "tagline": "The roleplay town simulation",
+      "description": "Open-world roleplay with houses, vehicles, and social interactions. Massive casual audience.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Simulation",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Children (5-12)",
+        "Teens (13-17)"
+      ],
+      "relationship": "Reference",
+      "status": "Mature",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasHousing": true,
+        "hasVehicles": true,
+        "hasMicroTransactions": true,
+        "hasCustomization": true,
+        "hasEvents": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 3200000000,
+        "concurrentPlayers": 400000,
+        "monthlyActiveUsers": 60000000,
+        "dailyActiveUsers": 15000000,
+        "revenueMonthly": 2000000,
+        "revenueAnnual": 24000000,
+        "averageRating": 4.5,
+        "reviewCount": 1200000,
+        "retentionDay1": 50,
+        "retentionDay7": 28,
+        "retentionDay30": 12
+      },
+      "strengths": [
+        "Pure sandbox freedom",
+        "No objectives = no pressure",
+        "Family roleplay",
+        "Consistent updates",
+        "Low barrier to entry"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "Open world town",
+        "Premium houses",
+        "Vehicle variety",
+        "Roleplay flexibility",
+        "Social sandbox"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 90,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "roleplay",
+        "social",
+        "reference"
+      ]
+    },
+    {
+      "id": "4936d5c6-1f27-4be0-a6aa-3710c48d7255",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Sol's RNG",
+      "slug": "sols-rng",
+      "tagline": "Pure luck simulator",
+      "description": "Roll for rare auras with extreme rarity tiers. Zero skill barrier - pure gambling psychology.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Casual",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Teens (13-17)"
+      ],
+      "relationship": "Inspiration",
+      "status": "Growing",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasLeaderboards": true,
+        "hasGacha": true,
+        "hasMicroTransactions": true,
+        "hasTrading": true,
+        "hasCollection": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 800000000,
+        "concurrentPlayers": 350000,
+        "monthlyActiveUsers": 30000000,
+        "dailyActiveUsers": 8000000,
+        "revenueMonthly": 800000,
+        "revenueAnnual": 9600000,
+        "averageRating": 4.4,
+        "reviewCount": 400000,
+        "retentionDay1": 62,
+        "retentionDay7": 40,
+        "retentionDay30": 20
+      },
+      "strengths": [
+        "Highest margin monetization",
+        "Zero skill barrier",
+        "Flex culture",
+        "Addictive gambling loop",
+        "Viral flex moments"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "Pure RNG gameplay",
+        "Visible auras as status",
+        "Extreme rarities",
+        "Luck boosts",
+        "Biome bonuses"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 92,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "rng",
+        "gacha",
+        "luck",
+        "reference"
+      ]
+    },
+    {
+      "id": "febdfde4-0adb-4b83-a66c-75e616db6b70",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Dress To Impress",
+      "slug": "dress-to-impress",
+      "tagline": "Competitive fashion game",
+      "description": "Timed fashion competition with player voting. Social validation loops and creator expression.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Casual",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Teens (13-17)"
+      ],
+      "relationship": "Reference",
+      "status": "Mature",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasLeaderboards": true,
+        "hasCustomization": true,
+        "hasMicroTransactions": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 600000000,
+        "concurrentPlayers": 400000,
+        "monthlyActiveUsers": 25000000,
+        "averageRating": 4.6
+      },
+      "strengths": [
+        "Social validation",
+        "Creator expression",
+        "High retention"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "Theme-based rounds",
+        "Player voting",
+        "Runway walks"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 88,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "fashion",
+        "social",
+        "voting",
+        "reference"
+      ]
+    },
+    {
+      "id": "06b1bd5f-69e8-41c8-8875-f91301581ff9",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "The Strongest Battlegrounds",
+      "slug": "the-strongest-battlegrounds",
+      "tagline": "Anime combat arena",
+      "description": "One Punch Man inspired combat game with character abilities and ranked PvP.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Action",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Teens (13-17)"
+      ],
+      "relationship": "Reference",
+      "status": "Growing",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasPvP": true,
+        "hasLeaderboards": true,
+        "hasMicroTransactions": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 300000000,
+        "concurrentPlayers": 200000,
+        "monthlyActiveUsers": 15000000,
+        "averageRating": 4.5
+      },
+      "strengths": [
+        "Skill-based combat",
+        "Anime IP appeal",
+        "Ranked matchmaking"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "Character ultimates",
+        "Competitive 1v1",
+        "Anime moves"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 85,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "anime",
+        "combat",
+        "pvp",
+        "reference"
+      ]
+    },
+    {
+      "id": "b3f9bfd8-4f8f-4258-8533-e89b14e7cd8d",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "RIVALS",
+      "slug": "rivals",
+      "tagline": "Competitive tactical FPS",
+      "description": "High-stakes competitive shooter with skill-based matchmaking and ranked play.",
+      "screenshotUrls": [],
+      "category": "Game",
+      "subcategory": "Action",
+      "platforms": [
+        "Roblox"
+      ],
+      "targetAudiences": [
+        "Teens (13-17)"
+      ],
+      "relationship": "Reference",
+      "status": "Growing",
+      "featureFlags": {
+        "hasMultiplayer": true,
+        "hasPvP": true,
+        "hasLeaderboards": true,
+        "hasRanked": true,
+        "hasMicroTransactions": true
+      },
+      "features": [],
+      "monetizationModel": "In-App Purchases",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "metrics": {
+        "totalUsers": 200000000,
+        "concurrentPlayers": 250000,
+        "monthlyActiveUsers": 12000000,
+        "averageRating": 4.6
+      },
+      "strengths": [
+        "Esports potential",
+        "Skill-based gameplay",
+        "Premium skins"
+      ],
+      "weaknesses": [],
+      "uniqueSellingPoints": [
+        "Ranked matchmaking",
+        "Competitive modes",
+        "Skin economy"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 82,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "roblox",
+        "game",
+        "fps",
+        "competitive",
+        "esports",
+        "reference"
+      ]
+    },
+    {
+      "id": "f6ba25eb-dec1-490a-a88a-f9453af19f4c",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Claude",
       "slug": "claude",
       "tagline": "AI assistant by Anthropic",
-      "description": "Constitutional AI assistant focused on being helpful, harmless, and honest.",
+      "description": "Constitutional AI assistant focused on being helpful, harmless, and honest. Long context, coding, and analysis.",
       "screenshotUrls": [],
       "category": "AI Assistant",
       "subcategory": "Chatbot",
@@ -2065,7 +2935,10 @@
         "hasAIAssistant": true,
         "hasNaturalLanguage": true,
         "hasFreeTier": true,
-        "hasSubscription": true
+        "hasSubscription": true,
+        "hasLongContext": true,
+        "hasCodeGeneration": true,
+        "hasArtifacts": true
       },
       "features": [],
       "monetizationModel": "Freemium",
@@ -2075,18 +2948,28 @@
       "metrics": {
         "totalUsers": 10000000,
         "monthlyActiveUsers": 5000000,
-        "averageRating": 4.8
+        "averageRating": 4.8,
+        "contextWindow": 200000,
+        "apiCostPer1MTokens": 15
       },
       "strengths": [
-        "Safety",
-        "Long context",
-        "Coding ability"
+        "Constitutional AI ensures safe outputs",
+        "200K token context window - industry leading",
+        "Strong coding and analysis capabilities",
+        "Artifacts feature for interactive content",
+        "Enterprise-grade reliability"
       ],
-      "weaknesses": [],
+      "weaknesses": [
+        "No real-time internet access",
+        "Image generation limited",
+        "Smaller ecosystem than ChatGPT"
+      ],
       "uniqueSellingPoints": [
         "200K context window",
-        "Constitutional AI",
-        "Artifacts feature"
+        "Constitutional AI safety",
+        "Artifacts for code/documents",
+        "Claude 3.5 Sonnet performance",
+        "Computer use capabilities"
       ],
       "lessonsLearned": [],
       "competitorIds": [],
@@ -2102,19 +2985,21 @@
         "ai",
         "chatbot",
         "llm",
-        "productivity"
+        "productivity",
+        "coding",
+        "reference"
       ]
     },
     {
-      "id": "b538a974-809b-42a1-876e-d422a5d7fee0",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "e51e8d6d-5788-488c-a43c-d31f264f9ec3",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "ChatGPT",
       "slug": "chatgpt",
       "tagline": "Conversational AI by OpenAI",
-      "description": "AI chatbot powered by GPT models for conversation, writing, and coding.",
+      "description": "AI chatbot powered by GPT-4 for conversation, writing, coding, and image generation.",
       "screenshotUrls": [],
       "category": "AI Assistant",
       "subcategory": "Chatbot",
@@ -2137,8 +3022,10 @@
         "hasAIGeneration": true,
         "hasAIAssistant": true,
         "hasNaturalLanguage": true,
-        "hasFreeTier": true,
-        "hasSubscription": true
+        "hasImageGeneration": true,
+        "hasVoice": true,
+        "hasPlugins": true,
+        "hasGPTs": true
       },
       "features": [],
       "monetizationModel": "Freemium",
@@ -2148,24 +3035,37 @@
       "metrics": {
         "totalUsers": 200000000,
         "monthlyActiveUsers": 100000000,
-        "averageRating": 4.6
+        "averageRating": 4.6,
+        "weeklyActiveUsers": 80000000,
+        "contextWindow": 128000,
+        "revenueAnnual": 2000000000
       },
       "strengths": [
-        "Market leader",
-        "GPT-4",
-        "Plugin ecosystem"
+        "Market leader with massive user base",
+        "GPT-4 performance benchmark",
+        "Plugin/GPT ecosystem",
+        "DALL-E image generation built-in",
+        "Voice mode for conversations",
+        "Microsoft partnership & distribution"
       ],
       "weaknesses": [
-        "Rate limits",
-        "Hallucinations"
+        "Rate limits frustrate power users",
+        "Hallucinations remain issue",
+        "Privacy concerns from enterprise",
+        "Increasing competition"
       ],
-      "uniqueSellingPoints": [],
+      "uniqueSellingPoints": [
+        "GPT Store with custom GPTs",
+        "Multimodal (text, image, voice)",
+        "Browser and file analysis",
+        "Canvas for document editing"
+      ],
       "lessonsLearned": [],
       "competitorIds": [],
       "marketPosition": "Niche",
       "differentiators": [],
       "threatLevel": "Low",
-      "priorityScore": 90,
+      "priorityScore": 92,
       "recommendedForStudy": true,
       "replicationDifficulty": "Medium",
       "strategicNotes": "",
@@ -2173,13 +3073,540 @@
       "tags": [
         "ai",
         "chatbot",
-        "llm"
+        "llm",
+        "reference"
       ]
     },
     {
-      "id": "d99e0d5b-cf31-41a2-8853-e7d4b5006d99",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "17f07380-90ae-4194-b1e0-b7329d5b63cc",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Cursor",
+      "slug": "cursor",
+      "tagline": "AI-first code editor",
+      "description": "VS Code fork with deep AI integration for code completion, chat, and intelligent editing.",
+      "screenshotUrls": [],
+      "category": "AI Assistant",
+      "subcategory": "Code Assistant",
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "targetAudiences": [
+        "Developers"
+      ],
+      "relationship": "Reference",
+      "status": "Growing",
+      "featureFlags": {
+        "hasAIGeneration": true,
+        "hasAIAssistant": true,
+        "hasCodeCompletion": true,
+        "hasChat": true,
+        "hasMultiFileEditing": true,
+        "hasFreeTier": true,
+        "hasSubscription": true
+      },
+      "features": [],
+      "monetizationModel": "Freemium",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "startingPrice": 20,
+      "metrics": {
+        "totalUsers": 500000,
+        "monthlyActiveUsers": 200000,
+        "averageRating": 4.9,
+        "growthRateMonthly": 25
+      },
+      "strengths": [
+        "VS Code familiarity - zero learning curve",
+        "Multi-file context awareness",
+        "Composer for complex edits",
+        "Tab-to-accept feels native",
+        "Codebase understanding"
+      ],
+      "weaknesses": [
+        "Subscription cost for heavy use",
+        "Dependent on external LLM providers",
+        "Competition from GitHub Copilot"
+      ],
+      "uniqueSellingPoints": [
+        "Composer multi-file editing",
+        "Codebase-aware suggestions",
+        "VS Code extension compatibility",
+        "Multiple model support"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 88,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "ai",
+        "coding",
+        "ide",
+        "developer-tools",
+        "reference"
+      ]
+    },
+    {
+      "id": "168b4128-adcb-46ce-9607-ced56d405a9b",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "GitHub Copilot",
+      "slug": "github-copilot",
+      "tagline": "Your AI pair programmer",
+      "description": "AI coding assistant integrated into popular IDEs for code completion and suggestions.",
+      "screenshotUrls": [],
+      "category": "AI Assistant",
+      "subcategory": "Code Assistant",
+      "platforms": [
+        "Cross-Platform"
+      ],
+      "targetAudiences": [
+        "Developers",
+        "Enterprise"
+      ],
+      "relationship": "Competitor",
+      "status": "Mature",
+      "featureFlags": {
+        "hasAIGeneration": true,
+        "hasCodeCompletion": true,
+        "hasChat": true,
+        "hasSubscription": true
+      },
+      "features": [],
+      "monetizationModel": "Subscription",
+      "pricingTiers": [],
+      "hasFreeTier": false,
+      "freeTrialDays": 30,
+      "startingPrice": 10,
+      "metrics": {
+        "totalUsers": 1300000,
+        "averageRating": 4.7,
+        "enterpriseAdoption": 50000
+      },
+      "strengths": [
+        "GitHub integration and distribution",
+        "Microsoft/OpenAI backing",
+        "Enterprise trust and compliance",
+        "IDE plugin approach",
+        "Free for students/OSS"
+      ],
+      "weaknesses": [
+        "No free tier for professionals",
+        "Context window limitations",
+        "Plugin model less integrated than Cursor"
+      ],
+      "uniqueSellingPoints": [
+        "GitHub ecosystem integration",
+        "Enterprise compliance features",
+        "Works in any IDE"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 85,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "ai",
+        "coding",
+        "github",
+        "developer-tools",
+        "competitor"
+      ]
+    },
+    {
+      "id": "69826bf1-93d8-4509-8639-10d559931f06",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Perplexity AI",
+      "slug": "perplexity-ai",
+      "tagline": "Ask anything",
+      "description": "AI-powered answer engine combining LLMs with real-time web search for sourced answers.",
+      "screenshotUrls": [],
+      "category": "AI Assistant",
+      "subcategory": "Data Analysis",
+      "platforms": [
+        "Web",
+        "iOS",
+        "Android"
+      ],
+      "targetAudiences": [
+        "General",
+        "Developers"
+      ],
+      "relationship": "Reference",
+      "status": "Growing",
+      "featureFlags": {
+        "hasAIGeneration": true,
+        "hasWebSearch": true,
+        "hasCitations": true,
+        "hasUserAccounts": true,
+        "hasMobileApp": true,
+        "hasFreeTier": true
+      },
+      "features": [],
+      "monetizationModel": "Freemium",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "startingPrice": 20,
+      "metrics": {
+        "totalUsers": 10000000,
+        "monthlyActiveUsers": 3000000,
+        "averageRating": 4.8,
+        "queriesPerMonth": 500000000
+      },
+      "strengths": [
+        "Citations build trust",
+        "Real-time web access",
+        "Clean, focused UI",
+        "Multi-model options",
+        "Good mobile experience"
+      ],
+      "weaknesses": [
+        "Less capable for creative tasks",
+        "Search dependency",
+        "Competition from Google/ChatGPT"
+      ],
+      "uniqueSellingPoints": [
+        "Every claim has source citations",
+        "Real-time web search built-in",
+        "Focus mode for domains",
+        "Collections for research"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 82,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "ai",
+        "search",
+        "research",
+        "reference"
+      ]
+    },
+    {
+      "id": "8d20c15a-d5bd-4e71-9dd3-15d5aace2e0e",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Midjourney",
+      "slug": "midjourney",
+      "tagline": "Imagine anything",
+      "description": "AI image generation through Discord with artistic and photorealistic capabilities.",
+      "screenshotUrls": [],
+      "category": "AI Assistant",
+      "subcategory": "Image Generation",
+      "platforms": [
+        "Web"
+      ],
+      "targetAudiences": [
+        "Designers",
+        "General"
+      ],
+      "relationship": "Reference",
+      "status": "Mature",
+      "featureFlags": {
+        "hasAIGeneration": true,
+        "hasImageGeneration": true,
+        "hasSubscription": true,
+        "hasCommunity": true
+      },
+      "features": [],
+      "monetizationModel": "Subscription",
+      "pricingTiers": [],
+      "hasFreeTier": false,
+      "startingPrice": 10,
+      "metrics": {
+        "totalUsers": 16000000,
+        "monthlyActiveUsers": 5000000,
+        "revenueAnnual": 200000000,
+        "averageRating": 4.7
+      },
+      "strengths": [
+        "Best-in-class image quality",
+        "Strong artistic style",
+        "Active Discord community",
+        "Continuous improvement",
+        "Subscription-only = predictable revenue"
+      ],
+      "weaknesses": [
+        "Discord-only limits accessibility",
+        "Learning curve for prompting",
+        "No free tier",
+        "Copyright concerns"
+      ],
+      "uniqueSellingPoints": [
+        "Industry-leading aesthetic quality",
+        "Strong at artistic styles",
+        "Vibrant community gallery",
+        "v6 photorealism"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 80,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "ai",
+        "image-generation",
+        "creative",
+        "reference"
+      ]
+    },
+    {
+      "id": "f18d95ab-1ada-4c2a-bd96-7a0014a7ad48",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Replit Agent",
+      "slug": "replit-agent",
+      "tagline": "Build software with AI",
+      "description": "AI agent that can build entire applications from natural language descriptions.",
+      "screenshotUrls": [],
+      "category": "AI Assistant",
+      "subcategory": "Code Assistant",
+      "platforms": [
+        "Web"
+      ],
+      "targetAudiences": [
+        "Developers",
+        "General"
+      ],
+      "relationship": "Reference",
+      "status": "Growing",
+      "featureFlags": {
+        "hasAIGeneration": true,
+        "hasCodeExecution": true,
+        "hasDeployment": true,
+        "hasFreeTier": true,
+        "hasAgent": true
+      },
+      "features": [],
+      "monetizationModel": "Freemium",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "startingPrice": 25,
+      "metrics": {
+        "totalUsers": 1000000,
+        "averageRating": 4.5
+      },
+      "strengths": [
+        "Full stack in browser",
+        "Instant deployment",
+        "No local setup needed",
+        "Agentic code generation",
+        "Good for learning"
+      ],
+      "weaknesses": [
+        "Performance limitations",
+        "Complex apps challenging",
+        "Subscription costs add up"
+      ],
+      "uniqueSellingPoints": [
+        "Natural language to deployed app",
+        "Zero setup required",
+        "Integrated hosting",
+        "Collaborative coding"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 78,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "ai",
+        "coding",
+        "agent",
+        "development",
+        "reference"
+      ]
+    },
+    {
+      "id": "88aeeea5-fb8d-4bf4-a31d-7c5c90591cea",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "v0 by Vercel",
+      "slug": "v0-vercel",
+      "tagline": "Generate UI with AI",
+      "description": "AI-powered UI generation tool that creates React components from natural language.",
+      "screenshotUrls": [],
+      "category": "AI Assistant",
+      "subcategory": "Code Assistant",
+      "platforms": [
+        "Web"
+      ],
+      "targetAudiences": [
+        "Developers"
+      ],
+      "relationship": "Reference",
+      "status": "Growing",
+      "featureFlags": {
+        "hasAIGeneration": true,
+        "hasCodeGeneration": true,
+        "hasUIGeneration": true,
+        "hasFreeTier": true
+      },
+      "features": [],
+      "monetizationModel": "Freemium",
+      "pricingTiers": [],
+      "hasFreeTier": true,
+      "startingPrice": 20,
+      "metrics": {
+        "totalUsers": 500000,
+        "averageRating": 4.6
+      },
+      "strengths": [
+        "Shadcn/UI integration",
+        "Vercel ecosystem",
+        "High quality output",
+        "Easy iteration"
+      ],
+      "weaknesses": [
+        "React/Next.js only",
+        "Limited customization",
+        "Credit system frustrating"
+      ],
+      "uniqueSellingPoints": [
+        "Production-ready React code",
+        "Shadcn/UI components",
+        "Visual iteration",
+        "Direct Vercel deploy"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 75,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "ai",
+        "ui",
+        "react",
+        "developer-tools",
+        "reference"
+      ]
+    },
+    {
+      "id": "301bc0d2-b0bc-4378-b3cf-ff50c146ff16",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "creatorId": "seed",
+      "lastModifierId": "seed",
+      "name": "Devin",
+      "slug": "devin",
+      "tagline": "The first AI software engineer",
+      "description": "Autonomous AI software engineer that can plan, code, debug, and deploy software.",
+      "screenshotUrls": [],
+      "category": "AI Assistant",
+      "subcategory": "Code Assistant",
+      "platforms": [
+        "Web"
+      ],
+      "targetAudiences": [
+        "Enterprise",
+        "Developers"
+      ],
+      "relationship": "Reference",
+      "status": "Beta",
+      "featureFlags": {
+        "hasAIGeneration": true,
+        "hasAgent": true,
+        "hasAutonomous": true,
+        "hasPlanning": true,
+        "hasDebugging": true
+      },
+      "features": [],
+      "monetizationModel": "Subscription",
+      "pricingTiers": [],
+      "hasFreeTier": false,
+      "startingPrice": 500,
+      "metrics": {
+        "totalUsers": 10000,
+        "averageRating": 4.3,
+        "tasksCompleted": 50000
+      },
+      "strengths": [
+        "Truly autonomous operation",
+        "End-to-end task completion",
+        "Learning from feedback",
+        "First mover in autonomous coding"
+      ],
+      "weaknesses": [
+        "Expensive ($500/mo)",
+        "Limited access",
+        "Complex tasks still challenging",
+        "Trust/verification needs"
+      ],
+      "uniqueSellingPoints": [
+        "First truly autonomous AI engineer",
+        "Plans and executes independently",
+        "Uses tools like a human would",
+        "Continuous improvement"
+      ],
+      "lessonsLearned": [],
+      "competitorIds": [],
+      "marketPosition": "Niche",
+      "differentiators": [],
+      "threatLevel": "Low",
+      "priorityScore": 70,
+      "recommendedForStudy": true,
+      "replicationDifficulty": "Medium",
+      "strategicNotes": "",
+      "technicalNotes": "",
+      "tags": [
+        "ai",
+        "agent",
+        "autonomous",
+        "coding",
+        "reference"
+      ]
+    },
+    {
+      "id": "25c5e791-5ee4-4ff8-b6c5-f2f06cefbc1c",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Google Data Analytics Certificate",
@@ -2240,9 +3667,9 @@
       ]
     },
     {
-      "id": "0de78707-1691-4aae-9158-1ed4ad5a1dde",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "2f00a702-92fb-4a9a-81d5-2c834f1f2f25",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Notion",
@@ -2315,9 +3742,9 @@
       ]
     },
     {
-      "id": "eba1c600-50f9-49c4-b8e9-e8fa58dbc0cc",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "eb7954bf-718e-4c48-a0a2-6db661ab3b2a",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Life360",
@@ -2382,9 +3809,9 @@
       ]
     },
     {
-      "id": "04616efd-0757-4639-9145-2f1a8658f4ca",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "f4910c5c-fc1d-4cd7-aa6c-a604e1f0610e",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "OurHome",
@@ -2393,7 +3820,7 @@
       "description": "Chore and reward system for families with task assignments and point tracking.",
       "screenshotUrls": [],
       "category": "Family App",
-      "subcategory": "Other",
+      "subcategory": "Task Management",
       "platforms": [
         "iOS",
         "Android",
@@ -2452,9 +3879,9 @@
       ]
     },
     {
-      "id": "e1932281-5463-4694-a4f2-987c09497be4",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "f2a33913-f833-4ae4-9b87-6d4f0cf9ddff",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Pet Simulator X",
@@ -2479,7 +3906,10 @@
         "hasAchievements": true,
         "hasRewards": true,
         "hasProgress": true,
-        "hasMicroTransactions": true
+        "hasMicroTransactions": true,
+        "hasTrading": true,
+        "hasCollection": true,
+        "hasEvents": true
       },
       "features": [],
       "monetizationModel": "In-App Purchases",
@@ -2488,25 +3918,38 @@
       "metrics": {
         "totalUsers": 100000000,
         "monthlyActiveUsers": 20000000,
-        "averageRating": 4.8
+        "dailyActiveUsers": 5000000,
+        "concurrentPlayers": 150000,
+        "revenueMonthly": 3000000,
+        "revenueAnnual": 36000000,
+        "averageRating": 4.8,
+        "reviewCount": 800000,
+        "retentionDay1": 58,
+        "retentionDay7": 35,
+        "retentionDay30": 16
       },
       "strengths": [
-        "Pet collection",
-        "Egg hatching",
-        "Trading system"
+        "Deeply satisfying collection loop",
+        "Massive variety of pets with clear rarity tiers",
+        "Regular weekly updates keep content fresh",
+        "Strong social features - trading creates economy",
+        "YouTuber partnerships drive awareness",
+        "Events create urgency and FOMO"
       ],
       "weaknesses": [],
       "uniqueSellingPoints": [
         "Huge variety of pets",
         "Regular updates",
-        "Events"
+        "Events system",
+        "Trading economy",
+        "Egg hatching anticipation"
       ],
       "lessonsLearned": [],
       "competitorIds": [],
       "marketPosition": "Niche",
       "differentiators": [],
       "threatLevel": "Low",
-      "priorityScore": 95,
+      "priorityScore": 98,
       "recommendedForStudy": true,
       "replicationDifficulty": "Medium",
       "strategicNotes": "",
@@ -2516,15 +3959,16 @@
         "game",
         "pets",
         "simulator",
-        "collection"
+        "collection",
+        "reference"
       ]
     }
   ],
   "companies": [
     {
-      "id": "d721ed53-6660-4f52-8849-d4af9e86005e",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "006dab2b-8239-475f-9223-4ef809eff9d1",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Coursera",
@@ -2585,9 +4029,9 @@
       ]
     },
     {
-      "id": "60439dc7-eeb6-45e1-a6cb-725bdb02ead5",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "e2835245-780a-4d06-93ea-17290cdd84c9",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Udemy",
@@ -2641,9 +4085,9 @@
       ]
     },
     {
-      "id": "347ff0d4-d1eb-4428-86b3-80cca260269d",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "404b0489-1f98-4450-a31e-4b6384766712",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Anthropic",
@@ -2696,9 +4140,9 @@
       ]
     },
     {
-      "id": "9ce966b9-e295-43d5-8472-9569bebfc249",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "6893dba3-3a8d-4b45-b17e-aa70e6c15fc4",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "OpenAI",
@@ -2753,9 +4197,9 @@
       ]
     },
     {
-      "id": "cd04f52e-2cba-4806-8974-394965adb8b1",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "6f4d0e35-d8d5-4927-89a7-57d988f40d77",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Notion",
@@ -2809,9 +4253,9 @@
       ]
     },
     {
-      "id": "1ae647fd-dab0-48cc-a47d-1fee5b58568e",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "844d9fba-e27b-4159-9358-53bebf4b090b",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Obsidian",
@@ -2819,6 +4263,7 @@
       "description": "Knowledge base that works on local Markdown files with powerful linking.",
       "tagline": "A second brain, for you, forever",
       "companyType": "Productivity",
+      "relationship": "Complementary",
       "size": "Small (11-50)",
       "stage": "Bootstrapped",
       "foundedYear": 2020,
@@ -2861,9 +4306,9 @@
       ]
     },
     {
-      "id": "f1994ca4-f85d-44a9-a014-f69718f8562d",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "145b041b-752b-4a8d-b073-cc3880c34971",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Life360",
@@ -2918,9 +4363,9 @@
       ]
     },
     {
-      "id": "3c70db29-8447-4fbf-b5e8-428cc9ca6e70",
-      "creationTime": "2026-01-31T05:27:09.127Z",
-      "lastModificationTime": "2026-01-31T05:27:09.127Z",
+      "id": "0fc37544-2dd2-435d-b1a3-dd6063f63add",
+      "creationTime": "2026-02-01T00:35:58.472Z",
+      "lastModificationTime": "2026-02-01T00:35:58.472Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Cozi",
@@ -2970,11 +4415,1126 @@
       ]
     }
   ],
+  "features": [
+    {
+      "id": "feat-collection",
+      "name": "Collection System",
+      "slug": "collection-system",
+      "description": "Players collect items, pets, fish, dragons, etc. Core loop for most simulators.",
+      "category": "Core Gameplay",
+      "importance": "Critical",
+      "priority": "P0 - Launch Blocker",
+      "notes": "Every successful simulator has collection at its core. Key differentiator is WHAT you collect.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 5,
+      "retentionImpact": "Critical",
+      "monetizationImpact": "High",
+      "viralityImpact": "High",
+      "bestPracticeExample": "Pet Simulator X has masterful egg mechanics",
+      "tags": [
+        "core",
+        "loop",
+        "essential"
+      ]
+    },
+    {
+      "id": "feat-trading",
+      "name": "Player Trading",
+      "slug": "player-trading",
+      "description": "Peer-to-peer item/pet trading system. Creates player economy and social bonds.",
+      "category": "Social & Multiplayer",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "Trading creates emergent economy. Need scam protection. Consider trade history.",
+      "implementationComplexity": "Complex",
+      "estimatedDevDays": 10,
+      "retentionImpact": "High",
+      "monetizationImpact": "Medium",
+      "viralityImpact": "High",
+      "bestPracticeExample": "Adopt Me trading with confirmation screens",
+      "tags": [
+        "social",
+        "economy",
+        "multiplayer"
+      ]
+    },
+    {
+      "id": "feat-breeding",
+      "name": "Breeding/Fusion System",
+      "slug": "breeding-fusion",
+      "description": "Combine two items to create new variants. Adds depth and rarity creation.",
+      "category": "Core Gameplay",
+      "importance": "Medium",
+      "priority": "P2 - Should Have",
+      "notes": "Breeding adds genetic interest. Fusion simpler to implement. Both create item sinks.",
+      "implementationComplexity": "Complex",
+      "estimatedDevDays": 14,
+      "retentionImpact": "High",
+      "monetizationImpact": "High",
+      "viralityImpact": "Medium",
+      "bestPracticeExample": "Dragon breeding in Dragon Adventures",
+      "tags": [
+        "depth",
+        "genetics",
+        "crafting"
+      ]
+    },
+    {
+      "id": "feat-evolution",
+      "name": "Evolution/Leveling",
+      "slug": "evolution-leveling",
+      "description": "Items/pets grow stronger over time or through actions. Progression hook.",
+      "category": "Progression & Rewards",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "Evolution creates attachment. Visible transformations are highly satisfying.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 7,
+      "retentionImpact": "High",
+      "monetizationImpact": "Medium",
+      "viralityImpact": "Medium",
+      "bestPracticeExample": "Pet aging in Adopt Me",
+      "tags": [
+        "progression",
+        "growth",
+        "attachment"
+      ]
+    },
+    {
+      "id": "feat-daily-rewards",
+      "name": "Daily Rewards",
+      "slug": "daily-rewards",
+      "description": "Login rewards that escalate over consecutive days. Core retention mechanic.",
+      "category": "Retention & Engagement",
+      "importance": "Critical",
+      "priority": "P0 - Launch Blocker",
+      "notes": "Standard feature. 7-day cycles work well. Big reward on day 7/30. Reset on miss is controversial.",
+      "implementationComplexity": "Simple",
+      "estimatedDevDays": 2,
+      "retentionImpact": "Critical",
+      "monetizationImpact": "Medium",
+      "viralityImpact": "Low",
+      "bestPracticeExample": "Most games have this",
+      "tags": [
+        "retention",
+        "login",
+        "essential"
+      ]
+    },
+    {
+      "id": "feat-events",
+      "name": "Limited-Time Events",
+      "slug": "limited-events",
+      "description": "Seasonal/holiday events with exclusive rewards. FOMO driver.",
+      "category": "Content & Variety",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "Plan event calendar 6 months ahead. Holiday events are expected. Exclusive items drive urgency.",
+      "implementationComplexity": "Complex",
+      "estimatedDevDays": 14,
+      "retentionImpact": "High",
+      "monetizationImpact": "High",
+      "viralityImpact": "High",
+      "bestPracticeExample": "Adopt Me holiday events are legendary",
+      "tags": [
+        "content",
+        "fomo",
+        "seasonal"
+      ]
+    },
+    {
+      "id": "feat-quests",
+      "name": "Quest/Mission System",
+      "slug": "quests-missions",
+      "description": "Objectives to complete for rewards. Provides direction and goals.",
+      "category": "Progression & Rewards",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "Daily + Weekly + Seasonal quests. Tiered difficulty. Clear rewards displayed upfront.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 7,
+      "retentionImpact": "High",
+      "monetizationImpact": "Medium",
+      "viralityImpact": "Low",
+      "bestPracticeExample": "Blox Fruits quest chains",
+      "tags": [
+        "progression",
+        "goals",
+        "engagement"
+      ]
+    },
+    {
+      "id": "feat-achievements",
+      "name": "Achievement System",
+      "slug": "achievements",
+      "description": "Long-term goals with badges/titles. Completionist appeal.",
+      "category": "Progression & Rewards",
+      "importance": "Medium",
+      "priority": "P2 - Should Have",
+      "notes": "Categories: Collection, Progression, Social, Special. Visible badges in profile.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 5,
+      "retentionImpact": "Medium",
+      "monetizationImpact": "Low",
+      "viralityImpact": "Medium",
+      "bestPracticeExample": "Badge systems common across platform",
+      "tags": [
+        "progression",
+        "completionist",
+        "flex"
+      ]
+    },
+    {
+      "id": "feat-leaderboards",
+      "name": "Leaderboards",
+      "slug": "leaderboards",
+      "description": "Competitive rankings for various metrics. Social comparison driver.",
+      "category": "Social & Multiplayer",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "Global, friends, weekly, all-time. Multiple categories. Visible rewards for top spots.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 5,
+      "retentionImpact": "Medium",
+      "monetizationImpact": "Low",
+      "viralityImpact": "High",
+      "bestPracticeExample": "Fish It! real-time leaderboards",
+      "tags": [
+        "social",
+        "competition",
+        "flex"
+      ]
+    },
+    {
+      "id": "feat-premium-currency",
+      "name": "Premium Currency",
+      "slug": "premium-currency",
+      "description": "Robux-purchasable currency for in-game purchases. Primary revenue stream.",
+      "category": "Monetization",
+      "importance": "Critical",
+      "priority": "P0 - Launch Blocker",
+      "notes": "Standard on Roblox. Consider dual currency (soft + hard). Bundles with bonuses.",
+      "implementationComplexity": "Simple",
+      "estimatedDevDays": 3,
+      "retentionImpact": "Low",
+      "monetizationImpact": "Critical",
+      "viralityImpact": "Low",
+      "bestPracticeExample": "Every top game",
+      "tags": [
+        "monetization",
+        "robux",
+        "essential"
+      ]
+    },
+    {
+      "id": "feat-gacha",
+      "name": "Gacha/Egg System",
+      "slug": "gacha-eggs",
+      "description": "Random reward boxes with varying rarities. High-margin monetization.",
+      "category": "Monetization",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "Show odds (Roblox requires). Tiered eggs. Pity system optional. Visible rolling animation.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 7,
+      "retentionImpact": "High",
+      "monetizationImpact": "Critical",
+      "viralityImpact": "High",
+      "bestPracticeExample": "Pet Simulator X egg hatching",
+      "tags": [
+        "monetization",
+        "luck",
+        "gambling"
+      ]
+    },
+    {
+      "id": "feat-battle-pass",
+      "name": "Battle/Season Pass",
+      "slug": "battle-pass",
+      "description": "Seasonal progression with free and premium tracks. Recurring revenue.",
+      "category": "Monetization",
+      "importance": "Medium",
+      "priority": "P2 - Should Have",
+      "notes": "Free track must be compelling. Premium track = exclusive items. XP from gameplay.",
+      "implementationComplexity": "Complex",
+      "estimatedDevDays": 14,
+      "retentionImpact": "High",
+      "monetizationImpact": "High",
+      "viralityImpact": "Medium",
+      "bestPracticeExample": "Fortnite pioneered, now everywhere",
+      "tags": [
+        "monetization",
+        "season",
+        "progression"
+      ]
+    },
+    {
+      "id": "feat-vip-gamepass",
+      "name": "VIP/Gamepass",
+      "slug": "vip-gamepass",
+      "description": "One-time purchase for permanent perks. Lower commitment than subscriptions.",
+      "category": "Monetization",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "Multiple tiers possible. Clear value proposition. Visible VIP badge.",
+      "implementationComplexity": "Simple",
+      "estimatedDevDays": 2,
+      "retentionImpact": "Medium",
+      "monetizationImpact": "High",
+      "viralityImpact": "Low",
+      "bestPracticeExample": "Standard Roblox pattern",
+      "tags": [
+        "monetization",
+        "gamepass",
+        "perks"
+      ]
+    },
+    {
+      "id": "feat-multiplayer",
+      "name": "Multiplayer/Co-op",
+      "slug": "multiplayer-coop",
+      "description": "Play with other players in shared world. Core Roblox expectation.",
+      "category": "Social & Multiplayer",
+      "importance": "Critical",
+      "priority": "P0 - Launch Blocker",
+      "notes": "Roblox is inherently multiplayer. Even single-player games benefit from presence.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 0,
+      "retentionImpact": "High",
+      "monetizationImpact": "Medium",
+      "viralityImpact": "Critical",
+      "bestPracticeExample": "Built into platform",
+      "tags": [
+        "social",
+        "multiplayer",
+        "essential"
+      ]
+    },
+    {
+      "id": "feat-guilds",
+      "name": "Guilds/Clans",
+      "slug": "guilds-clans",
+      "description": "Player groups with shared goals and perks. Social retention driver.",
+      "category": "Social & Multiplayer",
+      "importance": "Medium",
+      "priority": "P2 - Should Have",
+      "notes": "Guild wars, shared goals, chat, ranks. Creates social obligation to return.",
+      "implementationComplexity": "Complex",
+      "estimatedDevDays": 14,
+      "retentionImpact": "High",
+      "monetizationImpact": "Medium",
+      "viralityImpact": "High",
+      "bestPracticeExample": "Clan systems in competitive games",
+      "tags": [
+        "social",
+        "groups",
+        "retention"
+      ]
+    },
+    {
+      "id": "feat-friends",
+      "name": "Friend Features",
+      "slug": "friend-features",
+      "description": "Friend-specific bonuses, invites, and features. Organic growth driver.",
+      "category": "Social & Multiplayer",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "Friend referral bonuses. Friend leaderboards. Play together bonuses.",
+      "implementationComplexity": "Simple",
+      "estimatedDevDays": 3,
+      "retentionImpact": "High",
+      "monetizationImpact": "Low",
+      "viralityImpact": "Critical",
+      "bestPracticeExample": "Roblox friend system integration",
+      "tags": [
+        "social",
+        "friends",
+        "viral"
+      ]
+    },
+    {
+      "id": "feat-chat",
+      "name": "Chat System",
+      "slug": "chat-system",
+      "description": "In-game text communication. Roblox provides base, but can enhance.",
+      "category": "Social & Multiplayer",
+      "importance": "Medium",
+      "priority": "P2 - Should Have",
+      "notes": "Roblox chat is default. Consider quick chat, emotes, stickers.",
+      "implementationComplexity": "Simple",
+      "estimatedDevDays": 2,
+      "retentionImpact": "Medium",
+      "monetizationImpact": "Low",
+      "viralityImpact": "Medium",
+      "bestPracticeExample": "Roblox default + custom emotes",
+      "tags": [
+        "social",
+        "communication",
+        "moderation"
+      ]
+    },
+    {
+      "id": "feat-customization",
+      "name": "Customization/Cosmetics",
+      "slug": "customization",
+      "description": "Player/pet appearance customization. Self-expression driver.",
+      "category": "Content & Variety",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "High monetization potential. Regular new items. Seasonal exclusives.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 7,
+      "retentionImpact": "Medium",
+      "monetizationImpact": "High",
+      "viralityImpact": "Medium",
+      "bestPracticeExample": "Dress To Impress cosmetic depth",
+      "tags": [
+        "content",
+        "cosmetics",
+        "expression"
+      ]
+    },
+    {
+      "id": "feat-housing",
+      "name": "Housing/Decorating",
+      "slug": "housing-decorating",
+      "description": "Player-owned spaces they can customize. Deep engagement feature.",
+      "category": "Content & Variety",
+      "importance": "Medium",
+      "priority": "P2 - Should Have",
+      "notes": "High dev cost but high engagement. Furniture = monetization. Tours create social.",
+      "implementationComplexity": "Very Complex",
+      "estimatedDevDays": 21,
+      "retentionImpact": "High",
+      "monetizationImpact": "High",
+      "viralityImpact": "Medium",
+      "bestPracticeExample": "Adopt Me house customization",
+      "tags": [
+        "content",
+        "housing",
+        "building"
+      ]
+    },
+    {
+      "id": "feat-worlds",
+      "name": "Multiple Worlds/Areas",
+      "slug": "multiple-worlds",
+      "description": "Different themed areas to explore. Content expansion path.",
+      "category": "Content & Variety",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "New worlds for updates. Each world = new items. Progression gating.",
+      "implementationComplexity": "Complex",
+      "estimatedDevDays": 14,
+      "retentionImpact": "High",
+      "monetizationImpact": "Medium",
+      "viralityImpact": "Medium",
+      "bestPracticeExample": "Blox Fruits sea expansions",
+      "tags": [
+        "content",
+        "expansion",
+        "exploration"
+      ]
+    },
+    {
+      "id": "feat-pvp",
+      "name": "PvP Combat",
+      "slug": "pvp-combat",
+      "description": "Player versus player battles. Competitive engagement driver.",
+      "category": "Core Gameplay",
+      "importance": "Medium",
+      "priority": "P2 - Should Have",
+      "notes": "Not for all games. Requires careful balance. Arenas separate from main game.",
+      "implementationComplexity": "Complex",
+      "estimatedDevDays": 14,
+      "retentionImpact": "High",
+      "monetizationImpact": "Medium",
+      "viralityImpact": "High",
+      "bestPracticeExample": "Blox Fruits combat system",
+      "tags": [
+        "combat",
+        "pvp",
+        "competitive"
+      ]
+    },
+    {
+      "id": "feat-pve",
+      "name": "PvE/Boss Battles",
+      "slug": "pve-bosses",
+      "description": "Cooperative battles against AI enemies. Social bonding through challenge.",
+      "category": "Core Gameplay",
+      "importance": "Medium",
+      "priority": "P2 - Should Have",
+      "notes": "Raid bosses create events. Scaling difficulty. Loot tables.",
+      "implementationComplexity": "Complex",
+      "estimatedDevDays": 14,
+      "retentionImpact": "High",
+      "monetizationImpact": "Medium",
+      "viralityImpact": "High",
+      "bestPracticeExample": "Blox Fruits raid dungeons",
+      "tags": [
+        "combat",
+        "pve",
+        "bosses"
+      ]
+    },
+    {
+      "id": "feat-minigames",
+      "name": "Minigames",
+      "slug": "minigames",
+      "description": "Short competitive games within main game. Session variety.",
+      "category": "Content & Variety",
+      "importance": "Low",
+      "priority": "P3 - Nice to Have",
+      "notes": "Racing, fishing tournaments, etc. Break up main loop.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 7,
+      "retentionImpact": "Medium",
+      "monetizationImpact": "Low",
+      "viralityImpact": "Medium",
+      "bestPracticeExample": "Various game minigame events",
+      "tags": [
+        "content",
+        "casual",
+        "variety"
+      ]
+    },
+    {
+      "id": "feat-parental-controls",
+      "name": "Parental Controls",
+      "slug": "parental-controls",
+      "description": "Features for parent oversight and child safety.",
+      "category": "Safety & Moderation",
+      "importance": "Medium",
+      "priority": "P2 - Should Have",
+      "notes": "Roblox provides base. Consider spending limits, play time, chat restrictions.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 5,
+      "retentionImpact": "Low",
+      "monetizationImpact": "Low",
+      "viralityImpact": "Low",
+      "bestPracticeExample": "Roblox parental dashboard",
+      "tags": [
+        "safety",
+        "family",
+        "trust"
+      ]
+    },
+    {
+      "id": "feat-moderation",
+      "name": "Content Moderation",
+      "slug": "content-moderation",
+      "description": "Systems to prevent abuse, scams, and inappropriate content.",
+      "category": "Safety & Moderation",
+      "importance": "High",
+      "priority": "P1 - Must Have",
+      "notes": "Report systems. Trade confirmations. Chat filtering. Age gates.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 5,
+      "retentionImpact": "Medium",
+      "monetizationImpact": "Low",
+      "viralityImpact": "Low",
+      "bestPracticeExample": "Roblox moderation + game-specific",
+      "tags": [
+        "safety",
+        "moderation",
+        "trust"
+      ]
+    },
+    {
+      "id": "feat-tutorial",
+      "name": "Tutorial/Onboarding",
+      "slug": "tutorial-onboarding",
+      "description": "First-time user experience guiding new players.",
+      "category": "User Experience",
+      "importance": "Critical",
+      "priority": "P0 - Launch Blocker",
+      "notes": "Critical for retention. Show value in 30 seconds. Skip option for returning.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 5,
+      "retentionImpact": "Critical",
+      "monetizationImpact": "Medium",
+      "viralityImpact": "Low",
+      "bestPracticeExample": "Simple games often skip entirely",
+      "tags": [
+        "ux",
+        "onboarding",
+        "retention"
+      ]
+    },
+    {
+      "id": "feat-mobile",
+      "name": "Mobile Optimization",
+      "slug": "mobile-optimization",
+      "description": "Touch controls and UI optimized for mobile play.",
+      "category": "Technical & Performance",
+      "importance": "Critical",
+      "priority": "P0 - Launch Blocker",
+      "notes": "60%+ of Roblox is mobile. Touch-first design. Simple UI.",
+      "implementationComplexity": "Medium",
+      "estimatedDevDays": 7,
+      "retentionImpact": "Critical",
+      "monetizationImpact": "High",
+      "viralityImpact": "High",
+      "bestPracticeExample": "Fish It! one-tap mobile design",
+      "tags": [
+        "technical",
+        "mobile",
+        "essential"
+      ]
+    },
+    {
+      "id": "feat-autosave",
+      "name": "Auto-Save/Cloud Save",
+      "slug": "autosave-cloud",
+      "description": "Automatic progress saving. Expected standard.",
+      "category": "Technical & Performance",
+      "importance": "Critical",
+      "priority": "P0 - Launch Blocker",
+      "notes": "Roblox DataStore handles this. Implement properly. Backup systems.",
+      "implementationComplexity": "Simple",
+      "estimatedDevDays": 2,
+      "retentionImpact": "Critical",
+      "monetizationImpact": "Low",
+      "viralityImpact": "Low",
+      "bestPracticeExample": "Standard implementation",
+      "tags": [
+        "technical",
+        "data",
+        "essential"
+      ]
+    },
+    {
+      "id": "feat-settings",
+      "name": "Settings/Options",
+      "slug": "settings-options",
+      "description": "Player-configurable game settings.",
+      "category": "User Experience",
+      "importance": "Medium",
+      "priority": "P2 - Should Have",
+      "notes": "Graphics, sound, controls, notifications. Accessibility options.",
+      "implementationComplexity": "Simple",
+      "estimatedDevDays": 2,
+      "retentionImpact": "Low",
+      "monetizationImpact": "Low",
+      "viralityImpact": "Low",
+      "bestPracticeExample": "Standard settings menu",
+      "tags": [
+        "ux",
+        "settings",
+        "accessibility"
+      ]
+    }
+  ],
+  "product-features": [
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-collection",
+      "status": "In Progress",
+      "implementationQuality": "Good",
+      "whyHave": "Core loop - collecting dragons is the game",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-trading",
+      "status": "Planned",
+      "whyHave": "Dragon trading creates economy and social",
+      "shouldHave": true,
+      "priority": "P1 - Must Have"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-breeding",
+      "status": "In Progress",
+      "implementationQuality": "Good",
+      "whyHave": "Unique differentiator - dragon genetics",
+      "shouldHave": true,
+      "priority": "P1 - Must Have"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-evolution",
+      "status": "Planned",
+      "whyHave": "Dragon growth adds attachment",
+      "shouldHave": true,
+      "priority": "P1 - Must Have"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-daily-rewards",
+      "status": "Planned",
+      "whyHave": "Standard retention feature",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-events",
+      "status": "Planned",
+      "whyHave": "Content pipeline for updates",
+      "shouldHave": true,
+      "priority": "P2 - Should Have"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-gacha",
+      "status": "In Progress",
+      "implementationQuality": "Adequate",
+      "whyHave": "Dragon eggs = gacha mechanic",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-pvp",
+      "status": "Planned",
+      "whyHave": "Dragon battles for competitive play",
+      "shouldHave": true,
+      "priority": "P2 - Should Have"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-guilds",
+      "status": "Planned",
+      "whyHave": "Dragon guilds for group content",
+      "shouldHave": true,
+      "priority": "P2 - Should Have"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-multiplayer",
+      "status": "Implemented",
+      "implementationQuality": "Good",
+      "whyHave": "Roblox standard",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-leaderboards",
+      "status": "Planned",
+      "whyHave": "Competition and flex",
+      "shouldHave": true,
+      "priority": "P1 - Must Have"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-mobile",
+      "status": "In Progress",
+      "implementationQuality": "Adequate",
+      "whyHave": "Majority of players are mobile",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-tutorial",
+      "status": "Planned",
+      "whyHave": "First impression matters",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "dragon-legends",
+      "featureId": "feat-housing",
+      "status": "Not Planned",
+      "whyNotHave": "Not core to dragon game, maybe dragon lair later",
+      "shouldHave": false,
+      "priority": "P4 - Future Consider"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-collection",
+      "status": "In Progress",
+      "implementationQuality": "Good",
+      "whyHave": "Core loop - fish collection",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-trading",
+      "status": "Planned",
+      "whyHave": "Fish trading for rare catches",
+      "shouldHave": true,
+      "priority": "P2 - Should Have"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-breeding",
+      "status": "Not Planned",
+      "whyNotHave": "Fish fusion instead of breeding",
+      "shouldHave": false,
+      "priority": "P3 - Nice to Have"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-daily-rewards",
+      "status": "Planned",
+      "whyHave": "Standard feature",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-events",
+      "status": "Planned",
+      "whyHave": "Seasonal fish species",
+      "shouldHave": true,
+      "priority": "P1 - Must Have"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-housing",
+      "status": "In Progress",
+      "implementationQuality": "Good",
+      "whyHave": "Aquarium building is core feature",
+      "shouldHave": true,
+      "priority": "P1 - Must Have"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-leaderboards",
+      "status": "Planned",
+      "whyHave": "Fishing competitions",
+      "shouldHave": true,
+      "priority": "P1 - Must Have"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-minigames",
+      "status": "Planned",
+      "whyHave": "Fishing tournaments",
+      "shouldHave": true,
+      "priority": "P2 - Should Have"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-worlds",
+      "status": "Planned",
+      "whyHave": "Different fishing biomes",
+      "shouldHave": true,
+      "priority": "P1 - Must Have"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-pvp",
+      "status": "Not Planned",
+      "whyNotHave": "Relaxing game, no combat",
+      "shouldHave": false,
+      "priority": "P4 - Future Consider"
+    },
+    {
+      "productId": "lucky-fish-legends",
+      "featureId": "feat-mobile",
+      "status": "Planned",
+      "whyHave": "Core platform",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "family-quest",
+      "featureId": "feat-quests",
+      "status": "Planned",
+      "whyHave": "Core gameplay - family quests",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "family-quest",
+      "featureId": "feat-multiplayer",
+      "status": "Planned",
+      "whyHave": "Parent-child co-op is core",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "family-quest",
+      "featureId": "feat-achievements",
+      "status": "Planned",
+      "whyHave": "Family achievements together",
+      "shouldHave": true,
+      "priority": "P1 - Must Have"
+    },
+    {
+      "productId": "family-quest",
+      "featureId": "feat-parental-controls",
+      "status": "Planned",
+      "whyHave": "Core for family game",
+      "shouldHave": true,
+      "priority": "P0 - Launch Blocker"
+    },
+    {
+      "productId": "family-quest",
+      "featureId": "feat-chat",
+      "status": "Planned",
+      "whyHave": "Safe family chat",
+      "shouldHave": true,
+      "priority": "P1 - Must Have"
+    },
+    {
+      "productId": "family-quest",
+      "featureId": "feat-pvp",
+      "status": "Not Planned",
+      "whyNotHave": "Cooperative not competitive",
+      "shouldHave": false,
+      "priority": "P4 - Future Consider"
+    },
+    {
+      "productId": "family-quest",
+      "featureId": "feat-gacha",
+      "status": "Not Planned",
+      "whyNotHave": "Family-friendly, no gambling mechanics",
+      "shouldHave": false,
+      "priority": "P4 - Future Consider"
+    },
+    {
+      "productId": "fish-it",
+      "featureId": "feat-collection",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Simple but effective fish collection"
+    },
+    {
+      "productId": "fish-it",
+      "featureId": "feat-leaderboards",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Real-time leaderboards drive competition"
+    },
+    {
+      "productId": "fish-it",
+      "featureId": "feat-gacha",
+      "status": "Implemented",
+      "implementationQuality": "Good",
+      "implementationNotes": "Rare fish RNG mechanics"
+    },
+    {
+      "productId": "fish-it",
+      "featureId": "feat-mobile",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "One-tap design perfect for mobile"
+    },
+    {
+      "productId": "fish-it",
+      "featureId": "feat-multiplayer",
+      "status": "Implemented",
+      "implementationQuality": "Good"
+    },
+    {
+      "productId": "fish-it",
+      "featureId": "feat-trading",
+      "status": "N/A"
+    },
+    {
+      "productId": "fish-it",
+      "featureId": "feat-housing",
+      "status": "N/A"
+    },
+    {
+      "productId": "fish-it",
+      "featureId": "feat-pvp",
+      "status": "N/A"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-collection",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Pet collection mastered"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-trading",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Gold standard for trading UX"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-evolution",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Pet aging/neon system is iconic"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-housing",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Deep house customization"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-events",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Event calendar is industry leading"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-daily-rewards",
+      "status": "Implemented",
+      "implementationQuality": "Good"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-gacha",
+      "status": "Implemented",
+      "implementationQuality": "Good",
+      "implementationNotes": "Egg hatching with visible odds"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-mobile",
+      "status": "Implemented",
+      "implementationQuality": "Excellent"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-multiplayer",
+      "status": "Implemented",
+      "implementationQuality": "Excellent"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-pvp",
+      "status": "N/A"
+    },
+    {
+      "productId": "adopt-me",
+      "featureId": "feat-leaderboards",
+      "status": "N/A"
+    },
+    {
+      "productId": "blox-fruits",
+      "featureId": "feat-pvp",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Deep combat system"
+    },
+    {
+      "productId": "blox-fruits",
+      "featureId": "feat-pve",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Raid dungeons and bosses"
+    },
+    {
+      "productId": "blox-fruits",
+      "featureId": "feat-quests",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Quest chains with story"
+    },
+    {
+      "productId": "blox-fruits",
+      "featureId": "feat-evolution",
+      "status": "Implemented",
+      "implementationQuality": "Good",
+      "implementationNotes": "Leveling and abilities"
+    },
+    {
+      "productId": "blox-fruits",
+      "featureId": "feat-worlds",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Three seas with unique content"
+    },
+    {
+      "productId": "blox-fruits",
+      "featureId": "feat-trading",
+      "status": "Implemented",
+      "implementationQuality": "Good",
+      "implementationNotes": "Fruit trading"
+    },
+    {
+      "productId": "blox-fruits",
+      "featureId": "feat-guilds",
+      "status": "Implemented",
+      "implementationQuality": "Good"
+    },
+    {
+      "productId": "blox-fruits",
+      "featureId": "feat-leaderboards",
+      "status": "Implemented",
+      "implementationQuality": "Good"
+    },
+    {
+      "productId": "blox-fruits",
+      "featureId": "feat-gacha",
+      "status": "Implemented",
+      "implementationQuality": "Good",
+      "implementationNotes": "Fruit spinning mechanic"
+    },
+    {
+      "productId": "blox-fruits",
+      "featureId": "feat-mobile",
+      "status": "Implemented",
+      "implementationQuality": "Adequate",
+      "implementationNotes": "Combat harder on mobile"
+    },
+    {
+      "productId": "pet-simulator-x",
+      "featureId": "feat-collection",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Pet collection perfected"
+    },
+    {
+      "productId": "pet-simulator-x",
+      "featureId": "feat-gacha",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Egg mechanics are S-tier"
+    },
+    {
+      "productId": "pet-simulator-x",
+      "featureId": "feat-trading",
+      "status": "Implemented",
+      "implementationQuality": "Excellent"
+    },
+    {
+      "productId": "pet-simulator-x",
+      "featureId": "feat-evolution",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Golden/Rainbow evolution"
+    },
+    {
+      "productId": "pet-simulator-x",
+      "featureId": "feat-worlds",
+      "status": "Implemented",
+      "implementationQuality": "Excellent",
+      "implementationNotes": "Regular new world releases"
+    },
+    {
+      "productId": "pet-simulator-x",
+      "featureId": "feat-events",
+      "status": "Implemented",
+      "implementationQuality": "Excellent"
+    },
+    {
+      "productId": "pet-simulator-x",
+      "featureId": "feat-leaderboards",
+      "status": "Implemented",
+      "implementationQuality": "Good"
+    },
+    {
+      "productId": "pet-simulator-x",
+      "featureId": "feat-guilds",
+      "status": "Implemented",
+      "implementationQuality": "Good"
+    }
+  ],
   "metadata": {
     "version": "2.0.0",
-    "lastUpdated": "2026-01-31T05:27:09.211Z",
+    "lastUpdated": "2026-02-01T00:36:17.991Z",
     "totalGames": 17,
-    "totalProducts": 7,
+    "totalProducts": 25,
     "totalCompanies": 8
   }
 }

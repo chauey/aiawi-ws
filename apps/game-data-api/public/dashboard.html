@@ -3,13 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Intelligence Dashboard</title>
+    <title>Product Intelligence Platform</title>
+    <!-- Multiple font families for theme customization -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
+        /* Colors */
         --bg-primary: #0f0f23;
         --bg-secondary: #1a1a2e;
         --bg-card: #16213e;
@@ -23,11 +25,19 @@
         --accent-orange: #f97316;
         --accent-red: #ef4444;
         --accent-cyan: #06b6d4;
+        --accent-yellow: #eab308;
         --border-color: #2a2a4a;
         --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
         --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.3);
+
+        /* Typography */
+        --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        --font-size-base: 14px;
+        --font-size-scale: 1;
+        --border-radius: 6px;
       }
 
       * {
@@ -37,14 +47,14 @@
       }
 
       body {
-        font-family:
-          'Inter',
-          -apple-system,
-          BlinkMacSystemFont,
-          sans-serif;
+        font-family: var(--font-family);
+        font-size: calc(var(--font-size-base) * var(--font-size-scale));
         background: var(--bg-primary);
         color: var(--text-primary);
         min-height: 100vh;
+        transition:
+          background 0.3s,
+          color 0.3s;
       }
 
       /* Header */
@@ -93,6 +103,8 @@
         font-weight: 500;
         transition: all 0.2s;
         cursor: pointer;
+        border: none;
+        background: transparent;
       }
 
       .nav-tab:hover,
@@ -107,7 +119,7 @@
       }
 
       /* Main Layout */
-      .main {
+      .main-layout {
         display: grid;
         grid-template-columns: 280px 1fr;
         min-height: calc(100vh - 60px);
@@ -118,6 +130,7 @@
         background: var(--bg-secondary);
         border-right: 1px solid var(--border-color);
         padding: 1.5rem;
+        overflow-y: auto;
       }
 
       .sidebar-section {
@@ -133,6 +146,48 @@
         margin-bottom: 0.75rem;
       }
 
+      .sidebar-nav {
+        list-style: none;
+      }
+
+      .sidebar-nav-item {
+        padding: 0.625rem 0.75rem;
+        border-radius: 6px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: all 0.2s;
+        margin-bottom: 0.25rem;
+      }
+
+      .sidebar-nav-item:hover,
+      .sidebar-nav-item.active {
+        background: var(--bg-hover);
+        color: var(--text-primary);
+      }
+
+      .sidebar-nav-item.active {
+        background: rgba(79, 140, 255, 0.15);
+        color: var(--accent-blue);
+        border-left: 2px solid var(--accent-blue);
+      }
+
+      .nav-icon {
+        font-size: 1rem;
+      }
+      .nav-count {
+        margin-left: auto;
+        background: var(--bg-primary);
+        padding: 0.125rem 0.5rem;
+        border-radius: 10px;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      /* Filter Group */
       .filter-group {
         margin-bottom: 1rem;
       }
@@ -144,8 +199,8 @@
         display: block;
       }
 
-      .filter-select,
-      .filter-input {
+      .filter-input,
+      .filter-select {
         width: 100%;
         padding: 0.5rem 0.75rem;
         background: var(--bg-card);
@@ -155,16 +210,306 @@
         font-size: 0.8125rem;
       }
 
-      .filter-select:focus,
-      .filter-input:focus {
+      .filter-input:focus,
+      .filter-select:focus {
         outline: none;
         border-color: var(--accent-blue);
+      }
+
+      .filter-select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0a0b0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        padding-right: 2rem;
+      }
+
+      .filter-range {
+        width: 100%;
+        height: 6px;
+        background: var(--bg-card);
+        border-radius: 3px;
+        appearance: none;
+        cursor: pointer;
+        margin-top: 0.5rem;
+      }
+
+      .filter-range::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        background: var(--accent-blue);
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid var(--bg-secondary);
+      }
+
+      .filter-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+        padding: 0.375rem 0;
+      }
+
+      .filter-checkbox:hover {
+        color: var(--text-primary);
+      }
+
+      .filter-checkbox input[type='checkbox'] {
+        width: 16px;
+        height: 16px;
+        accent-color: var(--accent-blue);
+        cursor: pointer;
+      }
+
+      .clear-filters-btn {
+        width: 100%;
+        padding: 0.625rem 1rem;
+        background: transparent;
+        border: 1px dashed var(--border-color);
+        border-radius: 6px;
+        color: var(--text-muted);
+        font-size: 0.8125rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-top: 0.5rem;
+      }
+
+      .clear-filters-btn:hover {
+        border-color: var(--accent-red);
+        color: var(--accent-red);
+        background: rgba(239, 68, 68, 0.1);
+      }
+
+      /* Quick View Buttons */
+      .quick-view-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .quick-view-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .quick-view-btn:hover {
+        background: var(--bg-card);
+        border-color: var(--accent-blue);
+        color: var(--text-primary);
+      }
+
+      .quick-view-btn.active {
+        background: var(--accent-blue);
+        border-color: var(--accent-blue);
+        color: white;
+      }
+
+      .qv-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.5rem;
+        height: 1.25rem;
+        padding: 0 0.375rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .quick-view-btn:not(.active) .qv-count {
+        background: var(--bg-secondary);
+        color: var(--text-muted);
+      }
+
+      /* Category Tabs */
+      .category-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .category-tab {
+        padding: 0.375rem 0.75rem;
+        background: transparent;
+        border: none;
+        border-radius: 6px;
+        color: var(--text-muted);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .category-tab:hover {
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+      }
+
+      .category-tab.active {
+        background: var(--accent-blue);
+        color: white;
+      }
+
+      /* Inline Filter Bar */
+      .inline-filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 1rem;
+        background: var(--bg-tertiary);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        align-items: center;
+      }
+
+      .filter-item {
+        flex-shrink: 0;
+      }
+
+      .filter-item.search-item {
+        flex: 1;
+        min-width: 200px;
+        max-width: 300px;
+      }
+
+      .filter-item .filter-input,
+      .filter-item .filter-select {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        color: var(--text-primary);
+        font-size: 0.8125rem;
+      }
+
+      .filter-item .filter-select {
+        min-width: 120px;
+      }
+
+      .filter-item .filter-input:focus,
+      .filter-item .filter-select:focus {
+        outline: none;
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 2px rgba(79, 140, 255, 0.2);
+      }
+
+      .toggle-group {
+        display: flex;
+        gap: 0.25rem;
+      }
+
+      .filter-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 1rem;
+      }
+
+      .filter-toggle:hover {
+        border-color: var(--accent-blue);
+        background: var(--bg-card);
+      }
+
+      .filter-toggle input {
+        display: none;
+      }
+
+      .filter-toggle:has(input:checked) {
+        background: var(--accent-blue);
+        border-color: var(--accent-blue);
+      }
+
+      .btn-sm {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+      }
+
+      /* Filter Results Bar */
+      .filter-results-bar {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.5rem 0;
+        font-size: 0.875rem;
+        color: var(--text-muted);
+      }
+
+      .results-count strong {
+        color: var(--accent-blue);
+      }
+
+      .active-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.375rem;
+      }
+
+      .active-filter-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.25rem 0.5rem;
+        background: var(--accent-blue);
+        color: white;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .active-filter-tag button {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0;
+        font-size: 0.875rem;
+        opacity: 0.7;
+      }
+
+      .active-filter-tag button:hover {
+        opacity: 1;
       }
 
       /* Content */
       .content {
         padding: 1.5rem 2rem;
         overflow-y: auto;
+      }
+
+      .tab-content {
+        display: none;
+      }
+      .tab-content.active {
+        display: block;
       }
 
       /* Stats Grid */
@@ -209,18 +554,13 @@
         color: var(--accent-orange);
       }
 
-      .stat-change {
-        font-size: 0.75rem;
-        color: var(--accent-green);
-      }
-
-      .stat-change.negative {
-        color: var(--accent-red);
-      }
-
       /* Section */
       .section {
-        margin-bottom: 2rem;
+        background: var(--bg-card);
+        border-radius: 12px;
+        padding: 1.5rem;
+        border: 1px solid var(--border-color);
+        margin-bottom: 1.5rem;
       }
 
       .section-header {
@@ -233,13 +573,12 @@
       .section-title {
         font-size: 1.125rem;
         font-weight: 600;
-      }
-
-      .section-actions {
         display: flex;
+        align-items: center;
         gap: 0.5rem;
       }
 
+      /* Buttons */
       .btn {
         padding: 0.5rem 1rem;
         border-radius: 6px;
@@ -265,14 +604,15 @@
         border: 1px solid var(--border-color);
       }
 
+      .btn-group {
+        display: flex;
+        gap: 0.5rem;
+      }
+
       /* Table */
       .data-table {
         width: 100%;
         border-collapse: collapse;
-        background: var(--bg-card);
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid var(--border-color);
       }
 
       .data-table th {
@@ -296,19 +636,18 @@
       .data-table tr:last-child td {
         border-bottom: none;
       }
-
       .data-table tr:hover {
         background: var(--bg-hover);
       }
 
-      /* Product Row */
-      .product-name {
+      /* Product/Game Row */
+      .item-name {
         display: flex;
         align-items: center;
         gap: 0.75rem;
       }
 
-      .product-logo {
+      .item-icon {
         width: 32px;
         height: 32px;
         border-radius: 8px;
@@ -319,16 +658,14 @@
         font-size: 1rem;
       }
 
-      .product-info {
+      .item-info {
         display: flex;
         flex-direction: column;
       }
-
-      .product-title {
+      .item-title {
         font-weight: 500;
       }
-
-      .product-subtitle {
+      .item-subtitle {
         font-size: 0.75rem;
         color: var(--text-muted);
       }
@@ -368,7 +705,7 @@
         color: var(--accent-cyan);
       }
 
-      /* Priority Score */
+      /* Priority Bar */
       .priority-bar {
         width: 100px;
         height: 6px;
@@ -380,7 +717,6 @@
       .priority-fill {
         height: 100%;
         border-radius: 3px;
-        transition: width 0.3s;
       }
 
       .priority-fill.high {
@@ -393,70 +729,217 @@
         background: var(--accent-red);
       }
 
-      /* Market Card Grid */
-      .market-grid {
+      /* Game Cards */
+      .game-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 1rem;
       }
 
-      .market-card {
-        background: var(--bg-card);
-        border-radius: 12px;
+      .game-card {
+        background: var(--bg-secondary);
+        border-radius: 10px;
         padding: 1.25rem;
         border: 1px solid var(--border-color);
-        cursor: pointer;
         transition: all 0.2s;
       }
 
-      .market-card:hover {
+      .game-card:hover {
         border-color: var(--accent-blue);
         transform: translateY(-2px);
-        box-shadow: var(--shadow-lg);
       }
 
-      .market-card-header {
+      .game-header {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
       }
 
-      .market-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-      }
-
-      .market-name {
+      .game-name {
         font-weight: 600;
-        margin-bottom: 0.25rem;
+        font-size: 1rem;
       }
-
-      .market-count {
+      .game-genre {
         font-size: 0.75rem;
         color: var(--text-muted);
       }
 
-      .market-stats {
+      .game-stats {
         display: flex;
         gap: 1rem;
-        font-size: 0.75rem;
-        color: var(--text-secondary);
+        margin: 0.75rem 0;
+        font-size: 0.8rem;
       }
 
-      .market-stat {
+      .game-stat {
         display: flex;
         flex-direction: column;
       }
-
-      .market-stat-value {
+      .game-stat-label {
+        color: var(--text-muted);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+      }
+      .game-stat-value {
         font-weight: 600;
+        color: var(--accent-green);
+      }
+
+      .game-why {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      .game-why li {
+        margin-bottom: 0.25rem;
+      }
+
+      /* Feature List */
+      .feature-list {
+        list-style: none;
+      }
+
+      .feature-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .feature-item:last-child {
+        border-bottom: none;
+      }
+      .feature-name {
+        font-weight: 500;
+      }
+
+      .feature-importance {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-weight: 600;
+      }
+
+      .importance-must {
+        background: rgba(34, 197, 94, 0.2);
+        color: var(--accent-green);
+      }
+      .importance-high {
+        background: rgba(79, 140, 255, 0.2);
+        color: var(--accent-blue);
+      }
+      .importance-medium {
+        background: rgba(249, 115, 22, 0.2);
+        color: var(--accent-orange);
+      }
+
+      /* Roadmap */
+      .roadmap-phase {
+        margin-bottom: 1.5rem;
+      }
+
+      .phase-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+
+      .phase-name {
+        font-weight: 600;
+        color: var(--accent-blue);
+      }
+      .phase-duration {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+      .phase-tasks {
+        list-style: none;
+      }
+
+      .phase-task {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+
+      .task-checkbox {
+        width: 16px;
+        height: 16px;
+        border: 2px solid var(--border-color);
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* RICE Calculator */
+      .rice-form {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr) auto;
+        gap: 1rem;
+        align-items: end;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      .form-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+      }
+
+      .form-input {
+        padding: 0.5rem;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
         color: var(--text-primary);
+        font-size: 0.875rem;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: var(--accent-blue);
+      }
+
+      .rice-result {
+        text-align: center;
+        padding: 1rem;
+        background: var(--bg-primary);
+        border-radius: 8px;
+        margin-top: 1rem;
+      }
+
+      .rice-score {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent-green);
+      }
+      .rice-priority {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+      }
+
+      /* AI Context */
+      .ai-context {
+        background: var(--bg-primary);
+        border-radius: 8px;
+        padding: 1rem;
+        font-family: monospace;
+        font-size: 0.8rem;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        max-height: 400px;
+        overflow-y: auto;
+        color: var(--text-secondary);
       }
 
       /* Loading */
@@ -485,17 +968,20 @@
       }
 
       /* Responsive */
-      @media (max-width: 1200px) {
+      @media (max-width: 1024px) {
         .stats-grid {
           grid-template-columns: repeat(2, 1fr);
         }
-        .market-grid {
-          grid-template-columns: repeat(2, 1fr);
+        .game-grid {
+          grid-template-columns: 1fr;
+        }
+        .rice-form {
+          grid-template-columns: 1fr 1fr;
         }
       }
 
       @media (max-width: 768px) {
-        .main {
+        .main-layout {
           grid-template-columns: 1fr;
         }
         .sidebar {
@@ -504,9 +990,324 @@
         .stats-grid {
           grid-template-columns: 1fr;
         }
-        .market-grid {
-          grid-template-columns: 1fr;
-        }
+      }
+
+      /* Theme Panel Styles */
+      .theme-toggle-btn {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 0.5rem 0.75rem;
+        color: var(--text-primary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        transition: all 0.2s;
+      }
+
+      .theme-toggle-btn:hover {
+        background: var(--bg-hover);
+        border-color: var(--accent-blue);
+      }
+
+      .theme-panel {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 380px;
+        height: 100vh;
+        background: var(--bg-secondary);
+        border-left: 1px solid var(--border-color);
+        z-index: 1000;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .theme-panel.open {
+        right: 0;
+      }
+
+      .theme-panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        background: var(--bg-secondary);
+        z-index: 1;
+      }
+
+      .theme-panel-title {
+        font-size: 1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .theme-panel-close {
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        font-size: 1.25rem;
+        padding: 0.25rem;
+      }
+
+      .theme-panel-close:hover {
+        color: var(--text-primary);
+      }
+
+      .theme-section {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .theme-section-title {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+      }
+
+      .theme-presets {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+      }
+
+      .theme-preset {
+        padding: 0.625rem 0.75rem;
+        background: var(--bg-card);
+        border: 2px solid transparent;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
+      }
+
+      .theme-preset:hover {
+        border-color: var(--border-color);
+        color: var(--text-primary);
+      }
+
+      .theme-preset.active {
+        border-color: var(--accent-blue);
+        color: var(--text-primary);
+        background: var(--bg-hover);
+      }
+
+      .theme-preset-color {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+
+      .color-picker-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+
+      .color-picker-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .color-picker-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      .color-picker-input {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .color-picker-input input[type='color'] {
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 0;
+        background: none;
+      }
+
+      .color-picker-input input[type='text'] {
+        flex: 1;
+        padding: 0.375rem 0.5rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        color: var(--text-primary);
+        font-size: 0.75rem;
+        font-family: var(--font-mono);
+      }
+
+      .font-selector {
+        width: 100%;
+        padding: 0.625rem 0.75rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        color: var(--text-primary);
+        font-size: 0.875rem;
+        cursor: pointer;
+        margin-bottom: 0.75rem;
+      }
+
+      .font-size-control {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .font-size-control input[type='range'] {
+        flex: 1;
+        height: 6px;
+        background: var(--bg-card);
+        border-radius: 3px;
+        appearance: none;
+        cursor: pointer;
+      }
+
+      .font-size-control input[type='range']::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        background: var(--accent-blue);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .font-size-value {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        min-width: 40px;
+        text-align: right;
+      }
+
+      .saved-themes-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .saved-theme-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.625rem 0.75rem;
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .saved-theme-item:hover {
+        background: var(--bg-hover);
+      }
+
+      .saved-theme-name {
+        font-size: 0.875rem;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .saved-theme-colors {
+        display: flex;
+        gap: 2px;
+      }
+
+      .saved-theme-color {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+      }
+
+      .saved-theme-delete {
+        background: none;
+        border: none;
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: 0.25rem;
+        font-size: 0.875rem;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .saved-theme-item:hover .saved-theme-delete {
+        opacity: 1;
+      }
+
+      .saved-theme-delete:hover {
+        color: var(--accent-red);
+      }
+
+      .save-theme-form {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+
+      .save-theme-input {
+        flex: 1;
+        padding: 0.5rem 0.75rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        color: var(--text-primary);
+        font-size: 0.8125rem;
+      }
+
+      .save-theme-btn {
+        padding: 0.5rem 1rem;
+        background: var(--accent-blue);
+        border: none;
+        border-radius: var(--border-radius);
+        color: white;
+        font-size: 0.8125rem;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .save-theme-btn:hover {
+        filter: brightness(1.1);
+      }
+
+      .theme-panel-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+      }
+
+      .theme-panel-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
       }
     </style>
   </head>
@@ -514,240 +1315,1875 @@
     <header class="header">
       <div class="logo">
         <div class="logo-icon">📊</div>
-        <span>Product Intelligence</span>
+        <span>Product Intelligence Platform</span>
       </div>
       <nav class="nav-tabs">
-        <a class="nav-tab active" data-tab="products">Products</a>
-        <a class="nav-tab" data-tab="companies">Companies</a>
-        <a class="nav-tab" data-tab="markets">Markets</a>
-        <a class="nav-tab" data-tab="campaigns">Campaigns</a>
+        <button class="nav-tab active" data-tab="overview">Overview</button>
+        <button class="nav-tab" data-tab="products">Products</button>
+        <button class="nav-tab" data-tab="companies">Companies</button>
+        <button class="nav-tab" data-tab="intelligence">Market Analysis</button>
+        <button class="nav-tab" data-tab="planning">Planning</button>
+        <button class="theme-toggle-btn" onclick="toggleThemePanel()">
+          🎨 Theme
+        </button>
       </nav>
     </header>
 
-    <main class="main">
-      <aside class="sidebar">
-        <div class="sidebar-section">
-          <div class="sidebar-title">Filters</div>
+    <!-- Theme Panel Overlay -->
+    <div
+      class="theme-panel-overlay"
+      id="themePanelOverlay"
+      onclick="toggleThemePanel()"
+    ></div>
 
-          <div class="filter-group">
-            <label class="filter-label">Search</label>
-            <input
-              type="text"
-              class="filter-input"
-              id="searchInput"
-              placeholder="Search products..."
-            />
+    <!-- Theme Panel -->
+    <div class="theme-panel" id="themePanel">
+      <div class="theme-panel-header">
+        <div class="theme-panel-title">🎨 Theme Settings</div>
+        <button class="theme-panel-close" onclick="toggleThemePanel()">
+          ×
+        </button>
+      </div>
+
+      <!-- Preset Themes -->
+      <div class="theme-section">
+        <div class="theme-section-title">Preset Themes</div>
+        <div class="theme-presets" id="themePresets">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Typography -->
+      <div class="theme-section">
+        <div class="theme-section-title">Typography</div>
+        <select
+          class="font-selector"
+          id="fontSelector"
+          onchange="changeFont(this.value)"
+        >
+          <option value="'Inter', sans-serif">Inter (Default)</option>
+          <option value="'Roboto', sans-serif">Roboto</option>
+          <option value="'Poppins', sans-serif">Poppins</option>
+          <option value="'Outfit', sans-serif">Outfit</option>
+          <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+          <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+          <option value="-apple-system, BlinkMacSystemFont, sans-serif">
+            System
+          </option>
+        </select>
+        <div class="font-size-control">
+          <span style="font-size: 0.75rem; color: var(--text-muted)">Size</span>
+          <input
+            type="range"
+            id="fontSizeScale"
+            min="0.8"
+            max="1.3"
+            step="0.05"
+            value="1"
+            onchange="changeFontSize(this.value)"
+            oninput="updateFontSizeLabel(this.value)"
+          />
+          <span class="font-size-value" id="fontSizeLabel">100%</span>
+        </div>
+      </div>
+
+      <!-- Custom Colors -->
+      <div class="theme-section">
+        <div class="theme-section-title">Custom Colors</div>
+        <div class="color-picker-group">
+          <div class="color-picker-item">
+            <span class="color-picker-label">Background</span>
+            <div class="color-picker-input">
+              <input
+                type="color"
+                id="colorBgPrimary"
+                value="#0f0f23"
+                onchange="updateCustomColor('bg-primary', this.value)"
+              />
+              <input
+                type="text"
+                id="colorBgPrimaryText"
+                value="#0f0f23"
+                onchange="updateCustomColor('bg-primary', this.value)"
+              />
+            </div>
           </div>
-
-          <div class="filter-group">
-            <label class="filter-label">Category</label>
-            <select class="filter-select" id="categoryFilter">
-              <option value="">All Categories</option>
-              <option value="Game">Games</option>
-              <option value="Online Course">Online Courses</option>
-              <option value="SaaS Application">SaaS Apps</option>
-              <option value="AI Agent">AI Agents</option>
-              <option value="AI Assistant">AI Assistants</option>
-              <option value="Productivity Tool">Productivity</option>
-              <option value="Family App">Family Apps</option>
-            </select>
+          <div class="color-picker-item">
+            <span class="color-picker-label">Card</span>
+            <div class="color-picker-input">
+              <input
+                type="color"
+                id="colorBgCard"
+                value="#16213e"
+                onchange="updateCustomColor('bg-card', this.value)"
+              />
+              <input
+                type="text"
+                id="colorBgCardText"
+                value="#16213e"
+                onchange="updateCustomColor('bg-card', this.value)"
+              />
+            </div>
           </div>
-
-          <div class="filter-group">
-            <label class="filter-label">Relationship</label>
-            <select class="filter-select" id="relationshipFilter">
-              <option value="">All</option>
-              <option value="Our Product">Our Product</option>
-              <option value="Competitor">Competitor</option>
-              <option value="Inspiration">Inspiration</option>
-              <option value="Reference">Reference</option>
-            </select>
+          <div class="color-picker-item">
+            <span class="color-picker-label">Accent</span>
+            <div class="color-picker-input">
+              <input
+                type="color"
+                id="colorAccent"
+                value="#4f8cff"
+                onchange="updateCustomColor('accent-blue', this.value)"
+              />
+              <input
+                type="text"
+                id="colorAccentText"
+                value="#4f8cff"
+                onchange="updateCustomColor('accent-blue', this.value)"
+              />
+            </div>
           </div>
-
-          <div class="filter-group">
-            <label class="filter-label">Min Priority Score</label>
-            <input
-              type="range"
-              id="priorityFilter"
-              min="0"
-              max="100"
-              value="0"
-              class="filter-input"
-            />
-            <span id="priorityValue">0</span>
+          <div class="color-picker-item">
+            <span class="color-picker-label">Text</span>
+            <div class="color-picker-input">
+              <input
+                type="color"
+                id="colorText"
+                value="#e8e8e8"
+                onchange="updateCustomColor('text-primary', this.value)"
+              />
+              <input
+                type="text"
+                id="colorTextText"
+                value="#e8e8e8"
+                onchange="updateCustomColor('text-primary', this.value)"
+              />
+            </div>
           </div>
         </div>
+      </div>
 
+      <!-- Saved Themes -->
+      <div class="theme-section">
+        <div class="theme-section-title">Saved Themes</div>
+        <div class="saved-themes-list" id="savedThemesList">
+          <div style="color: var(--text-muted); font-size: 0.8125rem">
+            No saved themes yet
+          </div>
+        </div>
+        <div class="save-theme-form">
+          <input
+            type="text"
+            class="save-theme-input"
+            id="saveThemeName"
+            placeholder="Theme name..."
+          />
+          <button class="save-theme-btn" onclick="saveCurrentTheme()">
+            Save
+          </button>
+        </div>
+      </div>
+
+      <!-- Menu Visibility -->
+      <div class="theme-section">
+        <div class="theme-section-title">Menu Visibility</div>
+        <div style="display: flex; flex-direction: column; gap: 0.5rem">
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showAllProducts"
+              checked
+              onchange="toggleMenuItem('all-products', this.checked)"
+            />
+            <span>📦 All Products</span>
+          </label>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showOurProducts"
+              checked
+              onchange="toggleMenuItem('our-games', this.checked)"
+            />
+            <span>🎯 Our Products</span>
+          </label>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showCompetitors"
+              checked
+              onchange="toggleMenuItem('competitors', this.checked)"
+            />
+            <span>⚔️ Competitors</span>
+          </label>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showReference"
+              checked
+              onchange="toggleMenuItem('reference', this.checked)"
+            />
+            <span>📚 Reference</span>
+          </label>
+          <div
+            style="
+              border-top: 1px solid var(--border-color);
+              margin: 0.5rem 0;
+              padding-top: 0.5rem;
+            "
+          >
+            <div class="theme-section-title" style="margin-bottom: 0.5rem">
+              Categories
+            </div>
+          </div>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showGames"
+              checked
+              onchange="toggleCategoryItem('Game', this.checked)"
+            />
+            <span>🎮 Games</span>
+          </label>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showAIAgents"
+              checked
+              onchange="toggleCategoryItem('AI Agent', this.checked)"
+            />
+            <span>🤖 AI Agents</span>
+          </label>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showCourses"
+              checked
+              onchange="toggleCategoryItem('Online Course', this.checked)"
+            />
+            <span>📚 Courses</span>
+          </label>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showSaaSApps"
+              checked
+              onchange="toggleCategoryItem('SaaS Application', this.checked)"
+            />
+            <span>💻 SaaS Apps</span>
+          </label>
+          <div
+            style="
+              border-top: 1px solid var(--border-color);
+              margin: 0.5rem 0;
+              padding-top: 0.5rem;
+            "
+          >
+            <div class="theme-section-title" style="margin-bottom: 0.5rem">
+              Header Tabs
+            </div>
+          </div>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showOverviewTab"
+              checked
+              onchange="toggleHeaderTab('overview', this.checked)"
+            />
+            <span>📊 Overview</span>
+          </label>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showProductsTab"
+              checked
+              onchange="toggleHeaderTab('products', this.checked)"
+            />
+            <span>📦 Products</span>
+          </label>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showCompaniesTab"
+              checked
+              onchange="toggleHeaderTab('companies', this.checked)"
+            />
+            <span>🏢 Companies</span>
+          </label>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showIntelligenceTab"
+              checked
+              onchange="toggleHeaderTab('intelligence', this.checked)"
+            />
+            <span>📈 Market Analysis</span>
+          </label>
+          <label class="filter-checkbox">
+            <input
+              type="checkbox"
+              id="showPlanningTab"
+              checked
+              onchange="toggleHeaderTab('planning', this.checked)"
+            />
+            <span>📋 Planning</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-layout">
+      <!-- LEFT SIDEBAR - PAGE NAVIGATION ONLY -->
+      <aside class="sidebar">
         <div class="sidebar-section">
-          <div class="sidebar-title">Quick Filters</div>
-          <div class="filter-group">
-            <label
-              style="
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                cursor: pointer;
-              "
-            >
-              <input type="checkbox" id="recommendedOnly" />
-              <span class="filter-label" style="margin: 0"
-                >Recommended Only</span
-              >
-            </label>
-          </div>
-          <div class="filter-group">
-            <label
-              style="
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                cursor: pointer;
-              "
-            >
-              <input type="checkbox" id="hasAI" />
-              <span class="filter-label" style="margin: 0"
-                >Has AI Features</span
-              >
-            </label>
-          </div>
-          <div class="filter-group">
-            <label
-              style="
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-                cursor: pointer;
-              "
-            >
-              <input type="checkbox" id="hasFreeTier" />
-              <span class="filter-label" style="margin: 0">Has Free Tier</span>
-            </label>
-          </div>
+          <div class="sidebar-title">NAVIGATION</div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item active" data-page="dashboard">
+              <span class="nav-icon">📊</span> Dashboard
+            </li>
+            <li class="sidebar-nav-item" data-page="products">
+              <span class="nav-icon">📦</span> Products
+            </li>
+            <li class="sidebar-nav-item" data-page="companies">
+              <span class="nav-icon">🏢</span> Companies
+            </li>
+            <li class="sidebar-nav-item" data-page="market">
+              <span class="nav-icon">📈</span> Market Analysis
+            </li>
+            <li class="sidebar-nav-item" data-page="planning">
+              <span class="nav-icon">📋</span> Planning
+            </li>
+          </ul>
         </div>
       </aside>
 
+      <!-- MAIN CONTENT -->
       <div class="content">
-        <!-- Stats -->
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-label">Total Products</div>
-            <div class="stat-value blue" id="totalProducts">0</div>
-            <div class="stat-change">Loading...</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Companies</div>
-            <div class="stat-value purple" id="totalCompanies">0</div>
-            <div class="stat-change">Loading...</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Competitors</div>
-            <div class="stat-value orange" id="totalCompetitors">0</div>
-            <div class="stat-change">Active tracking</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Recommended</div>
-            <div class="stat-value green" id="totalRecommended">0</div>
-            <div class="stat-change">For study</div>
-          </div>
-        </div>
-
-        <!-- Markets Overview -->
-        <div class="section">
-          <div class="section-header">
-            <h2 class="section-title">Markets Overview</h2>
-          </div>
-          <div class="market-grid" id="marketGrid">
-            <!-- Populated by JS -->
-          </div>
-        </div>
-
-        <!-- Products Table -->
-        <div class="section">
-          <div class="section-header">
-            <h2 class="section-title">Products</h2>
-            <div class="section-actions">
-              <button class="btn btn-secondary" onclick="refreshData()">
-                ↻ Refresh
-              </button>
-              <button class="btn btn-primary" onclick="openAddModal()">
-                + Add Product
-              </button>
+        <!-- OVERVIEW TAB -->
+        <div id="overview" class="tab-content active">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Total Products</div>
+              <div class="stat-value blue" id="totalProducts">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Our Products</div>
+              <div class="stat-value green" id="statOurGames">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Competitors</div>
+              <div class="stat-value orange" id="statCompetitors">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Companies</div>
+              <div class="stat-value purple" id="totalCompanies">0</div>
             </div>
           </div>
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Category</th>
-                <th>Relationship</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="productsTable">
-              <tr>
-                <td colspan="6" class="loading">
-                  <div class="spinner"></div>
-                  Loading products...
-                </td>
-              </tr>
-            </tbody>
-          </table>
+
+          <div class="section">
+            <h2 class="section-title">🎯 Strategic Focus</h2>
+            <p
+              style="
+                font-size: 1.25rem;
+                color: var(--accent-cyan);
+                margin-bottom: 1rem;
+              "
+            >
+              <strong
+                >Research → Build → Iterate = Product success formula</strong
+              >
+            </p>
+            <p style="color: var(--text-secondary)">
+              Study successful products in your category, identify winning
+              patterns, and apply proven strategies to your own products.
+            </p>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">💡 Platform Capabilities</h2>
+            <ul
+              style="
+                columns: 2;
+                gap: 2rem;
+                color: var(--text-secondary);
+                padding-left: 1.5rem;
+              "
+            >
+              <li style="margin-bottom: 0.5rem">
+                Track products across multiple categories
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                Analyze competitors and market leaders
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                Identify winning features and patterns
+              </li>
+              <li style="margin-bottom: 0.5rem">
+                Prioritize with RICE scoring
+              </li>
+              <li style="margin-bottom: 0.5rem">Plan development roadmaps</li>
+              <li style="margin-bottom: 0.5rem">
+                Generate AI-ready context for collaboration
+              </li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">🚀 Quick Start</h2>
+            <p style="margin-bottom: 1rem">
+              <strong style="color: var(--accent-blue)">Use the sidebar</strong>
+              to filter products by category, relationship, or use search.
+            </p>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
+              "
+            >
+              <div
+                style="
+                  background: var(--bg-primary);
+                  padding: 0.75rem;
+                  border-radius: 8px;
+                "
+              >
+                <div style="font-size: 0.75rem; color: var(--text-muted)">
+                  Step 1
+                </div>
+                <div>Add Products</div>
+              </div>
+              <div
+                style="
+                  background: var(--bg-primary);
+                  padding: 0.75rem;
+                  border-radius: 8px;
+                "
+              >
+                <div style="font-size: 0.75rem; color: var(--text-muted)">
+                  Step 2
+                </div>
+                <div>Analyze Competitors</div>
+              </div>
+              <div
+                style="
+                  background: var(--bg-primary);
+                  padding: 0.75rem;
+                  border-radius: 8px;
+                "
+              >
+                <div style="font-size: 0.75rem; color: var(--text-muted)">
+                  Step 3
+                </div>
+                <div>Identify Patterns</div>
+              </div>
+              <div
+                style="
+                  background: var(--bg-primary);
+                  padding: 0.75rem;
+                  border-radius: 8px;
+                "
+              >
+                <div style="font-size: 0.75rem; color: var(--text-muted)">
+                  Step 4
+                </div>
+                <div>Build & Iterate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCTS TAB -->
+        <div id="products" class="tab-content">
+          <div class="section">
+            <div class="section-header">
+              <h2 class="section-title">📦 Products</h2>
+              <div class="btn-group">
+                <button class="btn btn-secondary" onclick="refreshData()">
+                  ↻ Refresh
+                </button>
+                <button class="btn btn-primary" onclick="openAddModal()">
+                  + Add Product
+                </button>
+              </div>
+            </div>
+
+            <!-- QUICK VIEW BUTTONS -->
+            <div class="quick-view-bar">
+              <button class="quick-view-btn active" data-quick="all">
+                All <span class="qv-count" id="allProductsCount">0</span>
+              </button>
+              <button class="quick-view-btn" data-quick="our-products">
+                🚀 Our Products
+                <span class="qv-count" id="ourGamesCount">0</span>
+              </button>
+              <button class="quick-view-btn" data-quick="competitors">
+                ⚔️ Competitors
+                <span class="qv-count" id="competitorsCount">0</span>
+              </button>
+              <button class="quick-view-btn" data-quick="recommended">
+                ⭐ Recommended
+                <span class="qv-count" id="recommendedCount">0</span>
+              </button>
+            </div>
+
+            <!-- CATEGORY TABS -->
+            <div class="category-tabs">
+              <button class="category-tab active" data-cat="">All</button>
+              <button class="category-tab" data-cat="Game">🎮 Games</button>
+              <button class="category-tab" data-cat="AI Agent">
+                🤖 AI Agents
+              </button>
+              <button class="category-tab" data-cat="Online Course">
+                📚 Courses
+              </button>
+              <button class="category-tab" data-cat="SaaS Application">
+                💻 SaaS
+              </button>
+              <button class="category-tab" data-cat="Mobile App">
+                📱 Mobile
+              </button>
+            </div>
+
+            <!-- INLINE FILTER BAR -->
+            <div class="inline-filter-bar">
+              <!-- Search -->
+              <div class="filter-item search-item">
+                <input
+                  type="text"
+                  class="filter-input"
+                  id="searchInput"
+                  placeholder="🔍 Search products..."
+                />
+              </div>
+
+              <!-- Category -->
+              <div class="filter-item">
+                <select class="filter-select" id="categoryFilter">
+                  <option value="">All Categories</option>
+                  <option value="Game">🎮 Games</option>
+                  <option value="AI Agent">🤖 AI Agents</option>
+                  <option value="Online Course">📚 Courses</option>
+                  <option value="SaaS Application">💻 SaaS</option>
+                  <option value="Mobile App">📱 Mobile</option>
+                  <option value="Web Application">🌐 Web Apps</option>
+                </select>
+              </div>
+
+              <!-- Relationship -->
+              <div class="filter-item">
+                <select class="filter-select" id="relationshipFilter">
+                  <option value="">All Relations</option>
+                  <option value="Our Product">🚀 Our Products</option>
+                  <option value="Competitor">⚔️ Competitors</option>
+                  <option value="Reference">📚 Reference</option>
+                  <option value="Inspiration">💡 Inspiration</option>
+                </select>
+              </div>
+
+              <!-- Status -->
+              <div class="filter-item">
+                <select class="filter-select" id="statusFilter">
+                  <option value="">All Statuses</option>
+                  <option value="Growing">🚀 Growing</option>
+                  <option value="Mature">✅ Mature</option>
+                  <option value="Beta">🧪 Beta</option>
+                  <option value="In Development">🔧 In Development</option>
+                  <option value="Concept">💡 Concept</option>
+                  <option value="Launched">🎉 Launched</option>
+                </select>
+              </div>
+
+              <!-- Platform -->
+              <div class="filter-item">
+                <select class="filter-select" id="platformFilter">
+                  <option value="">All Platforms</option>
+                  <option value="Roblox">🎮 Roblox</option>
+                  <option value="Web">🌐 Web</option>
+                  <option value="iOS">📱 iOS</option>
+                  <option value="Android">🤖 Android</option>
+                  <option value="Windows">💻 Windows</option>
+                  <option value="Cross-Platform">🔄 Cross-Platform</option>
+                </select>
+              </div>
+
+              <!-- Monetization -->
+              <div class="filter-item">
+                <select class="filter-select" id="monetizationFilter">
+                  <option value="">All Models</option>
+                  <option value="Freemium">🆓 Freemium</option>
+                  <option value="Subscription">📅 Subscription</option>
+                  <option value="In-App Purchases">💎 In-App</option>
+                  <option value="Free">✨ Free</option>
+                </select>
+              </div>
+
+              <!-- Sort -->
+              <div class="filter-item">
+                <select class="filter-select" id="sortFilter">
+                  <option value="priority-desc">Priority ↓</option>
+                  <option value="priority-asc">Priority ↑</option>
+                  <option value="name-asc">Name A-Z</option>
+                  <option value="name-desc">Name Z-A</option>
+                  <option value="users-desc">Users ↓</option>
+                  <option value="revenue-desc">Revenue ↓</option>
+                </select>
+              </div>
+
+              <!-- Quick Toggles -->
+              <div class="filter-item toggle-group">
+                <label class="filter-toggle" title="Recommended Only">
+                  <input type="checkbox" id="recommendedOnly" />
+                  <span>⭐</span>
+                </label>
+                <label class="filter-toggle" title="Has Free Tier">
+                  <input type="checkbox" id="hasFreeTier" />
+                  <span>🆓</span>
+                </label>
+              </div>
+
+              <!-- Clear Filters -->
+              <button
+                class="btn btn-secondary btn-sm"
+                id="clearFilters"
+                title="Clear All Filters"
+              >
+                🗑️ Clear
+              </button>
+            </div>
+
+            <!-- Results Count & Active Filters -->
+            <div class="filter-results-bar">
+              <span class="results-count"
+                >Showing <strong id="visibleCount">0</strong> of
+                <strong id="totalCount">0</strong> products</span
+              >
+              <div class="active-filters" id="activeFilters"></div>
+            </div>
+
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Category</th>
+                  <th>Relationship</th>
+                  <th>Status</th>
+                  <th>Priority</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTable">
+                <tr>
+                  <td colspan="6" class="loading">
+                    <div class="spinner"></div>
+                    Loading products...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- COMPANIES TAB -->
+        <div id="companies" class="tab-content">
+          <div class="section">
+            <div class="section-header">
+              <h2 class="section-title">🏢 Companies</h2>
+              <div class="btn-group">
+                <button class="btn btn-secondary" onclick="refreshData()">
+                  ↻ Refresh
+                </button>
+                <button class="btn btn-primary" onclick="openAddCompanyModal()">
+                  + Add Company
+                </button>
+              </div>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>Type</th>
+                  <th>Relationship</th>
+                  <th>Products</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="companiesTable">
+                <tr>
+                  <td colspan="5" class="loading">
+                    <div class="spinner"></div>
+                    Loading companies...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- INTELLIGENCE TAB -->
+        <div id="intelligence" class="tab-content">
+          <div class="section">
+            <h2 class="section-title">🏆 Top Products Analysis</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem">
+              Products analyzed with WHY they're successful
+            </p>
+            <div class="game-grid" id="gameGrid">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">⭐ Must-Have Features</h2>
+            <ul class="feature-list">
+              <li class="feature-item">
+                <span class="feature-name">Collection System</span>
+                <span class="feature-importance importance-must"
+                  >MUST HAVE</span
+                >
+              </li>
+              <li class="feature-item">
+                <span class="feature-name">Trading System</span>
+                <span class="feature-importance importance-must"
+                  >MUST HAVE</span
+                >
+              </li>
+              <li class="feature-item">
+                <span class="feature-name">Daily Rewards</span>
+                <span class="feature-importance importance-must"
+                  >MUST HAVE</span
+                >
+              </li>
+              <li class="feature-item">
+                <span class="feature-name">Rarity Tiers</span>
+                <span class="feature-importance importance-must"
+                  >MUST HAVE</span
+                >
+              </li>
+              <li class="feature-item">
+                <span class="feature-name">Weekly Events</span>
+                <span class="feature-importance importance-high">HIGH</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-name">Promo Codes</span>
+                <span class="feature-importance importance-high">HIGH</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-name">Rebirth/Prestige</span>
+                <span class="feature-importance importance-high">HIGH</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-name">Leaderboards</span>
+                <span class="feature-importance importance-medium">MEDIUM</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">🧮 RICE Score Calculator</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem">
+              Prioritize features by Reach, Impact, Confidence, Effort
+            </p>
+            <div class="rice-form">
+              <div class="form-group">
+                <label class="form-label">Reach (1-10)</label>
+                <input
+                  type="number"
+                  id="riceReach"
+                  class="form-input"
+                  min="1"
+                  max="10"
+                  value="5"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Impact (1-10)</label>
+                <input
+                  type="number"
+                  id="riceImpact"
+                  class="form-input"
+                  min="1"
+                  max="10"
+                  value="5"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Confidence (%)</label>
+                <input
+                  type="number"
+                  id="riceConfidence"
+                  class="form-input"
+                  min="1"
+                  max="100"
+                  value="80"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Effort (weeks)</label>
+                <input
+                  type="number"
+                  id="riceEffort"
+                  class="form-input"
+                  min="1"
+                  max="52"
+                  value="2"
+                />
+              </div>
+              <button class="btn btn-primary" onclick="calculateRICE()">
+                Calculate
+              </button>
+            </div>
+            <div class="rice-result" id="riceResult" style="display: none">
+              <div class="rice-score" id="riceScoreValue">0</div>
+              <div class="rice-priority" id="ricePriority">
+                Priority: Medium
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">🤖 AI Context</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem">
+              Copy and paste into ChatGPT/Claude for AI collaboration
+            </p>
+            <button
+              class="btn btn-primary"
+              onclick="copyAIContext()"
+              style="margin-bottom: 1rem"
+            >
+              📋 Copy to Clipboard
+            </button>
+            <pre class="ai-context" id="aiContextText">Loading...</pre>
+          </div>
+        </div>
+
+        <!-- PLANNING TAB -->
+        <div id="planning" class="tab-content">
+          <div class="section">
+            <h2 class="section-title">📋 Development Roadmap</h2>
+
+            <div class="roadmap-phase">
+              <div class="phase-header">
+                <span class="phase-name">Phase 1: MVP</span>
+                <span class="phase-duration">4-6 weeks</span>
+              </div>
+              <ul class="phase-tasks">
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Core
+                  collection mechanic (7 days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Egg/item
+                  hatching (5 days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> 3 starter
+                  areas (5 days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Rarity system
+                  (3 days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Basic UI/UX (5
+                  days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Currency
+                  system (2 days)
+                </li>
+              </ul>
+            </div>
+
+            <div class="roadmap-phase">
+              <div class="phase-header">
+                <span class="phase-name">Phase 2: Retention</span>
+                <span class="phase-duration">2-3 weeks</span>
+              </div>
+              <ul class="phase-tasks">
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Trading system
+                  (7 days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Daily rewards
+                  (2 days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Promo codes (2
+                  days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Leaderboards
+                  (3 days)
+                </li>
+              </ul>
+            </div>
+
+            <div class="roadmap-phase">
+              <div class="phase-header">
+                <span class="phase-name">Phase 3: Launch</span>
+                <span class="phase-duration">2 weeks</span>
+              </div>
+              <ul class="phase-tasks">
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Bug fixing (5
+                  days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Balance
+                  adjustments (3 days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> First event (4
+                  days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> YouTuber
+                  outreach (2 days)
+                </li>
+              </ul>
+            </div>
+
+            <div class="roadmap-phase">
+              <div class="phase-header">
+                <span class="phase-name">Phase 4: Growth</span>
+                <span class="phase-duration">Ongoing</span>
+              </div>
+              <ul class="phase-tasks">
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Weekly content
+                  updates
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Rebirth system
+                  (5 days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Premium
+                  gamepasses (3 days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Season pass (5
+                  days)
+                </li>
+                <li class="phase-task">
+                  <input type="checkbox" class="task-checkbox" /> Guilds (7
+                  days)
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2 class="section-title">🎯 Key Milestones</h2>
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 1rem;
+              "
+            >
+              <div
+                style="
+                  background: var(--bg-primary);
+                  padding: 0.75rem;
+                  border-radius: 8px;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: var(--accent-blue);
+                  "
+                >
+                  100
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted)">
+                  Players @ Week 2
+                </div>
+              </div>
+              <div
+                style="
+                  background: var(--bg-primary);
+                  padding: 0.75rem;
+                  border-radius: 8px;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: var(--accent-green);
+                  "
+                >
+                  1K
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted)">
+                  Players @ Month 1
+                </div>
+              </div>
+              <div
+                style="
+                  background: var(--bg-primary);
+                  padding: 0.75rem;
+                  border-radius: 8px;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: var(--accent-purple);
+                  "
+                >
+                  $1K
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted)">
+                  Revenue @ Month 1
+                </div>
+              </div>
+              <div
+                style="
+                  background: var(--bg-primary);
+                  padding: 0.75rem;
+                  border-radius: 8px;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: var(--accent-orange);
+                  "
+                >
+                  10K
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted)">
+                  Players @ Month 3
+                </div>
+              </div>
+              <div
+                style="
+                  background: var(--bg-primary);
+                  padding: 0.75rem;
+                  border-radius: 8px;
+                  text-align: center;
+                "
+              >
+                <div
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: var(--accent-cyan);
+                  "
+                >
+                  $10K
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted)">
+                  Revenue @ Month 3
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </main>
+    </div>
 
     <script>
       const API_URL = 'http://localhost:3333/api';
+      let allProducts = [];
+      let allCompanies = [];
+      let currentFilter = {
+        view: 'all-products',
+        category: null,
+        relationship: null,
+        search: '',
+        minPriority: 0,
+        recommendedOnly: false,
+        status: '',
+        platform: '',
+        monetization: '',
+        sort: 'priority-desc',
+        hasFreeTier: false,
+      };
 
-      // Market categories with icons and colors
-      const marketCategories = [
-        {
-          name: 'AI Agents',
-          icon: '🤖',
-          color: 'var(--gradient-3)',
-          category: 'AI Agent',
+      // ==========================================
+      // THEME SYSTEM
+      // ==========================================
+
+      const presetThemes = {
+        midnight: {
+          name: 'Midnight',
+          icon: '🌙',
+          colors: {
+            'bg-primary': '#0f0f23',
+            'bg-secondary': '#1a1a2e',
+            'bg-card': '#16213e',
+            'bg-hover': '#1f3460',
+            'text-primary': '#e8e8e8',
+            'text-secondary': '#a0a0b0',
+            'text-muted': '#6b6b80',
+            'accent-blue': '#4f8cff',
+            'border-color': '#2a2a4a',
+          },
         },
-        {
-          name: 'Online Courses',
-          icon: '📚',
-          color: 'var(--gradient-1)',
-          category: 'Online Course',
+        github: {
+          name: 'GitHub Dark',
+          icon: '🐙',
+          colors: {
+            'bg-primary': '#0d1117',
+            'bg-secondary': '#161b22',
+            'bg-card': '#21262d',
+            'bg-hover': '#30363d',
+            'text-primary': '#c9d1d9',
+            'text-secondary': '#8b949e',
+            'text-muted': '#6e7681',
+            'accent-blue': '#58a6ff',
+            'border-color': '#30363d',
+          },
         },
-        {
-          name: 'Productivity',
-          icon: '⚡',
-          color: 'var(--gradient-2)',
-          category: 'SaaS Application',
+        discord: {
+          name: 'Discord',
+          icon: '💬',
+          colors: {
+            'bg-primary': '#313338',
+            'bg-secondary': '#2b2d31',
+            'bg-card': '#1e1f22',
+            'bg-hover': '#404249',
+            'text-primary': '#f2f3f5',
+            'text-secondary': '#b5bac1',
+            'text-muted': '#949ba4',
+            'accent-blue': '#5865f2',
+            'border-color': '#3f4147',
+          },
         },
-        {
-          name: 'Family Apps',
-          icon: '👨‍👩‍👧‍👦',
-          color: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)',
-          category: 'Family App',
+        spotify: {
+          name: 'Spotify',
+          icon: '🎵',
+          colors: {
+            'bg-primary': '#121212',
+            'bg-secondary': '#181818',
+            'bg-card': '#282828',
+            'bg-hover': '#3e3e3e',
+            'text-primary': '#ffffff',
+            'text-secondary': '#b3b3b3',
+            'text-muted': '#6a6a6a',
+            'accent-blue': '#1db954',
+            'border-color': '#404040',
+          },
         },
-        {
-          name: 'Games',
-          icon: '🎮',
-          color: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
-          category: 'Game',
+        ocean: {
+          name: 'Ocean',
+          icon: '🌊',
+          colors: {
+            'bg-primary': '#0a192f',
+            'bg-secondary': '#112240',
+            'bg-card': '#1d3557',
+            'bg-hover': '#233e5c',
+            'text-primary': '#ccd6f6',
+            'text-secondary': '#8892b0',
+            'text-muted': '#5c6b8a',
+            'accent-blue': '#64ffda',
+            'border-color': '#233554',
+          },
         },
-        {
-          name: 'All Products',
-          icon: '📦',
-          color: 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
-          category: '',
+        rose: {
+          name: 'Rosé Pine',
+          icon: '🌸',
+          colors: {
+            'bg-primary': '#191724',
+            'bg-secondary': '#1f1d2e',
+            'bg-card': '#26233a',
+            'bg-hover': '#403d52',
+            'text-primary': '#e0def4',
+            'text-secondary': '#908caa',
+            'text-muted': '#6e6a86',
+            'accent-blue': '#eb6f92',
+            'border-color': '#403d52',
+          },
         },
-      ];
+        light: {
+          name: 'Light',
+          icon: '☀️',
+          colors: {
+            'bg-primary': '#ffffff',
+            'bg-secondary': '#f6f8fa',
+            'bg-card': '#ffffff',
+            'bg-hover': '#f3f4f6',
+            'text-primary': '#24292f',
+            'text-secondary': '#57606a',
+            'text-muted': '#8b949e',
+            'accent-blue': '#0969da',
+            'border-color': '#d0d7de',
+          },
+        },
+        nord: {
+          name: 'Nord',
+          icon: '❄️',
+          colors: {
+            'bg-primary': '#2e3440',
+            'bg-secondary': '#3b4252',
+            'bg-card': '#434c5e',
+            'bg-hover': '#4c566a',
+            'text-primary': '#eceff4',
+            'text-secondary': '#d8dee9',
+            'text-muted': '#a3b1cc',
+            'accent-blue': '#88c0d0',
+            'border-color': '#4c566a',
+          },
+        },
+      };
+
+      let savedThemes = JSON.parse(localStorage.getItem('savedThemes') || '[]');
+      let currentThemeName = localStorage.getItem('currentTheme') || 'midnight';
+
+      function toggleThemePanel() {
+        const panel = document.getElementById('themePanel');
+        const overlay = document.getElementById('themePanelOverlay');
+        panel.classList.toggle('open');
+        overlay.classList.toggle('open');
+      }
+
+      function initThemeSystem() {
+        renderPresetThemes();
+        renderSavedThemes();
+        loadSavedTheme();
+      }
+
+      function renderPresetThemes() {
+        const container = document.getElementById('themePresets');
+        container.innerHTML = Object.entries(presetThemes)
+          .map(
+            ([key, theme]) => `
+          <div class="theme-preset ${currentThemeName === key ? 'active' : ''}" 
+               onclick="applyPresetTheme('${key}')" data-theme="${key}">
+            <div class="theme-preset-color" style="background: ${theme.colors['bg-primary']}; border: 1px solid ${theme.colors['border-color']};"></div>
+            <span>${theme.icon} ${theme.name}</span>
+          </div>
+        `,
+          )
+          .join('');
+      }
+
+      function applyPresetTheme(themeName) {
+        const theme = presetThemes[themeName];
+        if (!theme) return;
+
+        Object.entries(theme.colors).forEach(([key, value]) => {
+          document.documentElement.style.setProperty(`--${key}`, value);
+        });
+
+        currentThemeName = themeName;
+        localStorage.setItem('currentTheme', themeName);
+
+        // Update active state
+        document.querySelectorAll('.theme-preset').forEach((el) => {
+          el.classList.toggle('active', el.dataset.theme === themeName);
+        });
+
+        // Update color pickers
+        updateColorPickers(theme.colors);
+      }
+
+      function updateColorPickers(colors) {
+        if (colors['bg-primary']) {
+          document.getElementById('colorBgPrimary').value =
+            colors['bg-primary'];
+          document.getElementById('colorBgPrimaryText').value =
+            colors['bg-primary'];
+        }
+        if (colors['bg-card']) {
+          document.getElementById('colorBgCard').value = colors['bg-card'];
+          document.getElementById('colorBgCardText').value = colors['bg-card'];
+        }
+        if (colors['accent-blue']) {
+          document.getElementById('colorAccent').value = colors['accent-blue'];
+          document.getElementById('colorAccentText').value =
+            colors['accent-blue'];
+        }
+        if (colors['text-primary']) {
+          document.getElementById('colorText').value = colors['text-primary'];
+          document.getElementById('colorTextText').value =
+            colors['text-primary'];
+        }
+      }
+
+      function updateCustomColor(cssVar, value) {
+        document.documentElement.style.setProperty(`--${cssVar}`, value);
+
+        // Sync color picker and text input
+        if (cssVar === 'bg-primary') {
+          document.getElementById('colorBgPrimary').value = value;
+          document.getElementById('colorBgPrimaryText').value = value;
+        } else if (cssVar === 'bg-card') {
+          document.getElementById('colorBgCard').value = value;
+          document.getElementById('colorBgCardText').value = value;
+        } else if (cssVar === 'accent-blue') {
+          document.getElementById('colorAccent').value = value;
+          document.getElementById('colorAccentText').value = value;
+        } else if (cssVar === 'text-primary') {
+          document.getElementById('colorText').value = value;
+          document.getElementById('colorTextText').value = value;
+        }
+
+        currentThemeName = 'custom';
+      }
+
+      function changeFont(fontFamily) {
+        document.documentElement.style.setProperty('--font-family', fontFamily);
+        localStorage.setItem('fontFamily', fontFamily);
+      }
+
+      function changeFontSize(scale) {
+        document.documentElement.style.setProperty('--font-size-scale', scale);
+        localStorage.setItem('fontSizeScale', scale);
+      }
+
+      function updateFontSizeLabel(scale) {
+        document.getElementById('fontSizeLabel').textContent =
+          Math.round(scale * 100) + '%';
+      }
+
+      function saveCurrentTheme() {
+        const name = document.getElementById('saveThemeName').value.trim();
+        if (!name) {
+          alert('Please enter a theme name');
+          return;
+        }
+
+        const theme = {
+          name,
+          colors: {
+            'bg-primary': getComputedStyle(document.documentElement)
+              .getPropertyValue('--bg-primary')
+              .trim(),
+            'bg-secondary': getComputedStyle(document.documentElement)
+              .getPropertyValue('--bg-secondary')
+              .trim(),
+            'bg-card': getComputedStyle(document.documentElement)
+              .getPropertyValue('--bg-card')
+              .trim(),
+            'bg-hover': getComputedStyle(document.documentElement)
+              .getPropertyValue('--bg-hover')
+              .trim(),
+            'text-primary': getComputedStyle(document.documentElement)
+              .getPropertyValue('--text-primary')
+              .trim(),
+            'text-secondary': getComputedStyle(document.documentElement)
+              .getPropertyValue('--text-secondary')
+              .trim(),
+            'text-muted': getComputedStyle(document.documentElement)
+              .getPropertyValue('--text-muted')
+              .trim(),
+            'accent-blue': getComputedStyle(document.documentElement)
+              .getPropertyValue('--accent-blue')
+              .trim(),
+            'border-color': getComputedStyle(document.documentElement)
+              .getPropertyValue('--border-color')
+              .trim(),
+          },
+          fontFamily: getComputedStyle(document.documentElement)
+            .getPropertyValue('--font-family')
+            .trim(),
+          fontSizeScale: getComputedStyle(document.documentElement)
+            .getPropertyValue('--font-size-scale')
+            .trim(),
+        };
+
+        // Remove existing theme with same name
+        savedThemes = savedThemes.filter((t) => t.name !== name);
+        savedThemes.push(theme);
+        localStorage.setItem('savedThemes', JSON.stringify(savedThemes));
+
+        document.getElementById('saveThemeName').value = '';
+        renderSavedThemes();
+      }
+
+      function renderSavedThemes() {
+        const container = document.getElementById('savedThemesList');
+
+        if (savedThemes.length === 0) {
+          container.innerHTML =
+            '<div style="color: var(--text-muted); font-size: 0.8125rem;">No saved themes yet</div>';
+          return;
+        }
+
+        container.innerHTML = savedThemes
+          .map(
+            (theme, index) => `
+          <div class="saved-theme-item" onclick="applySavedTheme(${index})">
+            <div class="saved-theme-name">
+              <div class="saved-theme-colors">
+                <div class="saved-theme-color" style="background: ${theme.colors['bg-primary']}"></div>
+                <div class="saved-theme-color" style="background: ${theme.colors['bg-card']}"></div>
+                <div class="saved-theme-color" style="background: ${theme.colors['accent-blue']}"></div>
+              </div>
+              ${theme.name}
+            </div>
+            <button class="saved-theme-delete" onclick="event.stopPropagation(); deleteSavedTheme(${index})">🗑️</button>
+          </div>
+        `,
+          )
+          .join('');
+      }
+
+      function applySavedTheme(index) {
+        const theme = savedThemes[index];
+        if (!theme) return;
+
+        Object.entries(theme.colors).forEach(([key, value]) => {
+          document.documentElement.style.setProperty(`--${key}`, value);
+        });
+
+        if (theme.fontFamily) {
+          document.documentElement.style.setProperty(
+            '--font-family',
+            theme.fontFamily,
+          );
+          document.getElementById('fontSelector').value = theme.fontFamily;
+        }
+
+        if (theme.fontSizeScale) {
+          document.documentElement.style.setProperty(
+            '--font-size-scale',
+            theme.fontSizeScale,
+          );
+          document.getElementById('fontSizeScale').value = theme.fontSizeScale;
+          updateFontSizeLabel(theme.fontSizeScale);
+        }
+
+        updateColorPickers(theme.colors);
+        currentThemeName = 'saved-' + index;
+      }
+
+      function deleteSavedTheme(index) {
+        if (confirm('Delete this theme?')) {
+          savedThemes.splice(index, 1);
+          localStorage.setItem('savedThemes', JSON.stringify(savedThemes));
+          renderSavedThemes();
+        }
+      }
+
+      function loadSavedTheme() {
+        // Load saved font
+        const savedFont = localStorage.getItem('fontFamily');
+        if (savedFont) {
+          document.documentElement.style.setProperty(
+            '--font-family',
+            savedFont,
+          );
+          document.getElementById('fontSelector').value = savedFont;
+        }
+
+        // Load saved font size
+        const savedFontSize = localStorage.getItem('fontSizeScale');
+        if (savedFontSize) {
+          document.documentElement.style.setProperty(
+            '--font-size-scale',
+            savedFontSize,
+          );
+          document.getElementById('fontSizeScale').value = savedFontSize;
+          updateFontSizeLabel(savedFontSize);
+        }
+
+        // Load saved theme
+        if (currentThemeName && presetThemes[currentThemeName]) {
+          applyPresetTheme(currentThemeName);
+        }
+
+        // Load menu visibility settings
+        loadMenuVisibility();
+      }
+
+      // ==========================================
+      // MENU VISIBILITY
+      // ==========================================
+
+      let menuVisibility = JSON.parse(
+        localStorage.getItem('menuVisibility') || '{}',
+      );
+
+      function toggleMenuItem(viewId, visible) {
+        const item = document.querySelector(
+          `.sidebar-nav-item[data-view="${viewId}"]`,
+        );
+        if (item) {
+          item.style.display = visible ? 'flex' : 'none';
+        }
+        menuVisibility[`nav-${viewId}`] = visible;
+        localStorage.setItem('menuVisibility', JSON.stringify(menuVisibility));
+      }
+
+      function toggleCategoryItem(category, visible) {
+        const item = document.querySelector(
+          `.sidebar-nav-item[data-category="${category}"]`,
+        );
+        if (item) {
+          item.style.display = visible ? 'flex' : 'none';
+        }
+        menuVisibility[`cat-${category}`] = visible;
+        localStorage.setItem('menuVisibility', JSON.stringify(menuVisibility));
+      }
+
+      function toggleHeaderTab(tabId, visible) {
+        const tab = document.querySelector(`.nav-tab[data-tab="${tabId}"]`);
+        if (tab) {
+          tab.style.display = visible ? 'inline-block' : 'none';
+        }
+        menuVisibility[`tab-${tabId}`] = visible;
+        localStorage.setItem('menuVisibility', JSON.stringify(menuVisibility));
+      }
+
+      function loadMenuVisibility() {
+        // Load navigation visibility
+        ['all-products', 'our-games', 'competitors', 'reference'].forEach(
+          (viewId) => {
+            const visible = menuVisibility[`nav-${viewId}`] !== false;
+            const item = document.querySelector(
+              `.sidebar-nav-item[data-view="${viewId}"]`,
+            );
+            if (item) item.style.display = visible ? 'flex' : 'none';
+            const checkbox = document.getElementById(
+              `show${viewId.replace(/-/g, '').charAt(0).toUpperCase() + viewId.replace(/-/g, '').slice(1)}`,
+            );
+            if (checkbox) checkbox.checked = visible;
+          },
+        );
+
+        // Load checkbox states for navigation
+        if (menuVisibility['nav-all-products'] === false)
+          document.getElementById('showAllProducts').checked = false;
+        if (menuVisibility['nav-our-games'] === false)
+          document.getElementById('showOurProducts').checked = false;
+        if (menuVisibility['nav-competitors'] === false)
+          document.getElementById('showCompetitors').checked = false;
+        if (menuVisibility['nav-reference'] === false)
+          document.getElementById('showReference').checked = false;
+
+        // Load category visibility
+        ['Game', 'AI Agent', 'Online Course', 'SaaS Application'].forEach(
+          (cat) => {
+            const visible = menuVisibility[`cat-${cat}`] !== false;
+            const item = document.querySelector(
+              `.sidebar-nav-item[data-category="${cat}"]`,
+            );
+            if (item) item.style.display = visible ? 'flex' : 'none';
+          },
+        );
+
+        // Load checkbox states for categories
+        if (menuVisibility['cat-Game'] === false)
+          document.getElementById('showGames').checked = false;
+        if (menuVisibility['cat-AI Agent'] === false)
+          document.getElementById('showAIAgents').checked = false;
+        if (menuVisibility['cat-Online Course'] === false)
+          document.getElementById('showCourses').checked = false;
+        if (menuVisibility['cat-SaaS Application'] === false)
+          document.getElementById('showSaaSApps').checked = false;
+
+        // Load header tab visibility
+        [
+          'overview',
+          'products',
+          'companies',
+          'intelligence',
+          'planning',
+        ].forEach((tabId) => {
+          const visible = menuVisibility[`tab-${tabId}`] !== false;
+          const tab = document.querySelector(`.nav-tab[data-tab="${tabId}"]`);
+          if (tab) tab.style.display = visible ? 'inline-block' : 'none';
+        });
+
+        // Load checkbox states for tabs
+        if (menuVisibility['tab-overview'] === false)
+          document.getElementById('showOverviewTab').checked = false;
+        if (menuVisibility['tab-products'] === false)
+          document.getElementById('showProductsTab').checked = false;
+        if (menuVisibility['tab-companies'] === false)
+          document.getElementById('showCompaniesTab').checked = false;
+        if (menuVisibility['tab-intelligence'] === false)
+          document.getElementById('showIntelligenceTab').checked = false;
+        if (menuVisibility['tab-planning'] === false)
+          document.getElementById('showPlanningTab').checked = false;
+      }
 
       // Initialize
       document.addEventListener('DOMContentLoaded', () => {
         loadStats();
-        loadMarkets();
         loadProducts();
+        loadCompanies();
+        loadGames();
+        loadAIContext();
         setupFilters();
+        setupNavigation();
+        setupProductPageFilters();
+        initRouter();
+        initThemeSystem();
       });
+
+      // Tab switching
+      document.querySelectorAll('.nav-tab').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          document
+            .querySelectorAll('.nav-tab')
+            .forEach((t) => t.classList.remove('active'));
+          document
+            .querySelectorAll('.tab-content')
+            .forEach((c) => c.classList.remove('active'));
+          tab.classList.add('active');
+          document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+      });
+
+      // Sidebar navigation
+      function setupNavigation() {
+        // Page Navigation only
+        document
+          .querySelectorAll('.sidebar-nav-item[data-page]')
+          .forEach((item) => {
+            item.addEventListener('click', () => {
+              document
+                .querySelectorAll('.sidebar-nav-item')
+                .forEach((i) => i.classList.remove('active'));
+              item.classList.add('active');
+              const page = item.dataset.page;
+              navigateToPage(page);
+            });
+          });
+      }
+
+      // Router configuration
+      const routes = {
+        '/': 'dashboard',
+        '/dashboard': 'dashboard',
+        '/products': 'products',
+        '/companies': 'companies',
+        '/market': 'market',
+        '/planning': 'planning',
+      };
+
+      const pageToTab = {
+        dashboard: 'overview',
+        products: 'products',
+        companies: 'companies',
+        market: 'intelligence',
+        planning: 'planning',
+      };
+
+      function navigateToPage(page, updateUrl = true) {
+        const tabName = pageToTab[page] || 'overview';
+
+        // Update URL using History API if requested
+        if (updateUrl) {
+          const newPath = page === 'dashboard' ? '/' : `/${page}`;
+          if (window.location.pathname !== newPath) {
+            history.pushState({ page }, '', newPath);
+          }
+        }
+
+        // Update sidebar nav active state
+        document
+          .querySelectorAll('.sidebar-nav-item[data-page]')
+          .forEach((item) => {
+            item.classList.toggle('active', item.dataset.page === page);
+          });
+
+        // Switch tabs
+        document
+          .querySelectorAll('.nav-tab')
+          .forEach((t) => t.classList.remove('active'));
+        document
+          .querySelectorAll('.tab-content')
+          .forEach((c) => c.classList.remove('active'));
+
+        const tab = document.querySelector(`[data-tab="${tabName}"]`);
+        const content = document.getElementById(tabName);
+
+        if (tab) tab.classList.add('active');
+        if (content) content.classList.add('active');
+
+        // Update page title
+        const pageTitles = {
+          dashboard: 'Dashboard - Product Intelligence Platform',
+          products: 'Products - Product Intelligence Platform',
+          companies: 'Companies - Product Intelligence Platform',
+          market: 'Market Analysis - Product Intelligence Platform',
+          planning: 'Planning - Product Intelligence Platform',
+        };
+        document.title = pageTitles[page] || 'Product Intelligence Platform';
+      }
+
+      function initRouter() {
+        // Handle browser back/forward with popstate
+        window.addEventListener('popstate', (event) => {
+          if (event.state && event.state.page) {
+            navigateToPage(event.state.page, false);
+          } else {
+            handleRoute();
+          }
+        });
+
+        // Handle initial route on page load
+        handleRoute();
+      }
+
+      function handleRoute() {
+        const pathname = window.location.pathname;
+        const page = routes[pathname] || 'dashboard';
+        navigateToPage(page, false);
+      }
+
+      function applyQuickFilter(quickView) {
+        // Reset filters first
+        currentFilter = {
+          view: 'all-products',
+          category: null,
+          search: '',
+          minPriority: 0,
+          recommendedOnly: false,
+          status: '',
+          platform: '',
+          monetization: '',
+          sort: 'priority-desc',
+          hasFreeTier: false,
+        };
+
+        // Apply quick filter
+        switch (quickView) {
+          case 'our-products':
+            currentFilter.relationship = 'Our Product';
+            break;
+          case 'competitors':
+            currentFilter.relationship = 'Competitor';
+            break;
+          case 'recommended':
+            currentFilter.recommendedOnly = true;
+            break;
+        }
+
+        // Update UI elements
+        const relationshipFilter =
+          document.getElementById('relationshipFilter');
+        if (relationshipFilter) {
+          relationshipFilter.value = currentFilter.relationship || '';
+        }
+        const recommendedCheckbox = document.getElementById('recommendedOnly');
+        if (recommendedCheckbox) {
+          recommendedCheckbox.checked = currentFilter.recommendedOnly;
+        }
+
+        renderProducts();
+        navigateToPage('products');
+      }
+
+      function filterByView(view) {
+        currentFilter = {};
+        switch (view) {
+          case 'our-games':
+            currentFilter.relationship = 'Our Product';
+            break;
+          case 'competitors':
+            currentFilter.relationship = 'Competitor';
+            break;
+          case 'reference':
+            currentFilter.relationship = 'Reference';
+            break;
+        }
+        renderProducts();
+        navigateToPage('products');
+      }
+
+      // Setup Quick View buttons and Category tabs on Products page
+      function setupProductPageFilters() {
+        // Quick View Buttons
+        document
+          .querySelectorAll('.quick-view-btn[data-quick]')
+          .forEach((btn) => {
+            btn.addEventListener('click', () => {
+              // Update button states
+              document
+                .querySelectorAll('.quick-view-btn')
+                .forEach((b) => b.classList.remove('active'));
+              btn.classList.add('active');
+
+              const quick = btn.dataset.quick;
+
+              // Reset filters
+              currentFilter = {
+                view: 'all-products',
+                category: null,
+                relationship: null,
+                search: '',
+                minPriority: 0,
+                recommendedOnly: false,
+                status: '',
+                platform: '',
+                monetization: '',
+                sort: 'priority-desc',
+                hasFreeTier: false,
+              };
+
+              // Apply quick filter
+              if (quick === 'our-products') {
+                currentFilter.relationship = 'Our Product';
+              } else if (quick === 'competitors') {
+                currentFilter.relationship = 'Competitor';
+              } else if (quick === 'recommended') {
+                currentFilter.recommendedOnly = true;
+              }
+              // 'all' keeps everything null/false
+
+              // Update dropdown to match
+              const relationshipFilter =
+                document.getElementById('relationshipFilter');
+              if (relationshipFilter) {
+                relationshipFilter.value = currentFilter.relationship || '';
+              }
+              const recommendedCheckbox =
+                document.getElementById('recommendedOnly');
+              if (recommendedCheckbox) {
+                recommendedCheckbox.checked = currentFilter.recommendedOnly;
+              }
+
+              // Reset category tabs
+              document
+                .querySelectorAll('.category-tab')
+                .forEach((t) => t.classList.remove('active'));
+              document
+                .querySelector('.category-tab[data-cat=""]')
+                ?.classList.add('active');
+              const categoryFilter = document.getElementById('categoryFilter');
+              if (categoryFilter) categoryFilter.value = '';
+
+              renderProducts();
+              updateActiveFilters();
+            });
+          });
+
+        // Category Tabs
+        document.querySelectorAll('.category-tab[data-cat]').forEach((tab) => {
+          tab.addEventListener('click', () => {
+            // Update tab states
+            document
+              .querySelectorAll('.category-tab')
+              .forEach((t) => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const category = tab.dataset.cat;
+            currentFilter.category = category || null;
+
+            // Update category dropdown to match
+            const categoryFilter = document.getElementById('categoryFilter');
+            if (categoryFilter) categoryFilter.value = category;
+
+            renderProducts();
+            updateActiveFilters();
+          });
+        });
+      }
 
       // Load stats
       async function loadStats() {
@@ -761,129 +3197,511 @@
             ),
           ]);
 
-          document.getElementById('totalProducts').textContent =
-            products.totalCount || 0;
-          document.getElementById('totalCompanies').textContent =
-            companies.totalCount || 0;
+          allProducts = products.items || [];
+          allCompanies = companies.items || [];
 
-          const competitors = (products.items || []).filter(
+          document.getElementById('totalProducts').textContent =
+            allProducts.length;
+          document.getElementById('totalCompanies').textContent =
+            allCompanies.length;
+
+          const ourGames = allProducts.filter(
+            (p) => p.relationship === 'Our Product',
+          ).length;
+          const competitors = allProducts.filter(
             (p) => p.relationship === 'Competitor',
           ).length;
-          const recommended = (products.items || []).filter(
-            (p) => p.recommendedForStudy,
+          const reference = allProducts.filter(
+            (p) => p.relationship === 'Reference',
+          ).length;
+          const recommended = allProducts.filter(
+            (p) => p.recommendedForStudy === true,
           ).length;
 
-          document.getElementById('totalCompetitors').textContent = competitors;
-          document.getElementById('totalRecommended').textContent = recommended;
+          document.getElementById('statOurGames').textContent = ourGames;
+          document.getElementById('statCompetitors').textContent = competitors;
+
+          document.getElementById('allProductsCount').textContent =
+            allProducts.length;
+          document.getElementById('ourGamesCount').textContent = ourGames;
+          document.getElementById('competitorsCount').textContent = competitors;
+          document.getElementById('recommendedCount').textContent = recommended;
+
+          // Update companies nav count if exists
+          const companiesNavCount =
+            document.getElementById('companiesNavCount');
+          if (companiesNavCount) {
+            companiesNavCount.textContent = allCompanies.length;
+          }
         } catch (e) {
           console.error('Failed to load stats:', e);
         }
       }
 
-      // Load markets overview
-      async function loadMarkets() {
-        const grid = document.getElementById('marketGrid');
-        grid.innerHTML = '';
-
-        for (const market of marketCategories) {
-          try {
-            const url = market.category
-              ? `${API_URL}/products?category=${encodeURIComponent(market.category)}&maxResultCount=1`
-              : `${API_URL}/products?maxResultCount=1`;
-            const response = await fetch(url);
-            const data = await response.json();
-
-            const card = document.createElement('div');
-            card.className = 'market-card';
-            card.onclick = () => filterByCategory(market.category);
-            card.innerHTML = `
-                        <div class="market-card-header">
-                            <div class="market-icon" style="background: ${market.color}">${market.icon}</div>
-                        </div>
-                        <div class="market-name">${market.name}</div>
-                        <div class="market-count">${data.totalCount || 0} products</div>
-                    `;
-            grid.appendChild(card);
-          } catch (e) {
-            console.error(`Failed to load market ${market.name}:`, e);
-          }
+      // Load products
+      async function loadProducts() {
+        try {
+          const response = await fetch(
+            `${API_URL}/products?maxResultCount=1000`,
+          );
+          const data = await response.json();
+          allProducts = data.items || [];
+          renderProducts();
+        } catch (e) {
+          console.error('Failed to load products:', e);
         }
       }
 
-      // Load products
-      async function loadProducts(filters = {}) {
-        const tbody = document.getElementById('productsTable');
-        tbody.innerHTML = `<tr><td colspan="6" class="loading"><div class="spinner"></div>Loading products...</td></tr>`;
+      function renderProducts() {
+        const table = document.getElementById('productsTable');
+        let filtered = [...allProducts];
 
+        // Apply filters
+        if (currentFilter.relationship) {
+          filtered = filtered.filter(
+            (p) => p.relationship === currentFilter.relationship,
+          );
+        }
+        if (currentFilter.category) {
+          filtered = filtered.filter(
+            (p) => p.category === currentFilter.category,
+          );
+        }
+        if (currentFilter.search) {
+          const search = currentFilter.search.toLowerCase();
+          filtered = filtered.filter(
+            (p) =>
+              p.name.toLowerCase().includes(search) ||
+              (p.description || '').toLowerCase().includes(search) ||
+              (p.tags || []).some((t) => t.toLowerCase().includes(search)),
+          );
+        }
+        if (currentFilter.minPriority) {
+          filtered = filtered.filter(
+            (p) => (p.priorityScore || 0) >= currentFilter.minPriority,
+          );
+        }
+        if (currentFilter.recommendedOnly) {
+          filtered = filtered.filter((p) => p.recommendedForStudy);
+        }
+        // New filters
+        if (currentFilter.status) {
+          filtered = filtered.filter((p) => p.status === currentFilter.status);
+        }
+        if (currentFilter.platform) {
+          filtered = filtered.filter((p) =>
+            (p.platforms || []).some((plat) =>
+              plat.includes(currentFilter.platform),
+            ),
+          );
+        }
+        if (currentFilter.monetization) {
+          filtered = filtered.filter((p) =>
+            (p.monetizationModel || '').includes(currentFilter.monetization),
+          );
+        }
+        if (currentFilter.hasFreeTier) {
+          filtered = filtered.filter((p) => p.hasFreeTier === true);
+        }
+
+        // Apply sorting
+        const sortKey = currentFilter.sort || 'priority-desc';
+        filtered.sort((a, b) => {
+          switch (sortKey) {
+            case 'priority-desc':
+              return (b.priorityScore || 0) - (a.priorityScore || 0);
+            case 'priority-asc':
+              return (a.priorityScore || 0) - (b.priorityScore || 0);
+            case 'name-asc':
+              return a.name.localeCompare(b.name);
+            case 'name-desc':
+              return b.name.localeCompare(a.name);
+            case 'users-desc':
+              return (
+                (b.metrics?.totalUsers || 0) - (a.metrics?.totalUsers || 0)
+              );
+            case 'revenue-desc':
+              return (
+                (b.metrics?.revenueMonthly || 0) -
+                (a.metrics?.revenueMonthly || 0)
+              );
+            default:
+              return 0;
+          }
+        });
+
+        // Update counts
+        const visibleCount = document.getElementById('visibleCount');
+        const totalCount = document.getElementById('totalCount');
+        if (visibleCount) visibleCount.textContent = filtered.length;
+        if (totalCount) totalCount.textContent = allProducts.length;
+
+        if (filtered.length === 0) {
+          table.innerHTML =
+            '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">No products found</td></tr>';
+          return;
+        }
+
+        table.innerHTML = filtered
+          .map(
+            (product) => `
+          <tr>
+            <td>
+              <div class="item-name">
+                <div class="item-icon">${getCategoryIcon(product.category)}</div>
+                <div class="item-info">
+                  <span class="item-title">${product.name}</span>
+                  <span class="item-subtitle">${product.subcategory || ''}</span>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge ${getCategoryBadge(product.category)}">${product.category || '-'}</span></td>
+            <td><span class="badge ${getRelationshipBadge(product.relationship)}">${product.relationship || '-'}</span></td>
+            <td><span class="badge ${getStatusBadge(product.status)}">${product.status || '-'}</span></td>
+            <td>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <div class="priority-bar">
+                  <div class="priority-fill ${getPriorityClass(product.priorityScore || 0)}" style="width: ${product.priorityScore || 0}%"></div>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--text-muted);">${product.priorityScore || 0}</span>
+              </div>
+            </td>
+            <td>
+              <button class="btn btn-secondary" onclick="viewProduct('${product.id}')" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">View</button>
+            </td>
+          </tr>
+        `,
+          )
+          .join('');
+      }
+
+      // Load companies
+      async function loadCompanies() {
         try {
-          const params = new URLSearchParams();
-          if (filters.filter) params.append('filter', filters.filter);
-          if (filters.category) params.append('category', filters.category);
-          if (filters.relationship)
-            params.append('relationship', filters.relationship);
-          if (filters.minPriorityScore)
-            params.append('minPriorityScore', filters.minPriorityScore);
-          if (filters.recommendedOnly) params.append('recommendedOnly', 'true');
-          if (filters.hasAI) params.append('hasAI', 'true');
-          if (filters.hasFreeTier) params.append('hasFreeTier', 'true');
-          params.append('maxResultCount', '50');
+          const response = await fetch(
+            `${API_URL}/companies?maxResultCount=1000`,
+          );
+          const data = await response.json();
+          allCompanies = data.items || [];
+          renderCompanies();
+        } catch (e) {
+          console.error('Failed to load companies:', e);
+        }
+      }
 
-          const response = await fetch(`${API_URL}/products?${params}`);
+      function renderCompanies() {
+        const table = document.getElementById('companiesTable');
+
+        if (allCompanies.length === 0) {
+          table.innerHTML =
+            '<tr><td colspan="5" style="text-align: center; padding: 2rem; color: var(--text-muted);">No companies found</td></tr>';
+          return;
+        }
+
+        table.innerHTML = allCompanies
+          .map(
+            (company) => `
+          <tr>
+            <td>
+              <div class="item-name">
+                <div class="item-icon">🏢</div>
+                <div class="item-info">
+                  <span class="item-title">${company.name}</span>
+                  <span class="item-subtitle">${company.industry || ''}</span>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge badge-blue">${company.type || '-'}</span></td>
+            <td><span class="badge ${getRelationshipBadge(company.relationship)}">${company.relationship || '-'}</span></td>
+            <td>${company.productCount || 0}</td>
+            <td>
+              <button class="btn btn-secondary" onclick="viewCompany('${company.id}')" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">View</button>
+            </td>
+          </tr>
+        `,
+          )
+          .join('');
+      }
+
+      // Load intelligence games
+      async function loadGames() {
+        try {
+          const response = await fetch(`${API_URL}/intelligence/games`);
           const data = await response.json();
 
-          if (!data.items || data.items.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6" class="loading">No products found</td></tr>`;
-            return;
-          }
-
-          tbody.innerHTML = data.items
+          const grid = document.getElementById('gameGrid');
+          grid.innerHTML = data.items
             .map(
-              (product) => `
-                    <tr>
-                        <td>
-                            <div class="product-name">
-                                <div class="product-logo">${getCategoryIcon(product.category)}</div>
-                                <div class="product-info">
-                                    <div class="product-title">${product.name}</div>
-                                    <div class="product-subtitle">${product.tagline || product.category}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td><span class="badge ${getCategoryBadge(product.category)}">${product.category}</span></td>
-                        <td><span class="badge ${getRelationshipBadge(product.relationship)}">${product.relationship}</span></td>
-                        <td><span class="badge ${getStatusBadge(product.status)}">${product.status || 'Unknown'}</span></td>
-                        <td>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <div class="priority-bar">
-                                    <div class="priority-fill ${getPriorityClass(product.priorityScore)}" style="width: ${product.priorityScore}%"></div>
-                                </div>
-                                <span style="font-size: 0.75rem; color: var(--text-muted)">${product.priorityScore}</span>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="btn btn-secondary" onclick="viewProduct('${product.id}')" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;">View</button>
-                        </td>
-                    </tr>
-                `,
+              (game) => `
+            <div class="game-card">
+              <div class="game-header">
+                <div>
+                  <div class="game-name">${game.name}</div>
+                  <div class="game-genre">${game.genre}</div>
+                </div>
+                <span style="background: rgba(34, 197, 94, 0.2); color: var(--accent-green); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">
+                  ${game.studyPriority}%
+                </span>
+              </div>
+              <div class="game-stats">
+                <div class="game-stat">
+                  <span class="game-stat-label">Revenue</span>
+                  <span class="game-stat-value">$${(game.estimatedMonthlyRevenue / 1000000).toFixed(1)}M/mo</span>
+                </div>
+                <div class="game-stat">
+                  <span class="game-stat-label">Players</span>
+                  <span class="game-stat-value">${(game.concurrentPlayers / 1000).toFixed(0)}K</span>
+                </div>
+                <div class="game-stat">
+                  <span class="game-stat-label">Likes</span>
+                  <span class="game-stat-value">${game.likesPercent}%</span>
+                </div>
+              </div>
+              <div class="game-why">
+                <strong>Why it works:</strong>
+                <ul style="padding-left: 1rem; margin-top: 0.25rem;">
+                  ${game.whyPopular
+                    .slice(0, 3)
+                    .map((w) => `<li>${w}</li>`)
+                    .join('')}
+                </ul>
+              </div>
+            </div>
+          `,
             )
             .join('');
         } catch (e) {
-          console.error('Failed to load products:', e);
-          tbody.innerHTML = `<tr><td colspan="6" class="loading">Failed to load products. Is the API running?</td></tr>`;
+          console.error('Failed to load games:', e);
         }
       }
 
-      // Helper functions
+      // Load AI context
+      async function loadAIContext() {
+        try {
+          const response = await fetch(`${API_URL}/intelligence/ai-context`);
+          const text = await response.text();
+          document.getElementById('aiContextText').textContent = text;
+        } catch (e) {
+          document.getElementById('aiContextText').textContent =
+            'Failed to load AI context';
+        }
+      }
+
+      // Filters
+      function setupFilters() {
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const relationshipFilter =
+          document.getElementById('relationshipFilter');
+        const recommendedOnly = document.getElementById('recommendedOnly');
+        const statusFilter = document.getElementById('statusFilter');
+        const platformFilter = document.getElementById('platformFilter');
+        const monetizationFilter =
+          document.getElementById('monetizationFilter');
+        const sortFilter = document.getElementById('sortFilter');
+        const hasFreeTier = document.getElementById('hasFreeTier');
+        const clearFilters = document.getElementById('clearFilters');
+
+        // Search with debounce
+        let debounceTimer;
+        searchInput.addEventListener('input', () => {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(() => {
+            currentFilter.search = searchInput.value;
+            renderProducts();
+            updateActiveFilters();
+          }, 300);
+        });
+
+        // Category filter
+        categoryFilter.addEventListener('change', (e) => {
+          currentFilter.category = e.target.value || null;
+          renderProducts();
+          updateActiveFilters();
+        });
+
+        // Relationship filter
+        relationshipFilter.addEventListener('change', (e) => {
+          currentFilter.relationship = e.target.value || null;
+          renderProducts();
+          updateActiveFilters();
+        });
+
+        recommendedOnly.addEventListener('change', (e) => {
+          currentFilter.recommendedOnly = e.target.checked;
+          renderProducts();
+          updateActiveFilters();
+        });
+
+        statusFilter.addEventListener('change', (e) => {
+          currentFilter.status = e.target.value;
+          renderProducts();
+          updateActiveFilters();
+        });
+
+        platformFilter.addEventListener('change', (e) => {
+          currentFilter.platform = e.target.value;
+          renderProducts();
+          updateActiveFilters();
+        });
+
+        monetizationFilter.addEventListener('change', (e) => {
+          currentFilter.monetization = e.target.value;
+          renderProducts();
+          updateActiveFilters();
+        });
+
+        sortFilter.addEventListener('change', (e) => {
+          currentFilter.sort = e.target.value;
+          renderProducts();
+        });
+
+        hasFreeTier.addEventListener('change', (e) => {
+          currentFilter.hasFreeTier = e.target.checked;
+          renderProducts();
+          updateActiveFilters();
+        });
+
+        // Clear all filters
+        clearFilters.addEventListener('click', () => {
+          searchInput.value = '';
+          categoryFilter.value = '';
+          relationshipFilter.value = '';
+          recommendedOnly.checked = false;
+          statusFilter.value = '';
+          platformFilter.value = '';
+          monetizationFilter.value = '';
+          sortFilter.value = 'priority-desc';
+          hasFreeTier.checked = false;
+
+          currentFilter = {
+            view: 'all-products',
+            category: null,
+            relationship: null,
+            search: '',
+            minPriority: 0,
+            recommendedOnly: false,
+            status: '',
+            platform: '',
+            monetization: '',
+            sort: 'priority-desc',
+            hasFreeTier: false,
+          };
+          renderProducts();
+          updateActiveFilters();
+        });
+      }
+
+      function updateActiveFilters() {
+        const container = document.getElementById('activeFilters');
+        if (!container) return;
+
+        const filters = [];
+
+        if (currentFilter.search) {
+          filters.push({ label: `"${currentFilter.search}"`, key: 'search' });
+        }
+        if (currentFilter.category) {
+          filters.push({ label: currentFilter.category, key: 'category' });
+        }
+        if (currentFilter.relationship) {
+          filters.push({
+            label: currentFilter.relationship,
+            key: 'relationship',
+          });
+        }
+        if (currentFilter.status) {
+          filters.push({ label: currentFilter.status, key: 'status' });
+        }
+        if (currentFilter.platform) {
+          filters.push({ label: currentFilter.platform, key: 'platform' });
+        }
+        if (currentFilter.monetization) {
+          filters.push({
+            label: currentFilter.monetization,
+            key: 'monetization',
+          });
+        }
+        if (currentFilter.recommendedOnly) {
+          filters.push({ label: '⭐ Recommended', key: 'recommendedOnly' });
+        }
+        if (currentFilter.hasFreeTier) {
+          filters.push({ label: '🆓 Free Tier', key: 'hasFreeTier' });
+        }
+
+        container.innerHTML = filters
+          .map(
+            (f) => `
+          <span class="active-filter-tag">
+            ${f.label}
+            <button onclick="clearSingleFilter('${f.key}')">&times;</button>
+          </span>
+        `,
+          )
+          .join('');
+      }
+
+      function clearSingleFilter(key) {
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const relationshipFilter =
+          document.getElementById('relationshipFilter');
+        const recommendedOnly = document.getElementById('recommendedOnly');
+        const statusFilter = document.getElementById('statusFilter');
+        const platformFilter = document.getElementById('platformFilter');
+        const monetizationFilter =
+          document.getElementById('monetizationFilter');
+        const hasFreeTier = document.getElementById('hasFreeTier');
+
+        switch (key) {
+          case 'search':
+            currentFilter.search = '';
+            searchInput.value = '';
+            break;
+          case 'category':
+            currentFilter.category = null;
+            categoryFilter.value = '';
+            break;
+          case 'relationship':
+            currentFilter.relationship = null;
+            relationshipFilter.value = '';
+            break;
+          case 'status':
+            currentFilter.status = '';
+            statusFilter.value = '';
+            break;
+          case 'platform':
+            currentFilter.platform = '';
+            platformFilter.value = '';
+            break;
+          case 'monetization':
+            currentFilter.monetization = '';
+            monetizationFilter.value = '';
+            break;
+          case 'recommendedOnly':
+            currentFilter.recommendedOnly = false;
+            recommendedOnly.checked = false;
+            break;
+          case 'hasFreeTier':
+            currentFilter.hasFreeTier = false;
+            hasFreeTier.checked = false;
+            break;
+        }
+
+        renderProducts();
+        updateActiveFilters();
+      }
+
+      // Helpers
       function getCategoryIcon(category) {
         const icons = {
           Game: '🎮',
+          'AI Agent': '🤖',
           'Online Course': '📚',
           'SaaS Application': '💻',
-          'AI Agent': '🤖',
-          'AI Assistant': '🤖',
+          'Family App': '👨‍👩‍👧‍👦',
+          'AI Assistant': '🧠',
           'Productivity Tool': '⚡',
-          'Family App': '👨‍👩‍👧',
-          Certification: '🎓',
         };
         return icons[category] || '📦';
       }
@@ -891,11 +3709,9 @@
       function getCategoryBadge(category) {
         const badges = {
           Game: 'badge-orange',
+          'AI Agent': 'badge-cyan',
           'Online Course': 'badge-purple',
           'SaaS Application': 'badge-blue',
-          'AI Agent': 'badge-cyan',
-          'AI Assistant': 'badge-cyan',
-          'Productivity Tool': 'badge-blue',
           'Family App': 'badge-green',
         };
         return badges[category] || 'badge-blue';
@@ -905,8 +3721,8 @@
         const badges = {
           'Our Product': 'badge-green',
           Competitor: 'badge-red',
-          Inspiration: 'badge-purple',
           Reference: 'badge-blue',
+          Inspiration: 'badge-purple',
           Complementary: 'badge-cyan',
         };
         return badges[relationship] || 'badge-blue';
@@ -929,82 +3745,58 @@
         return 'low';
       }
 
-      // Filter functions
-      function filterByCategory(category) {
-        document.getElementById('categoryFilter').value = category;
-        applyFilters();
-      }
-
-      function setupFilters() {
-        const searchInput = document.getElementById('searchInput');
-        const categoryFilter = document.getElementById('categoryFilter');
-        const relationshipFilter =
-          document.getElementById('relationshipFilter');
-        const priorityFilter = document.getElementById('priorityFilter');
-        const priorityValue = document.getElementById('priorityValue');
-        const recommendedOnly = document.getElementById('recommendedOnly');
-        const hasAI = document.getElementById('hasAI');
-        const hasFreeTier = document.getElementById('hasFreeTier');
-
-        let debounceTimer;
-        searchInput.addEventListener('input', () => {
-          clearTimeout(debounceTimer);
-          debounceTimer = setTimeout(applyFilters, 300);
-        });
-
-        categoryFilter.addEventListener('change', applyFilters);
-        relationshipFilter.addEventListener('change', applyFilters);
-
-        priorityFilter.addEventListener('input', (e) => {
-          priorityValue.textContent = e.target.value;
-        });
-        priorityFilter.addEventListener('change', applyFilters);
-
-        recommendedOnly.addEventListener('change', applyFilters);
-        hasAI.addEventListener('change', applyFilters);
-        hasFreeTier.addEventListener('change', applyFilters);
-      }
-
-      function applyFilters() {
-        const filters = {
-          filter: document.getElementById('searchInput').value,
-          category: document.getElementById('categoryFilter').value,
-          relationship: document.getElementById('relationshipFilter').value,
-          minPriorityScore:
-            document.getElementById('priorityFilter').value > 0
-              ? document.getElementById('priorityFilter').value
-              : null,
-          recommendedOnly: document.getElementById('recommendedOnly').checked,
-          hasAI: document.getElementById('hasAI').checked,
-          hasFreeTier: document.getElementById('hasFreeTier').checked,
-        };
-        loadProducts(filters);
-      }
-
+      // Actions
       function refreshData() {
         loadStats();
-        loadMarkets();
-        applyFilters();
+        loadProducts();
+        loadCompanies();
       }
 
       function viewProduct(id) {
         window.open(`${API_URL}/products/${id}`, '_blank');
       }
 
+      function viewCompany(id) {
+        window.open(`${API_URL}/companies/${id}`, '_blank');
+      }
+
       function openAddModal() {
         alert('Add Product modal - Coming soon!');
       }
 
-      // Tab navigation
-      document.querySelectorAll('.nav-tab').forEach((tab) => {
-        tab.addEventListener('click', () => {
-          document
-            .querySelectorAll('.nav-tab')
-            .forEach((t) => t.classList.remove('active'));
-          tab.classList.add('active');
-          // Tab switching logic would go here
+      function openAddCompanyModal() {
+        alert('Add Company modal - Coming soon!');
+      }
+
+      // RICE Calculator
+      function calculateRICE() {
+        const reach = parseInt(document.getElementById('riceReach').value) || 1;
+        const impact =
+          parseInt(document.getElementById('riceImpact').value) || 1;
+        const confidence =
+          parseInt(document.getElementById('riceConfidence').value) || 50;
+        const effort =
+          parseInt(document.getElementById('riceEffort').value) || 1;
+
+        const score = (reach * impact * (confidence / 100)) / effort;
+        const rounded = Math.round(score * 100) / 100;
+
+        let priority = 'Low Priority';
+        if (score >= 10) priority = 'High Priority 🔥';
+        else if (score >= 5) priority = 'Medium Priority';
+
+        document.getElementById('riceResult').style.display = 'block';
+        document.getElementById('riceScoreValue').textContent = rounded;
+        document.getElementById('ricePriority').textContent = priority;
+      }
+
+      // Copy AI context
+      function copyAIContext() {
+        const text = document.getElementById('aiContextText').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          alert('Copied to clipboard! Paste into ChatGPT or Claude.');
         });
-      });
+      }
     </script>
   </body>
 </html>

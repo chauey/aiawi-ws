@@ -9,16 +9,25 @@ export const appRoutes: Route[] = [
       {
         path: '',
         redirectTo: 'dashboard',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'dashboard',
-        loadChildren: () => import('@aiawi-ws/dashboard').then(m => m.dashboardRoutes)
+        loadChildren: () =>
+          import('@aiawi-ws/dashboard').then((m) => m.dashboardRoutes),
       },
       {
         path: 'games',
-        loadChildren: () => import('@aiawi-ws/games').then(m => m.gamesRoutes)
-      }
-    ]
-  }
+        loadChildren: () =>
+          import('@aiawi-ws/games').then((m) => m.gamesRoutes),
+      },
+      {
+        path: 'product-intelligence',
+        loadChildren: () =>
+          import('@aiawi-ws/product-intelligence').then(
+            (m) => m.productIntelligenceRoutes,
+          ),
+      },
+    ],
+  },
 ];

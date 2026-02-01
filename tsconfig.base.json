@@ -78,7 +78,10 @@
       "@aiawi-ws/games": ["libs/features/games/src/index.ts"],
       "@aiawi-ws/layout": ["libs/shared/layout/src/index.ts"],
       "@aiawi-ws/game-data": ["libs/data-access/game-data/src/index.ts"],
-      "@aiawi-ws/game-types": ["libs/shared/game-types/src/index.ts"]
+      "@aiawi-ws/game-types": ["libs/shared/game-types/src/index.ts"],
+      "@aiawi-ws/product-intelligence": [
+        "libs/features/product-intelligence/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

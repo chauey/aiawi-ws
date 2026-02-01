@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { GameDto } from '../shared/dtos/game.dto';
 import { ProductDto } from '../shared/dtos/product.dto';
 import { CompanyDto } from '../shared/dtos/company.dto';
+import { FeatureDto, ProductFeatureDto } from '../shared/dtos/feature.dto';
 
 /**
  * Multi-entity database structure
@@ -15,6 +16,13 @@ export interface Database {
   // New entities
   products: ProductDto[];
   companies: CompanyDto[];
+
+  // Feature Intelligence
+  features: FeatureDto[];
+  'product-features': ProductFeatureDto[];
+
+  // Dynamic collections (for extensibility)
+  [key: string]: unknown;
 
   // Metadata
   metadata: {
@@ -56,9 +64,12 @@ export class JsonStorageService {
         // Ensure new arrays exist (migration)
         if (!this.database.products) this.database.products = [];
         if (!this.database.companies) this.database.companies = [];
+        if (!this.database.features) this.database.features = [];
+        if (!this.database['product-features'])
+          this.database['product-features'] = [];
 
         console.log(
-          `✅ Loaded ${this.database.games?.length || 0} games, ${this.database.products?.length || 0} products, ${this.database.companies?.length || 0} companies`,
+          `✅ Loaded ${this.database.games?.length || 0} games, ${this.database.products?.length || 0} products, ${this.database.companies?.length || 0} companies, ${this.database.features?.length || 0} features`,
         );
       } catch (error) {
         console.error('Error loading database:', error);
@@ -78,6 +89,8 @@ export class JsonStorageService {
             games: legacyDb.games || [],
             products: [],
             companies: [],
+            features: [],
+            'product-features': [],
             metadata: {
               version: '2.0.0',
               lastUpdated: new Date().toISOString(),
@@ -108,6 +121,8 @@ export class JsonStorageService {
       games: [],
       products: [],
       companies: [],
+      features: [],
+      'product-features': [],
       metadata: {
         version: '2.0.0',
         lastUpdated: new Date().toISOString(),
@@ -203,6 +218,29 @@ export class JsonStorageService {
       return true;
     }
     return false;
+  }
+
+  // ==========================================
+  // DYNAMIC COLLECTION METHODS
+  // ==========================================
+
+  /**
+   * Get a collection by name (for dynamic/extensible collections)
+   */
+  getCollection<T>(collectionName: string): T[] {
+    const collection = this.database[collectionName];
+    if (!collection) {
+      return [];
+    }
+    return collection as T[];
+  }
+
+  /**
+   * Set a collection by name (for dynamic/extensible collections)
+   */
+  setCollection<T>(collectionName: string, items: T[]): void {
+    this.database[collectionName] = items;
+    this.saveDatabase();
   }
 
   // ==========================================

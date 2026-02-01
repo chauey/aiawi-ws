@@ -127,7 +127,7 @@ export class GameRepository {
 
     if (filter.tags && filter.tags.length > 0) {
       games = games.filter((g) =>
-        filter.tags!.some((tag) => g.tags.includes(tag)),
+        filter.tags?.some((tag) => g.tags.includes(tag)),
       );
     }
 

@@ -1,6 +1,36 @@
 import { AuditedEntityDto } from './base.dto';
 
 // ==========================================
+// ENUMS
+// ==========================================
+
+export enum CampaignStatus {
+  Planning = 'Planning',
+  Active = 'Active',
+  Paused = 'Paused',
+  Completed = 'Completed',
+  Cancelled = 'Cancelled',
+}
+
+export enum FeatureStatus {
+  Idea = 'Idea',
+  UnderReview = 'Under Review',
+  Planned = 'Planned',
+  InProgress = 'In Progress',
+  Beta = 'Beta',
+  Released = 'Released',
+  Rejected = 'Rejected',
+}
+
+export enum FeaturePriority {
+  Critical = 'Critical',
+  High = 'High',
+  Medium = 'Medium',
+  Low = 'Low',
+  Backlog = 'Backlog',
+}
+
+// ==========================================
 // MARKET ANALYSIS ENTITIES
 // For strategic planning, marketing campaigns, and feature prioritization
 // ==========================================

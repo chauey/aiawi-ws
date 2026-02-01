@@ -1755,6 +1755,8 @@ export function seedProductDatabase(storage: JsonStorageService): void {
       hasFreeTier: product.hasFreeTier ?? true,
       freeTrialDays: product.freeTrialDays,
       startingPrice: product.startingPrice,
+      launchDate: product.launchDate,
+      lastUpdateDate: product.lastUpdateDate,
       metrics: (product.metrics as any) || {},
       strengths: product.strengths || [],
       weaknesses: product.weaknesses || [],

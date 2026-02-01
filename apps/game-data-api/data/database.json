@@ -2035,9 +2035,9 @@
   ],
   "products": [
     {
-      "id": "88058380-2a49-4713-b9ac-292b3bfcc321",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "06f97204-ff15-4afe-9a9f-6406906f2d6e",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Dragon Legends",
@@ -2122,9 +2122,9 @@
       ]
     },
     {
-      "id": "2a492ee4-60d8-424f-90a3-c26a535ffd9b",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "ac2a7986-e6e2-43ed-a383-2daa3a9d0660",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Lucky Fish Legends",
@@ -2210,9 +2210,9 @@
       ]
     },
     {
-      "id": "5173add5-92d8-4fef-9779-3f5027e83fed",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "777b9e8e-2425-46d5-bc5e-484b0733b0fe",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Family Quest",
@@ -2295,9 +2295,9 @@
       ]
     },
     {
-      "id": "203d0a9f-9aeb-4129-a86f-016fccf06342",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "f9ba586c-c1fc-41a7-99fc-3b8bcfec6756",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Fish It! 🐟",
@@ -2328,6 +2328,7 @@
       "monetizationModel": "In-App Purchases",
       "pricingTiers": [],
       "hasFreeTier": true,
+      "launchDate": "2024-11-01T00:00:00.000Z",
       "metrics": {
         "totalUsers": 500000000,
         "concurrentPlayers": 940000,
@@ -2376,9 +2377,9 @@
       ]
     },
     {
-      "id": "dc604a52-6e86-482f-89fa-4b71e79b3e7e",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "5b3143f6-3ff9-4a58-8de2-c5a604b558d1",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Adopt Me!",
@@ -2412,6 +2413,7 @@
       "monetizationModel": "In-App Purchases",
       "pricingTiers": [],
       "hasFreeTier": true,
+      "launchDate": "2017-07-14T00:00:00.000Z",
       "metrics": {
         "totalUsers": 3800000000,
         "concurrentPlayers": 500000,
@@ -2460,9 +2462,9 @@
       ]
     },
     {
-      "id": "84a224c5-2588-4a59-bdb3-713fd0b7bec2",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "5579a1f2-8a2c-42d9-a094-432e93d6f785",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Blox Fruits",
@@ -2495,6 +2497,7 @@
       "monetizationModel": "In-App Purchases",
       "pricingTiers": [],
       "hasFreeTier": true,
+      "launchDate": "2019-01-16T00:00:00.000Z",
       "metrics": {
         "totalUsers": 4500000000,
         "concurrentPlayers": 600000,
@@ -2543,9 +2546,9 @@
       ]
     },
     {
-      "id": "6cb0e56d-067f-4477-a280-1c5433e99536",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "430197d3-36f9-4fd5-a954-f21812fb4655",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Brookhaven RP",
@@ -2576,6 +2579,7 @@
       "monetizationModel": "In-App Purchases",
       "pricingTiers": [],
       "hasFreeTier": true,
+      "launchDate": "2020-04-09T00:00:00.000Z",
       "metrics": {
         "totalUsers": 3200000000,
         "concurrentPlayers": 400000,
@@ -2623,9 +2627,9 @@
       ]
     },
     {
-      "id": "4936d5c6-1f27-4be0-a6aa-3710c48d7255",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "50e853ca-87ce-470e-986b-2398619aac99",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Sol's RNG",
@@ -2655,6 +2659,7 @@
       "monetizationModel": "In-App Purchases",
       "pricingTiers": [],
       "hasFreeTier": true,
+      "launchDate": "2024-01-15T00:00:00.000Z",
       "metrics": {
         "totalUsers": 800000000,
         "concurrentPlayers": 350000,
@@ -2703,9 +2708,9 @@
       ]
     },
     {
-      "id": "febdfde4-0adb-4b83-a66c-75e616db6b70",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "eb8f6783-5439-437e-8516-5da103a8a703",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Dress To Impress",
@@ -2770,9 +2775,9 @@
       ]
     },
     {
-      "id": "06b1bd5f-69e8-41c8-8875-f91301581ff9",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "2fbeab71-1e5e-4a18-a526-e4b351d468dc",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "The Strongest Battlegrounds",
@@ -2837,9 +2842,9 @@
       ]
     },
     {
-      "id": "b3f9bfd8-4f8f-4258-8533-e89b14e7cd8d",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "6a174a4d-c672-4288-9c59-931c0bff5213",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "RIVALS",
@@ -2905,9 +2910,9 @@
       ]
     },
     {
-      "id": "f6ba25eb-dec1-490a-a88a-f9453af19f4c",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "4a8c90f4-d1f8-454b-9f2c-043fbe80af80",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Claude",
@@ -2991,9 +2996,9 @@
       ]
     },
     {
-      "id": "e51e8d6d-5788-488c-a43c-d31f264f9ec3",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "161e8490-9b08-4f71-9528-ab345cb4a091",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "ChatGPT",
@@ -3078,9 +3083,9 @@
       ]
     },
     {
-      "id": "17f07380-90ae-4194-b1e0-b7329d5b63cc",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "cc3884f5-e69c-4c2d-976a-3a74527e0c6e",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Cursor",
@@ -3157,9 +3162,9 @@
       ]
     },
     {
-      "id": "168b4128-adcb-46ce-9607-ced56d405a9b",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "7d21860e-f511-49af-8bb4-0c33776075e9",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "GitHub Copilot",
@@ -3231,9 +3236,9 @@
       ]
     },
     {
-      "id": "69826bf1-93d8-4509-8639-10d559931f06",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "155a2c42-5391-465b-bff2-936e9d86fcb7",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Perplexity AI",
@@ -3309,9 +3314,9 @@
       ]
     },
     {
-      "id": "8d20c15a-d5bd-4e71-9dd3-15d5aace2e0e",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "72bcf3fd-c64d-450a-bd55-a4d20cd5973c",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Midjourney",
@@ -3384,9 +3389,9 @@
       ]
     },
     {
-      "id": "f18d95ab-1ada-4c2a-bd96-7a0014a7ad48",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "6f2758ca-ab5e-4ad7-8524-689edece80d8",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Replit Agent",
@@ -3458,9 +3463,9 @@
       ]
     },
     {
-      "id": "88aeeea5-fb8d-4bf4-a31d-7c5c90591cea",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "b4ea8979-fd9e-4936-b4af-92b2816de64b",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "v0 by Vercel",
@@ -3529,9 +3534,9 @@
       ]
     },
     {
-      "id": "301bc0d2-b0bc-4378-b3cf-ff50c146ff16",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "101b45bc-d5cc-4826-8a64-b1cdb01a8d7e",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Devin",
@@ -3604,9 +3609,9 @@
       ]
     },
     {
-      "id": "25c5e791-5ee4-4ff8-b6c5-f2f06cefbc1c",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "bdee729f-aa6e-4df8-abe7-0bbbea3a68df",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Google Data Analytics Certificate",
@@ -3667,9 +3672,9 @@
       ]
     },
     {
-      "id": "2f00a702-92fb-4a9a-81d5-2c834f1f2f25",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "60299ffc-4769-43f3-b62a-8f2534922ff0",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Notion",
@@ -3742,9 +3747,9 @@
       ]
     },
     {
-      "id": "eb7954bf-718e-4c48-a0a2-6db661ab3b2a",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "6c23a91b-e51b-4ddc-a4cc-c6af40da54d0",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Life360",
@@ -3809,9 +3814,9 @@
       ]
     },
     {
-      "id": "f4910c5c-fc1d-4cd7-aa6c-a604e1f0610e",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "adbed7ef-5151-4ed2-81da-fe2205d83c7a",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "OurHome",
@@ -3879,9 +3884,9 @@
       ]
     },
     {
-      "id": "f2a33913-f833-4ae4-9b87-6d4f0cf9ddff",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "021abf63-71aa-4648-aac8-1f52c67880f7",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Pet Simulator X",
@@ -3915,6 +3920,7 @@
       "monetizationModel": "In-App Purchases",
       "pricingTiers": [],
       "hasFreeTier": true,
+      "launchDate": "2021-04-14T00:00:00.000Z",
       "metrics": {
         "totalUsers": 100000000,
         "monthlyActiveUsers": 20000000,
@@ -3966,9 +3972,9 @@
   ],
   "companies": [
     {
-      "id": "006dab2b-8239-475f-9223-4ef809eff9d1",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "039a0c84-3000-4cf7-b7e7-50baa20d0ee3",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Coursera",
@@ -4029,9 +4035,9 @@
       ]
     },
     {
-      "id": "e2835245-780a-4d06-93ea-17290cdd84c9",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "99f55cba-2588-4ec0-afaf-b4e7c4f55289",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Udemy",
@@ -4085,9 +4091,9 @@
       ]
     },
     {
-      "id": "404b0489-1f98-4450-a31e-4b6384766712",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "89ea917b-13f0-406f-b2b0-870c85f51de0",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Anthropic",
@@ -4140,9 +4146,9 @@
       ]
     },
     {
-      "id": "6893dba3-3a8d-4b45-b17e-aa70e6c15fc4",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "2a6b752e-ec3c-4445-a1b1-c3bc86307fe2",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "OpenAI",
@@ -4197,9 +4203,9 @@
       ]
     },
     {
-      "id": "6f4d0e35-d8d5-4927-89a7-57d988f40d77",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "e26dbc32-3109-4a91-9fb1-1e3a33783f86",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Notion",
@@ -4253,9 +4259,9 @@
       ]
     },
     {
-      "id": "844d9fba-e27b-4159-9358-53bebf4b090b",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "cc10a73e-3913-4d8c-88e0-de54508cc8d8",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Obsidian",
@@ -4306,9 +4312,9 @@
       ]
     },
     {
-      "id": "145b041b-752b-4a8d-b073-cc3880c34971",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "eeb8de7f-3d43-4f71-94b0-36d59bf63b73",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Life360",
@@ -4363,9 +4369,9 @@
       ]
     },
     {
-      "id": "0fc37544-2dd2-435d-b1a3-dd6063f63add",
-      "creationTime": "2026-02-01T00:35:58.472Z",
-      "lastModificationTime": "2026-02-01T00:35:58.472Z",
+      "id": "89341cba-601a-4012-9ce3-62b9276410ba",
+      "creationTime": "2026-02-01T00:53:55.334Z",
+      "lastModificationTime": "2026-02-01T00:53:55.334Z",
       "creatorId": "seed",
       "lastModifierId": "seed",
       "name": "Cozi",
@@ -5532,7 +5538,7 @@
   ],
   "metadata": {
     "version": "2.0.0",
-    "lastUpdated": "2026-02-01T00:36:17.991Z",
+    "lastUpdated": "2026-02-01T00:54:20.890Z",
     "totalGames": 17,
     "totalProducts": 25,
     "totalCompanies": 8

@@ -5,6 +5,7 @@
 export * from './config/gameConfig';
 export * from './config/featureRegistry';
 export * from './config/gameMetadata';
+export * from './config/systemRegistry'; // Links to @aiawi/shared-game-systems
 
 // ========== UI COMPONENTS ==========
 export * from './ui/actionBar';

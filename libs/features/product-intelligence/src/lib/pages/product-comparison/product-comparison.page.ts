@@ -443,7 +443,7 @@ interface ProductResponse {
           </div>
 
           <!-- Metrics Grid -->
-          <div class="grid grid-cols-2 gap-3 mb-4">
+          <div class="grid grid-cols-3 gap-2 mb-4">
             <div class="p-2 rounded-lg bg-muted/50">
               <div class="text-xs text-muted-foreground">Revenue/mo</div>
               <div class="font-semibold text-green-500">
@@ -460,6 +460,16 @@ interface ProductResponse {
                 {{
                   product.metrics?.monthlyActiveUsers
                     ? formatNumber(product.metrics!.monthlyActiveUsers!)
+                    : '—'
+                }}
+              </div>
+            </div>
+            <div class="p-2 rounded-lg bg-muted/50">
+              <div class="text-xs text-muted-foreground">DAU</div>
+              <div class="font-semibold text-blue-500">
+                {{
+                  product.metrics?.dailyActiveUsers
+                    ? formatNumber(product.metrics!.dailyActiveUsers!)
                     : '—'
                 }}
               </div>
@@ -485,7 +495,34 @@ interface ProductResponse {
                 }}
               </div>
             </div>
+            <div class="p-2 rounded-lg bg-muted/50">
+              <div class="text-xs text-muted-foreground">🚀 Launched</div>
+              <div class="font-semibold text-xs">
+                {{ product.launchDate ? formatLaunchDate(product.launchDate) : '—' }}
+              </div>
+            </div>
           </div>
+
+          <!-- Retention Metrics -->
+          @if (product.metrics?.retentionDay1) {
+          <div class="mb-4 p-2 rounded-lg bg-muted/30">
+            <div class="text-xs text-muted-foreground mb-2">📊 Retention</div>
+            <div class="grid grid-cols-3 gap-2 text-center">
+              <div>
+                <div class="text-xs text-muted-foreground">D1</div>
+                <div class="text-sm font-semibold text-green-500">{{ product.metrics!.retentionDay1 }}%</div>
+              </div>
+              <div>
+                <div class="text-xs text-muted-foreground">D7</div>
+                <div class="text-sm font-semibold text-yellow-500">{{ product.metrics!.retentionDay7 }}%</div>
+              </div>
+              <div>
+                <div class="text-xs text-muted-foreground">D30</div>
+                <div class="text-sm font-semibold text-red-400">{{ product.metrics!.retentionDay30 }}%</div>
+              </div>
+            </div>
+          </div>
+          }
 
           <!-- Tags -->
           <div class="flex flex-wrap gap-1 mb-3">

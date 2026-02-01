@@ -8,8 +8,14 @@ import { createGameRouter } from './routes/game.routes';
 import systemRoutes from './routes/system.routes';
 import productRoutes from './routes/product.routes';
 import companyRoutes from './routes/company.routes';
+import marketAnalysisRoutes from './routes/market-analysis.routes';
+import analyticsRoutes from './routes/analytics.routes';
+import intelligenceRoutes from './routes/intelligence.routes';
+import featureRoutes from './routes/feature.routes';
 import { swaggerSpec } from './swagger/swagger.config';
 import { seedProductDatabase } from './database/seed-products';
+import { seedRobloxGameIntelligence } from './database/seed-roblox-games';
+import { seedFeatures } from './database/seed-features';
 
 const app = express();
 const port = process.env.PORT || 3333;
@@ -28,15 +34,32 @@ const gameRepository = new GameRepository(storage);
 
 // Seed data if database is empty
 const products = storage.getAll('products');
+const features = storage.getCollection('features');
 
 if (products.length === 0) {
   console.log('📦 Database empty, seeding sample data...');
   seedProductDatabase(storage);
 }
 
-// Dashboard redirect
-app.get('/', (_req, res) => {
-  res.redirect('/dashboard.html');
+// Seed features if empty
+if (features.length === 0) {
+  console.log('🎮 Seeding feature intelligence data...');
+  seedFeatures(storage);
+}
+
+// Dashboard SPA routes - serve index for all frontend routes
+const dashboardRoutes = [
+  '/',
+  '/dashboard',
+  '/products',
+  '/companies',
+  '/market',
+  '/planning',
+];
+dashboardRoutes.forEach((route) => {
+  app.get(route, (_req, res) => {
+    res.sendFile(path.join(__dirname, '../public/dashboard.html'));
+  });
 });
 
 // Swagger UI
@@ -61,6 +84,14 @@ app.use('/api/games', createGameRouter(gameRepository));
 // Routes - New (Products & Companies)
 app.use('/api/products', productRoutes);
 app.use('/api/companies', companyRoutes);
+
+// Routes - Market Intelligence
+app.use('/api/market', marketAnalysisRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/intelligence', intelligenceRoutes);
+
+// Routes - Feature Intelligence
+app.use('/api/features', featureRoutes);
 
 // Routes - Systems Discovery
 app.use('/api/systems', systemRoutes);
